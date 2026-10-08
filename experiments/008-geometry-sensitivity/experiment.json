@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "id": "008-geometry-sensitivity",
+  "question": "How stable are finite-search outcomes under \u00b12mm column spacing and \u00b115mm board placement?",
+  "atlas_definition": "../007-index-atlas/experiment.json",
+  "atlas_definition_sha256": "29cb8c58c76f1c5251ddcf6496f3228c6990cd9d1a9a0774153d5931f4d1cd82",
+  "targets": [
+    {
+      "row": 1,
+      "column": 4,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 7,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 9,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 12,
+      "finger": "index"
+    },
+    {
+      "row": 2,
+      "column": 6,
+      "finger": "index"
+    },
+    {
+      "row": 3,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 3,
+      "column": 8,
+      "finger": "index"
+    },
+    {
+      "row": 4,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 4,
+      "column": 8,
+      "finger": "index"
+    },
+    {
+      "row": 5,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 5,
+      "column": 8,
+      "finger": "index"
+    }
+  ],
+  "cases": [
+    {
+      "id": "reference",
+      "patch": {}
+    },
+    {
+      "id": "spacing-17mm",
+      "patch": {
+        "geometry": {
+          "column_spacing_m": 0.017,
+          "provenance": {
+            "note": "Sensitivity hypothesis: 17mm column spacing, other dimensions unchanged; unmeasured."
+          }
+        }
+      }
+    },
+    {
+      "id": "spacing-21mm",
+      "patch": {
+        "geometry": {
+          "column_spacing_m": 0.021,
+          "provenance": {
+            "note": "Sensitivity hypothesis: 21mm column spacing, other dimensions unchanged; unmeasured."
+          }
+        }
+      }
+    },
+    {
+      "id": "board-forward-15mm",
+      "patch": {
+        "setup": {
+          "board": {
+            "origin_m": [
+              0.26,
+              0.235,
+              1.25
+            ],
+            "provenance": {
+              "note": "Sensitivity hypothesis: board 15mm farther forward; unmeasured."
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "board-backward-15mm",
+      "patch": {
+        "setup": {
+          "board": {
+            "origin_m": [
+              0.26,
+              0.205,
+              1.25
+            ],
+            "provenance": {
+              "note": "Sensitivity hypothesis: board 15mm closer to torso; unmeasured."
+            }
+          }
+        }
+      }
+    }
+  ]
+}

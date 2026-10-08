@@ -17,7 +17,27 @@ class PlayerProfile:
         }
     )
 
+    joint_range_evidence: dict[str, dict[str, Any]] = field(default_factory=dict)
+    uncertainty: str = (
+        "Imported dimensions and ranges lack player-specific uncertainty estimates"
+    )
+
     def __post_init__(self) -> None:
+        unknown = set(self.joint_range_evidence) - set(self.joint_ranges_rad)
+        if unknown:
+            raise ValueError("Range evidence has no corresponding override")
+        evidence = dict(self.joint_range_evidence)
+        for name in self.joint_ranges_rad:
+            evidence.setdefault(
+                name,
+                {
+                    "kind": "assumption",
+                    "source": "Profile override",
+                    "note": "Unvalidated range replacement",
+                    "uncertainty_rad": None,
+                },
+            )
+        object.__setattr__(self, "joint_range_evidence", evidence)
         if self.model != "myoarm_r":
             raise ValueError("Unsupported anatomy")
         for bounds in self.joint_ranges_rad.values():

@@ -24,7 +24,8 @@ def read_hashed(path: Path, expected: str) -> dict[str, Any]:
 def run_exploration(
     definition: Path, output: Path, render: bool = True
 ) -> dict[str, Any]:
-    source = json.loads(definition.read_text())
+    raw_definition = definition.read_bytes()
+    source = json.loads(raw_definition)
     baseline = read_hashed(
         definition.parent / source["baseline_result"], source["baseline_sha256"]
     )
@@ -99,7 +100,7 @@ def run_exploration(
     result = {
         "id": source["id"],
         "input": source,
-        "definition_sha256": hashlib.sha256(definition.read_bytes()).hexdigest(),
+        "definition_sha256": hashlib.sha256(raw_definition).hexdigest(),
         "baseline_state": baseline,
         "targets": records,
     }
@@ -116,7 +117,8 @@ def run_planning(definition: Path, output: Path, render: bool = True) -> dict[st
     from .scene import diagnostics
     from .solver import accepted
 
-    source = json.loads(definition.read_text())
+    raw_definition = definition.read_bytes()
+    source = json.loads(raw_definition)
     endpoints = [
         read_hashed(
             definition.parent / source[f"{key}_result"], source[f"{key}_sha256"]
@@ -159,7 +161,7 @@ def run_planning(definition: Path, output: Path, render: bool = True) -> dict[st
     result.update(
         id=source["id"],
         input=source,
-        definition_sha256=hashlib.sha256(definition.read_bytes()).hexdigest(),
+        definition_sha256=hashlib.sha256(raw_definition).hexdigest(),
         endpoints=endpoints,
         resolved_profiles=e.resolved_profiles(),
         profile_sha256=start.get("profiles_sha256"),

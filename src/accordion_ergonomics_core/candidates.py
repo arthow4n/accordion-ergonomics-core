@@ -101,6 +101,8 @@ def discover_candidates(
     profile_hash: str,
     settings: CandidateSettings,
 ) -> dict[str, Any]:
+    if len(experiment.contacts) != 1 or experiment.contacts[0].finger != "index":
+        raise ValueError("Candidate discovery currently supports one index contact")
     started = perf_counter()
     names = [scene.model.joint(i).name for i in range(scene.model.njnt)]
     base = dict(zip(names, source_q, strict=True))

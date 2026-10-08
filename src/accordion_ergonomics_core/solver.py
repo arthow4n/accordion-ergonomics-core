@@ -18,31 +18,57 @@ def solve_contact(
     button_id: str = "r1c5",
     frozen_joints: tuple[str, ...] = (),
     contact_required: bool = True,
+    finger: str = "index",
+    additional_contacts: tuple[tuple[NDArray[np.float64], str, str], ...] = (),
 ) -> dict[str, Any]:
     model = scene.model
     q0 = coupled_initial_pose(model, initial)
     configuration = mink.Configuration(model, q=q0)
-    position = mink.FrameTask(
-        "index_pad",
-        "site",
-        position_cost=settings.position_cost,
-        orientation_cost=0.0,
-    )
-    position.set_target(mink.SE3.from_translation(target))
-    normal = mink.AxisAlignTask(
-        "index_pad",
-        "site",
-        cost=settings.normal_cost,
-    )
-    normal.set_target(-scene.data.body("keyboard").xmat.reshape(3, 3)[:, 2])
+    requirements = ((target, finger, button_id),) + additional_contacts
+    contact_tasks: list[mink.Task] = []
+    for point, digit, _ in requirements:
+        position = mink.FrameTask(
+            f"{digit}_pad",
+            "site",
+            position_cost=settings.position_cost,
+            orientation_cost=0.0,
+        )
+        position.set_target(mink.SE3.from_translation(point))
+        normal = mink.AxisAlignTask(f"{digit}_pad", "site", cost=settings.normal_cost)
+        normal.set_target(-scene.data.body("keyboard").xmat.reshape(3, 3)[:, 2])
+        contact_tasks.extend((position, normal))
+
+    def check_contacts() -> dict[str, Any]:
+        checks = [
+            diagnostics(scene, point, button, digit)
+            for point, digit, button in requirements
+        ]
+        aggregate = dict(checks[0])
+        for key in ("position_error_m", "normal_error_rad"):
+            aggregate[key] = max(c[key] for c in checks)
+        aggregate["target_contact_distance_m"] = max(
+            checks, key=lambda c: abs(c["target_contact_distance_m"])
+        )["target_contact_distance_m"]
+        if len(checks) > 1:
+            aggregate["contact_diagnostics"] = [
+                {"finger": r[1], "button_id": r[2], **c}
+                for r, c in zip(requirements, checks, strict=True)
+            ]
+        return aggregate
+
     posture = mink.PostureTask(model, cost=settings.posture_cost)
     posture.set_target(q0)
     coupled = mink.EqualityConstraintTask(model, cost=1.0)
-    # Unused fingers are frozen in this monophonic experiment, not removed.
+    # Only requested digits articulate; other digits remain present and frozen.
+    active_digits = {r[1] for r in requirements}
+    active_finger_dofs = set(
+        i
+        for digit in active_digits
+        for i in {"index": range(22, 26), "middle": range(26, 30)}[digit]
+    )
     frozen = sorted(
         set(
-            list(range(18, 22))
-            + list(range(26, model.nv))
+            [i for i in range(18, model.nv) if i not in active_finger_dofs]
             + [int(model.joint(name).dofadr[0]) for name in frozen_joints]
         )
     )
@@ -63,7 +89,7 @@ def solve_contact(
     failure: str | None = None
     for iteration in range(settings.max_iterations):
         scene.data.qpos[:] = configuration.q
-        check = diagnostics(scene, target, button_id)
+        check = check_contacts()
         history.append(
             {
                 "iteration": iteration,
@@ -84,7 +110,7 @@ def solve_contact(
         try:
             velocity = mink.solve_ik(
                 configuration,
-                [position, normal, posture],
+                [*contact_tasks, posture],
                 dt,
                 solver="clarabel",
                 damping=settings.damping,
@@ -102,7 +128,7 @@ def solve_contact(
             failure = f"{type(exc).__name__}: {exc}"
             break
     scene.data.qpos[:] = configuration.q
-    check = diagnostics(scene, target, button_id)
+    check = check_contacts()
     return {
         "status": "success"
         if accepted(check, settings, contact_required)

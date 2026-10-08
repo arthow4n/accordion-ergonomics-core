@@ -27,10 +27,15 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
     from .scene import build_scene
     from .solver import solve_contact
 
-    experiment = load_input(path)
+    raw_input = path.read_bytes()
+    experiment = Experiment.from_dict(json.loads(raw_input))
     source, geometry = experiment.source, experiment.geometry
     scene = build_scene(
-        geometry, experiment.player, experiment.setup, experiment.physical_contact
+        geometry,
+        experiment.player,
+        experiment.setup,
+        experiment.physical_contact,
+        tuple(c.finger for c in experiment.contacts),
     )
     contact = experiment.contacts[0]
     button = button_at(contact.row, contact.column)
@@ -42,6 +47,15 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
         experiment.solver,
         button.id,
         experiment.frozen_joints,
+        finger=contact.finger,
+        additional_contacts=tuple(
+            (
+                geometry.surface_world_m(button_at(c.row, c.column)),
+                c.finger,
+                button_at(c.row, c.column).id,
+            )
+            for c in experiment.contacts[1:]
+        ),
     )
     profiles = experiment.resolved_profiles()
     profiles_hash = hashlib.sha256(
@@ -53,7 +67,7 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
             "profiles_sha256": profiles_hash,
             "schema_version": 1,
             "experiment_id": source["id"],
-            "input_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+            "input_sha256": hashlib.sha256(raw_input).hexdigest(),
             "input": source,
             "provenance": {
                 "compiled_model_sha256": compiled_model_digest(scene.model),
@@ -87,11 +101,34 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
                 "index_pad_quat_wxyz": scene.model.site_quat[
                     scene.model.site("index_pad").id
                 ].tolist(),
+                "contact_sites": {
+                    f"{c.finger}_pad": {
+                        "pos_m": scene.model.site_pos[
+                            scene.model.site(f"{c.finger}_pad").id
+                        ].tolist(),
+                        "quat_wxyz": scene.model.site_quat[
+                            scene.model.site(f"{c.finger}_pad").id
+                        ].tolist(),
+                    }
+                    for c in experiment.contacts
+                },
                 "index_pad_provenance": (
                     "Outer envelope of compiled distal capsule and ellipsoid; "
                     "normal along distal capsule axis"
                 ),
             },
+            "targets": [
+                {
+                    "button_id": button_at(c.row, c.column).id,
+                    "finger": c.finger,
+                    "midi": button_at(c.row, c.column).midi,
+                    "surface_world_m": geometry.surface_world_m(
+                        button_at(c.row, c.column)
+                    ).tolist(),
+                    "normal_world": geometry.rotation[:, 2].tolist(),
+                }
+                for c in experiment.contacts
+            ],
             "target": {
                 "button_id": button.id,
                 "midi": button.midi,
@@ -137,6 +174,20 @@ def main() -> None:
     planning.add_argument("definition", type=Path)
     planning.add_argument("--output", type=Path, default=Path("artifacts/plan"))
     planning.add_argument("--no-render", action="store_true")
+    atlas = sub.add_parser("atlas")
+    atlas.add_argument("definition", type=Path)
+    atlas.add_argument("--output", type=Path, default=Path("artifacts/atlas"))
+    sweep = sub.add_parser("sweep")
+    sweep.add_argument("definition", type=Path)
+    sweep.add_argument("--output", type=Path, default=Path("artifacts/sweep"))
+    frozen = sub.add_parser("frozen")
+    frozen.add_argument(
+        "workflow",
+        choices=("atlas", "sweep", "explore", "plan", "experiment", "render"),
+    )
+    frozen.add_argument("definition", type=Path)
+    frozen.add_argument("--output", type=Path, required=True)
+    frozen.add_argument("--source-snapshot", type=Path)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -147,6 +198,43 @@ def main() -> None:
             [sys.executable, "-m", "pytest"],
         ):
             subprocess.run(command, check=True)
+    elif args.command == "frozen":
+        from .frozen import frozen_run
+
+        frozen_run(args.workflow, args.definition, args.output, args.source_snapshot)
+    elif args.command == "sweep":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .sensitivity import run_sensitivity
+
+        result = run_sensitivity(args.definition, args.output)
+        print(
+            json.dumps(
+                {
+                    "id": result["id"],
+                    "cases": [
+                        {
+                            "id": c["case"]["id"],
+                            "changes": c["comparison"]["status_changes"],
+                        }
+                        for c in result["cases"]
+                    ],
+                }
+            )
+        )
+    elif args.command == "atlas":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .reachability import run_atlas
+
+        result = run_atlas(args.definition, args.output)
+        print(
+            json.dumps(
+                {
+                    "status": result["status"],
+                    "summary": result.get("summary"),
+                    "elapsed_s": result["elapsed_s"],
+                }
+            )
+        )
     elif args.command == "plan":
         os.environ.setdefault("MUJOCO_GL", "egl")
         from .exploration import run_planning
@@ -229,6 +317,7 @@ def main() -> None:
             experiment.player,
             experiment.setup,
             experiment.physical_contact,
+            tuple(c.finger for c in experiment.contacts),
         )
         if (
             "compiled_model_sha256" in result.get("provenance", {})

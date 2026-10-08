@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "007-index-atlas",
+  "question": "Which index contacts have discovered sampled paths from recorded C4 under finite three-start search?",
+  "baseline_result": "../004-profile-recalculation/result.json",
+  "baseline_sha256": "fc98301adf768a17a12f7290fcfbe0f6199cbfb6e174b1988142365049e1df6b",
+  "parameter_patch": {},
+  "targets": "all-index",
+  "candidate_search": {
+    "offsets_rad": [
+      {
+        "elbow_flexion_r": -0.4,
+        "pro_sup_r": -0.4
+      },
+      {
+        "shoulder_rot_r": -0.25
+      }
+    ],
+    "palm_dedup_m": 0.005,
+    "elbow_dedup_m": 0.01,
+    "joint_dedup_rad": 0.1,
+    "max_iterations": 100
+  },
+  "planning": {
+    "withdrawal_depths_m": [
+      0.02,
+      0.04,
+      0.08
+    ],
+    "max_joint_step_rad": 0.01,
+    "waypoint_iterations": 100,
+    "withdrawal_step_m": 0.005,
+    "rrt_iterations": 300,
+    "rrt_step_rad": 0.15,
+    "rrt_bound_expansion_rad": 0.4,
+    "seed": 614
+  }
+}

@@ -1,6 +1,7 @@
 """Validated research inputs, deliberately separate from music-library objects."""
 
 from dataclasses import asdict, dataclass, field, fields
+from importlib.metadata import version
 from math import isfinite
 from typing import Any
 
@@ -18,8 +19,8 @@ class ContactRequest:
         if type(self.row) is not int or type(self.column) is not int:
             raise ValueError("Physical button indices must be integers")
         button_at(self.row, self.column)
-        if self.finger != "index":
-            raise ValueError("Prototype supports index fingertip contact only")
+        if self.finger not in ("index", "middle"):
+            raise ValueError("Supported contact fingers: index and middle")
 
 
 @dataclass(frozen=True)
@@ -68,10 +69,19 @@ class Experiment:
     physical_contact: ContactProfile = field(default_factory=ContactProfile)
 
     def resolved_profiles(self) -> dict[str, Any]:
+        instrument = asdict(self.geometry)
+        setup = asdict(self.setup)
+        setup["board"] = {
+            "origin_m": self.geometry.origin_m,
+            "rotation_wxyz": self.geometry.rotation_wxyz,
+            "provenance": self.source.get("setup", {})
+            .get("board", {})
+            .get("provenance", asdict(self.geometry.evidence)),
+        }
         return {
-            "instrument": asdict(self.geometry),
+            "instrument": instrument,
             "player": asdict(self.player),
-            "setup": asdict(self.setup),
+            "setup": setup,
             "contact": asdict(self.physical_contact),
             "solver": asdict(self.solver),
         }
@@ -82,6 +92,10 @@ class Experiment:
             raise ValueError("Unsupported experiment schema")
         if source["randomness"] != {"used": False, "seed": None}:
             raise ValueError("This deterministic solver does not use a random seed")
+        if source["anatomy"]["version"] != version("myo-sim"):
+            raise ValueError(
+                "Recorded anatomy package version differs from installed model"
+            )
         if source["anatomy"]["model"] != "myoarm_r":
             raise ValueError("Unsupported anatomy model")
         if source["render"] != {"width": 960, "height": 720, "backend": "egl"}:
@@ -103,8 +117,12 @@ class Experiment:
         if len(geometry["origin_m"]) != 3:
             raise ValueError("World origin must have three coordinates")
         contacts = tuple(ContactRequest(**c) for c in source["contacts"])
-        if len(contacts) != 1:
-            raise ValueError("Prototype supports exactly one contact")
+        if not 1 <= len(contacts) <= 2 or len({c.finger for c in contacts}) != len(
+            contacts
+        ):
+            raise ValueError("One or two contacts with distinct fingers are supported")
+        if len({(c.row, c.column) for c in contacts}) != len(contacts):
+            raise ValueError("Two fingers on one button are outside this experiment")
         initial = source["initial_joints_rad"]
         if not all(type(v) in (int, float) and isfinite(v) for v in initial.values()):
             raise ValueError("Initial joint angles must be finite radians")

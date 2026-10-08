@@ -1,5 +1,27 @@
 # Research log
 
+## 2026-10-08 — Action laboratory, frozen execution and first dual contacts
+
+Added parameter-bound playing states, finite next-action discovery, physical
+pose descriptors, board atlas rendering and strict profile sweeps. Long runs
+now archive and execute immutable package source: concurrent edits previously
+made source hashes disagree with cached modules. A fault-injection test confirms
+isolation. Source inputs are read and hashed from the same bytes.
+[Workflow contract](docs/research/action-laboratory.md).
+
+[009](experiments/009-two-contacts/notes.md) establishes two simultaneous
+index/middle rigid-proxy contacts, with 0.0216/0.0152 mm maximum marker errors.
+The rendered palm is unusually reoriented: acceptance under these proxies
+is not representative human playing. Kept the pose as evidence of incomplete
+constraints. A new envelope invariant caught an aliased NumPy axis buffer;
+prior dual-contact failures from the faulty marker are explicitly invalidated
+and archived with their source. Single-index geometry is unaffected.
+
+The full-board and sensitivity evidence is being curated from frozen reruns;
+preliminary counts are finite-search findings, not physical impossibility.
+Next: publish those records, refine tolerance-sensitive paths, demonstrate a
+large relocation, and investigate hand-dimension perturbations carefully.
+
 ## 2026-10-08 — Diverse poses and a discovered path around the keyboard
 
 [005](experiments/005-pose-diversity/notes.md) finds six D4 and seven C5 contact

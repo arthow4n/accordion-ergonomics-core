@@ -124,6 +124,8 @@ def plan_transition(
     button_id: str,
     settings: PlanningSettings,
 ) -> dict[str, Any]:
+    if len(experiment.contacts) != 1 or experiment.contacts[0].finger != "index":
+        raise ValueError("Transition search currently supports one index contact")
     began = perf_counter()
     direct = audit_path(scene, [start_q, end_q], experiment, settings)
     attempts: list[dict[str, Any]] = []

@@ -1,6 +1,7 @@
 """Research-owned physical states and descriptors, without MuJoCo objects."""
 
 from dataclasses import dataclass
+from math import isfinite
 
 
 @dataclass(frozen=True)
@@ -9,6 +10,14 @@ class PlayingState:
     joint_angles_rad: tuple[float, ...]
     profile_sha256: str
     contacts: tuple[str, ...]
+
+    def __post_init__(self) -> None:
+        if len(self.joint_names) != len(self.joint_angles_rad) or len(
+            set(self.joint_names)
+        ) != len(self.joint_names):
+            raise ValueError("State needs one finite angle per unique named joint")
+        if not all(isfinite(v) for v in self.joint_angles_rad):
+            raise ValueError("State angles must be finite radians")
 
 
 @dataclass(frozen=True)

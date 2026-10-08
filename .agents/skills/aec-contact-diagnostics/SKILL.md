@@ -44,3 +44,15 @@ Keep solver iteration history separate from physical trajectories. A local
 failure is not proof of impossibility; a static candidate with unvalidated
 press/dynamics/path constraints does not establish human playing feasibility.
 Record new uncertainty in RESEARCH_LOG.md before publishing a model conclusion.
+
+For multi-state callers, `render_views` refreshes forward kinematics and restores
+overlay arrays. Its regression checks that saved poses produce different images
+and that rendering preserves the compiled model. Do not remove these safeguards.
+
+Use `uv run aec frozen atlas DEFINITION --output DIRECTORY` (or `sweep`, `plan`,
+`explore`, `experiment`) for long runs concurrent with source edits. The command
+archives and executes immutable package source. Replay its exact algorithm with
+`--source-snapshot DIRECTORY/source-snapshot.zip`. Keep the recorded dependency
+lock and instrument/anatomy inputs; source isolation does not calibrate physics.
+Search-resolution failures near collision tolerance need refinement before any
+measurement sensitivity is interpreted as a physical boundary.

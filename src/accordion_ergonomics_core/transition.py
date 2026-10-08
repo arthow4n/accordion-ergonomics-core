@@ -27,7 +27,8 @@ def run_transition(
     from ._engine import mujoco
     from .scene import build_scene, diagnostics
 
-    source = json.loads(definition.read_text())
+    raw_definition = definition.read_bytes()
+    source = json.loads(raw_definition)
     if source["schema_version"] != 1 or source["interpolation"] != "linear-hinge-qpos":
         raise ValueError("Unsupported transition experiment")
     count = source["samples"]
@@ -109,7 +110,7 @@ def run_transition(
         "schema_version": 1,
         "id": source["id"],
         "input": source,
-        "definition_sha256": hashlib.sha256(definition.read_bytes()).hexdigest(),
+        "definition_sha256": hashlib.sha256(raw_definition).hexdigest(),
         "status": "failed" if invalid else "inconclusive",
         "candidate_valid": False if invalid else None,
         "endpoint_statuses": [start["status"], end["status"]],

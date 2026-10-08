@@ -27,6 +27,7 @@ def build_scene(
     player: PlayerProfile | None = None,
     setup: SetupProfile | None = None,
     contact: ContactProfile | None = None,
+    fingers: tuple[str, ...] = ("index",),
 ) -> Scene:
     player = player or PlayerProfile()
     setup = setup or SetupProfile()
@@ -79,6 +80,31 @@ def build_scene(
         rgba=[0.1, 1.0, 0.2, 1.0],
         group=0,
     )
+    for digit in set(fingers) - {"index"}:
+        if digit != "middle":
+            raise ValueError("Unsupported fingertip marker")
+        capsule = probe.geom("distph3_coll_r")
+        ellipsoid = probe.geom("distph3_coll_2_r")
+        rotation_values = np.zeros(9)
+        mujoco.mju_quat2Mat(rotation_values, capsule.quat)
+        distal = rotation_values.reshape(3, 3)[:, 2].copy()
+        support = capsule.pos + capsule.size[1] * distal + capsule.size[0] * distal
+        mujoco.mju_quat2Mat(rotation_values, ellipsoid.quat)
+        r = rotation_values.reshape(3, 3)
+        shape = r @ np.diag(ellipsoid.size**2) @ r.T
+        ellipsoid_support = ellipsoid.pos + shape @ distal / np.sqrt(
+            distal @ shape @ distal
+        )
+        if distal @ ellipsoid_support > distal @ support:
+            support = ellipsoid_support
+        spec.body("distph3_r").add_site(
+            name="middle_pad",
+            pos=support.tolist(),
+            quat=capsule.quat.tolist(),
+            size=[0.0015, 0, 0],
+            rgba=[0.1, 1, 0.2, 1],
+            group=0,
+        )
     # Remove the upstream decorative room; it is unrelated to body geometry.
     for decor in list(spec.worldbody.geoms):
         spec.delete(decor)
@@ -176,13 +202,18 @@ def coupled_initial_pose(model: Model, values: dict[str, float]) -> NDArray[np.f
 
 
 def diagnostics(
-    scene: Scene, target: NDArray[np.float64], button_id: str = "r1c5"
+    scene: Scene,
+    target: NDArray[np.float64],
+    button_id: str = "r1c5",
+    finger: str = "index",
 ) -> dict[str, Any]:
     model, data = scene.model, scene.data
     mujoco.mj_forward(model, data)
     equality_mask = data.efc_type == mujoco.mjtConstraint.mjCNSTR_EQUALITY
     equalities = data.efc_pos[equality_mask]
-    normal = data.site("index_pad").xmat.reshape(3, 3)[:, 2]
+    digit = {"index": 2, "middle": 3}[finger]
+    site_name = f"{finger}_pad"
+    normal = data.site(site_name).xmat.reshape(3, 3)[:, 2]
     margins = np.minimum(
         data.qpos - model.jnt_range[:, 0], model.jnt_range[:, 1] - data.qpos
     )
@@ -199,11 +230,11 @@ def diagnostics(
     target_geom = model.geom(button_id).id
     contact_distance = min(
         mujoco.mj_geomDistance(model, data, model.geom(name).id, target_geom, 1.0, None)
-        for name in ("distph2_coll_r", "distph2_coll_2_r")
+        for name in (f"distph{digit}_coll_r", f"distph{digit}_coll_2_r")
     )
     return {
         "target_contact_distance_m": float(contact_distance),
-        "position_error_m": float(np.linalg.norm(data.site("index_pad").xpos - target)),
+        "position_error_m": float(np.linalg.norm(data.site(site_name).xpos - target)),
         "normal_error_rad": float(
             np.arccos(
                 np.clip(normal @ -data.body("keyboard").xmat.reshape(3, 3)[:, 2], -1, 1)
@@ -216,7 +247,7 @@ def diagnostics(
         },
         "contacts": contacts,
         "max_penetration_m": max([0.0] + [-c["distance_m"] for c in contacts]),
-        "pad_world_m": data.site("index_pad").xpos.tolist(),
+        "pad_world_m": data.site(site_name).xpos.tolist(),
         "pad_normal_world": normal.tolist(),
         "palm_world_m": data.body("capitate_r").xpos.tolist(),
     }

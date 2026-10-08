@@ -28,3 +28,9 @@ changes to the evidence repositories are implied by that authorization.
 For repeated contact/frame debugging, use the repository skill at
 `.agents/skills/aec-contact-diagnostics/SKILL.md`. Its deterministic operations
 live in the CLI and tests; the skill explains the demonstrated failure modes.
+
+For long experiments while source edits continue, run `aec frozen WORKFLOW`
+with uv. It archives the executed source; direct long runs can record hashes
+of files different from cached modules. Treat changing search outcomes as
+numerical/model evidence, not global human reachability. Refine borderline
+withdrawal edges before attributing failures to instrument spacing.

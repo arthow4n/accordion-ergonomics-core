@@ -27,7 +27,8 @@ ARM_INDEPENDENT_JOINTS = (
 
 
 def run_ablation(definition: Path, output: Path) -> dict[str, Any]:
-    source = json.loads(definition.read_text())
+    raw_definition = definition.read_bytes()
+    source = json.loads(raw_definition)
     if source["schema_version"] != 1:
         raise ValueError("Unsupported ablation schema")
     base_path = definition.parent / source["base_result"]
@@ -112,7 +113,7 @@ def run_ablation(definition: Path, output: Path) -> dict[str, Any]:
         "schema_version": 1,
         "id": source["id"],
         "input": source,
-        "definition_sha256": hashlib.sha256(definition.read_bytes()).hexdigest(),
+        "definition_sha256": hashlib.sha256(raw_definition).hexdigest(),
         "cases": cases,
         "trajectory_validated": False,
         "conclusion": (
