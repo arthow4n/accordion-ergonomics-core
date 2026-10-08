@@ -216,6 +216,11 @@ def main() -> None:
     probe = sub.add_parser("limit-probe")
     probe.add_argument("definition", type=Path)
     probe.add_argument("--output", type=Path, default=Path("artifacts/limit-probe"))
+    verification = sub.add_parser("verify")
+    verification.add_argument("directories", type=Path, nargs="+")
+    verification.add_argument("--input", type=Path)
+    verification.add_argument("--output", type=Path)
+    verification.add_argument("--require-complete", action="store_true")
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -226,6 +231,21 @@ def main() -> None:
             [sys.executable, "-m", "pytest"],
         ):
             subprocess.run(command, check=True)
+    elif args.command == "verify":
+        from .verification import verify_records
+
+        result = verify_records(args.directories, args.input)
+        raw = json.dumps(result, indent=2, allow_nan=False) + "\n"
+        if args.output:
+            args.output.parent.mkdir(parents=True, exist_ok=True)
+            args.output.write_text(raw)
+        print(raw, end="")
+        if any(
+            r["status"] == "invalid"
+            or (args.require_complete and r["status"] != "verified")
+            for r in result["records"]
+        ):
+            raise SystemExit(1)
     elif args.command == "limit-probe":
         os.environ.setdefault("MUJOCO_GL", "egl")
         from .limit_probe import run_probe

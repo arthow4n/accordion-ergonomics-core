@@ -44,6 +44,24 @@ bytes. To rerun the exact archived algorithm, add `--source-snapshot PATH`.
 Recorded dependency versions and anatomy hashes still matter; a source archive
 alone does not preserve dependencies. Canonical execution remains `uv run`.
 
+Check a published frozen record without rerunning its numerical search:
+
+```sh
+uv run aec verify experiments/018-collision-step-backtracking experiments/022-held-contact-with-self-pairs --require-complete --output artifacts/verification.json
+```
+
+The verifier checks archived source bytes, executed-source/lock commitments,
+resolved profile hashes where recorded, exact input bytes and workflow-specific
+referenced evidence. It handles pose discovery, coverage audits, atlas/sweep,
+held/exercise/plan and collision-limit records. `--input PATH` supplies the raw
+definition for a single output directory when it lives elsewhere. Missing
+metadata is reported as `partial`; mismatches are `invalid` and exit nonzero.
+`--require-complete` also fails partial verification. Tests audit the seven
+latest heterogeneous records and inject archive, input, profile and lock
+changes. This is integrity verification, not numerical reproduction, dependency
+preservation, authentication or physiological validation. Unhashed result
+fields and rendered pixels are not certified by this command.
+
 Headless `render` can also run from an archived source snapshot. The model hash
 must match. New configurations should produce new evidence directories, leaving
 old experiments inspectable.

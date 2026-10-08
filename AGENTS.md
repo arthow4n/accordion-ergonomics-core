@@ -34,6 +34,9 @@ with uv. It archives the executed source; direct long runs can record hashes
 of files different from cached modules. Treat changing search outcomes as
 numerical/model evidence, not global human reachability. Refine borderline
 withdrawal edges before attributing failures to instrument spacing.
+Use `uv run aec verify DIRECTORY --require-complete` to check frozen record
+integrity before publishing; it checks hashes and links, not scientific validity.
+Older records without frozen metadata may legitimately report partial checking.
 
 Before interpreting accepted poses as collision-valid anatomy, read experiment
 014 and run `uv run aec collision-coverage` on recorded pose inputs. Imported

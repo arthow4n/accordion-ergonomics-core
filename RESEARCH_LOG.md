@@ -1,5 +1,24 @@
 # Research log
 
+## 2026-10-08 — Automated integrity checks across research workflows
+
+Manual checks repeatedly tripped over different pose, coverage, sweep and
+held-output schemas. Added `uv run aec verify DIRECTORY --require-complete`:
+it verifies source archives, recorded source/lock hashes, available profile
+hashes, exact input bytes and referenced evidence without depending on today's
+source tree. All seven record roots from 018–022 pass. Missing metadata reports
+`partial`; mismatches fail. Tamper tests change archive, input, profiles and
+lock commitments; older incomplete evidence stays explicitly incomplete.
+
+Seventy-one tests pass with Ruff and ty. Research commits through the held
+continuation pass remote CI. Integrity is distinct from numerical reproduction
+and human validity; the verifier does not authenticate records or certify every
+result field or image. This phase established corrected collision numerics,
+selective-pair pose diversity and a held transition with independent distance
+checks. The next scientifically grounded expansion needs observed/calibrated
+anatomical envelopes and body/instrument setup, using the existing measurement
+protocol; selected-pair successes cannot establish full hand nonpenetration.
+
 ## 2026-10-08 — Held continuation under selective self-collision constraints
 
 [021](experiments/021-dual-contact-seed-transfer/notes.md) transfers an accepted
