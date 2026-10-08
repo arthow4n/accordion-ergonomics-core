@@ -1,0 +1,69 @@
+{
+  "id": "021-dual-contact-seed-transfer",
+  "baseline_result": "../019-selective-self-collision/index-middle-pairs/c4-csharp4/candidate-1/result.json",
+  "baseline_sha256": "e0f17dd67788cbc9813101d9bc28ff32d271bf50d9868564a4b89381ccb6c9a9",
+  "parameter_patch": {},
+  "targets": [
+    {
+      "id": "c4-bb3",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 4,
+          "finger": "middle"
+        }
+      ]
+    },
+    {
+      "id": "c4-e4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 6,
+          "finger": "middle"
+        }
+      ]
+    }
+  ],
+  "candidate_search": {
+    "offsets_rad": [
+      {
+        "elbow_flexion_r": -0.3,
+        "pro_sup_r": -0.3
+      },
+      {
+        "elbow_flexion_r": 0.3,
+        "pro_sup_r": 0.3
+      },
+      {
+        "shoulder_rot_r": -0.2
+      },
+      {
+        "shoulder_rot_r": 0.2
+      },
+      {
+        "flexion_r": -0.15
+      },
+      {
+        "mcp3_abduction_r": -0.1
+      },
+      {
+        "mcp3_abduction_r": 0.1
+      }
+    ],
+    "max_iterations": 180,
+    "palm_dedup_m": 0.005,
+    "elbow_dedup_m": 0.01,
+    "joint_dedup_rad": 0.1
+  }
+}

@@ -74,3 +74,40 @@ def test_deduplication_preserves_materially_different_middle_finger() -> None:
     others["middle"] = tuple(v + 0.2 for v in others["middle"])
     b = replace(a, other_digits_rad=others)
     assert materially_distinct(a, b, CandidateSettings(offsets_rad=()))
+
+
+def test_dual_candidate_preserves_both_contacts_under_selected_pairs() -> None:
+    from accordion_ergonomics_core.candidates import discover_candidates
+
+    path = Path(
+        "experiments/019-selective-self-collision/index-middle-pairs/c4-csharp4/experiment.json"
+    )
+    e = load_input(path)
+    scene = build_scene(
+        e.geometry, e.player, e.setup, e.physical_contact, ("index", "middle")
+    )
+    baseline = json.loads(
+        Path("experiments/018-collision-step-backtracking/result.json").read_text()
+    )
+    result = discover_candidates(
+        scene,
+        e,
+        baseline["qpos_rad"],
+        "test-profile",
+        CandidateSettings(
+            offsets_rad=({"elbow_flexion_r": -0.3, "pro_sup_r": -0.3},),
+            max_iterations=180,
+        ),
+    )
+    assert result["candidates"]
+    state = result["candidates"][0]["state"]
+    assert state["contacts"] == (
+        {"button_id": "r1c5", "finger": "index"},
+        {"button_id": "r2c5", "finger": "middle"},
+    )
+    accepted_attempt = next(a for a in result["attempts"] if a["status"] == "success")
+    assert len(accepted_attempt["diagnostics"]["contact_diagnostics"]) == 2
+    assert (
+        accepted_attempt["diagnostics"]["max_penetration_m"]
+        <= e.solver.penetration_tolerance_m
+    )

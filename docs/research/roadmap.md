@@ -3,6 +3,9 @@
 Experiments 004–014 establish parameter-bound recalculation, multi-start poses,
 withdrawal/seeded path search, a full index atlas, geometry/hand hypotheses,
 large-relocation model action selection and small held-contact task solving.
+Experiments 016–022 further falsify dependency collision bounds, check nonlinear
+integration steps, study selective unmodified phalangeal constraints and find
+a held continuation under that policy. These improve computational consistency.
 They do not establish human playing feasibility. The collision audit changes
 the next priority: accepted dual-contact poses contain unchecked phalangeal
 proxy overlap up to 14 mm.

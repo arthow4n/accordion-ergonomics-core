@@ -7,7 +7,9 @@ from pathlib import Path
 from typing import Any
 
 import numpy as np
+from PIL import Image
 
+from ._engine import mujoco
 from .domain import ContactRequirement, PlayingState
 from .experiment import Experiment
 from .exploration import read_hashed
@@ -33,13 +35,31 @@ def held_audit(
     maximum_normal = 0.0
     maximum_gap = 0.0
     violations = []
+    pair_minima = dict.fromkeys(
+        scene.contact_profile.additional_collision_pairs,
+        scene.contact_profile.collision_detection_distance_m,
+    )
     for index, sample in enumerate(audit["samples"]):
         scene.data.qpos[:] = sample["qpos_rad"]
         check = diagnostics(scene, target, button_id, "index")
+        pair_valid = True
+        for pair in pair_minima:
+            distance = float(
+                mujoco.mj_geomDistance(
+                    scene.model,
+                    scene.data,
+                    scene.model.geom(pair[0]).id,
+                    scene.model.geom(pair[1]).id,
+                    scene.contact_profile.collision_detection_distance_m,
+                    None,
+                )
+            )
+            pair_minima[pair] = min(pair_minima[pair], distance)
+            pair_valid &= distance >= -e.solver.penetration_tolerance_m
         maximum_error = max(maximum_error, check["position_error_m"])
         maximum_normal = max(maximum_normal, check["normal_error_rad"])
         maximum_gap = max(maximum_gap, abs(check["target_contact_distance_m"]))
-        if not accepted(check, e.solver):
+        if not accepted(check, e.solver) or not pair_valid:
             violations.append(index)
     audit.update(
         held_position_error_max_m=maximum_error,
@@ -47,6 +67,14 @@ def held_audit(
         held_contact_distance_max_m=maximum_gap,
         held_violation_sample_indices=violations,
         held_geometry_satisfied=not violations,
+        additional_pair_minimum_sampled_clearances=[
+            {
+                "geoms": pair,
+                "minimum_signed_distance_lower_bound_m": distance,
+                "query_cutoff_m": scene.contact_profile.collision_detection_distance_m,
+            }
+            for pair, distance in pair_minima.items()
+        ],
     )
     return audit
 
@@ -181,15 +209,57 @@ def run_held(definition: Path, output: Path) -> dict[str, Any]:
             (output / "resulting-gesture" / "result.json").read_bytes()
         ).hexdigest()
 
-    for name, q in [("source", q0), ("last", waypoints[-1])]:
+    result["cameras"] = {}
+    for name, q in [
+        ("source", q0),
+        ("middle", waypoints[len(waypoints) // 2]),
+        ("last", waypoints[-1]),
+    ]:
         scene.data.qpos[:] = q
-        render_views(
+        result["cameras"][name] = render_views(
             scene,
             output / "renders" / name,
             held_target.tolist(),
             held_id,
             collision_overlay=True,
         )
+    frame_count = source.get("animation_frames", 0)
+    if type(frame_count) is not int or frame_count < 0 or frame_count == 1:
+        raise ValueError("Animation needs zero or at least two frames")
+    if frame_count:
+        indices = (
+            np.linspace(0, len(searched["samples"]) - 1, frame_count)
+            .astype(int)
+            .tolist()
+        )
+        frames = []
+        for index, sample_index in enumerate(indices):
+            scene.data.qpos[:] = searched["samples"][sample_index]["qpos_rad"]
+            frame_dir = output / "frames" / str(index)
+            render_views(
+                scene,
+                frame_dir,
+                held_target.tolist(),
+                held_id,
+                views_to_render=("hand",),
+            )
+            with Image.open(frame_dir / "hand.png") as picture:
+                frames.append(picture.copy())
+        duration = source.get("animation_frame_duration_ms", 180)
+        if type(duration) is not int or duration < 1:
+            raise ValueError("Animation frame duration must be positive milliseconds")
+        frames[0].save(
+            output / "trajectory.gif",
+            save_all=True,
+            append_images=frames[1:],
+            duration=duration,
+            loop=0,
+        )
+        result["animation"] = {
+            "sample_indices": indices,
+            "frame_duration_ms": duration,
+            "timing_semantics": "Illustrative display speed, not performance timing",
+        }
     (output / "result.json").write_text(
         json.dumps(result, indent=2, allow_nan=False) + "\n"
     )

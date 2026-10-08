@@ -66,6 +66,10 @@ the held contact while building Cartesian withdrawal/translation/approach
 waypoints, then audits every sampled configuration independently. It exports
 the resulting gesture, which need not equal the supplied local-IK endpoint.
 No holding force or continuous certificate is inferred.
+Additional declared self-pair distances are queried independently along the
+held path, including when engine contact registration is absent. Experiment 022
+demonstrates held motion under 16 selected pairs. Optional animation uses saved
+audit samples and records display timing separately from unmodeled playing tempo.
 
 `aec exercise` selects a large discovered relocation from a hash-checked atlas,
 refines its edge audit and exports the physical action, trajectory, excursions,

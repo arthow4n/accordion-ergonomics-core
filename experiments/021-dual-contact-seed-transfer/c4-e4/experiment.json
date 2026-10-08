@@ -1,0 +1,255 @@
+{
+  "schema_version": 2,
+  "id": "021-dual-contact-seed-transfer-c4-e4",
+  "question": "Can the maintained MyoArm compose with a finite CBA fixture and preserve coupled joints while solving an index-pad surface target headlessly?",
+  "geometry": {
+    "column_spacing_m": 0.019,
+    "row_spacing_m": 0.016454482671904334,
+    "button_radius_m": 0.0065,
+    "button_height_m": 0.004,
+    "button_travel_m": null,
+    "stagger_columns": [
+      0,
+      0.5,
+      1,
+      0.5,
+      1
+    ],
+    "panel_margin_m": 0.012,
+    "panel_thickness_m": 0.008,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Synthetic laboratory fixture, 2026-10-08",
+      "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+    }
+  },
+  "contacts": [
+    {
+      "row": 1,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 2,
+      "column": 6,
+      "finger": "middle"
+    }
+  ],
+  "initial_joints_rad": {
+    "sternoclavicular_r2_r": -0.1283346955655128,
+    "sternoclavicular_r3_r": 0.05435663758456637,
+    "unrotscap_r3_r": -0.05435663758456637,
+    "unrotscap_r2_r": 0.1283346955655128,
+    "acromioclavicular_r2_r": -0.025985124308719538,
+    "acromioclavicular_r3_r": 0.2100022291072028,
+    "acromioclavicular_r1_r": 0.09439494136636892,
+    "unrothum_r1_r": -0.09439494136636892,
+    "unrothum_r3_r": -0.21000222910720276,
+    "unrothum_r2_r": 0.025985124308719538,
+    "elv_angle_r": -0.005944483067351989,
+    "shoulder_elv_r": 0.5303086593616232,
+    "shoulder1_r2_r": 0.005944483067351989,
+    "shoulder_rot_r": 0.20357214929667422,
+    "elbow_flexion_r": 1.4857830383372745,
+    "pro_sup_r": -1.006275156557814,
+    "deviation_r": 0.09820506655087233,
+    "flexion_r": -0.23775774695345697,
+    "cmc_flexion": 5.960758101666876e-18,
+    "cmc_abduction": -6.207950554225053e-18,
+    "mp_flexion_r": 1.3642123776124994e-19,
+    "ip_flexion_r": -3.043909760939365e-20,
+    "mcp2_flexion_r": 1.2895378017648613,
+    "mcp2_abduction_r": -0.05713212447413324,
+    "pm2_flexion_r": 1.0704058419026277,
+    "md2_flexion_r": 0.9345395138282022,
+    "mcp3_flexion_r": 1.3048349277533953,
+    "mcp3_abduction_r": -0.24668448434154705,
+    "pm3_flexion_r": 0.7973665268221771,
+    "md3_flexion": 1.0604435977219444,
+    "mcp4_flexion_r": 1.3212484197052466e-10,
+    "mcp4_abduction_r": 9.4017854853223e-20,
+    "pm4_flexion": 1.3212483207684027e-10,
+    "md4_flexion_r": 1.3212483207684027e-10,
+    "mcp5_flexion_r": 1.321248502085283e-10,
+    "mcp5_abduction_r": 1.137969602513757e-17,
+    "pm5_flexion_r": 1.3212483216769123e-10,
+    "md5_flexion_r": 1.3212483207684027e-10
+  },
+  "solver": {
+    "backend": "mink-clarabel",
+    "max_iterations": 200,
+    "integration_dt_s": 0.02,
+    "position_cost": 1.0,
+    "normal_cost": 0.05,
+    "posture_cost": 0.0001,
+    "damping": 1e-06,
+    "position_tolerance_m": 0.0001,
+    "normal_tolerance_rad": 0.05,
+    "joint_tolerance_rad": 1e-06,
+    "equality_tolerance_rad": 1e-06,
+    "penetration_tolerance_m": 0.0001,
+    "collision_avoidance": true,
+    "collision_limit_implementation": "displacement",
+    "collision_backtrack_steps": 12,
+    "collision_edge_step_rad": 0.01
+  },
+  "randomness": {
+    "used": false,
+    "seed": null
+  },
+  "anatomy": {
+    "package": "myo-sim",
+    "version": "0.2.3",
+    "model": "myoarm_r",
+    "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+  },
+  "render": {
+    "width": 960,
+    "height": 720,
+    "backend": "egl"
+  },
+  "setup": {
+    "torso": {
+      "torso_origin_m": [
+        0,
+        0,
+        1
+      ],
+      "torso_rotation_wxyz": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy laboratory setup",
+        "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+      }
+    },
+    "board": {
+      "origin_m": [
+        0.26,
+        0.22,
+        1.25
+      ],
+      "rotation_wxyz": [
+        0.7071067811865476,
+        -0.7071067811865476,
+        0,
+        0
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy synthetic fixture",
+        "note": "Board orientation and origin unmeasured; quaternion wxyz."
+      }
+    }
+  },
+  "player": {
+    "model": "myoarm_r",
+    "model_mode": "imported_musculoskeletal",
+    "geometric_hand_scale": 1.0,
+    "geometry_evidence": {
+      "kind": "hypothesis",
+      "source": "Wrist-origin geometric perturbation",
+      "note": "Uniform hand scaling is not physiological personalization.",
+      "uncertainty": null
+    },
+    "joint_ranges_rad": {},
+    "provenance": {
+      "kind": "imported_model",
+      "source": "myo-sim 0.2.3",
+      "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+    },
+    "joint_range_evidence": {},
+    "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+  },
+  "physical_contact": {
+    "additional_collision_pairs": [
+      [
+        "distph2_coll_2_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "distph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "midph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "distph2_coll_r",
+        "distph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "distph3_coll_2_r",
+        "midph2_coll_r"
+      ],
+      [
+        "distph3_coll_2_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "distph3_coll_r",
+        "midph2_coll_r"
+      ],
+      [
+        "distph3_coll_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "midph3_coll_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "proxph2_coll_r",
+        "proxph3_coll_r"
+      ]
+    ],
+    "additional_collision_evidence": {
+      "kind": "hypothesis",
+      "source": "019 index-middle phalangeal pair constraint",
+      "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+    },
+    "inactive_digits_policy": "freeze",
+    "inactive_digits_evidence": {
+      "kind": "assumption",
+      "source": "Laboratory movement restriction",
+      "note": "Unrequested digits freeze by default; a laboratory restriction."
+    },
+    "collision_detection_distance_m": 0.03,
+    "collision_minimum_distance_m": 0,
+    "collision_gain": 0.85,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Legacy rigid distal-envelope contact",
+      "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+    }
+  }
+}

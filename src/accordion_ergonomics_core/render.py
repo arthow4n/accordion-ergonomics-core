@@ -16,6 +16,7 @@ def render_views(
     button_id: str,
     collision_overlay: bool = False,
     highlighted_proxy_names: tuple[str, ...] = (),
+    views_to_render: tuple[str, ...] | None = None,
 ) -> dict[str, Any]:
     output.mkdir(parents=True, exist_ok=True)
     views = {
@@ -46,6 +47,10 @@ def render_views(
     }
     if collision_overlay:
         views["collision"] = dict(views["hand"])
+    if views_to_render is not None:
+        if not views_to_render or set(views_to_render) - set(views):
+            raise ValueError("Unknown or empty diagnostic view selection")
+        views = {name: views[name] for name in views_to_render}
     # qpos changes do not update Cartesian geometry until forward kinematics.
     mujoco.mj_forward(scene.model, scene.data)
     rgba = scene.model.geom_rgba.copy()

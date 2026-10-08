@@ -1,5 +1,31 @@
 # Research log
 
+## 2026-10-08 — Held continuation under selective self-collision constraints
+
+[021](experiments/021-dual-contact-seed-transfer/notes.md) transfers an accepted
+C4+C#4 seed to the same eight-start search. C4+Bb3 still has no discovered pose;
+C4+E4 has four. This preserves the negative result while testing a different
+initialization, without claiming impossibility.
+
+[022](experiments/022-held-contact-with-self-pairs/notes.md) keeps index C4 held
+while middle moves C#4→E4 under all 16 selected phalangeal pairs. Direct joint
+interpolation is collision-clear but loses the held contact by **4.31 mm**.
+Withdrawal/translation/approach yields 42 configurations and 1,014 audit samples:
+held error ≤0.07104 mm, detected penetration ≤0.02545 mm, independently queried
+selected-pair separation ≥0.04043 mm. Palm path/excursion are 38.39/13.14 mm.
+A twice-finer regression passes. Resulting contacts are independently revalidated.
+
+![Actual sampled held-contact motion; illustrative speed](experiments/022-held-contact-with-self-pairs/trajectory.gif)
+
+Added effective solver settings to numerical results, recorded cameras and
+selectable views for animation. A fault-injection test confirms pair-distance
+auditing rejects a declared overlapping pair even if engine registration is
+missing. Fifty-eight tests pass with Ruff and ty. The fixed dependency stack,
+old records and unmodified envelopes remain intact. These developments improve
+internal consistency; omitted anatomical clearance, human pose validation and
+instrument/button calibration still require the measurement protocol before
+human ergonomic conclusions are justified.
+
 ## 2026-10-08 — Step checks restore C4; selective self-pairs change pose discovery
 
 [018](experiments/018-collision-step-backtracking/notes.md) samples proposed IK

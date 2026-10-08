@@ -1,5 +1,6 @@
 """Local differential IK. Failure is not proof of global unreachability."""
 
+from dataclasses import asdict
 from typing import Any
 
 import mink
@@ -192,6 +193,7 @@ def solve_contact(
         else "failed",
         "feasible": None,
         "collision_limit_implementation": settings.collision_limit_implementation,
+        "solver_settings": asdict(settings),
         "claim": (
             "Static kinematic candidate only; playing feasibility is unestablished"
         ),
