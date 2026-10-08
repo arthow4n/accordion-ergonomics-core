@@ -24,6 +24,7 @@ def frozen_run(
         "exercise",
         "held",
         "collision-coverage",
+        "limit-probe",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

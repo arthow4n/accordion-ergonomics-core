@@ -193,6 +193,7 @@ def main() -> None:
             "exercise",
             "held",
             "collision-coverage",
+            "limit-probe",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -212,6 +213,9 @@ def main() -> None:
     coverage.add_argument(
         "--output", type=Path, default=Path("artifacts/collision-coverage")
     )
+    probe = sub.add_parser("limit-probe")
+    probe.add_argument("definition", type=Path)
+    probe.add_argument("--output", type=Path, default=Path("artifacts/limit-probe"))
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -222,6 +226,12 @@ def main() -> None:
             [sys.executable, "-m", "pytest"],
         ):
             subprocess.run(command, check=True)
+    elif args.command == "limit-probe":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .limit_probe import run_probe
+
+        result = run_probe(args.definition, args.output)
+        print(json.dumps({"id": result["id"], "cases": len(result["cases"])}))
     elif args.command == "collision-coverage":
         os.environ.setdefault("MUJOCO_GL", "egl")
         from .collision_coverage import run_coverage

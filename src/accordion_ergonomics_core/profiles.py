@@ -133,6 +133,7 @@ class ContactProfile:
             not all(isfinite(v) for v in values)
             or self.collision_detection_distance_m <= 0
             or self.collision_minimum_distance_m < 0
+            or self.collision_detection_distance_m <= self.collision_minimum_distance_m
             or not 0 < self.collision_gain <= 1
         ):
             raise ValueError("Invalid collision policy")

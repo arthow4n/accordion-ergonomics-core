@@ -7,6 +7,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from .anatomy import digit_dofs
+from .distance_limits import DisplacementDistanceLimit, collision_pairs
 from .experiment import SolverSettings
 from .scene import Scene, coupled_initial_pose, diagnostics
 
@@ -94,15 +95,24 @@ def solve_contact(
         constraints.append(mink.DofFreezingTask(model, frozen))
     limits: list[mink.Limit] = [mink.ConfigurationLimit(model)]
     if settings.collision_avoidance:
-        limits.append(
-            mink.CollisionAvoidanceLimit(
-                model,
-                [(scene.anatomy_geoms, scene.board_geoms)],
-                minimum_distance_from_collisions=scene.contact_profile.collision_minimum_distance_m,
-                collision_detection_distance=scene.contact_profile.collision_detection_distance_m,
-                gain=scene.contact_profile.collision_gain,
+        if settings.collision_limit_implementation == "displacement":
+            limits.append(
+                DisplacementDistanceLimit(
+                    model,
+                    collision_pairs(model, scene.anatomy_geoms, scene.board_geoms),
+                    scene.contact_profile,
+                )
             )
-        )
+        else:
+            limits.append(
+                mink.CollisionAvoidanceLimit(
+                    model,
+                    [(scene.anatomy_geoms, scene.board_geoms)],
+                    minimum_distance_from_collisions=scene.contact_profile.collision_minimum_distance_m,
+                    collision_detection_distance=scene.contact_profile.collision_detection_distance_m,
+                    gain=scene.contact_profile.collision_gain,
+                )
+            )
     dt = settings.integration_dt_s
     history = []
     failure: str | None = None
@@ -153,6 +163,7 @@ def solve_contact(
         if accepted(check, settings, require_any_contact)
         else "failed",
         "feasible": None,
+        "collision_limit_implementation": settings.collision_limit_implementation,
         "claim": (
             "Static kinematic candidate only; playing feasibility is unestablished"
         ),

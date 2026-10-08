@@ -38,6 +38,7 @@ class SolverSettings:
     equality_tolerance_rad: float
     penetration_tolerance_m: float
     collision_avoidance: bool
+    collision_limit_implementation: str = "displacement"
 
     def __post_init__(self) -> None:
         if self.backend != "mink-clarabel":
@@ -46,8 +47,15 @@ class SolverSettings:
             raise ValueError("max_iterations must be a positive integer")
         if type(self.collision_avoidance) is not bool:
             raise ValueError("collision_avoidance must be boolean")
+        if self.collision_limit_implementation not in ("displacement", "mink_native"):
+            raise ValueError("Unsupported collision limit implementation")
         for parameter in fields(self):
-            if parameter.name in ("backend", "max_iterations", "collision_avoidance"):
+            if parameter.name in (
+                "backend",
+                "max_iterations",
+                "collision_avoidance",
+                "collision_limit_implementation",
+            ):
                 continue
             value = getattr(self, parameter.name)
             if type(value) not in (int, float) or not isfinite(value) or value <= 0:
@@ -78,12 +86,17 @@ class Experiment:
             .get("board", {})
             .get("provenance", asdict(self.geometry.evidence)),
         }
+        solver = asdict(self.solver)
+        # Published profile hashes used implicit Mink-native semantics. Keep
+        # that legacy representation; new explicit settings carry the field.
+        if self.solver.collision_limit_implementation == "mink_native":
+            solver.pop("collision_limit_implementation")
         return {
             "instrument": instrument,
             "player": asdict(self.player),
             "setup": setup,
             "contact": asdict(self.physical_contact),
-            "solver": asdict(self.solver),
+            "solver": solver,
         }
 
     def expanded_source(self) -> dict[str, Any]:
@@ -98,6 +111,7 @@ class Experiment:
         result["geometry"] = {**geometry, "provenance": evidence}
         result["player"] = asdict(self.player)
         result["physical_contact"] = asdict(self.physical_contact)
+        result["solver"] = asdict(self.solver)
         result["setup"] = {
             "torso": asdict(self.setup),
             "board": {
@@ -155,12 +169,14 @@ class Experiment:
             frozen
         ):
             raise ValueError("Frozen joint names must be unique strings")
+        solver = dict(source["solver"])
+        solver.setdefault("collision_limit_implementation", "mink_native")
         return cls(
             source["id"],
             BoardGeometry(**geometry, evidence=evidence),
             contacts,
             initial,
-            SolverSettings(**source["solver"]),
+            SolverSettings(**solver),
             source,
             frozen,
             PlayerProfile(**source.get("player", {})),

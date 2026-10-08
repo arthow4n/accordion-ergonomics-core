@@ -1,0 +1,948 @@
+{
+  "id": "016-displacement-limit-probe",
+  "input": {
+    "id": "016-displacement-limit-probe",
+    "question": "Does the active collision bound constrain displacement independently of dt, including world pairs?",
+    "evidence": {
+      "kind": "synthetic_fixture",
+      "note": "Two 10 mm-radius spheres initially separated by 10 mm; not anatomy."
+    },
+    "fixtures_xml": {
+      "world": "<mujoco><visual><global offwidth=\"640\" offheight=\"480\"/></visual><worldbody><light pos=\".1 .1 .2\" dir=\"-.1 -.1 -.2\"/><geom name=\"fixed\" type=\"sphere\" size=\".01\" rgba=\".2 .7 .9 1\"/><body pos=\".03 0 0\"><joint name=\"motion\" type=\"slide\" axis=\"1 0 0\"/><geom name=\"moving\" type=\"sphere\" size=\".01\" rgba=\"1 .4 .1 1\"/><site name=\"tip\"/></body></worldbody></mujoco>",
+      "siblings": "<mujoco><visual><global offwidth=\"640\" offheight=\"480\"/></visual><worldbody><light pos=\".1 .1 .2\" dir=\"-.1 -.1 -.2\"/><body><joint name=\"anchor\" type=\"slide\" axis=\"1 0 0\"/><geom name=\"fixed\" type=\"sphere\" size=\".01\" rgba=\".2 .7 .9 1\"/></body><body pos=\".03 0 0\"><joint name=\"motion\" type=\"slide\" axis=\"1 0 0\"/><geom name=\"moving\" type=\"sphere\" size=\".01\" rgba=\"1 .4 .1 1\"/><site name=\"tip\"/></body></worldbody></mujoco>"
+    },
+    "target_world_m": [
+      0.0,
+      0.0,
+      0.0
+    ],
+    "integration_dt_s": [
+      0.01,
+      0.02,
+      0.1,
+      1.0
+    ],
+    "render_dt_s": 0.02,
+    "physical_contact": {
+      "collision_detection_distance_m": 0.05,
+      "collision_gain": 0.85,
+      "collision_minimum_distance_m": 0.0
+    }
+  },
+  "definition_sha256": "da6d0b8cd99aa84e138a89772de6fd22607877969befdeb9c3dbc31e12026d9b",
+  "resolved_contact_policy": {
+    "inactive_digits_policy": "freeze",
+    "inactive_digits_evidence": {
+      "kind": "assumption",
+      "source": "Laboratory movement restriction",
+      "note": "Unrequested digits freeze by default; a laboratory restriction."
+    },
+    "collision_detection_distance_m": 0.05,
+    "collision_minimum_distance_m": 0.0,
+    "collision_gain": 0.85,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Laboratory contact policy",
+      "note": "Rigid imported distal envelope; no deformation, force or travel."
+    }
+  },
+  "cases": [
+    {
+      "fixture": "world",
+      "implementation": "mink_native",
+      "dt_s": 0.01,
+      "initial_qpos": [
+        0.0
+      ],
+      "final_qpos": [
+        -0.029999999999969995
+      ],
+      "joint_types": [
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": -0.019999999999969997,
+      "pair_count": 0,
+      "G": [],
+      "h_m": [],
+      "provenance": {
+        "compiled_model_sha256": "6e2f5e9f6bb1f445cdfe98a78ce06cb3d6972fc70b48c639bae643d7abaf66f0",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "world",
+      "implementation": "displacement",
+      "dt_s": 0.01,
+      "initial_qpos": [
+        0.0
+      ],
+      "final_qpos": [
+        -0.008499917977778606
+      ],
+      "joint_types": [
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.0015000820222213947,
+      "pair_count": 1,
+      "G": [
+        [
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "6e2f5e9f6bb1f445cdfe98a78ce06cb3d6972fc70b48c639bae643d7abaf66f0",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "world",
+      "implementation": "mink_native",
+      "dt_s": 0.02,
+      "initial_qpos": [
+        0.0
+      ],
+      "final_qpos": [
+        -0.029999999999969995
+      ],
+      "joint_types": [
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": -0.019999999999969997,
+      "pair_count": 0,
+      "G": [],
+      "h_m": [],
+      "provenance": {
+        "compiled_model_sha256": "6e2f5e9f6bb1f445cdfe98a78ce06cb3d6972fc70b48c639bae643d7abaf66f0",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "cameras": {
+        "front": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -90,
+          "elevation_degrees": 0
+        },
+        "top": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -90,
+          "elevation_degrees": 90
+        },
+        "side": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": 180,
+          "elevation_degrees": 0
+        },
+        "oblique": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -60,
+          "elevation_degrees": -25
+        }
+      }
+    },
+    {
+      "fixture": "world",
+      "implementation": "displacement",
+      "dt_s": 0.02,
+      "initial_qpos": [
+        0.0
+      ],
+      "final_qpos": [
+        -0.008499917977778606
+      ],
+      "joint_types": [
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.0015000820222213947,
+      "pair_count": 1,
+      "G": [
+        [
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "6e2f5e9f6bb1f445cdfe98a78ce06cb3d6972fc70b48c639bae643d7abaf66f0",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "cameras": {
+        "front": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -90,
+          "elevation_degrees": 0
+        },
+        "top": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -90,
+          "elevation_degrees": 90
+        },
+        "side": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": 180,
+          "elevation_degrees": 0
+        },
+        "oblique": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -60,
+          "elevation_degrees": -25
+        }
+      }
+    },
+    {
+      "fixture": "world",
+      "implementation": "mink_native",
+      "dt_s": 0.1,
+      "initial_qpos": [
+        0.0
+      ],
+      "final_qpos": [
+        -0.02999999999996999
+      ],
+      "joint_types": [
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": -0.019999999999969993,
+      "pair_count": 0,
+      "G": [],
+      "h_m": [],
+      "provenance": {
+        "compiled_model_sha256": "6e2f5e9f6bb1f445cdfe98a78ce06cb3d6972fc70b48c639bae643d7abaf66f0",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "world",
+      "implementation": "displacement",
+      "dt_s": 0.1,
+      "initial_qpos": [
+        0.0
+      ],
+      "final_qpos": [
+        -0.008499917977778606
+      ],
+      "joint_types": [
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.0015000820222213947,
+      "pair_count": 1,
+      "G": [
+        [
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "6e2f5e9f6bb1f445cdfe98a78ce06cb3d6972fc70b48c639bae643d7abaf66f0",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "world",
+      "implementation": "mink_native",
+      "dt_s": 1.0,
+      "initial_qpos": [
+        0.0
+      ],
+      "final_qpos": [
+        -0.02999999999996999
+      ],
+      "joint_types": [
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": -0.019999999999969993,
+      "pair_count": 0,
+      "G": [],
+      "h_m": [],
+      "provenance": {
+        "compiled_model_sha256": "6e2f5e9f6bb1f445cdfe98a78ce06cb3d6972fc70b48c639bae643d7abaf66f0",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "world",
+      "implementation": "displacement",
+      "dt_s": 1.0,
+      "initial_qpos": [
+        0.0
+      ],
+      "final_qpos": [
+        -0.008499917977778606
+      ],
+      "joint_types": [
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.0015000820222213947,
+      "pair_count": 1,
+      "G": [
+        [
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "6e2f5e9f6bb1f445cdfe98a78ce06cb3d6972fc70b48c639bae643d7abaf66f0",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "siblings",
+      "implementation": "mink_native",
+      "dt_s": 0.01,
+      "initial_qpos": [
+        0.0,
+        0.0
+      ],
+      "final_qpos": [
+        -3.133280502098412e-15,
+        -0.03000000000416613
+      ],
+      "joint_types": [
+        "slide",
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": -0.019999999995837,
+      "pair_count": 1,
+      "G": [
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.8499999999999996
+      ],
+      "provenance": {
+        "compiled_model_sha256": "7c418904d904c067bfbb76500793f42bddd987235d283497e734c3a123c144f3",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "siblings",
+      "implementation": "displacement",
+      "dt_s": 0.01,
+      "initial_qpos": [
+        0.0,
+        0.0
+      ],
+      "final_qpos": [
+        6.396934831563764e-16,
+        -0.008499965097062955
+      ],
+      "joint_types": [
+        "slide",
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.001500034902936407,
+      "pair_count": 1,
+      "G": [
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "7c418904d904c067bfbb76500793f42bddd987235d283497e734c3a123c144f3",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "siblings",
+      "implementation": "mink_native",
+      "dt_s": 0.02,
+      "initial_qpos": [
+        0.0,
+        0.0
+      ],
+      "final_qpos": [
+        2.55104678128986e-15,
+        -0.029999999998261775
+      ],
+      "joint_types": [
+        "slide",
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": -0.01999999999826433,
+      "pair_count": 1,
+      "G": [
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.4249999999999998
+      ],
+      "provenance": {
+        "compiled_model_sha256": "7c418904d904c067bfbb76500793f42bddd987235d283497e734c3a123c144f3",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "cameras": {
+        "front": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -90,
+          "elevation_degrees": 0
+        },
+        "top": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -90,
+          "elevation_degrees": 90
+        },
+        "side": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": 180,
+          "elevation_degrees": 0
+        },
+        "oblique": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -60,
+          "elevation_degrees": -25
+        }
+      }
+    },
+    {
+      "fixture": "siblings",
+      "implementation": "displacement",
+      "dt_s": 0.02,
+      "initial_qpos": [
+        0.0,
+        0.0
+      ],
+      "final_qpos": [
+        6.396934831563764e-16,
+        -0.008499965097062955
+      ],
+      "joint_types": [
+        "slide",
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.001500034902936407,
+      "pair_count": 1,
+      "G": [
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "7c418904d904c067bfbb76500793f42bddd987235d283497e734c3a123c144f3",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "cameras": {
+        "front": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -90,
+          "elevation_degrees": 0
+        },
+        "top": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -90,
+          "elevation_degrees": 90
+        },
+        "side": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": 180,
+          "elevation_degrees": 0
+        },
+        "oblique": {
+          "lookat_m": [
+            0.015,
+            0,
+            0
+          ],
+          "distance_m": 0.12,
+          "azimuth_degrees": -60,
+          "elevation_degrees": -25
+        }
+      }
+    },
+    {
+      "fixture": "siblings",
+      "implementation": "mink_native",
+      "dt_s": 0.1,
+      "initial_qpos": [
+        0.0,
+        0.0
+      ],
+      "final_qpos": [
+        2.8453009546822844e-15,
+        -0.029999999996159515
+      ],
+      "joint_types": [
+        "slide",
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": -0.019999999996162362,
+      "pair_count": 1,
+      "G": [
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.08499999999999996
+      ],
+      "provenance": {
+        "compiled_model_sha256": "7c418904d904c067bfbb76500793f42bddd987235d283497e734c3a123c144f3",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "siblings",
+      "implementation": "displacement",
+      "dt_s": 0.1,
+      "initial_qpos": [
+        0.0,
+        0.0
+      ],
+      "final_qpos": [
+        6.396934831563764e-16,
+        -0.008499965097062955
+      ],
+      "joint_types": [
+        "slide",
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.001500034902936407,
+      "pair_count": 1,
+      "G": [
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "7c418904d904c067bfbb76500793f42bddd987235d283497e734c3a123c144f3",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "siblings",
+      "implementation": "mink_native",
+      "dt_s": 1.0,
+      "initial_qpos": [
+        0.0,
+        0.0
+      ],
+      "final_qpos": [
+        6.396934831563764e-16,
+        -0.008499965097062955
+      ],
+      "joint_types": [
+        "slide",
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.001500034902936407,
+      "pair_count": 1,
+      "G": [
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "7c418904d904c067bfbb76500793f42bddd987235d283497e734c3a123c144f3",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    },
+    {
+      "fixture": "siblings",
+      "implementation": "displacement",
+      "dt_s": 1.0,
+      "initial_qpos": [
+        0.0,
+        0.0
+      ],
+      "final_qpos": [
+        6.396934831563764e-16,
+        -0.008499965097062955
+      ],
+      "joint_types": [
+        "slide",
+        "slide"
+      ],
+      "qpos_units": "metres",
+      "signed_gap_m": 0.001500034902936407,
+      "pair_count": 1,
+      "G": [
+        [
+          1.0,
+          -1.0
+        ]
+      ],
+      "h_m": [
+        0.008499999999999997
+      ],
+      "provenance": {
+        "compiled_model_sha256": "7c418904d904c067bfbb76500793f42bddd987235d283497e734c3a123c144f3",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "849c34bafb9afb1ceeb1387975d523cc0dd650b341ae584c13ad5df0b62434d9",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      }
+    }
+  ],
+  "claim": "Synthetic numerical falsification; no anatomical inference"
+}

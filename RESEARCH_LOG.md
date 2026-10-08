@@ -1,5 +1,23 @@
 # Research log
 
+## 2026-10-08 — A collision-limit dependency defect, then a useful corrected-solver failure
+
+Continuing beyond the calibration boundary exposed a numerical issue we can
+investigate without new anatomy. [016](experiments/016-displacement-limit-probe/notes.md)
+shows Mink 1.3.0 bounds joint displacement using a velocity-scaled gap. Synthetic
+spheres with a 10 mm gap overlap by 20 mm at ordinary timesteps; world/top-level
+pairs are also dropped. Upstream documents both fixes as unreleased; latest
+stable PyPI remains 1.3.0. Kept the lock and added a tested project displacement
+adapter. All dt cases retain the expected 1.5 mm gap; gradients are independently
+checked on both sides of contact. Legacy published inputs retain their algorithm.
+
+[017](experiments/017-corrected-contact/notes.md) fails to discover C4 from the
+same initially clear pose: 200 iterations, 33.52 mm marker error and 11.20 mm
+penetration. Correct local units do not prevent a large nonlinear step from
+crossing the detection band. Preserved the failed state and four views; next
+is sampled solver-step backtracking before selective active-digit constraints.
+Fifty tests pass with Ruff and ty. Human envelope calibration remains necessary.
+
 ## 2026-10-08 — Held tasks and large-relocation selection expose a collision-coverage boundary
 
 [012](experiments/012-large-relocation/notes.md) selects a model next action from
