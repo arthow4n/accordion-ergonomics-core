@@ -1,5 +1,36 @@
 # Research log
 
+## 2026-10-09 — Freeze the v2 right-hand comparison and audit every instrument solid
+
+[035](experiments/035-cba-v2-regression/notes.md) compares validated 20-degree
+`generic_cba_v2` against fresh rectangular/full-body controls retained in 033.
+Eight matched perturbations per target preserve initialization failures and
+alternative solutions. Central, nearby, larger relocation and both simultaneous
+two-finger targets produce candidates; ordinary transitions find sampled paths.
+The held-index transition fails a waypoint solve in both worlds. These finite
+searches do not establish minimum movement or impossibility.
+
+The revised mounting shifts C4 by (-14.392,-156.631,-40.000) mm while preserving
+the canonical world button normal. Selected shoulder/elbow coordinates change
+from 13.22/101.36 to 56.07/126.18 degrees. Geometry and wearing placement change
+together, so this comparison does not isolate their effects. Nearby discovered
+palm paths are 50.24/35.85 mm coarse/v2; larger paths are 116.40/163.74 mm.
+Found wrist/arm configurations remain sensitive to initialization.
+
+Independent collision coverage now queries every instrument solid, including
+all caps and panels, against unchanged anatomical proxies. No collision masks,
+solver constraints or anatomy were weakened. Across 17 v2 endpoints the closest
+panel clearance is 3.581 mm and case/rim clearance 1.527 mm; active-cap penetration
+reaches 13.19 micrometres within frozen tolerances. Unchecked cross-digit overlaps
+remain 17..31, with maximum rigid-proxy depth 12.808 mm. Thus these contact/path
+results are not complete anatomical feasibility claims.
+
+All eight frozen roots verify with complete integrity. Four saved-state views
+and collision overlays were inspected for representative contacts, ordinary
+paths and the failed held state; corrected central images reproduce byte-for-byte.
+97 tests, Ruff and ty pass. Historical worlds and rejected angle/attachment
+experiments remain unchanged and guarded by their compiled identities.
+
 ## 2026-10-09 — Replace the challenged treble slope using direct construction sections
 
 [034](experiments/034-cba-mounted-orientation/notes.md) responds to the owner's

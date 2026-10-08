@@ -66,6 +66,21 @@ def audit_collision_coverage(scene: Scene) -> dict[str, Any]:
         (int(model.geom_contype[g]), int(model.geom_conaffinity[g]))
         for g in scene.anatomy_geoms
     )
+    # Independent instrument audit includes panels and every cap, not only case
+    # walls or the active target marker. Report closest rigid proxy per solid.
+    instrument_minima = {}
+    for j in scene.board_geoms:
+        distance, i = min(
+            (
+                float(mujoco.mj_geomDistance(model, data, i, j, 1.0, None)),
+                i,
+            )
+            for i in scene.anatomy_geoms
+        )
+        instrument_minima[model.geom(j).name or f"unnamed_geom_{j}"] = {
+            "signed_proxy_distance_m": distance,
+            "anatomy_geom": model.geom(i).name or f"unnamed_geom_{i}",
+        }
     return {
         "anatomical_proxy_count": len(scene.anatomy_geoms),
         "mask_counts": [
@@ -76,6 +91,9 @@ def audit_collision_coverage(scene: Scene) -> dict[str, Any]:
             [model.geom(a).name, model.geom(b).name] for a, b in sorted(explicit)
         ],
         "cross_digit_pairs_distance_queried": tested,
+        "instrument_proxy_pairs_distance_queried": len(scene.board_geoms)
+        * len(scene.anatomy_geoms),
+        "instrument_component_minima": instrument_minima,
         "overlaps": sorted(overlaps, key=lambda p: p["signed_proxy_distance_m"]),
         "unchecked_overlap_count": sum(
             not p["mask_compatible"] and not p["explicit_pair"] for p in overlaps

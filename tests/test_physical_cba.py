@@ -146,6 +146,24 @@ def test_geometry_intersections_dimensions_and_identity():
     assert len(
         report["mounted_reference_diagnostics"]["instrument_component_distances_m"]
     ) == len(s.anatomy_geoms)
+    from accordion_ergonomics_core.collision_coverage import audit_collision_coverage
+
+    coverage = audit_collision_coverage(s)
+    assert coverage["instrument_proxy_pairs_distance_queried"] == len(
+        s.anatomy_geoms
+    ) * len(s.board_geoms)
+    assert set(coverage["instrument_component_minima"]) == {
+        s.model.geom(j).name for j in s.board_geoms
+    }
+    assert "keyboard_panel" in coverage["instrument_component_minima"]
+    assert "r1c5" in coverage["instrument_component_minima"]
+    assert (
+        min(
+            value["signed_proxy_distance_m"]
+            for value in coverage["instrument_component_minima"].values()
+        )
+        > 0
+    )
     # Only intentional backing/case junctions penetrate. Other components touch
     # at bellows end frames, wall edges and board/cap bases, or are separated.
     allowed = {

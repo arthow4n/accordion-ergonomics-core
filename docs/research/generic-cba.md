@@ -197,4 +197,8 @@ Six instrument views, a metric treble section and five mounted views accompany
 the saved numerical state. The section is a coordinate-derived engineering
 illustration; `instrument_top_section.png` separately renders actual MuJoCo
 geometry. The geometry reference is a neutral prescribed arm state, not a playing
-pose. Experiment 033 is a superseded v1 search record, not a v2 validation; unchecked anatomical overlap still precludes human-feasibility claims.
+pose. Experiment 033 is a superseded v1 search record, not a v2 validation.
+[035](../../experiments/035-cba-v2-regression/notes.md) supplies the current
+small multistart comparison, ordinary transitions, unsuccessful held-contact
+search and independent all-solid collision audit. Unchecked anatomical overlap
+still precludes human-feasibility claims.
