@@ -1,5 +1,37 @@
 # Research log
 
+## 2026-10-08 — Full-board atlas and parameter sensitivity, with a numerical falsification
+
+[007](experiments/007-index-atlas/notes.md) explores all 62 buttons from C4 with
+three index-contact starts each: **29 discovered sampled transitions, 33 missing
+poses**. Unused digits are frozen, so these are restricted-model/search outcomes,
+not human reachability. Best discovered endpoint palm relocations span 0–300 mm.
+The 213 s run spends ~189 s discovering endpoints. Hash-checked per-action data
+and executed source archives make the atlas inspectable and rerunnable.
+
+![Finite index atlas, millimetres; X is no discovered solution](experiments/007-index-atlas/atlas.png)
+
+[008](experiments/008-geometry-sensitivity/notes.md) repeats 12 queries under
+±2 mm column spacing and ±15 mm board placement. Outcomes and discovered palm
+movement change substantially. **Counterexample to a physical interpretation:**
+a 21 mm-spacing C5 transition missing at 5 mm withdrawal steps is found at 1 mm
+steps, without relaxing collision tolerance. At least one apparent geometric
+boundary was planner resolution. Moving the board forward requires multi-start
+source-contact recalibration; the single starting pose failed.
+
+[010](experiments/010-hand-geometry-sensitivity/notes.md) adds a tested geometric
+hand transform about the fixed wrist. ±5% scales complete hand geometry and
+inertial dimensions, retaining source axes/ranges. Muscles and tendons are removed
+in the explicit hypothesis mode; this is not physiological personalization.
+Eight queries find 8/7/8 sampled transitions at factors 1/.95/1.05. Discovered
+relocations change by up to 41.54 mm. Individual segment calibration remains open.
+
+**Validation:** 32 tests pass; archived package hashes match recorded execution
+hashes. New model parameters are materialized before strict patches. No difficulty
+scalar or global impossibility claim was introduced. Next: select/render a
+large-relocation realization, test held-contact behavior and probe the effect of
+currently frozen unused fingers before interpreting atlas boundaries.
+
 ## 2026-10-08 — Action laboratory, frozen execution and first dual contacts
 
 Added parameter-bound playing states, finite next-action discovery, physical

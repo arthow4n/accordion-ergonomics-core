@@ -8,6 +8,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from ._engine import Data, Model, Spec, mujoco
+from .anatomy import transform_anatomy
 from .instrument import BoardGeometry, buttons
 from .profiles import ContactProfile, PlayerProfile, SetupProfile
 
@@ -43,6 +44,7 @@ def build_scene(
         if joint is None:
             raise ValueError(f"Unknown joint override: {name}")
         joint.range = list(bounds)
+    transform_anatomy(spec, player)
     # Distal surface support of imported geometry; no invented finger length.
     geom = spec.geom("distph2_coll_r")
     finger = spec.body("distph2_r")

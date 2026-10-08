@@ -8,6 +8,16 @@ from typing import Any
 @dataclass(frozen=True)
 class PlayerProfile:
     model: str = "myoarm_r"
+    model_mode: str = "imported_musculoskeletal"
+    geometric_hand_scale: float = 1.0
+    geometry_evidence: dict[str, Any] = field(
+        default_factory=lambda: {
+            "kind": "hypothesis",
+            "source": "Wrist-origin geometric perturbation",
+            "note": "Uniform hand scaling is not physiological personalization.",
+            "uncertainty": None,
+        }
+    )
     joint_ranges_rad: dict[str, tuple[float, float]] = field(default_factory=dict)
     provenance: dict[str, Any] = field(
         default_factory=lambda: {
@@ -23,6 +33,20 @@ class PlayerProfile:
     )
 
     def __post_init__(self) -> None:
+        if self.model_mode not in (
+            "imported_musculoskeletal",
+            "kinematic_geometry_hypothesis",
+        ):
+            raise ValueError("Unsupported anatomical model mode")
+        if not isfinite(self.geometric_hand_scale) or self.geometric_hand_scale <= 0:
+            raise ValueError("Geometric hand scale must be finite and positive")
+        if (
+            self.model_mode == "imported_musculoskeletal"
+            and self.geometric_hand_scale != 1
+        ):
+            raise ValueError(
+                "Scaling requires explicit kinematic geometry hypothesis mode"
+            )
         unknown = set(self.joint_range_evidence) - set(self.joint_ranges_rad)
         if unknown:
             raise ValueError("Range evidence has no corresponding override")

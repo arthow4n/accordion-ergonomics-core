@@ -1,0 +1,919 @@
+{
+  "id": "008-geometry-sensitivity",
+  "input": {
+    "schema_version": 1,
+    "id": "008-geometry-sensitivity",
+    "question": "How stable are finite-search outcomes under \u00b12mm column spacing and \u00b115mm board placement?",
+    "atlas_definition": "../007-index-atlas/experiment.json",
+    "atlas_definition_sha256": "29cb8c58c76f1c5251ddcf6496f3228c6990cd9d1a9a0774153d5931f4d1cd82",
+    "targets": [
+      {
+        "row": 1,
+        "column": 4,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 7,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 9,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 12,
+        "finger": "index"
+      },
+      {
+        "row": 2,
+        "column": 6,
+        "finger": "index"
+      },
+      {
+        "row": 3,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 3,
+        "column": 8,
+        "finger": "index"
+      },
+      {
+        "row": 4,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 4,
+        "column": 8,
+        "finger": "index"
+      },
+      {
+        "row": 5,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 5,
+        "column": 8,
+        "finger": "index"
+      }
+    ],
+    "cases": [
+      {
+        "id": "reference",
+        "patch": {}
+      },
+      {
+        "id": "spacing-17mm",
+        "patch": {
+          "geometry": {
+            "column_spacing_m": 0.017,
+            "provenance": {
+              "note": "Sensitivity hypothesis: 17mm column spacing, other dimensions unchanged; unmeasured."
+            }
+          }
+        }
+      },
+      {
+        "id": "spacing-21mm",
+        "patch": {
+          "geometry": {
+            "column_spacing_m": 0.021,
+            "provenance": {
+              "note": "Sensitivity hypothesis: 21mm column spacing, other dimensions unchanged; unmeasured."
+            }
+          }
+        }
+      },
+      {
+        "id": "board-forward-15mm",
+        "patch": {
+          "setup": {
+            "board": {
+              "origin_m": [
+                0.26,
+                0.235,
+                1.25
+              ],
+              "provenance": {
+                "note": "Sensitivity hypothesis: board 15mm farther forward; unmeasured."
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "board-backward-15mm",
+        "patch": {
+          "setup": {
+            "board": {
+              "origin_m": [
+                0.26,
+                0.205,
+                1.25
+              ],
+              "provenance": {
+                "note": "Sensitivity hypothesis: board 15mm closer to torso; unmeasured."
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "definition_sha256": "77211c6111677d1409d75b20e7daf348cf3ad50281204f2f2ddbf9bd50728509",
+  "cases": [
+    {
+      "case": {
+        "id": "reference",
+        "patch": {}
+      },
+      "summary": {
+        "buttons_explored": 12,
+        "sampled_transition_found": 9,
+        "no_pose_found": 3,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "9de5b313171f504e79966f193ad5af0f55035cac4091ef78e5f11294694a25a9",
+      "anchor_qpos_rad": [
+        -0.12067596591336266,
+        0.051112754157519306,
+        -0.051112754157519306,
+        0.12067596591336266,
+        -0.024434389792375083,
+        0.19746976240368436,
+        0.08876166087842377,
+        -0.08876166087842377,
+        -0.19746976240368436,
+        0.024434389792375083,
+        0.18059323210569775,
+        0.49866101617092007,
+        -0.18059323210569775,
+        -0.12870181234096836,
+        1.5892974908621782,
+        0.16419982690925058,
+        -0.1655875307000419,
+        0.47857648363616245,
+        2.127624151507682e-17,
+        -4.9003846229222e-18,
+        -4.1476406297662584e-22,
+        3.564926984293268e-22,
+        1.054019406124545,
+        -0.25350942459085224,
+        1.020186302486375,
+        0.7555249475134678,
+        2.2115467879771112e-10,
+        2.91796445184302e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.211546787979763e-10,
+        -8.148912829194521e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.2115467894110523e-10,
+        4.2260793009678716e-23,
+        2.2115467885890568e-10,
+        2.2115467881366255e-10
+      ],
+      "elapsed_s": 36.66759462200025,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c4",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c7",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c12",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r3c8",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r4c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.0,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "reference/result.json",
+      "result_sha256": "2122ab77477636c6250583d7d793158f857a0c54b5ba9aae6dde4b45c320b56e"
+    },
+    {
+      "case": {
+        "id": "spacing-17mm",
+        "patch": {
+          "geometry": {
+            "column_spacing_m": 0.017,
+            "provenance": {
+              "note": "Sensitivity hypothesis: 17mm column spacing, other dimensions unchanged; unmeasured."
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 12,
+        "sampled_transition_found": 9,
+        "no_pose_found": 3,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "736649454fc5505a984bae77fd7551bfbdb06a220d7c3186b9d3c97ac037620f",
+      "anchor_qpos_rad": [
+        -0.12067596591336266,
+        0.051112754157519306,
+        -0.051112754157519306,
+        0.12067596591336266,
+        -0.024434389792375083,
+        0.19746976240368436,
+        0.08876166087842377,
+        -0.08876166087842377,
+        -0.19746976240368436,
+        0.024434389792375083,
+        0.18059323210569775,
+        0.49866101617092007,
+        -0.18059323210569775,
+        -0.12870181234096836,
+        1.5892974908621782,
+        0.16419982690925058,
+        -0.1655875307000419,
+        0.47857648363616245,
+        2.127624151507682e-17,
+        -4.9003846229222e-18,
+        -4.1476406297662584e-22,
+        3.564926984293268e-22,
+        1.054019406124545,
+        -0.25350942459085224,
+        1.020186302486375,
+        0.7555249475134678,
+        2.2115467879771112e-10,
+        2.91796445184302e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.211546787979763e-10,
+        -8.148912829194521e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.2115467894110523e-10,
+        4.2260793009678716e-23,
+        2.2115467885890568e-10,
+        2.2115467881366255e-10
+      ],
+      "elapsed_s": 26.724782831000994,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c4",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.001436741192689859
+          },
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c7",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.013593339173776385
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.035923249493534086
+          },
+          {
+            "button_id": "r1c12",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.09693087482570852
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.02012386842868502
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.008591718792253324
+          },
+          {
+            "button_id": "r3c8",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.00029501235339146614
+          },
+          {
+            "button_id": "r4c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.00048537063692814797
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.09693087482570852,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "spacing-17mm/result.json",
+      "result_sha256": "30613ed3d5fce8314ddb973462724a94590a373aa3ff959d019864dd319641f8"
+    },
+    {
+      "case": {
+        "id": "spacing-21mm",
+        "patch": {
+          "geometry": {
+            "column_spacing_m": 0.021,
+            "provenance": {
+              "note": "Sensitivity hypothesis: 21mm column spacing, other dimensions unchanged; unmeasured."
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 12,
+        "sampled_transition_found": 3,
+        "no_pose_found": 3,
+        "no_transition_found": 6
+      },
+      "status": "completed_search",
+      "profile_sha256": "6f8c52fe5a744aa84866b6a0c9e9ce196219483161507c9ecfd61bf7d4feb688",
+      "anchor_qpos_rad": [
+        -0.12901368202085622,
+        0.05464422482288331,
+        -0.05464422482288331,
+        0.12901368202085622,
+        -0.026122605037280804,
+        0.21111329785231017,
+        0.09489436115583637,
+        -0.09489436115583637,
+        -0.21111329785231017,
+        0.026122605037280804,
+        0.1845297537024043,
+        0.5331143885159347,
+        -0.1845297537024043,
+        -0.115819682706477,
+        1.5860291183170256,
+        0.17173563379891968,
+        -0.17031098340056722,
+        0.5417416597495216,
+        4.509243198532654e-17,
+        -1.0647560962109294e-17,
+        7.80885290998563e-20,
+        4.92506348954042e-22,
+        1.0114857133912114,
+        -0.2578097153947276,
+        0.9634838615762175,
+        0.7853241074570741,
+        6.775320374583415e-11,
+        2.91796445184302e-28,
+        6.775320374583612e-11,
+        6.775320374583612e-11,
+        6.775320374585366e-11,
+        -8.148912829194521e-28,
+        6.775320374583612e-11,
+        6.775320374583612e-11,
+        6.775320375669251e-11,
+        4.2260793009678716e-23,
+        6.775320375046821e-11,
+        6.775320374704147e-11
+      ],
+      "elapsed_s": 49.40892277800049,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c4",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0010501624603392427
+          },
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 1.1102230246251565e-16
+          },
+          {
+            "button_id": "r1c7",
+            "reference_status": "sampled_transition_found",
+            "status": "no_transition_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "no_transition_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r1c12",
+            "reference_status": "sampled_transition_found",
+            "status": "no_transition_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "no_transition_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "no_transition_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r3c8",
+            "reference_status": "sampled_transition_found",
+            "status": "no_transition_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r4c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0039552123925269585
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          }
+        ],
+        "status_changes": 6,
+        "maximum_common_relocation_change_m": 0.0039552123925269585,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "spacing-21mm/result.json",
+      "result_sha256": "e8b78a64627917ba35b11fb59b7634ebd9ccb661648426ce6728b88d6a2d0667"
+    },
+    {
+      "case": {
+        "id": "board-forward-15mm",
+        "patch": {
+          "setup": {
+            "board": {
+              "origin_m": [
+                0.26,
+                0.235,
+                1.25
+              ],
+              "provenance": {
+                "note": "Sensitivity hypothesis: board 15mm farther forward; unmeasured."
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 12,
+        "sampled_transition_found": 9,
+        "no_pose_found": 3,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "0a03d5a6fa5ed3ff5f4a26b6a6f2eb3e9adbb2b9d45ec521294772be6572e236",
+      "anchor_qpos_rad": [
+        -0.12517293517935052,
+        0.05301746221439434,
+        -0.05301746221439434,
+        0.12517293517935052,
+        -0.02534493315614949,
+        0.2048284393843918,
+        0.09206934901621651,
+        -0.09206934901621651,
+        -0.2048284393843918,
+        0.02534493315614949,
+        0.2752599594869516,
+        0.5172435337989691,
+        -0.2752599594869516,
+        -0.11367709494548363,
+        1.530916552229393,
+        0.17698814936228127,
+        -0.14394854913396155,
+        0.4983902469497995,
+        7.854035917811735e-17,
+        -1.596752767228434e-17,
+        3.1287772838286765e-19,
+        1.3928279303542446e-21,
+        1.019165020382537,
+        -0.24807921379006603,
+        0.9996612779725073,
+        0.7943391922433639,
+        7.057787408373482e-10,
+        2.91796445184302e-28,
+        7.05778740837356e-10,
+        7.05778740837356e-10,
+        7.057787408373626e-10,
+        -8.148912829194521e-28,
+        7.05778740837356e-10,
+        7.05778740837356e-10,
+        7.057787408432001e-10,
+        4.2260793009678716e-23,
+        7.057787408398488e-10,
+        7.057787408380072e-10
+      ],
+      "elapsed_s": 40.127839749000486,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c4",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 3.778578299881534e-05
+          },
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c7",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.018015944711482143
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.04161984304453948
+          },
+          {
+            "button_id": "r1c12",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.01489620840289324
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.0202698185875486
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -7.890213993089895e-05
+          },
+          {
+            "button_id": "r3c8",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.014507755676137157
+          },
+          {
+            "button_id": "r4c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0031668487906604467
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.04161984304453948,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "board-forward-15mm/result.json",
+      "result_sha256": "0e3fe95477fb46372e1ad4c7ad8cadffcb1b935a41b2ca4778c52e70a49506a6"
+    },
+    {
+      "case": {
+        "id": "board-backward-15mm",
+        "patch": {
+          "setup": {
+            "board": {
+              "origin_m": [
+                0.26,
+                0.205,
+                1.25
+              ],
+              "provenance": {
+                "note": "Sensitivity hypothesis: board 15mm closer to torso; unmeasured."
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 12,
+        "sampled_transition_found": 7,
+        "no_pose_found": 4,
+        "no_transition_found": 1
+      },
+      "status": "completed_search",
+      "profile_sha256": "30d436964646fb5e8bc404b5c420f8f939a953f6b86a9f0eb1cd4906463b9d79",
+      "anchor_qpos_rad": [
+        -0.1121094286124682,
+        0.04748436542470244,
+        -0.04748436542470244,
+        0.11210942861246821,
+        -0.02269984298351629,
+        0.18345179227494798,
+        0.0824606541033857,
+        -0.0824606541033857,
+        -0.18345179227494798,
+        0.02269984298351629,
+        0.09703410542189808,
+        0.46326210170441406,
+        -0.09703410542189808,
+        -0.1807939282083586,
+        1.6350865782496085,
+        0.15133956099302237,
+        -0.16145552980632386,
+        0.5353938174519601,
+        4.8000815936458375e-17,
+        -1.0580849382916813e-17,
+        2.979220354844439e-22,
+        6.528454765417898e-22,
+        1.0353297276431794,
+        -0.24850141824247984,
+        1.0016309171291728,
+        0.7717706300069521,
+        2.6721398111244486e-10,
+        2.91796445184302e-28,
+        2.672139811124498e-10,
+        2.672139811124498e-10,
+        2.6721398111248616e-10,
+        -8.148912829194521e-28,
+        2.672139811124498e-10,
+        2.672139811124498e-10,
+        2.672139811333943e-10,
+        4.2260793009678716e-23,
+        2.672139811213846e-10,
+        2.672139811147801e-10
+      ],
+      "elapsed_s": 33.98144496100031,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c4",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0005779019219466861
+          },
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c7",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.0016002989439958676
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.04586434303366486
+          },
+          {
+            "button_id": "r1c12",
+            "reference_status": "sampled_transition_found",
+            "status": "no_transition_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.004766833827372252
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0008794086463635685
+          },
+          {
+            "button_id": "r3c8",
+            "reference_status": "sampled_transition_found",
+            "status": "no_pose_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r4c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0013153793145285649
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          }
+        ],
+        "status_changes": 2,
+        "maximum_common_relocation_change_m": 0.04586434303366486,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "board-backward-15mm/result.json",
+      "result_sha256": "3ce185efa40da7eb82ca72be31ef440e573c2e27f8fe7e0b3846d8a035d90f64"
+    }
+  ],
+  "anchor_policy": "Recalibrate source contact from same prior per profile",
+  "claim": "Synthetic local-search sensitivity, not calibrated human ergonomics"
+}

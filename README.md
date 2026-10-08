@@ -9,6 +9,8 @@ finger-only and arm-enabled candidates from a recorded physical configuration.
 A third audits a supplied path and exposes collisions between valid endpoints.
 Explicit profiles now support recalculation; multi-start contact discovery and
 seeded withdrawal/path search preserve diverse configurations and trajectories.
+A 62-button index atlas and parameter sweeps quantify discovered movement;
+small simultaneous contacts and explicit geometric hand hypotheses are supported.
 
 **Current result: a static kinematic candidate on assumed geometry. Real playing
 feasibility, button operation and continuous transitions are not yet established.**
@@ -28,6 +30,8 @@ uv run aec ablation experiments/002-arm-ablation/experiment.json
 uv run aec transition experiments/003-transition-counterexample/experiment.json
 uv run aec explore experiments/005-pose-diversity/experiment.json
 uv run aec plan experiments/006-transition-search/experiment.json
+uv run aec frozen atlas experiments/007-index-atlas/experiment.json --output artifacts/atlas
+uv run aec frozen sweep experiments/008-geometry-sensitivity/experiment.json --output artifacts/sensitivity
 ```
 
 The experiment writes structured input/state/solver history/diagnostics/version

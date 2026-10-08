@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "id": "008-geometry-sensitivity-board-forward-15mm-anchor",
+  "question": "Can the maintained MyoArm compose with a finite CBA fixture and preserve coupled joints while solving an index-pad surface target headlessly?",
+  "geometry": {
+    "column_spacing_m": 0.019,
+    "row_spacing_m": 0.016454482671904334,
+    "button_radius_m": 0.0065,
+    "button_height_m": 0.004,
+    "button_travel_m": null,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Synthetic laboratory fixture, 2026-10-08",
+      "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+    },
+    "stagger_columns": [
+      0,
+      0.5,
+      1,
+      0.5,
+      1
+    ],
+    "panel_margin_m": 0.012,
+    "panel_thickness_m": 0.008
+  },
+  "contacts": [
+    {
+      "row": 1,
+      "column": 5,
+      "finger": "index"
+    }
+  ],
+  "initial_joints_rad": {
+    "sternoclavicular_r2_r": -0.12517293517935052,
+    "sternoclavicular_r3_r": 0.05301746221439433,
+    "unrotscap_r3_r": -0.05301746221439433,
+    "unrotscap_r2_r": 0.12517293517935052,
+    "acromioclavicular_r2_r": -0.02534493315614949,
+    "acromioclavicular_r3_r": 0.2048284393843918,
+    "acromioclavicular_r1_r": 0.09206934901621651,
+    "unrothum_r1_r": -0.09206934901621651,
+    "unrothum_r3_r": -0.2048284393843918,
+    "unrothum_r2_r": 0.02534493315614949,
+    "elv_angle_r": 0.2752599594869516,
+    "shoulder_elv_r": 0.5172435337989691,
+    "shoulder1_r2_r": -0.2752599594869516,
+    "shoulder_rot_r": -0.11367709494548363,
+    "elbow_flexion_r": 1.530916552229393,
+    "pro_sup_r": 0.17698814936228127,
+    "deviation_r": -0.14394854913396155,
+    "flexion_r": 0.4983902469497995,
+    "cmc_flexion": 7.854035917811735e-17,
+    "cmc_abduction": -1.596752767228434e-17,
+    "mp_flexion_r": 3.1287772838286765e-19,
+    "ip_flexion_r": 1.3928279303542446e-21,
+    "mcp2_flexion_r": 1.019165020382537,
+    "mcp2_abduction_r": -0.24807921379006603,
+    "pm2_flexion_r": 0.9996612779725073,
+    "md2_flexion_r": 0.7943391922433639,
+    "mcp3_flexion_r": 7.057787408373482e-10,
+    "mcp3_abduction_r": 2.91796445184302e-28,
+    "pm3_flexion_r": 7.05778740837356e-10,
+    "md3_flexion": 7.05778740837356e-10,
+    "mcp4_flexion_r": 7.057787408373626e-10,
+    "mcp4_abduction_r": -8.148912829194521e-28,
+    "pm4_flexion": 7.05778740837356e-10,
+    "md4_flexion_r": 7.05778740837356e-10,
+    "mcp5_flexion_r": 7.057787408432001e-10,
+    "mcp5_abduction_r": 4.2260793009678716e-23,
+    "pm5_flexion_r": 7.057787408398488e-10,
+    "md5_flexion_r": 7.057787408380072e-10
+  },
+  "solver": {
+    "backend": "mink-clarabel",
+    "max_iterations": 400,
+    "integration_dt_s": 0.02,
+    "position_cost": 1.0,
+    "normal_cost": 0.05,
+    "posture_cost": 0.0001,
+    "damping": 1e-06,
+    "position_tolerance_m": 0.0001,
+    "normal_tolerance_rad": 0.05,
+    "joint_tolerance_rad": 1e-06,
+    "equality_tolerance_rad": 1e-06,
+    "penetration_tolerance_m": 0.0001,
+    "collision_avoidance": true
+  },
+  "randomness": {
+    "used": false,
+    "seed": null
+  },
+  "anatomy": {
+    "package": "myo-sim",
+    "version": "0.2.3",
+    "model": "myoarm_r",
+    "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+  },
+  "render": {
+    "width": 960,
+    "height": 720,
+    "backend": "egl"
+  },
+  "setup": {
+    "board": {
+      "origin_m": [
+        0.26,
+        0.235,
+        1.25
+      ],
+      "rotation_wxyz": [
+        0.7071067811865476,
+        -0.7071067811865476,
+        0,
+        0
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy synthetic fixture",
+        "note": "Sensitivity hypothesis: board 15mm farther forward; unmeasured."
+      }
+    },
+    "torso": {
+      "torso_origin_m": [
+        0,
+        0,
+        1
+      ],
+      "torso_rotation_wxyz": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy laboratory setup",
+        "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+      }
+    }
+  },
+  "player": {
+    "model": "myoarm_r",
+    "joint_ranges_rad": {},
+    "provenance": {
+      "kind": "imported_model",
+      "source": "myo-sim 0.2.3",
+      "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+    }
+  },
+  "physical_contact": {
+    "collision_detection_distance_m": 0.03,
+    "collision_minimum_distance_m": 0,
+    "collision_gain": 0.85,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Legacy rigid distal-envelope contact",
+      "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+    }
+  }
+}

@@ -1,0 +1,497 @@
+{
+  "id": "010-hand-geometry-sensitivity",
+  "input": {
+    "schema_version": 1,
+    "id": "010-hand-geometry-sensitivity",
+    "question": "How do finite next-action searches change under \u00b15% geometric hand scale, with muscle physiology explicitly disabled?",
+    "atlas_definition": "../007-index-atlas/experiment.json",
+    "atlas_definition_sha256": "29cb8c58c76f1c5251ddcf6496f3228c6990cd9d1a9a0774153d5931f4d1cd82",
+    "targets": [
+      {
+        "row": 1,
+        "column": 4,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 7,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 9,
+        "finger": "index"
+      },
+      {
+        "row": 2,
+        "column": 6,
+        "finger": "index"
+      },
+      {
+        "row": 3,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 3,
+        "column": 8,
+        "finger": "index"
+      },
+      {
+        "row": 5,
+        "column": 3,
+        "finger": "index"
+      }
+    ],
+    "cases": [
+      {
+        "id": "reference",
+        "patch": {
+          "player": {
+            "model_mode": "kinematic_geometry_hypothesis",
+            "geometric_hand_scale": 1,
+            "geometry_evidence": {
+              "kind": "hypothesis",
+              "source": "Controlled wrist-origin geometric hand transform",
+              "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+              "uncertainty": null
+            }
+          }
+        }
+      },
+      {
+        "id": "hand-95-percent",
+        "patch": {
+          "player": {
+            "model_mode": "kinematic_geometry_hypothesis",
+            "geometric_hand_scale": 0.95,
+            "geometry_evidence": {
+              "kind": "hypothesis",
+              "source": "Controlled wrist-origin geometric hand transform",
+              "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+              "uncertainty": null
+            }
+          }
+        }
+      },
+      {
+        "id": "hand-105-percent",
+        "patch": {
+          "player": {
+            "model_mode": "kinematic_geometry_hypothesis",
+            "geometric_hand_scale": 1.05,
+            "geometry_evidence": {
+              "kind": "hypothesis",
+              "source": "Controlled wrist-origin geometric hand transform",
+              "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+              "uncertainty": null
+            }
+          }
+        }
+      }
+    ]
+  },
+  "definition_sha256": "87ddc880caeedc51daeca4ec556da01ec64a439244be95a59fcb104e606e8d7a",
+  "cases": [
+    {
+      "case": {
+        "id": "reference",
+        "patch": {
+          "player": {
+            "model_mode": "kinematic_geometry_hypothesis",
+            "geometric_hand_scale": 1,
+            "geometry_evidence": {
+              "kind": "hypothesis",
+              "source": "Controlled wrist-origin geometric hand transform",
+              "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+              "uncertainty": null
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 8,
+        "sampled_transition_found": 8,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "7372ab90e916fcb4648ca5dd9fe395398b6f4b5ffc2a55aeb842cf033af41c93",
+      "anchor_qpos_rad": [
+        -0.12067596591336266,
+        0.051112754157519306,
+        -0.051112754157519306,
+        0.12067596591336266,
+        -0.024434389792375083,
+        0.19746976240368436,
+        0.08876166087842377,
+        -0.08876166087842377,
+        -0.19746976240368436,
+        0.024434389792375083,
+        0.18059323210569775,
+        0.49866101617092007,
+        -0.18059323210569775,
+        -0.12870181234096836,
+        1.5892974908621782,
+        0.16419982690925058,
+        -0.1655875307000419,
+        0.47857648363616245,
+        2.127624151507682e-17,
+        -4.9003846229222e-18,
+        -4.1476406297662584e-22,
+        3.564926984293268e-22,
+        1.054019406124545,
+        -0.25350942459085224,
+        1.020186302486375,
+        0.7555249475134678,
+        2.2115467879771112e-10,
+        2.91796445184302e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.211546787979763e-10,
+        -8.148912829194521e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.2115467894110523e-10,
+        4.2260793009678716e-23,
+        2.2115467885890568e-10,
+        2.2115467881366255e-10
+      ],
+      "elapsed_s": 20.835690494001028,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c4",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c7",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r3c8",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r5c3",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.0,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "reference/result.json",
+      "result_sha256": "2a1b91a36fe5d2c050014d70c33e8eb9bbe35cd208c81c4cbf7b1fd471476a40"
+    },
+    {
+      "case": {
+        "id": "hand-95-percent",
+        "patch": {
+          "player": {
+            "model_mode": "kinematic_geometry_hypothesis",
+            "geometric_hand_scale": 0.95,
+            "geometry_evidence": {
+              "kind": "hypothesis",
+              "source": "Controlled wrist-origin geometric hand transform",
+              "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+              "uncertainty": null
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 8,
+        "sampled_transition_found": 7,
+        "no_pose_found": 1,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "e33026dac023f928eb5050e27fa3b3fcfc40c52489c999787733bfa693cdc0b4",
+      "anchor_qpos_rad": [
+        -0.1267489337095999,
+        0.05368498225303302,
+        -0.05368498225303302,
+        0.1267489337095999,
+        -0.025664040296571884,
+        0.2074073460702544,
+        0.0932285545467305,
+        -0.0932285545467305,
+        -0.2074073460702544,
+        0.025664040296571884,
+        0.1937653612648253,
+        0.5237559244198343,
+        -0.1937653612648253,
+        -0.10375030958078568,
+        1.5807880114354973,
+        0.1752988616163488,
+        -0.16877274127109324,
+        0.5150257383438095,
+        3.4245094735785526e-17,
+        -7.720493371012006e-18,
+        1.0436342699864404e-19,
+        8.046970028028964e-22,
+        1.017827691625882,
+        -0.2567312070888864,
+        0.9798891637864408,
+        0.777890591842805,
+        4.777778122533328e-11,
+        2.91796445184302e-28,
+        4.777778122533392e-11,
+        4.777778122533392e-11,
+        4.777778122534433e-11,
+        -8.148912829194521e-28,
+        4.777778122533392e-11,
+        4.777778122533392e-11,
+        4.7777781231068614e-11,
+        4.2260793009678716e-23,
+        4.777778122778145e-11,
+        4.7777781225971326e-11
+      ],
+      "elapsed_s": 19.827677260998826,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c4",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.0001580585001548472
+          },
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c7",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.0001401803542424515
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.04153625105112168
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.014461460439254184
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0400564505803014
+          },
+          {
+            "button_id": "r3c8",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.001731792847208452
+          },
+          {
+            "button_id": "r5c3",
+            "reference_status": "sampled_transition_found",
+            "status": "no_pose_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          }
+        ],
+        "status_changes": 1,
+        "maximum_common_relocation_change_m": 0.04153625105112168,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "hand-95-percent/result.json",
+      "result_sha256": "6f6b1b9e8090565a9b66fdba3911b7a3351b0b721e4f39edabc1ba5739ad580b"
+    },
+    {
+      "case": {
+        "id": "hand-105-percent",
+        "patch": {
+          "player": {
+            "model_mode": "kinematic_geometry_hypothesis",
+            "geometric_hand_scale": 1.05,
+            "geometry_evidence": {
+              "kind": "hypothesis",
+              "source": "Controlled wrist-origin geometric hand transform",
+              "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+              "uncertainty": null
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 8,
+        "sampled_transition_found": 8,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "74c862c0d8dc8cb1a96e945eb15982654ef1df87b51294f4df9480164aed4afb",
+      "anchor_qpos_rad": [
+        -0.11904677118118259,
+        0.05042270266971576,
+        -0.05042270266971576,
+        0.11904677118118259,
+        -0.024104511520156805,
+        0.1948038073873897,
+        0.0875633275630186,
+        -0.0875633275630186,
+        -0.1948038073873897,
+        0.024104511520156805,
+        0.1650233096210115,
+        0.4919288065338123,
+        -0.1650233096210115,
+        -0.1496778129261719,
+        1.5949435543469428,
+        0.15803850911887526,
+        -0.1589999572964277,
+        0.4844834517605468,
+        2.1274371901210394e-17,
+        -4.899918147759464e-18,
+        -4.1308849469441436e-22,
+        4.2025750629663595e-22,
+        1.0511872679790513,
+        -0.23780759207488367,
+        1.0249683173931616,
+        0.7656581628378804,
+        1.2849459173577884e-10,
+        2.91796445184302e-28,
+        1.284945917357937e-10,
+        1.284945917357937e-10,
+        1.2849459173591866e-10,
+        -8.148912829194521e-28,
+        1.284945917357937e-10,
+        1.284945917357937e-10,
+        1.2849459181125502e-10,
+        4.2260793009678716e-23,
+        1.284945917679887e-10,
+        1.2849459174417511e-10
+      ],
+      "elapsed_s": 13.993436745000508,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c4",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 2.6195417746368438e-05
+          },
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 1.4946834900704541e-16
+          },
+          {
+            "button_id": "r1c7",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.010668138402858393
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.011380017451279908
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.021567859489823357
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.004067634184128439
+          },
+          {
+            "button_id": "r3c8",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.006737312059899067
+          },
+          {
+            "button_id": "r5c3",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.005719145028943981
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.021567859489823357,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "hand-105-percent/result.json",
+      "result_sha256": "609d8f03b82a8afd1bad580a6dc5ad8486457f5d5151bbc69b211bd563c63b65"
+    }
+  ],
+  "anchor_policy": "Recalibrate source contact from same prior per profile",
+  "claim": "Synthetic local-search sensitivity, not calibrated human ergonomics"
+}

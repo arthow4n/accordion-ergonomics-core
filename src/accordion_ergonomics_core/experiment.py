@@ -86,6 +86,30 @@ class Experiment:
             "solver": asdict(self.solver),
         }
 
+    def expanded_source(self) -> dict[str, Any]:
+        """Materialize profile defaults before applying calibration patches."""
+        import json
+
+        result: dict[str, Any] = json.loads(json.dumps(self.source))
+        result["schema_version"] = 2
+        geometry = asdict(self.geometry)
+        evidence = geometry.pop("evidence")
+        origin, rotation = geometry.pop("origin_m"), geometry.pop("rotation_wxyz")
+        result["geometry"] = {**geometry, "provenance": evidence}
+        result["player"] = asdict(self.player)
+        result["physical_contact"] = asdict(self.physical_contact)
+        result["setup"] = {
+            "torso": asdict(self.setup),
+            "board": {
+                "origin_m": origin,
+                "rotation_wxyz": rotation,
+                "provenance": self.source.get("setup", {})
+                .get("board", {})
+                .get("provenance", evidence),
+            },
+        }
+        return result
+
     @classmethod
     def from_dict(cls, source: dict[str, Any]) -> Experiment:
         if source["schema_version"] not in (1, 2):

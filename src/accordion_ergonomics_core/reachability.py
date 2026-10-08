@@ -148,7 +148,7 @@ def render_atlas(result: dict[str, Any], output: Path) -> None:
     u = [c[0] for c in centers.values()]
     v = [c[1] for c in centers.values()]
     span = max(v) - min(v)
-    scale = 800 / span
+    scale = 760 / span
     for button, center in centers.items():
         x = 400 + (center[0] - (min(u) + max(u)) / 2) * scale
         y = 150 + (center[1] - min(v)) * scale
@@ -174,6 +174,13 @@ def render_atlas(result: dict[str, Any], output: Path) -> None:
             "?" if not action else "X" if value is None else str(round(value * 1000))
         )
         draw.text((x - 7, y - 5), label, fill=(10, 20, 30))
+        draw.text((x - 18, y + 26), button, fill=(45, 50, 60))
+        if button == result["anchor"]["target"]["button_id"]:
+            draw.ellipse(
+                (x - radius - 3, y - radius - 3, x + radius + 3, y + radius + 3),
+                outline=(230, 130, 15),
+                width=2,
+            )
     draw.text(
         (25, 970),
         f"Max relocation {max_value * 1000:.1f} mm; sampled checks; no comfort score.",
@@ -190,7 +197,8 @@ def run_atlas(definition: Path, output: Path) -> dict[str, Any]:
         definition.parent / source["baseline_result"], source["baseline_sha256"]
     )
     input_source = merge_parameters(
-        baseline["input"], source.get("parameter_patch", {})
+        Experiment.from_dict(baseline["input"]).expanded_source(),
+        source.get("parameter_patch", {}),
     )
     input_source["id"] = source["id"] + "-anchor"
     input_source["initial_joints_rad"] = dict(

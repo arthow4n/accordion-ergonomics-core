@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "id": "010-hand-geometry-sensitivity",
+  "question": "How do finite next-action searches change under \u00b15% geometric hand scale, with muscle physiology explicitly disabled?",
+  "atlas_definition": "../007-index-atlas/experiment.json",
+  "atlas_definition_sha256": "29cb8c58c76f1c5251ddcf6496f3228c6990cd9d1a9a0774153d5931f4d1cd82",
+  "targets": [
+    {
+      "row": 1,
+      "column": 4,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 7,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 9,
+      "finger": "index"
+    },
+    {
+      "row": 2,
+      "column": 6,
+      "finger": "index"
+    },
+    {
+      "row": 3,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 3,
+      "column": 8,
+      "finger": "index"
+    },
+    {
+      "row": 5,
+      "column": 3,
+      "finger": "index"
+    }
+  ],
+  "cases": [
+    {
+      "id": "reference",
+      "patch": {
+        "player": {
+          "model_mode": "kinematic_geometry_hypothesis",
+          "geometric_hand_scale": 1,
+          "geometry_evidence": {
+            "kind": "hypothesis",
+            "source": "Controlled wrist-origin geometric hand transform",
+            "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+            "uncertainty": null
+          }
+        }
+      }
+    },
+    {
+      "id": "hand-95-percent",
+      "patch": {
+        "player": {
+          "model_mode": "kinematic_geometry_hypothesis",
+          "geometric_hand_scale": 0.95,
+          "geometry_evidence": {
+            "kind": "hypothesis",
+            "source": "Controlled wrist-origin geometric hand transform",
+            "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+            "uncertainty": null
+          }
+        }
+      }
+    },
+    {
+      "id": "hand-105-percent",
+      "patch": {
+        "player": {
+          "model_mode": "kinematic_geometry_hypothesis",
+          "geometric_hand_scale": 1.05,
+          "geometry_evidence": {
+            "kind": "hypothesis",
+            "source": "Controlled wrist-origin geometric hand transform",
+            "note": "All hand lengths/envelopes scale uniformly; joint axes/ranges retained. No individualized physiology. Muscle actuation disabled.",
+            "uncertainty": null
+          }
+        }
+      }
+    }
+  ]
+}

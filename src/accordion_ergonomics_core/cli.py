@@ -188,6 +188,9 @@ def main() -> None:
     frozen.add_argument("definition", type=Path)
     frozen.add_argument("--output", type=Path, required=True)
     frozen.add_argument("--source-snapshot", type=Path)
+    diagram = sub.add_parser("atlas-render")
+    diagram.add_argument("result", type=Path)
+    diagram.add_argument("--output", type=Path, default=Path("artifacts/atlas.png"))
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -198,6 +201,27 @@ def main() -> None:
             [sys.executable, "-m", "pytest"],
         ):
             subprocess.run(command, check=True)
+    elif args.command == "atlas-render":
+        from .reachability import render_atlas
+
+        args.output.parent.mkdir(parents=True, exist_ok=True)
+        render_atlas(json.loads(args.result.read_text()), args.output)
+        args.output.with_suffix(".json").write_text(
+            json.dumps(
+                {
+                    "input_sha256": hashlib.sha256(
+                        args.result.read_bytes()
+                    ).hexdigest(),
+                    "image_sha256": hashlib.sha256(
+                        args.output.read_bytes()
+                    ).hexdigest(),
+                    "visualization_source_sha256": project_source_digest(),
+                    "units": "metres internally; millimetres in diagram",
+                },
+                indent=2,
+            )
+            + "\n"
+        )
     elif args.command == "frozen":
         from .frozen import frozen_run
 

@@ -34,3 +34,29 @@ coverage and joint ranges are model assumptions, not anatomical measurements.
 
 API evidence: [MuJoCo model editing](https://mujoco.readthedocs.io/en/stable/programming/modeledit.html)
 and [Python binary-model serialization](https://mujoco.readthedocs.io/en/latest/python.html).
+
+## Geometric hand hypotheses
+
+`player.model_mode = "kinematic_geometry_hypothesis"` permits an explicit
+`geometric_hand_scale` about the imported `lunate_r` wrist origin. The transform
+scales descendant translations, joint anchors, sites, primitive envelopes,
+unique mesh assets and inertial geometry. Explicit masses scale cubically and
+inertias by the fifth power as a constant-density geometric hypothesis. Forearm,
+upper arm and wrist origin stay fixed. Joint axes/ranges and source couplings
+are retained, so this is not an individually identified anatomical model.
+
+All muscle actuators and tendons are removed in hypothesis mode, including at
+scale 1 for a matched reference. This prevents unchanged muscle parameters from
+being silently interpreted as physiological personalization. Scaling in the
+imported musculoskeletal mode is rejected. The transformed model is used only
+kinematically; no physiological or dynamic validity is claimed. Tests verify
+wrist/arm invariance, hand/contact envelope scaling, SI dimensions, imported
+ranges, mass/inertia exponents and the absence of actuators/tendons.
+
+This is useful for sensitivity discovery, not evidence that a person's smaller
+hand is a uniformly scaled generic hand. Individual finger/limb changes and
+muscle recalibration remain unsupported. Proper anatomical scaling also needs
+marker/segment calibration and configuration-dependent muscle treatment;
+see the primary [OpenSim scaling explanation](https://opensimconfluence.atlassian.net/wiki/spaces/OpenSim/pages/53089158).
+MyoArm's contact envelopes are manually designed proxies, as documented in its
+[model README](https://github.com/MyoHub/myo_sim/blob/main/myo_sim/models/arm/README.md).
