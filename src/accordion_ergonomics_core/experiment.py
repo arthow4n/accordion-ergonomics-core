@@ -97,6 +97,8 @@ class Experiment:
     def resolved_profiles(self) -> dict[str, Any]:
         instrument = asdict(self.geometry)
         setup = asdict(self.setup)
+        if self.setup.seated is not None and self.setup.seated.lower_body is None:
+            setup["seated"].pop("lower_body")
         if self.setup.seated is None:
             setup.pop("seated")
         else:
@@ -149,6 +151,8 @@ class Experiment:
         result["physical_contact"] = asdict(self.physical_contact)
         result["solver"] = asdict(self.solver)
         torso = asdict(self.setup)
+        if self.setup.seated is not None and self.setup.seated.lower_body is None:
+            torso["seated"].pop("lower_body")
         if self.setup.seated is None:
             torso.pop("seated")
         result["setup"] = {

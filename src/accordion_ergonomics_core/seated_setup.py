@@ -8,6 +8,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 from .instrument import BOARD_TO_WORLD, BoardGeometry, buttons
+from .lower_body import SeatedLegs, lower_body_anchors
 
 
 def parameter_evidence() -> dict[str, Any]:
@@ -48,6 +49,7 @@ def parameter_evidence() -> dict[str, Any]:
 
 @dataclass(frozen=True)
 class SeatedSetup:
+    lower_body: SeatedLegs | None = field(default_factory=SeatedLegs)
     name: str = "reference_seated_cba_setup"
     instrument_width_m: float = 0.365
     instrument_depth_m: float = 0.195
@@ -65,6 +67,8 @@ class SeatedSetup:
     parameter_evidence: dict[str, Any] = field(default_factory=parameter_evidence)
 
     def __post_init__(self) -> None:
+        if isinstance(self.lower_body, dict):
+            object.__setattr__(self, "lower_body", SeatedLegs(**self.lower_body))
         for name, value in asdict(self).items():
             if isinstance(value, (int, float)) and not isfinite(value):
                 raise ValueError(f"Nonfinite seated setup parameter: {name}")
@@ -95,7 +99,8 @@ def derive_setup(
 
     The thorax ellipsoid support plane is deliberately conservative. It prevents
     shell/torso overlap without pretending the rear case matches the chest shape.
-    Thighs are schematic references; neither their forces nor straps are simulated.
+    MyoSim femurs anchor approximate envelopes in new setups; legacy thighs
+    remain schematic. Neither support forces nor straps are simulated.
     """
     import myo_sim
 
@@ -140,10 +145,21 @@ def derive_setup(
             )
         )[0]
     )
+    lower_landmarks = None
+    anatomical_reference = None
+    support_height = p.support_height_above_root_m
+    if p.lower_body is not None:
+        lower_landmarks, anatomical_reference = lower_body_anchors(setup)
+        leg_parameters = p.lower_body
+        support_height = (
+            max(
+                (canonical.T @ (lower_landmarks[name] - root))[2]
+                for name in ("femur_r", "femur_l", "tibia_r", "tibia_l")
+            )
+            + leg_parameters.thigh_envelope_radius_m
+        )
     center[2] = (
-        p.support_height_above_root_m
-        + p.support_clearance_m
-        + np.abs(orientation[2]) @ (size / 2)
+        support_height + p.support_clearance_m + np.abs(orientation[2]) @ (size / 2)
     )
     support_values = []
     thorax_center = np.zeros(3)
@@ -189,7 +205,9 @@ def derive_setup(
     thigh_reference = np.array(
         [shoulder[0] - 0.07, support_corner[1], p.support_height_above_root_m]
     )
-    return derived, {
+    if anatomical_reference is not None:
+        thigh_reference = canonical.T @ (anatomical_reference - root)
+    anchors = {
         "shell_center_board_m": (-local_origin).tolist(),
         "shell_half_size_m": (size / 2).tolist(),
         "shell_center_world_m": (root + canonical @ center).tolist(),
@@ -208,3 +226,15 @@ def derive_setup(
             "No force equilibrium or rigid thigh pin."
         ),
     }
+
+    if lower_landmarks is not None:
+        anchors["lower_body_landmarks_world_m"] = {
+            k: v.tolist() for k, v in lower_landmarks.items()
+        }
+        anchors["anchor_policy"] = (
+            "Compiled MyoSim seated FK; approximate thigh-envelope station, "
+            "independent of instrument; thorax plane and shoulder edge. "
+            "No support forces."
+        )
+        anchors["support_height_above_root_m"] = float(support_height)
+    return derived, anchors

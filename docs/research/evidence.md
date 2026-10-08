@@ -79,3 +79,19 @@ assumptions, not photo-derived measurements or population bounds. The implemente
 solid shell is a separate conservative geometry hypothesis. Straps/support forces
 and personalized calibration are not identified. Historical synthetic records
 are preserved.
+
+## MyoSim seated lower-body anatomy (029)
+
+Prefer MyoSim resources for anatomical structure. The locked `myolegs` assembly
+provides the pelvis and original bilateral bone meshes/kinematic chain (Rajagopal
+lineage); `myolegs26` was inspected but adds no benefit to this fixed-skeleton
+composition. See [seated-lower-body.md](seated-lower-body.md) for upstream primary
+references, evaluated assets, exact adaptation and frame checks. Recorded whole-
+package and compiled-model hashes bind the actual imported anatomy.
+
+Keep these evidence categories distinct: imported bone geometry and joint
+couplings; **assumed** seated angles/root pose; **approximate** femur-centered
+support capsules; **assumed** brace station/direction and shell clearance; derived
+board placement. A fixed bone mesh is not skin or a calibrated contact envelope.
+No metric posture or tissue thickness is inferred from a photograph. 023–028
+retain their original synthetic thighs and historical physical worlds.

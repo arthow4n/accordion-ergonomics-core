@@ -1,5 +1,47 @@
 # Research log
 
+## 2026-10-08 — MyoSim anatomy replaces the handmade seated-leg default
+
+[029](experiments/029-myosim-seated-lower-body/notes.md) evaluates standard MyoSim
+legs, the reduced leg assembly and the full-body alternative. We choose the
+standard `myolegs` pelvis/bilateral bone subtree: seated upstream hip/knee FK and
+all 14 knee/patella couplings are evaluated and baked into fixed compiled frames,
+then lower-body muscles/joints/wraps are removed. Original MyoArm anatomy, 38
+coordinates, 63 actuators and 11 couplings remain. MyoSim is now the preferred
+source for anatomical structure; new `SeatedSetup()` profiles default to it.
+
+The old right-thigh axis was too high, lateral and forward relative to the
+imported pelvis/hip frame. Independent anatomical hip→knee anchors replace its
+instrument-dependent forward landmark. Clearly approximate femur-centered
+support capsules remain separate from bone anatomy. The corrected conservative
+vertical plane lowers shell/board 97.3 mm at unchanged torso root and yaw. Front,
+right-side, oblique and treble/hand renders now show the pelvis, bilateral legs,
+knees and feet; all were inspected alongside historical 023 views.
+
+Preserved negative evidence: the first brace-height support plane intersected
+the approximate capsules by 2.00/3.47 mm despite engine/solver success. Archived
+source replay matched its MJB before independent distance queries. Separating
+brace and vertical support references yields 11.47/10.00 mm shell/capsule gaps.
+No skeletal scaling or envelope shrinking was used. These are assumed envelope
+clearances, not actual loaded soft-tissue support.
+
+Central C4 error is 0.0765 mm, actual distal/button distance 0.0762 mm, with
+zero registered penetration/joint violation and intact couplings. Smaller
+shoulder elevation comes with increased wrist flexion (−1.7→28.9°); no uniform
+ergonomic improvement claim. Eight-start exploration finds two central and
+three two-finger candidates, retaining failed attempts and near-limit branches.
+Independent coverage still finds unchecked phalangeal overlaps in all six
+accepted records, up to 13.3 mm. Leg anatomy does not fix hand-envelope validity.
+
+Source categories, pose/envelope ranges, asset provenance, fixed-frame adaptation
+and limits are documented in [seated-lower-body.md](docs/research/seated-lower-body.md).
+No private measurements, extra library, skin system or full-body dynamics were
+needed. Historical 023 profile and compiled-model hashes remain exact; earlier
+published experiments are unchanged. All four saved-state images reproduce
+byte-for-byte in this EGL environment. 81 tests, Ruff and ty pass; four frozen
+roots verify completely. Chair/ground support, tissue, straps and muscle effort
+remain outside this milestone.
+
 ## 2026-10-08 — Setup-family comparison and two placement/search counterexamples
 
 [024](experiments/024-seated-setup-family/notes.md) compares eight seated members

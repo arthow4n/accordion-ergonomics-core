@@ -128,3 +128,11 @@ phalangeal overlaps in all 73 audited poses. Gross body/instrument placement is
 substantially more plausible; full anatomical playing validity remains unresolved.
 Useful current claims concern explicit setup hypotheses and numerical sensitivity,
 not human reachability, fatigue, force or individualized recommendations.
+
+## Anatomical lower-body revision (029)
+
+Use [fixed MyoSim pelvis/legs](seated-lower-body.md) for new generic setups. The
+023–028 family remains historical evidence on schematic thighs; those numbers
+are not silently relabeled as anatomical seated results. The new profile derives
+the support plane and independent brace landmark from posed femurs, replacing
+both the arbitrary pelvis-relative height and instrument-dependent thigh y.

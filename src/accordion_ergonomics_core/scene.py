@@ -137,6 +137,7 @@ def build_scene(
         quat=list(geometry.rotation_wxyz),
     )
     if anchors:
+        assert setup.seated is not None
         for name, body_name, color in (
             ("shoulder_landmark", "humerus_r", [1, 0.3, 0.2, 1]),
             ("elbow_landmark", "ulna_r", [1, 0.8, 0.2, 1]),
@@ -170,7 +171,11 @@ def build_scene(
                 name=name, pos=position, size=[0.008, 0, 0], rgba=color, group=0
             )
         # Schematic thighs are visual support references, not anatomical collision.
-        for side in (-1, 1):
+        if setup.seated.lower_body is not None:
+            from .lower_body import attach_fixed_lower_body
+
+            attach_fixed_lower_body(spec, setup)
+        for side in () if setup.seated.lower_body is not None else (-1, 1):
             p = np.asarray(anchors["right_thigh_reference_world_m"]).copy()
             from scipy.spatial.transform import Rotation
 
@@ -323,7 +328,17 @@ def diagnostics(
             )
             for i in scene.anatomy_geoms
         }
+    approximate_support_distances = {}
+    if shell_distances:
+        approximate_support_distances = {
+            model.geom(i).name: float(
+                mujoco.mj_geomDistance(model, data, i, shell, 1.0, None)
+            )
+            for i in range(model.ngeom)
+            if model.geom(i).name.startswith("approximate_thigh_support_")
+        }
     return {
+        "approximate_support_envelope_distances_m": approximate_support_distances,
         "instrument_envelope_distances_m": shell_distances,
         "landmarks_world_m": {
             name: data.body(name).xpos.tolist()

@@ -2,7 +2,10 @@
 
 Read README.md and newest RESEARCH_LOG.md entries before work. Run `uv sync
 --locked` and `uv run aec check`. Use uv for Python environments, packages,
-locking and canonical execution. Keep reusable code under src/.
+locking and canonical execution. Keep reusable code under src/. Prefer MyoSim
+resources for anatomical structure
+whenever they reasonably provide the components needed; distinguish imported
+skeletons from approximate soft-tissue/support envelopes.
 
 Preserve source distinctions in docs/research/evidence.md. Real instrument
 metric constants require provenance; synthetic fixtures must remain labeled.

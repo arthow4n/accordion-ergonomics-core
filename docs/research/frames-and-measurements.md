@@ -107,3 +107,15 @@ anchors and broad intervals are model hypotheses; they are useful at the generic
 reference/variation levels without private calibration. The individual protocol
 above remains optional for later player-specific inference. Generic setup
 validation does not validate anatomical envelopes or button operation.
+
+## Fixed seated MyoSim legs
+
+New seated profiles compose the compiled `myolegs` pelvis/leg subtree at the
+existing MyoArm `Full Body` root. Evaluate upstream hip/knee and all polynomial
+knee/patella couplings, then bake parent-relative body transforms and retain mesh
+assets. No additional solver coordinates are introduced. Source leg coordinates
+are resolved by MyoSim's assembly frames before the canonical root rotation;
+there is no extra guessed pelvis alignment. `tests/test_lower_body.py` compares
+retained bone geometry with upstream seated FK, under upright and rotated roots,
+and checks historical 023 profiles/MJB preservation. See
+[seated-lower-body.md](seated-lower-body.md) for support planes versus brace points.

@@ -16,7 +16,10 @@ Displacement collision limits and sampled IK-step backtracking address two
 confirmed defects in the locked Mink release. Named self-pair hypotheses can
 constrain selected phalanges without altering imported envelopes. A new generic
 seated setup derives an FR-1xb-sized shell and board placement from explicit
-torso, shoulder and support anchors, with a documented setup family.
+torso, shoulder and support anchors, with a documented setup family. New seated
+profiles use fixed MyoSim pelvis/leg bones and explicitly approximate thigh
+support envelopes; historical synthetic-leg results remain preserved.
+See [the anatomical seated baseline](experiments/029-myosim-seated-lower-body/notes.md).
 
 **Current results are sampled kinematic predictions on assumed geometry with
 incomplete anatomical self-collision coverage. Real playing feasibility,
@@ -31,7 +34,8 @@ The lockfile records the full tested dependency stack.
 ```sh
 uv sync --locked
 uv run aec check
-uv run aec frozen experiment experiments/023-reference-seated-setup/experiment.json --output artifacts/seated-reference
+uv run aec frozen experiment experiments/029-myosim-seated-lower-body/reference/experiment.json --output artifacts/seated-reference
+# Historical family on synthetic thighs (preserved for comparison)
 uv run aec frozen sweep experiments/024-seated-setup-family/experiment.json --output artifacts/seated-family
 uv run aec experiment experiments/001-single-contact/experiment.json
 uv run aec render artifacts/single-contact/result.json

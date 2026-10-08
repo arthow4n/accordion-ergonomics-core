@@ -67,6 +67,16 @@ def render_views(
         views["hand"] = dict(
             lookat=target, distance=0.55, azimuth=-55.0, elevation=-15.0
         )
+    if any(
+        scene.model.body(i).name == "seated_pelvis" for i in range(scene.model.nbody)
+    ):
+        center = scene.data.geom("instrument_envelope").xpos.tolist()
+        center[2] = (
+            scene.data.body("Full Body").xpos[2] + scene.data.body("head").xpos[2]
+        ) / 2 - 0.15
+        for name in ("overview", "keyboard", "side"):
+            views[name]["lookat"] = center
+            views[name]["distance"] = 1.95
     if collision_overlay:
         views["collision"] = dict(views["hand"])
     if views_to_render is not None:

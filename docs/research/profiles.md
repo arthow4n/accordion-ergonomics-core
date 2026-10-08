@@ -97,3 +97,15 @@ include anchors and all assumptions; hashes change with setup variation.
 Seated composition does not alter imported couplings or tissue proxies. See
 [023](../../experiments/023-reference-seated-setup/notes.md) for validation and
 remaining unchecked middle/ring penetration.
+
+New `SeatedSetup()` objects default to fixed `myolegs` anatomy. Serialized setups
+must carry the explicit `lower_body` parameters (see 029); omitted/null blocks
+retain legacy synthetic thighs so published profiles do not silently change.
+The lower-body dataclass is immutable, preventing in-place edits from leaving a
+cached board in another physical world. Lower-body angles, envelope radius and
+brace station are committed in resolved
+profiles and expanded inputs. Their change recalculates the skeleton/support
+anchors/board and invalidates accepted states through existing profile/model
+hash guards. The legacy explicit height is inactive with anatomical legs; use
+leg pose/radius and support clearance instead. No lower-body coordinates are
+added to saved arm qpos vectors. See [seated-lower-body.md](seated-lower-body.md).

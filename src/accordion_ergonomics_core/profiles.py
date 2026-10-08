@@ -92,7 +92,8 @@ class SetupProfile:
 
     def __post_init__(self) -> None:
         if isinstance(self.seated, dict):
-            object.__setattr__(self, "seated", SeatedSetup(**self.seated))
+            parameters: dict[str, Any] = {"lower_body": None, **self.seated}
+            object.__setattr__(self, "seated", SeatedSetup(**parameters))
         if len(self.torso_origin_m) != 3 or not all(
             isfinite(v) for v in self.torso_origin_m
         ):
