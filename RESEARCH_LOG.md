@@ -29,7 +29,13 @@ would also reject intentional palm-envelope composition and the reference.
 
 ![Unchecked phalangeal proxies highlighted magenta](experiments/014-collision-coverage/renders/two-contact-csharp/collision.png)
 
-**Validation:** 37 tests pass with Ruff and ty; frozen executed source and current
+**Replay repair:** [015](experiments/015-exercise-endpoint-replay/notes.md) finds
+the derived exercise input still initialized from the atlas anchor, potentially
+re-solving to another pose. New exports initialize from the selected endpoint,
+carry their own identifier and preserve the source separately. Independent
+replay agrees within 1e-12 rad. Original 012 records remain inspectable.
+
+**Validation:** 38 tests pass with Ruff and ty; frozen executed source and current
 dependency metadata accompany new records. Rendering restores model arrays.
 The next scientifically grounded step is validating hand envelopes and observed
 playing poses, then measured board/body setup and button operation. Expanded

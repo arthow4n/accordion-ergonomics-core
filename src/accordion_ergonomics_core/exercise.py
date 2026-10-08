@@ -146,6 +146,10 @@ def run_exercise(definition: Path, output: Path) -> dict[str, Any]:
         saved["input"]["contacts"] = [
             {"row": button.row, "column": button.column, "finger": action["finger"]}
         ]
+        saved["input"]["initial_joints_rad"] = dict(
+            zip(anchor["joint_names"], state["joint_angles_rad"], strict=True)
+        )
+        saved["experiment_id"] = saved["input"]["id"]
         input_bytes = (
             json.dumps(saved["input"], indent=2, allow_nan=False) + "\n"
         ).encode()
@@ -156,7 +160,9 @@ def run_exercise(definition: Path, output: Path) -> dict[str, Any]:
         if not accepted(saved["diagnostics"], e.solver):
             raise ValueError("Selected endpoint no longer passes contact checks")
         saved["claim"] = "Accepted endpoint derived from a recorded atlas realization"
-        saved["initial_qpos_rad"] = anchor["qpos_rad"]
+        saved["source_qpos_rad"] = anchor["qpos_rad"]
+        saved["initial_qpos_rad"] = list(state["joint_angles_rad"])
+        saved["termination_reason"] = "independently_validated_derived_endpoint"
         saved.pop("solver_history", None)
         saved["profiles_sha256"] = profile_hash
         saved["resolved_profiles"] = profiles
