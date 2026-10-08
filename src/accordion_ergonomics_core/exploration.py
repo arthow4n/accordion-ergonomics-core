@@ -34,15 +34,22 @@ def run_exploration(
     search: dict[str, Any] = dict(source["candidate_search"])
     search["offsets_rad"] = tuple(search["offsets_rad"])
     settings = CandidateSettings(**search)
+    from .reachability import merge_parameters
+
     output.mkdir(parents=True, exist_ok=True)
     records = []
     for contact in source["targets"]:
-        button = button_at(contact["row"], contact["column"])
-        target_dir = output / button.id
+        contacts = contact.get("contacts", [contact])
+        button = button_at(contacts[0]["row"], contacts[0]["column"])
+        target_id = contact.get("id", button.id)
+        target_dir = output / target_id
         target_dir.mkdir(exist_ok=True)
-        input_source = json.loads(json.dumps(baseline["input"]))
-        input_source["id"] = source["id"] + "-" + button.id
-        input_source["contacts"] = [contact]
+        input_source = merge_parameters(
+            Experiment.from_dict(baseline["input"]).expanded_source(),
+            source.get("parameter_patch", {}),
+        )
+        input_source["id"] = source["id"] + "-" + target_id
+        input_source["contacts"] = contacts
         input_source["initial_joints_rad"] = dict(
             zip(baseline["joint_names"], baseline["qpos_rad"], strict=True)
         )
@@ -55,6 +62,7 @@ def run_exploration(
             experiment.player,
             experiment.setup,
             experiment.physical_contact,
+            tuple(c.finger for c in experiment.contacts),
         )
         result = discover_candidates(
             scene,
@@ -65,6 +73,7 @@ def run_exploration(
         )
         result.update(
             button_id=button.id,
+            target_id=target_id,
             midi=button.midi,
             resolved_profiles=template["resolved_profiles"],
             profiles_sha256=template["profiles_sha256"],

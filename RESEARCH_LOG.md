@@ -1,5 +1,32 @@
 # Research log
 
+## 2026-10-08 — Step checks restore C4; selective self-pairs change pose discovery
+
+[018](experiments/018-collision-step-backtracking/notes.md) samples proposed IK
+edges and halves colliding steps. The cold-start C4 solve that failed in 017
+succeeds in eight iterations, two halved steps, 0.04833 mm marker error and zero
+detected penetration. No geometry or tolerance change. Colliding seeds fail
+explicitly. This is numerical iteration safety, not proof of unsampled motion.
+
+[019](experiments/019-selective-self-collision/notes.md) compares eight starts
+with/without 16 index–middle phalangeal pairs on unmodified proxies. Distinct
+C4 / C4+Bb3 / C4+C#4 counts are **3/3/2 versus 2/0/3**. Independent auditing finds
+3.22–13.39 mm index/middle overlap in reference dual poses. Constrained C#4 poses
+have zero or 0.00256 mm, within the unchanged 0.1 mm tolerance. Other digit/palm
+envelopes remain unvalidated. More constraints can redirect local IK into new
+branches; more candidates is not a larger true feasible set. Bb3 is not found,
+not impossible.
+
+![Constrained C#4 pair](experiments/019-selective-self-collision/index-middle-pairs/c4-csharp4/candidate-0/renders/hand.png)
+
+[020](experiments/020-selective-transition-comparison/notes.md) repeats six index
+queries from exactly the same C4 coordinates under both pair policies. Both
+find six sampled transitions, but best discovered palm relocations differ by
+up to 48.97 mm. Do not compare counts to 007's different source posture/solver.
+Pair policies, guard parameters, model/profile hashes and frozen source are
+recorded. Fifty-five tests pass with Ruff and ty. Next: transfer a constrained
+dual-contact seed to investigate the missing Bb3 pose, then revisit held motion.
+
 ## 2026-10-08 — A collision-limit dependency defect, then a useful corrected-solver failure
 
 Continuing beyond the calibration boundary exposed a numerical issue we can

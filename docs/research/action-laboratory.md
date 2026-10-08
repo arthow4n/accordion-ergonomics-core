@@ -56,9 +56,10 @@ both actual distal-envelope/button distances, all source equalities, limits
 and detected collisions. Unused digits remain present; the default freezes
 them, while an explicitly sourced `inactive_digits_policy=allow_articulation`
 allows imported digit movement. This is not button depression, force or human
-feasibility. Candidate
-and transition discovery currently explicitly support one index contact only;
-unsupported requests are rejected rather than silently solved with another digit.
+feasibility. Pose discovery supports an index primary contact with an optional
+middle contact; both bindings and all digit articulation are preserved.
+Transition and atlas discovery currently support single-index requests.
+Unsupported requests are rejected rather than silently solved with another digit.
 
 `aec held` is a separate small index-held/middle-moving experiment: it constrains
 the held contact while building Cartesian withdrawal/translation/approach
@@ -82,3 +83,9 @@ The [014 audit](../../experiments/014-collision-coverage/notes.md) identifies la
 overlaps in dual-contact poses. Neither the atlas nor held-task successes are
 certificates of full anatomical nonpenetration. Envelopes need validation before
 broader ergonomic conclusions, rather than arbitrary shrinking or relaxed costs.
+
+Experiments 019–020 subsequently add a selective 16-pair index/middle phalangeal
+hypothesis without resizing. C#4 dual-contact candidates and six sampled index
+transitions are found under those constraints; omitted pairs remain unvalidated.
+`aec explore` accepts named multi-contact targets and strict parameter patches
+so matched studies can separate pair policy from geometry and solver changes.

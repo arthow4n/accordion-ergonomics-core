@@ -102,6 +102,14 @@ class SetupProfile:
 
 @dataclass(frozen=True)
 class ContactProfile:
+    additional_collision_pairs: tuple[tuple[str, str], ...] = ()
+    additional_collision_evidence: dict[str, Any] = field(
+        default_factory=lambda: {
+            "kind": "hypothesis",
+            "source": "Explicit imported-proxy constraint",
+            "note": "Pair nonpenetration is not calibrated tissue clearance.",
+        }
+    )
     inactive_digits_policy: str = "freeze"
     inactive_digits_evidence: dict[str, Any] = field(
         default_factory=lambda: {
@@ -122,6 +130,18 @@ class ContactProfile:
     )
 
     def __post_init__(self) -> None:
+        pairs = []
+        for pair in self.additional_collision_pairs:
+            if (
+                len(pair) != 2
+                or not all(isinstance(n, str) and n for n in pair)
+                or pair[0] == pair[1]
+            ):
+                raise ValueError("Collision pairs require two distinct named proxies")
+            pairs.append((min(pair), max(pair)))
+        if len(set(pairs)) != len(pairs):
+            raise ValueError("Additional collision pairs must be unique")
+        object.__setattr__(self, "additional_collision_pairs", tuple(sorted(pairs)))
         if self.inactive_digits_policy not in ("freeze", "allow_articulation"):
             raise ValueError("Unsupported inactive digit policy")
         values = (

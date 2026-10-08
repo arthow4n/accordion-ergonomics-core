@@ -67,3 +67,13 @@ The imported 36 proxies have no automatic self-mask compatibility and only four
 explicit thorax/arm pairs. Separate intentional envelope composition from
 forbidden finger penetration; both tissue geometry and human pose validation
 remain required. A zero detected-penetration result is not complete clearance.
+
+If an IK iteration jumps through an obstacle, reproduce the numerical fixture
+with `uv run aec frozen limit-probe experiments/016-displacement-limit-probe/experiment.json
+--output artifacts/probe`. Check the actual QP variable's units: Mink returns
+velocity but optimizes displacement. Native 1.3.0 incorrectly divides its gap
+bound by dt and drops some world pairs. New solves should explicitly use the
+displacement implementation and sampled integration backtracking (018). A local
+distance inequality cannot prevent crossing its inactive band in one large step.
+Keep the 017 failure as evidence. Select named phalangeal pairs only with explicit
+hypothesis provenance; pair constraints and omitted coverage must both be logged.

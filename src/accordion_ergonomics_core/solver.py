@@ -9,6 +9,7 @@ from numpy.typing import NDArray
 from .anatomy import digit_dofs
 from .distance_limits import DisplacementDistanceLimit, collision_pairs
 from .experiment import SolverSettings
+from .integration import collision_checked_step
 from .scene import Scene, coupled_initial_pose, diagnostics
 
 
@@ -25,6 +26,12 @@ def solve_contact(
     additional_contact_required: bool = True,
 ) -> dict[str, Any]:
     model = scene.model
+    if (
+        scene.contact_profile.additional_collision_pairs
+        and settings.collision_avoidance
+        and settings.collision_limit_implementation != "displacement"
+    ):
+        raise ValueError("Explicit self-pair avoidance requires displacement limits")
     q0 = coupled_initial_pose(model, initial)
     configuration = mink.Configuration(model, q=q0)
     requirements = ((target, finger, button_id),) + additional_contacts
@@ -136,6 +143,14 @@ def solve_contact(
         )
         if accepted(check, settings, require_any_contact):
             break
+        if (
+            iteration == 0
+            and settings.collision_avoidance
+            and settings.collision_limit_implementation == "displacement"
+            and check["max_penetration_m"] > settings.penetration_tolerance_m
+        ):
+            failure = "initial_collision_violation"
+            break
         try:
             velocity = mink.solve_ik(
                 configuration,
@@ -148,7 +163,20 @@ def solve_contact(
             )
             if not np.all(np.isfinite(velocity)):
                 raise ValueError("Nonfinite IK velocity")
-            configuration.integrate_inplace(velocity, dt)
+            if (
+                settings.collision_avoidance
+                and settings.collision_limit_implementation == "displacement"
+            ):
+                proposed, step_record = collision_checked_step(
+                    scene, configuration.q.copy(), velocity * dt, settings
+                )
+                history[-1]["integration_step"] = step_record
+                if proposed is None:
+                    failure = step_record["reason"]
+                    break
+                configuration.update(q=proposed)
+            else:
+                configuration.integrate_inplace(velocity, dt)
         except (
             mink.NoSolutionFound,
             mink.NotWithinConfigurationLimits,

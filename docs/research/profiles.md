@@ -60,3 +60,26 @@ marker/segment calibration and configuration-dependent muscle treatment;
 see the primary [OpenSim scaling explanation](https://opensimconfluence.atlassian.net/wiki/spaces/OpenSim/pages/53089158).
 MyoArm's contact envelopes are manually designed proxies, as documented in its
 [model README](https://github.com/MyoHub/myo_sim/blob/main/myo_sim/models/arm/README.md).
+
+## Collision implementation and explicit pair hypotheses
+
+New solver settings use displacement distance inequalities and sampled step
+backtracking. New input should select `displacement`; published input without
+the field preserves `mink_native` behavior. Canonical profile encoding omits the
+implied native implementation and its unused guard settings, preserving historic
+native-profile hashes. Corrected profiles record implementation, backtracking
+count and maximum sampled angular step. Frozen source identifies the algorithm.
+
+Mink 1.3.0 has confirmed displacement-unit and world-parent filtering defects,
+documented upstream as unreleased fixes. The dependency stays locked. The project
+adapter uses the public Limit contract; sphere fixtures and signed finite-
+difference tests validate its arithmetic. A local inequality is not a continuous
+collision proof; endpoint and edge checks remain necessary.
+
+`physical_contact.additional_collision_pairs` contains canonical named proxies
+with separate hypothesis evidence. Empty policy preserves the imported model and
+historical profile hash. Nonempty policy adds engine pairs, changing model and
+profile hashes while sizes, meshes and ranges stay fixed. Unknown/duplicate names
+and same-body composite envelopes are rejected. Avoidance requires displacement
+limits: native Mink filters out masked pairs. Pair distance still describes
+uncalibrated imported shapes. Selective constraints do not validate omitted pairs.

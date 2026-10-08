@@ -1,0 +1,415 @@
+{
+  "id": "020-selective-transition-comparison",
+  "input": {
+    "id": "020-selective-transition-comparison",
+    "atlas_definition": "atlas-definition.json",
+    "atlas_definition_sha256": "4d221f6ac3ac21d935e42b984c3de3af14915f87d9c8ec788d96c8e3be7daa4e",
+    "targets": [
+      {
+        "row": 1,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 9,
+        "finger": "index"
+      },
+      {
+        "row": 3,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 2,
+        "column": 6,
+        "finger": "index"
+      },
+      {
+        "row": 4,
+        "column": 8,
+        "finger": "index"
+      },
+      {
+        "row": 5,
+        "column": 5,
+        "finger": "index"
+      }
+    ],
+    "cases": [
+      {
+        "id": "reference",
+        "patch": {}
+      },
+      {
+        "id": "index-middle-pairs",
+        "patch": {
+          "physical_contact": {
+            "additional_collision_pairs": [
+              [
+                "distph2_coll_2_r",
+                "distph3_coll_2_r"
+              ],
+              [
+                "distph2_coll_2_r",
+                "distph3_coll_r"
+              ],
+              [
+                "distph2_coll_2_r",
+                "midph3_coll_r"
+              ],
+              [
+                "distph2_coll_2_r",
+                "proxph3_coll_r"
+              ],
+              [
+                "distph2_coll_r",
+                "distph3_coll_2_r"
+              ],
+              [
+                "distph2_coll_r",
+                "distph3_coll_r"
+              ],
+              [
+                "distph2_coll_r",
+                "midph3_coll_r"
+              ],
+              [
+                "distph2_coll_r",
+                "proxph3_coll_r"
+              ],
+              [
+                "distph3_coll_2_r",
+                "midph2_coll_r"
+              ],
+              [
+                "distph3_coll_2_r",
+                "proxph2_coll_r"
+              ],
+              [
+                "distph3_coll_r",
+                "midph2_coll_r"
+              ],
+              [
+                "distph3_coll_r",
+                "proxph2_coll_r"
+              ],
+              [
+                "midph2_coll_r",
+                "midph3_coll_r"
+              ],
+              [
+                "midph2_coll_r",
+                "proxph3_coll_r"
+              ],
+              [
+                "midph3_coll_r",
+                "proxph2_coll_r"
+              ],
+              [
+                "proxph2_coll_r",
+                "proxph3_coll_r"
+              ]
+            ],
+            "additional_collision_evidence": {
+              "kind": "hypothesis",
+              "source": "019 index-middle phalangeal pair constraint",
+              "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+            }
+          }
+        }
+      }
+    ]
+  },
+  "definition_sha256": "a1ce179d245d1df4169de30c4a80201ee15256afac69ce76bb7ef78818dd0ea2",
+  "cases": [
+    {
+      "case": {
+        "id": "reference",
+        "patch": {}
+      },
+      "summary": {
+        "buttons_explored": 6,
+        "sampled_transition_found": 6,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "9a9f84f807c2d83d0089e9d8fb1dba38df8bf90a770cbfc555280717b8bc34f4",
+      "anchor_qpos_rad": [
+        -0.05484853236448106,
+        0.02323129986512111,
+        -0.02323129986512111,
+        0.05484853236448106,
+        -0.011105694569667654,
+        0.08975214386915084,
+        0.040343135375527396,
+        -0.040343135375527396,
+        -0.08975214386915084,
+        0.011105694569667654,
+        0.2131068739720359,
+        0.2266468279524011,
+        -0.2131068739720359,
+        -0.23574168409477772,
+        1.38294090953621,
+        -0.6866137730177182,
+        -0.1379293626394848,
+        0.5348268382624113,
+        6.399891296984227e-19,
+        -4.707198039407177e-19,
+        1.2888902566339307e-19,
+        -3.172797502285868e-20,
+        0.8659966932946134,
+        -0.010941667099059589,
+        0.8734986454414311,
+        1.1348130997464623,
+        2.403546043575778e-10,
+        1.3703518274107225e-23,
+        2.4035460435851005e-10,
+        2.4035460435851005e-10,
+        2.403546406344166e-10,
+        8.615386201069079e-20,
+        2.4035460435851005e-10,
+        2.4035460435851005e-10,
+        2.4035543572320336e-10,
+        2.3986546272549005e-18,
+        2.403546682352131e-10,
+        2.4035460435851005e-10
+      ],
+      "elapsed_s": 20.27363662300195,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.0,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "reference/result.json",
+      "result_sha256": "891a9ff543d4ddc4a0a2db1e58a4150c422f4a459bac72b97998c5f3e96fe448"
+    },
+    {
+      "case": {
+        "id": "index-middle-pairs",
+        "patch": {
+          "physical_contact": {
+            "additional_collision_pairs": [
+              [
+                "distph2_coll_2_r",
+                "distph3_coll_2_r"
+              ],
+              [
+                "distph2_coll_2_r",
+                "distph3_coll_r"
+              ],
+              [
+                "distph2_coll_2_r",
+                "midph3_coll_r"
+              ],
+              [
+                "distph2_coll_2_r",
+                "proxph3_coll_r"
+              ],
+              [
+                "distph2_coll_r",
+                "distph3_coll_2_r"
+              ],
+              [
+                "distph2_coll_r",
+                "distph3_coll_r"
+              ],
+              [
+                "distph2_coll_r",
+                "midph3_coll_r"
+              ],
+              [
+                "distph2_coll_r",
+                "proxph3_coll_r"
+              ],
+              [
+                "distph3_coll_2_r",
+                "midph2_coll_r"
+              ],
+              [
+                "distph3_coll_2_r",
+                "proxph2_coll_r"
+              ],
+              [
+                "distph3_coll_r",
+                "midph2_coll_r"
+              ],
+              [
+                "distph3_coll_r",
+                "proxph2_coll_r"
+              ],
+              [
+                "midph2_coll_r",
+                "midph3_coll_r"
+              ],
+              [
+                "midph2_coll_r",
+                "proxph3_coll_r"
+              ],
+              [
+                "midph3_coll_r",
+                "proxph2_coll_r"
+              ],
+              [
+                "proxph2_coll_r",
+                "proxph3_coll_r"
+              ]
+            ],
+            "additional_collision_evidence": {
+              "kind": "hypothesis",
+              "source": "019 index-middle phalangeal pair constraint",
+              "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 6,
+        "sampled_transition_found": 6,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "9fbbdcaefecf2ef107a194f443be8b5549a243d31bca1a91e2413d3e5ae270c3",
+      "anchor_qpos_rad": [
+        -0.05484853236448106,
+        0.02323129986512111,
+        -0.02323129986512111,
+        0.05484853236448106,
+        -0.011105694569667654,
+        0.08975214386915084,
+        0.040343135375527396,
+        -0.040343135375527396,
+        -0.08975214386915084,
+        0.011105694569667654,
+        0.2131068739720359,
+        0.2266468279524011,
+        -0.2131068739720359,
+        -0.23574168409477772,
+        1.38294090953621,
+        -0.6866137730177182,
+        -0.1379293626394848,
+        0.5348268382624113,
+        6.399891296984227e-19,
+        -4.707198039407177e-19,
+        1.2888902566339307e-19,
+        -3.172797502285868e-20,
+        0.8659966932946134,
+        -0.010941667099059589,
+        0.8734986454414311,
+        1.1348130997464623,
+        2.403546043575778e-10,
+        1.3703518274107225e-23,
+        2.4035460435851005e-10,
+        2.4035460435851005e-10,
+        2.403546406344166e-10,
+        8.615386201069079e-20,
+        2.4035460435851005e-10,
+        2.4035460435851005e-10,
+        2.4035543572320336e-10,
+        2.3986546272549005e-18,
+        2.403546682352131e-10,
+        2.4035460435851005e-10
+      ],
+      "elapsed_s": 15.452524779000669,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.048967844305398904
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.0015123209971282664
+          },
+          {
+            "button_id": "r2c6",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0011065704103058738
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.007462082313773558
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -2.2995496407662852e-05
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.048967844305398904,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "index-middle-pairs/result.json",
+      "result_sha256": "32e3392fbcea09c15d28b7fb271cfd86c3e7776c4a795c72f2dd93079952e9bf"
+    }
+  ],
+  "anchor_policy": "Recalibrate source contact from same prior per profile",
+  "claim": "Synthetic local-search sensitivity, not calibrated human ergonomics"
+}

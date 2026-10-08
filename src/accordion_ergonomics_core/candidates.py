@@ -41,7 +41,9 @@ class CandidateSettings:
             raise ValueError("Search offsets must be finite radians")
 
 
-def descriptors(scene: Scene) -> PhysicalDescriptors:
+def descriptors(
+    scene: Scene, active_digits: tuple[str, ...] = ("index",)
+) -> PhysicalDescriptors:
     model, data = scene.model, scene.data
     mujoco.mj_forward(model, data)
 
@@ -51,12 +53,20 @@ def descriptors(scene: Scene) -> PhysicalDescriptors:
     margins = np.minimum(
         data.qpos - model.jnt_range[:, 0], model.jnt_range[:, 1] - data.qpos
     )
+    digits = digit_dofs(model)
+    inactive = {
+        i
+        for digit, indices in digits.items()
+        if digit not in active_digits
+        for i in indices
+    }
+    active = [i for i in range(model.nv) if i not in inactive]
     return PhysicalDescriptors(
         tuple(data.body("capitate_r").xpos),
         tuple(data.body("capitate_r").xmat),
         tuple(data.body("ulna_r").xpos),
         float(margins.min()),
-        float(margins[list(range(18)) + list(range(22, 26))].min()),
+        float(margins[active].min()),
         (joint("deviation_r"), joint("flexion_r")),
         joint("pro_sup_r"),
         tuple(joint(n) for n in ("elv_angle_r", "shoulder_elv_r", "shoulder_rot_r")),
@@ -92,12 +102,22 @@ def materially_distinct(
                     + a.shoulder_rad
                     + a.finger_rad
                     + (a.forearm_rotation_rad,)
+                    + tuple(
+                        v
+                        for digit in sorted(a.other_digits_rad)
+                        for v in a.other_digits_rad[digit]
+                    )
                 )
                 - np.array(
                     b.wrist_rad
                     + b.shoulder_rad
                     + b.finger_rad
                     + (b.forearm_rotation_rad,)
+                    + tuple(
+                        v
+                        for digit in sorted(b.other_digits_rad)
+                        for v in b.other_digits_rad[digit]
+                    )
                 )
             )
         )
@@ -112,13 +132,14 @@ def discover_candidates(
     profile_hash: str,
     settings: CandidateSettings,
 ) -> dict[str, Any]:
-    if len(experiment.contacts) != 1 or experiment.contacts[0].finger != "index":
-        raise ValueError("Candidate discovery currently supports one index contact")
+    if experiment.contacts[0].finger != "index":
+        raise ValueError("Candidate discovery requires an index primary contact")
+    active_digits = tuple(c.finger for c in experiment.contacts)
     started = perf_counter()
     names = [scene.model.joint(i).name for i in range(scene.model.njnt)]
     base = dict(zip(names, source_q, strict=True))
     scene.data.qpos[:] = source_q
-    origin = descriptors(scene)
+    origin = descriptors(scene, active_digits)
     contact = experiment.contacts[0]
     button = button_at(contact.row, contact.column)
     target = experiment.geometry.surface_world_m(button)
@@ -149,17 +170,28 @@ def discover_candidates(
             replace(experiment.solver, max_iterations=settings.max_iterations),
             button.id,
             experiment.frozen_joints,
+            additional_contacts=tuple(
+                (
+                    experiment.geometry.surface_world_m(button_at(c.row, c.column)),
+                    c.finger,
+                    button_at(c.row, c.column).id,
+                )
+                for c in experiment.contacts[1:]
+            ),
         )
         result["start_id"] = str(index)
         result["offset_rad"] = offset
         if result["status"] == "success":
-            physical = descriptors(scene)
+            physical = descriptors(scene, active_digits)
             candidate = CandidateRealization(
                 PlayingState(
                     tuple(names),
                     tuple(result["qpos_rad"]),
                     profile_hash,
-                    (ContactRequirement(button.id, contact.finger),),
+                    tuple(
+                        ContactRequirement(button_at(c.row, c.column).id, c.finger)
+                        for c in experiment.contacts
+                    ),
                 ),
                 physical,
                 str(index),

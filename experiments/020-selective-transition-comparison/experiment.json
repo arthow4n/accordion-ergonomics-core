@@ -1,0 +1,121 @@
+{
+  "id": "020-selective-transition-comparison",
+  "atlas_definition": "atlas-definition.json",
+  "atlas_definition_sha256": "4d221f6ac3ac21d935e42b984c3de3af14915f87d9c8ec788d96c8e3be7daa4e",
+  "targets": [
+    {
+      "row": 1,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 9,
+      "finger": "index"
+    },
+    {
+      "row": 3,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 2,
+      "column": 6,
+      "finger": "index"
+    },
+    {
+      "row": 4,
+      "column": 8,
+      "finger": "index"
+    },
+    {
+      "row": 5,
+      "column": 5,
+      "finger": "index"
+    }
+  ],
+  "cases": [
+    {
+      "id": "reference",
+      "patch": {}
+    },
+    {
+      "id": "index-middle-pairs",
+      "patch": {
+        "physical_contact": {
+          "additional_collision_pairs": [
+            [
+              "distph2_coll_2_r",
+              "distph3_coll_2_r"
+            ],
+            [
+              "distph2_coll_2_r",
+              "distph3_coll_r"
+            ],
+            [
+              "distph2_coll_2_r",
+              "midph3_coll_r"
+            ],
+            [
+              "distph2_coll_2_r",
+              "proxph3_coll_r"
+            ],
+            [
+              "distph2_coll_r",
+              "distph3_coll_2_r"
+            ],
+            [
+              "distph2_coll_r",
+              "distph3_coll_r"
+            ],
+            [
+              "distph2_coll_r",
+              "midph3_coll_r"
+            ],
+            [
+              "distph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            [
+              "distph3_coll_2_r",
+              "midph2_coll_r"
+            ],
+            [
+              "distph3_coll_2_r",
+              "proxph2_coll_r"
+            ],
+            [
+              "distph3_coll_r",
+              "midph2_coll_r"
+            ],
+            [
+              "distph3_coll_r",
+              "proxph2_coll_r"
+            ],
+            [
+              "midph2_coll_r",
+              "midph3_coll_r"
+            ],
+            [
+              "midph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            [
+              "midph3_coll_r",
+              "proxph2_coll_r"
+            ],
+            [
+              "proxph2_coll_r",
+              "proxph3_coll_r"
+            ]
+          ],
+          "additional_collision_evidence": {
+            "kind": "hypothesis",
+            "source": "019 index-middle phalangeal pair constraint",
+            "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+          }
+        }
+      }
+    }
+  ]
+}

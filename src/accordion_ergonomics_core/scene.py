@@ -33,6 +33,7 @@ def build_scene(
     player = player or PlayerProfile()
     setup = setup or SetupProfile()
     contact = contact or ContactProfile()
+    # An explicit anatomical self-pair needs a mask-independent solver limit.
     spec: Spec = myo_sim.load_spec("myoarm_r")
     root = spec.body("Full Body")
     if root is None:
@@ -107,6 +108,23 @@ def build_scene(
             rgba=[0.1, 1, 0.2, 1],
             group=0,
         )
+    existing_pairs = {
+        frozenset((probe.geom(int(a)).name, probe.geom(int(b)).name))
+        for a, b in zip(probe.pair_geom1, probe.pair_geom2, strict=True)
+    }
+    for index, (a, b) in enumerate(contact.additional_collision_pairs):
+        ga, gb = spec.geom(a), spec.geom(b)
+        if ga is None or gb is None:
+            raise ValueError("Unknown additional collision proxy")
+        if ga.group != 4 or gb.group != 4:
+            raise ValueError(
+                "Additional pairs must identify anatomical contact proxies"
+            )
+        if probe.geom(a).bodyid == probe.geom(b).bodyid:
+            raise ValueError("Cannot constrain a composite envelope on the same body")
+        if frozenset((a, b)) in existing_pairs:
+            raise ValueError("Additional collision pair duplicates an imported pair")
+        spec.add_pair(name=f"research_self_pair_{index}", geomname1=a, geomname2=b)
     # Remove the upstream decorative room; it is unrelated to body geometry.
     for decor in list(spec.worldbody.geoms):
         spec.delete(decor)

@@ -114,13 +114,17 @@ def run_coverage(definition: Path, output: Path) -> dict[str, Any]:
         ]
         audit["phalangeal_overlaps"] = phalanges
         highlight = tuple(phalanges[0]["geoms"]) if phalanges else ()
-        cameras = render_views(
-            scene,
-            output / "renders" / request["id"],
-            saved["target"]["surface_world_m"],
-            saved["target"]["button_id"],
-            collision_overlay=True,
-            highlighted_proxy_names=highlight,
+        cameras = (
+            render_views(
+                scene,
+                output / "renders" / request["id"],
+                saved["target"]["surface_world_m"],
+                saved["target"]["button_id"],
+                collision_overlay=True,
+                highlighted_proxy_names=highlight,
+            )
+            if request.get("render", True)
+            else {}
         )
         records.append(
             {

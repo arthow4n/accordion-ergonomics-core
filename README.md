@@ -12,6 +12,9 @@ seeded withdrawal/path search preserve diverse configurations and trajectories.
 A 62-button index atlas and parameter sweeps quantify discovered movement;
 small simultaneous contacts and explicit geometric hand hypotheses are supported.
 Atlas-derived model challenges and held-contact waypoint search are reproducible.
+Displacement collision limits and sampled IK-step backtracking address two
+confirmed defects in the locked Mink release. Named self-pair hypotheses can
+constrain selected phalanges without altering imported envelopes.
 
 **Current results are sampled kinematic predictions on assumed geometry with
 incomplete anatomical self-collision coverage. Real playing feasibility,
@@ -37,6 +40,8 @@ uv run aec frozen sweep experiments/008-geometry-sensitivity/experiment.json --o
 uv run aec frozen exercise experiments/012-large-relocation/experiment.json --output artifacts/exercise
 uv run aec frozen held experiments/013-held-index-transition/experiment.json --output artifacts/held
 uv run aec frozen collision-coverage experiments/014-collision-coverage/experiment.json --output artifacts/coverage
+uv run aec frozen limit-probe experiments/016-displacement-limit-probe/experiment.json --output artifacts/probe
+uv run aec frozen experiment experiments/018-collision-step-backtracking/experiment.json --output artifacts/corrected-contact
 ```
 
 The experiment writes structured input/state/solver history/diagnostics/version
@@ -68,3 +73,8 @@ gestures beyond the implemented index/middle pair are rejected explicitly.
 The latest collision audit reveals unchecked finger-proxy overlaps even in
 accepted gestures. See [014](experiments/014-collision-coverage/notes.md) and the
 measurement protocol before treating a solver acceptance as human feasibility.
+Published legacy inputs omit the collision implementation field and retain
+Mink-native reproduction semantics. For new studies explicitly set
+`solver.collision_limit_implementation = "displacement"`; its step-backtracking
+budget and angular sampling resolution are recorded parameters. See 016–020
+for dependency falsification, corrected solving and selective collision studies.

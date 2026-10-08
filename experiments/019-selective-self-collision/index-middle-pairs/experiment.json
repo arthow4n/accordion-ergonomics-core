@@ -1,0 +1,153 @@
+{
+  "id": "019-selective-self-collision-index-middle-pairs",
+  "baseline_result": "../../018-collision-step-backtracking/result.json",
+  "baseline_sha256": "e4328f0653a43554ccd2d4af9503b4e89be3624fe3cb97dbc793173c2cbfe833",
+  "parameter_patch": {
+    "physical_contact": {
+      "additional_collision_pairs": [
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "midph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "proxph2_coll_r",
+          "proxph3_coll_r"
+        ]
+      ],
+      "additional_collision_evidence": {
+        "kind": "hypothesis",
+        "source": "019 index-middle phalangeal pair constraint",
+        "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+      }
+    }
+  },
+  "targets": [
+    {
+      "id": "single-c4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "c4-bb3",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 4,
+          "finger": "middle"
+        }
+      ]
+    },
+    {
+      "id": "c4-csharp4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 5,
+          "finger": "middle"
+        }
+      ]
+    }
+  ],
+  "candidate_search": {
+    "offsets_rad": [
+      {
+        "elbow_flexion_r": -0.3,
+        "pro_sup_r": -0.3
+      },
+      {
+        "elbow_flexion_r": 0.3,
+        "pro_sup_r": 0.3
+      },
+      {
+        "shoulder_rot_r": -0.2
+      },
+      {
+        "shoulder_rot_r": 0.2
+      },
+      {
+        "flexion_r": -0.15
+      },
+      {
+        "mcp3_abduction_r": -0.1
+      },
+      {
+        "mcp3_abduction_r": 0.1
+      }
+    ],
+    "max_iterations": 180,
+    "palm_dedup_m": 0.005,
+    "elbow_dedup_m": 0.01,
+    "joint_dedup_rad": 0.1
+  }
+}

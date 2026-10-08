@@ -39,6 +39,8 @@ class SolverSettings:
     penetration_tolerance_m: float
     collision_avoidance: bool
     collision_limit_implementation: str = "displacement"
+    collision_backtrack_steps: int = 12
+    collision_edge_step_rad: float = 0.01
 
     def __post_init__(self) -> None:
         if self.backend != "mink-clarabel":
@@ -49,12 +51,20 @@ class SolverSettings:
             raise ValueError("collision_avoidance must be boolean")
         if self.collision_limit_implementation not in ("displacement", "mink_native"):
             raise ValueError("Unsupported collision limit implementation")
+        if (
+            type(self.collision_backtrack_steps) is not int
+            or self.collision_backtrack_steps < 1
+        ):
+            raise ValueError(
+                "Collision backtracking requires a positive integer budget"
+            )
         for parameter in fields(self):
             if parameter.name in (
                 "backend",
                 "max_iterations",
                 "collision_avoidance",
                 "collision_limit_implementation",
+                "collision_backtrack_steps",
             ):
                 continue
             value = getattr(self, parameter.name)
@@ -87,15 +97,21 @@ class Experiment:
             .get("provenance", asdict(self.geometry.evidence)),
         }
         solver = asdict(self.solver)
+        contact = asdict(self.physical_contact)
+        if not self.physical_contact.additional_collision_pairs:
+            contact.pop("additional_collision_pairs")
+            contact.pop("additional_collision_evidence")
         # Published profile hashes used implicit Mink-native semantics. Keep
         # that legacy representation; new explicit settings carry the field.
         if self.solver.collision_limit_implementation == "mink_native":
             solver.pop("collision_limit_implementation")
+            solver.pop("collision_backtrack_steps")
+            solver.pop("collision_edge_step_rad")
         return {
             "instrument": instrument,
             "player": asdict(self.player),
             "setup": setup,
-            "contact": asdict(self.physical_contact),
+            "contact": contact,
             "solver": solver,
         }
 

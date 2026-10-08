@@ -41,3 +41,10 @@ anatomical masks suppress automatic self-collision; four explicit thorax/arm
 pairs do not cover fingers. Independent proxy distances and observed/calibrated
 envelopes are necessary. Do not repair this by blindly enabling all pairs or
 shrinking envelopes until IK succeeds. State contacts require explicit fingers.
+
+For new solves, use explicit `collision_limit_implementation="displacement"`
+settings as in experiment 018. Mink 1.3.0 has verified bound-unit and world-pair
+filter defects (016); legacy input preserves native behavior for reproduction.
+The project adapter needs independent sampled integration-edge checks because
+large steps can cross an activation band (017). Named additional self-pairs
+are hypotheses on unchanged proxies (019), not full anatomical validation.
