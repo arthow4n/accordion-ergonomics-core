@@ -96,6 +96,7 @@ class BoardGeometry:
     button_height_m: float
     origin_m: Vector
     evidence: Evidence
+    geometry_model: str = "rectangular_v0"
     button_travel_m: float | None = None
     stagger_columns: tuple[float, ...] = STAGGER_COLUMNS
     panel_margin_m: float = 0.012
@@ -114,6 +115,8 @@ class BoardGeometry:
         )
 
     def __post_init__(self) -> None:
+        if self.geometry_model not in ("rectangular_v0", "generic_cba_v1"):
+            raise ValueError("Unsupported instrument geometry version")
         values = (
             self.column_spacing_m,
             self.row_spacing_m,

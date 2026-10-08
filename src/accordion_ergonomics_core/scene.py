@@ -140,12 +140,22 @@ def build_scene(
         spec.add_pair(name=f"research_self_pair_{index}", geomname1=a, geomname2=b)
     # Remove the upstream decorative room; it is unrelated to body geometry.
     for decor in list(spec.worldbody.geoms):
+        if geometry.geometry_model == "generic_cba_v1" and decor.name.startswith(
+            "approximate_thigh_support_"
+        ):
+            continue
         spec.delete(decor)
-    board = spec.worldbody.add_body(
-        name="keyboard",
-        pos=list(geometry.origin_m),
-        quat=list(geometry.rotation_wxyz),
-    )
+    physical = geometry.geometry_model == "generic_cba_v1"
+    if physical:
+        from .physical_cba import attach_instrument
+
+        board = attach_instrument(spec, geometry)
+    else:
+        board = spec.worldbody.add_body(
+            name="keyboard",
+            pos=list(geometry.origin_m),
+            quat=list(geometry.rotation_wxyz),
+        )
     if anchors:
         assert setup.seated is not None
         for name, body_name, color in (
@@ -156,15 +166,16 @@ def build_scene(
             spec.body(body_name).add_site(
                 name=name, pos=[0, 0, 0], size=[0.007, 0, 0], rgba=color, group=0
             )
-        board.add_geom(
-            name="instrument_envelope",
-            type=mujoco.mjtGeom.mjGEOM_BOX,
-            pos=anchors["shell_center_board_m"],
-            size=anchors["shell_half_size_m"],
-            rgba=[0.22, 0.26, 0.30, 0.55],
-            contype=2,
-            conaffinity=1,
-        )
+        if not physical:
+            board.add_geom(
+                name="instrument_envelope",
+                type=mujoco.mjtGeom.mjGEOM_BOX,
+                pos=anchors["shell_center_board_m"],
+                size=anchors["shell_half_size_m"],
+                rgba=[0.22, 0.26, 0.30, 0.55],
+                contype=2,
+                conaffinity=1,
+            )
         for name, position, color in (
             (
                 "thigh_support_reference",
@@ -211,19 +222,20 @@ def build_scene(
     centers = np.array([geometry.center_board_m(b) for b in buttons()])
     low, high = centers.min(axis=0), centers.max(axis=0)
     center = (low + high) / 2
-    board.add_geom(
-        name="keyboard_panel",
-        type=mujoco.mjtGeom.mjGEOM_BOX,
-        pos=[center[0], center[1], -geometry.panel_thickness_m / 2],
-        size=[
-            (high[0] - low[0]) / 2 + geometry.panel_margin_m,
-            (high[1] - low[1]) / 2 + geometry.panel_margin_m,
-            geometry.panel_thickness_m / 2,
-        ],
-        rgba=[0.12, 0.17, 0.23, 1],
-        contype=2,
-        conaffinity=1,
-    )
+    if not physical:
+        board.add_geom(
+            name="keyboard_panel",
+            type=mujoco.mjtGeom.mjGEOM_BOX,
+            pos=[center[0], center[1], -geometry.panel_thickness_m / 2],
+            size=[
+                (high[0] - low[0]) / 2 + geometry.panel_margin_m,
+                (high[1] - low[1]) / 2 + geometry.panel_margin_m,
+                geometry.panel_thickness_m / 2,
+            ],
+            rgba=[0.12, 0.17, 0.23, 1],
+            contype=2,
+            conaffinity=1,
+        )
     for button, position in zip(buttons(), centers, strict=True):
         black = button.midi % 12 in (1, 3, 6, 8, 10)
         color = [0.16, 0.17, 0.19, 1] if black else [0.92, 0.92, 0.86, 1]
@@ -271,8 +283,10 @@ def build_scene(
     board_geoms = [model.geom("keyboard_panel").id] + [
         model.geom(b.id).id for b in buttons()
     ]
-    if anchors:
+    if anchors and not physical:
         board_geoms.append(model.geom("instrument_envelope").id)
+    if physical:
+        board_geoms = [i for i in range(model.ngeom) if model.geom_contype[i] == 2]
     anatomy_geoms = [
         i
         for i in range(model.ngeom)
@@ -355,6 +369,18 @@ def diagnostics(
             )
             for i in scene.anatomy_geoms
         }
+    component_distances = {}
+    if any(model.body(i).name == "generic_cba_v1" for i in range(model.nbody)):
+        component_distances = {
+            model.geom(i).name: {
+                model.geom(j).name: float(
+                    mujoco.mj_geomDistance(model, data, i, j, 1.0, None)
+                )
+                for j in scene.board_geoms
+                if model.geom(j).name.startswith("cba_")
+            }
+            for i in scene.anatomy_geoms
+        }
     approximate_support_distances = {}
     if shell_distances:
         approximate_support_distances = {
@@ -364,9 +390,20 @@ def diagnostics(
             for i in range(model.ngeom)
             if model.geom(i).name.startswith("approximate_thigh_support_")
         }
+    if component_distances:
+        approximate_support_distances = {
+            model.geom(i).name: min(
+                float(mujoco.mj_geomDistance(model, data, i, j, 1.0, None))
+                for j in scene.board_geoms
+                if model.geom(j).name.startswith("cba_")
+            )
+            for i in range(model.ngeom)
+            if model.geom(i).name.startswith("approximate_thigh_support_")
+        }
     return {
         "approximate_support_envelope_distances_m": approximate_support_distances,
         "instrument_envelope_distances_m": shell_distances,
+        "instrument_component_distances_m": component_distances,
         "landmarks_world_m": {
             name: data.body(name).xpos.tolist()
             for name in ("humerus_r", "ulna_r", "lunate_r", "torso")
@@ -388,6 +425,7 @@ def diagnostics(
             [0.0]
             + [-c["distance_m"] for c in contacts]
             + [-d for d in shell_distances.values()]
+            + [-d for values in component_distances.values() for d in values.values()]
         ),
         "pad_world_m": data.site(site_name).xpos.tolist(),
         "pad_normal_world": normal.tolist(),

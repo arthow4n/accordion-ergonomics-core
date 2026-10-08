@@ -1,5 +1,6 @@
 """Four deterministic diagnostic views from the saved numerical state."""
 
+from math import atan2, degrees
 from pathlib import Path
 from typing import Any
 
@@ -45,7 +46,10 @@ def render_views(
             "elevation": -25.0,
         },
     }
-    seated = any(
+    physical = any(
+        scene.model.body(i).name == "generic_cba_v1" for i in range(scene.model.nbody)
+    )
+    seated = physical or any(
         scene.model.geom(i).name == "instrument_envelope"
         for i in range(scene.model.ngeom)
     )
@@ -56,7 +60,11 @@ def render_views(
             views[name]["lookat"] = (shift + views[name]["lookat"]).tolist()
     if seated:
         mujoco.mj_forward(scene.model, scene.data)
-        center = scene.data.geom("instrument_envelope").xpos.tolist()
+        center = (
+            scene.data.body("generic_cba_v1").xpos.tolist()
+            if physical
+            else scene.data.geom("instrument_envelope").xpos.tolist()
+        )
         views["overview"] = dict(
             lookat=center, distance=1.15, azimuth=-125.0, elevation=-12.0
         )
@@ -71,13 +79,26 @@ def render_views(
         scene.model.body(i).name in ("seated_pelvis", "pelvis")
         for i in range(scene.model.nbody)
     ):
-        center = scene.data.geom("instrument_envelope").xpos.tolist()
+        center = (
+            scene.data.body("generic_cba_v1").xpos.tolist()
+            if physical
+            else scene.data.geom("instrument_envelope").xpos.tolist()
+        )
         center[2] = (
             scene.data.body("Full Body").xpos[2] + scene.data.body("head").xpos[2]
         ) / 2 - 0.15
         for name in ("overview", "keyboard", "side"):
             views[name]["lookat"] = center
             views[name]["distance"] = 1.95
+    if physical:
+        normal = scene.data.body("keyboard").xmat.reshape(3, 3)[:, 2]
+        facing = degrees(atan2(-normal[1], -normal[0]))
+        views["hand"] = dict(
+            lookat=((scene.data.body("capitate_r").xpos + target) / 2).tolist(),
+            distance=0.42,
+            azimuth=facing,
+            elevation=-20.0,
+        )
     if collision_overlay:
         views["collision"] = dict(views["hand"])
     if views_to_render is not None:
@@ -122,7 +143,13 @@ def render_views(
                 picture = Image.fromarray(renderer.render())
                 draw = ImageDraw.Draw(picture)
                 draw.rectangle((0, 0, 960, 45), fill=(18, 25, 36))
-                label = "seated setup / assumed shell" if seated else "synthetic board"
+                label = (
+                    "generic CBA v1"
+                    if physical
+                    else "seated setup / assumed shell"
+                    if seated
+                    else "synthetic board"
+                )
                 draw.text(
                     (12, 10),
                     (f"{name} | {label} | {button_id} orange"),

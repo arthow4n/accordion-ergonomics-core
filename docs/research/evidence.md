@@ -128,3 +128,16 @@ proxy overlaps; right-hand coverage remains incomplete. We preserve that
 negative evidence without shrinking envelopes or certifying accepted solves as
 collision-valid human anatomy. No accordion metric/geometry changes or new
 support/left-hand playing mechanics are inferred from anatomical completeness.
+
+## Generic physical CBA v1 (032)
+
+See [generic-cba.md](generic-cba.md) for the source-by-source investigation.
+Roland/Hohner/Pigini catalog dimensions and button counts are manufacturer
+evidence; inspected public photos/manuals support component relationships only.
+Every component metric, the 55 degree treble mounting angle, flat board, 96-button
+bass spacing/shear, wall thickness and strap station is an explicit generic
+assumption. Perspective photos supplied no precise dimensions. The retained
+FR-1xb topology does not make the new medium case a Roland reconstruction.
+Imported MyoFullBody bone anatomy, original collision proxies and approximate
+thigh support envelopes remain distinct. Historical rectangular results retain
+their original identity and interpretation.

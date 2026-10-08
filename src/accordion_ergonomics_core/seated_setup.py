@@ -102,6 +102,10 @@ def derive_setup(
     MyoSim femurs anchor approximate envelopes in new setups; legacy thighs
     remain schematic. Neither support forces nor straps are simulated.
     """
+    if geometry.geometry_model == "generic_cba_v1":
+        from .physical_cba import derive_physical_setup
+
+        return derive_physical_setup(geometry, setup)
     import myo_sim
 
     from ._engine import mujoco

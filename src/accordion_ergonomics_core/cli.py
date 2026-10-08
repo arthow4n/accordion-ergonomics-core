@@ -198,6 +198,7 @@ def main() -> None:
             "collision-coverage",
             "limit-probe",
             "architecture",
+            "cba-geometry",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -230,6 +231,12 @@ def main() -> None:
     architecture.add_argument(
         "--output", type=Path, default=Path("artifacts/architecture")
     )
+    cba = sub.add_parser("cba-geometry")
+    cba.add_argument("definition", type=Path)
+    cba.add_argument("--output", type=Path, required=True)
+    cba_replay = sub.add_parser("cba-render")
+    cba_replay.add_argument("result", type=Path)
+    cba_replay.add_argument("--output", type=Path, required=True)
     body_render = sub.add_parser("body-render")
     body_render.add_argument("result", type=Path)
     body_render.add_argument("--output", type=Path, required=True)
@@ -315,6 +322,16 @@ def main() -> None:
         from .architecture import run_architecture
 
         run_architecture(args.definition, args.output)
+    elif args.command == "cba-geometry":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .cba_diagnostics import run_geometry
+
+        run_geometry(args.definition, args.output)
+    elif args.command == "cba-render":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .cba_diagnostics import replay_geometry
+
+        replay_geometry(args.result, args.output)
     elif args.command == "body-render":
         os.environ.setdefault("MUJOCO_GL", "egl")
         from .architecture import replay_body

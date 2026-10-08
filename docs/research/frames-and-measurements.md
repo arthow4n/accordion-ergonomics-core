@@ -142,3 +142,14 @@ coordinates. Bind by verified joint/body names and retain complete compiled
 world hashes. Matching array length is not evidence that historical qpos can be
 reused in a new assembly. No free-root qpos is interpreted as hinge angles.
 The existing instrument-anchor computation remains unchanged in this phase.
+
+## Generic physical CBA frames (032)
+
+`generic_cba_v1` separates H (treble housing/grille), B (treble playing board),
+A (bass assembly) and L (bass playing board). H axes are outward treble/down/
+anterior; B = H translated (55,100,-165) mm then rotated +55 degrees about H.v.
+B target normals therefore differ from the grille normal. Closed A translates
+H by (-250,0,0) mm; L translates A by (-116,45,-145) mm with axes (A.n,A.v,-A.u).
+All are right handed. Details and assumptions: [generic-cba.md](generic-cba.md).
+Compiled targets/normals, serial identity, junction distances and hypothetical
+bass motion with invariant treble targets are tested in `test_physical_cba.py`.

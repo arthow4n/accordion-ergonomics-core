@@ -1,6 +1,10 @@
 # accordion-ergonomics-core
 
-A Python research laboratory for articulated accordion ergonomics, starting
+A Python research laboratory for articulated accordion ergonomics. New physical
+instrument studies use one [generic closed five-row CBA](docs/research/generic-cba.md):
+rear-adjacent treble fingerboard, independent rigid cases, closed bellows, finite
+62-button C-system treble and 96-button Stradella physical layout. Historical
+rectangular worlds remain available with exact replay guards. The laboratory began
 with a Roland FR-1XB-style five-row C-Griff right-hand keyboard. The first
 prototype composes MyoArm with a finite 3D button fixture, solves one index
 fingertip contact, checks imported joint limits/couplings and collision proxies,
@@ -38,6 +42,8 @@ The lockfile records the full tested dependency stack.
 ```sh
 uv sync --locked
 uv run aec check
+uv run aec frozen cba-geometry experiments/032-generic-cba-geometry/experiment.json --output artifacts/cba
+uv run aec cba-render artifacts/cba/result.json --output artifacts/cba-replay
 uv run aec frozen architecture experiments/031-full-body-architecture/experiment.json --output artifacts/full-body-comparison
 uv run aec body-render experiments/031-full-body-architecture/myofullbody_reduced/result.json --output artifacts/full-body-replay
 uv run aec frozen experiment experiments/029-myosim-seated-lower-body/reference/experiment.json --output artifacts/seated-reference

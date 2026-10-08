@@ -1,5 +1,35 @@
 # Research log
 
+## 2026-10-09 — Ground the generic closed CBA and correct its treble attachment
+
+[032](experiments/032-generic-cba-geometry/notes.md) introduces `generic_cba_v1`,
+with independent treble/fingerboard, bass/Stradella and closed-bellows frames.
+Public multi-view Roland/Hohner references plus construction sources separate
+structural observations from every assumed metric. The owner identified the
+first front-corner plate/block attachment as wrong. End views and primary Hohner
+construction descriptions justify a rear-adjacent case cheek instead. Preserve
+that rejected draft and its numerical successes under frozen source; they are
+not accepted in the corrected compiled world.
+
+B origin H=(55,100,-165) mm and 55 degree mounting angle are explicit hypotheses;
+the angled board/backing, front shoulder and rear return are now distinct from
+the grille. Hollow case/bellows walls replace the global solid collision box.
+62 historical C-system buttons coexist with 96 finite slanted bass buttons;
+bass pitch mapping remains unassigned. Strap landmarks are structural stations,
+not loads or hand fitting. MyoFullBody reduction and right-arm couplings remain.
+Pure bass-transform tests preserve every RH target; moving bellows are rejected.
+
+All treble target-frame errors are below 3.11e-17 m; minimum cap clearance to
+nonparent instrument components is 5.5 mm. Enumerated structural seams overlap
+up to 7.62 mm; no usable caps intersect cases. Retained approximate thigh proxies
+have 11.389/10.000 mm clearance; neutral anatomical-proxy/case minimum is 14.641
+mm. A transient wall-axis error exposed why compiled frame checks and images are
+both required. Six instrument views, section and five body views were inspected;
+12 saved-state images reproduce byte-for-byte under EGL/Mesa. 97 tests, Ruff and ty pass. Frozen geometry
+and rejected roots verify completely. Historical profile and MJB guards remain
+strict. This grounds a generic geometric reference, not measured tissue,
+wearing equilibrium, bass playing or anatomical feasibility.
+
 ## 2026-10-08 — Retain the reduced default with an explicit future active-arm choice
 
 The project owner retains the current reduction for now. Clarify the rationale

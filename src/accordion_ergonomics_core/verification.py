@@ -131,6 +131,12 @@ def verify_record(
         elif workflow in ("limit-probe", "collision-coverage"):
             key = "poses" if workflow == "collision-coverage" else "cases"
             records.extend((f"{key}/{i}", r) for i, r in enumerate(result[key]))
+        elif workflow == "cba-geometry":
+            records.append(("geometry", result))
+            if "artifact_sha256" not in result:
+                limitations.append("Geometry record lacks artifact manifest")
+            for relative, expected in result.get("artifact_sha256", {}).items():
+                file_hash(directory / relative, expected, relative)
         elif workflow == "architecture":
             records.append(("architecture", result))
             if "artifact_sha256" not in result:

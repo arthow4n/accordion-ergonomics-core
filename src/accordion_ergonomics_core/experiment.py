@@ -96,6 +96,12 @@ class Experiment:
 
     def resolved_profiles(self) -> dict[str, Any]:
         instrument = asdict(self.geometry)
+        if self.geometry.geometry_model == "rectangular_v0":
+            instrument.pop("geometry_model")
+        else:
+            from .physical_cba import REFERENCE
+
+            instrument["physical_model"] = REFERENCE.specification()
         setup = asdict(self.setup)
         if self.setup.seated is not None and self.setup.seated.lower_body is None:
             setup["seated"].pop("lower_body")
@@ -148,6 +154,8 @@ class Experiment:
         result["schema_version"] = 2
         result["anatomy"]["model"] = self.player.model
         geometry = asdict(self.geometry)
+        if self.geometry.geometry_model == "rectangular_v0":
+            geometry.pop("geometry_model")
         evidence = geometry.pop("evidence")
         origin, rotation = geometry.pop("origin_m"), geometry.pop("rotation_wxyz")
         result["geometry"] = {**geometry, "provenance": evidence}
