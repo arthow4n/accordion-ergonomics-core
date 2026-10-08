@@ -1,5 +1,14 @@
 # Research log
 
+## 2026-10-08 — CI setup failure diagnosed remotely
+
+The first pushed workflow failed before checkout: GitHub could not resolve
+`astral-sh/setup-uv@v10`. The latest release tag is v10.2.0 but no v10 major alias
+exists. Remote job annotations exposed the cause even though unauthenticated
+log download returned HTTP 403. Pin checkout v7.0.1 and setup-uv v10.2.0 to
+verified tag commit hashes. Local canonical checks pass; remote execution is
+pending the corrected push. Do not confuse a workflow file with working CI.
+
 ## 2026-10-08 — First headless contact slice; surface errors caught by diagnostics
 
 **Started by GPT-6.1 Sol, reasoning effort Medium, in Codex.**
