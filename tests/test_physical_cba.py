@@ -9,7 +9,7 @@ from scipy.spatial.transform import Rotation
 from accordion_ergonomics_core._engine import mujoco
 from accordion_ergonomics_core.cba_diagnostics import audit_geometry
 from accordion_ergonomics_core.experiment import Experiment
-from accordion_ergonomics_core.instrument import button_at, buttons
+from accordion_ergonomics_core.instrument import BOARD_TO_WORLD, button_at, buttons
 from accordion_ergonomics_core.physical_cba import (
     MODEL,
     REFERENCE,
@@ -25,7 +25,7 @@ from accordion_ergonomics_core.scene import build_scene
 def reference():
     return Experiment.from_dict(
         json.loads(
-            Path("experiments/032-generic-cba-geometry/experiment.json").read_text()
+            Path("experiments/034-cba-mounted-orientation/experiment.json").read_text()
         )
     )
 
@@ -44,7 +44,21 @@ def test_all_keyboard_targets_normals_and_component_frames():
         e.geometry.rotation, rh @ REFERENCE.fingerboard.rotation, atol=1e-12
     )
     assert np.dot(e.geometry.rotation[:, 2], rh[:, 2]) == pytest.approx(
-        np.cos(np.deg2rad(55))
+        np.cos(np.deg2rad(20))
+    )
+    p = e.setup.seated
+    assert p is not None
+    expected_board = (
+        Rotation.from_euler(
+            "ZYX", [p.yaw_rad, p.long_axis_tilt_rad, p.fore_aft_tilt_rad]
+        ).as_matrix()
+        @ BOARD_TO_WORLD
+    )
+    np.testing.assert_allclose(e.geometry.rotation, expected_board, atol=1e-12)
+    # Independent reference normal: 30 deg toward the player's right, rather
+    # than the rejected composition's 85 deg almost lateral normal.
+    np.testing.assert_allclose(
+        e.geometry.rotation[:, 2], [0.5, np.sqrt(3) / 2, 0], atol=1e-12
     )
     for b in buttons():
         np.testing.assert_allclose(
@@ -128,6 +142,10 @@ def test_geometry_intersections_dimensions_and_identity():
     e = reference()
     s = build_scene(e.geometry, e.player, e.setup, e.physical_contact)
     report = audit_geometry(s, e.geometry)
+    # Unnamed imported surfaces must not overwrite each other in the audit.
+    assert len(
+        report["mounted_reference_diagnostics"]["instrument_component_distances_m"]
+    ) == len(s.anatomy_geoms)
     # Only intentional backing/case junctions penetrate. Other components touch
     # at bellows end frames, wall edges and board/cap bases, or are separated.
     allowed = {
@@ -161,7 +179,7 @@ def test_geometry_intersections_dimensions_and_identity():
         )
     h = s.data.body(MODEL)
     local = h.xmat.reshape(3, 3).T @ (s.data.body("keyboard").xpos - h.xpos)
-    np.testing.assert_allclose(local, [0.055, 0.100, -0.165], atol=1e-12)
+    np.testing.assert_allclose(local, [0.078, 0.100, -0.160], atol=1e-12)
     assert -0.19 < local[2] < -0.14  # rear-adjacent, never grille-corner mounted
     for i in s.board_geoms:
         assert np.all(s.model.geom_size[i, :2] > 0)
@@ -222,5 +240,15 @@ def test_mount_rigid_root_invariance_and_replay_rejection(tmp_path):
     rejected = Path(
         "experiments/032-generic-cba-geometry/rejected-front-attachment/geometry/result.json"
     )
-    with pytest.raises(ValueError, match="Different compiled world"):
+    with pytest.raises(
+        ValueError,
+        match="Different compiled world|Unsupported instrument geometry version",
+    ):
         replay_geometry(rejected, tmp_path)
+    with pytest.raises(
+        ValueError,
+        match="Different compiled world|Unsupported instrument geometry version",
+    ):
+        replay_geometry(
+            Path("experiments/032-generic-cba-geometry/reference/result.json"), tmp_path
+        )

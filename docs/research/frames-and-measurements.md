@@ -153,3 +153,19 @@ H by (-250,0,0) mm; L translates A by (-116,45,-145) mm with axes (A.n,A.v,-A.u)
 All are right handed. Details and assumptions: [generic-cba.md](generic-cba.md).
 Compiled targets/normals, serial identity, junction distances and hypothetical
 bass motion with invariant treble targets are tested in `test_physical_cba.py`.
+
+Seated setup yaw/tilts specify **R_WB**, as in the historical board-frame
+contract. Derive `R_WH = R_WB R_HB^T` before applying support constraints.
+The first 032/033 mounted implementation instead applied those angles to H;
+034 corrects that extra rotation. Reference button normals point 30 degrees
+toward the player's right from anterior, rather than 85 degrees. The 55 degree
+local mounting angle is still an uncalibrated generic assumption. Frozen 032/033
+worlds keep their original compiled identities and must not be accepted in 034.
+
+
+034 updates the current geometry selector to `generic_cba_v2`: B origin in H is
+(78,100,-160) mm and local H.v rotation is +20 degrees. This shallow slope is an
+explicit construction-informed assumption, not photograph metrology. With the
+prescribed reference R_WB, H yaw is -10 degrees. V1 records require their archived
+source; current parsing rejects the retired selector. `rectangular_v0` behavior
+and identities remain unchanged.

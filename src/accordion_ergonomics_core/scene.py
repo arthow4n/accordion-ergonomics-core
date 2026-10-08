@@ -140,12 +140,12 @@ def build_scene(
         spec.add_pair(name=f"research_self_pair_{index}", geomname1=a, geomname2=b)
     # Remove the upstream decorative room; it is unrelated to body geometry.
     for decor in list(spec.worldbody.geoms):
-        if geometry.geometry_model == "generic_cba_v1" and decor.name.startswith(
+        if geometry.geometry_model == "generic_cba_v2" and decor.name.startswith(
             "approximate_thigh_support_"
         ):
             continue
         spec.delete(decor)
-    physical = geometry.geometry_model == "generic_cba_v1"
+    physical = geometry.geometry_model == "generic_cba_v2"
     if physical:
         from .physical_cba import attach_instrument
 
@@ -370,9 +370,9 @@ def diagnostics(
             for i in scene.anatomy_geoms
         }
     component_distances = {}
-    if any(model.body(i).name == "generic_cba_v1" for i in range(model.nbody)):
+    if any(model.body(i).name == "generic_cba_v2" for i in range(model.nbody)):
         component_distances = {
-            model.geom(i).name: {
+            model.geom(i).name or f"unnamed_geom_{i}": {
                 model.geom(j).name: float(
                     mujoco.mj_geomDistance(model, data, i, j, 1.0, None)
                 )

@@ -41,7 +41,7 @@ def cross_section(geometry, path):
     rectangle(-0.078, 0.012, -0.012, 0, (55, 82, 106), fb)
     rectangle(-0.078, 0.012, -0.018, -0.012, (115, 140, 160), fb)
     inner = fb.apply((-0.078, 0, -0.012))
-    outer = fb.apply((0.012, 0, -0.012))
+    outer = fb.apply((0.012, 0, -0.018))
     for a, b in (
         (np.array([0.0, 0.0, 0.0]), inner),
         (outer, np.array([0.0, 0.0, -0.20])),
@@ -65,15 +65,15 @@ def cross_section(geometry, path):
         )
     draw.text(
         (25, 20),
-        "Generic CBA v1 | metric treble u/n section (down axis into page)",
+        "Generic CBA v2 | metric treble u/n section (down axis into page)",
         fill=(25, 40, 55),
     )
     for location, label in (
         ((25, 55), "Grille plane H.n = 0; rear wall n = -200 mm"),
         ((25, 75), "H.u: outward treble; H.n: anterior / grille normal"),
-        ((25, 95), "B normal tilted 55 deg toward outer side; B.u crosses board"),
+        ((25, 95), "B normal tilted 20 deg toward outer side; B.u crosses board"),
         ((25, 115), "Board: 12 mm thick; case backing: 6 mm; caps: 4 mm above B"),
-        ((25, 135), "B origin H = (55, 100, -165) mm; every metric is assumed"),
+        ((25, 135), "B origin H = (78, 100, -160) mm; every metric is assumed"),
         ((185, 255), "Hollow case"),
         ((195, 210), "Grille"),
         ((680, 420), "Button tops"),
@@ -109,18 +109,19 @@ def render_cba(scene, geometry, output, cameras=None):
     if cameras is None:
         cameras = {}
         for name, direction, distance, elevation in (
-            ("treble", geometry.rotation[:, 2], 0.83, -8),
+            ("treble", geometry.rotation[:, 2], 0.83, 0),
             ("front", r[:, 2], 0.90, 0),
             ("side", r[:, 0], 0.90, 0),
             ("oblique", r[:, 0] + r[:, 2], 0.95, -25),
-            ("bass", -r[:, 0], 0.85, -8),
-            ("top_section", r[:, 0] + r[:, 2], 0.85, -85),
+            ("bass", -r[:, 0], 0.85, 0),
+            ("top_section", r[:, 0] + r[:, 2], 1.05, -90),
         ):
             cameras["instrument_" + name] = dict(
                 lookat=center.tolist(),
                 distance=distance,
                 azimuth=angle(direction),
                 elevation=elevation,
+                orthographic=1,
             )
         body_center = (d.body("Full Body").xpos + d.body("head").xpos) / 2 + np.array(
             [0, 0.10, -0.13]
@@ -182,7 +183,7 @@ def render_cba(scene, geometry, output, cameras=None):
                 draw.rectangle((0, 0, 960, 50), fill=(20, 30, 40))
                 draw.text(
                     (12, 10),
-                    name + " | generic CBA v1 | assumed metrics; fixed closed",
+                    name + " | generic CBA v2 | assumed metrics; fixed closed",
                     fill="white",
                 )
                 draw.text(
@@ -262,7 +263,7 @@ def run_geometry(definition, output):
     raw = definition.read_bytes()
     e = Experiment.from_dict(json.loads(raw))
     if e.geometry.geometry_model != MODEL:
-        raise ValueError("Physical geometry diagnostic needs generic_cba_v1")
+        raise ValueError("Physical geometry diagnostic needs generic_cba_v2")
     output.mkdir(parents=True, exist_ok=True)
     (output / "experiment.json").write_bytes(raw)
     s = build_scene(

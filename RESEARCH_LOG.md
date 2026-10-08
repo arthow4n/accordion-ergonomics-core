@@ -1,5 +1,37 @@
 # Research log
 
+## 2026-10-09 — Replace the challenged treble slope using direct construction sections
+
+[034](experiments/034-cba-mounted-orientation/notes.md) responds to the owner's
+local keyboard/case-angle concern and request for evidence beyond product
+pictures. A builder's cut drawing and historical bayan repair sections distinguish
+shallow rearward and near-forward structures, including stepped alternatives.
+Their limits are explicit: none publishes a universal modern five-row angle.
+Select one construction-informed flat-board hypothesis at 20 degrees instead of
+55, origin H=(78,100,-160) mm, and rebuild the cheek/return around its backing.
+No photograph metrology or successful hand fit determines these constants.
+`generic_cba_v2` is the current selector; retired v1 requires its frozen source,
+and old rectangular models keep exact identities. A transient 30-degree trial
+remained unvalidated and unpublished.
+
+Also fix a mounting composition error: seated angles specify B, so derive H by
+removing R_HB. The old mounted implementation added the local tilt again. New
+reference button normals are 30 degrees toward the player's right from forward.
+Full-body anatomy, active coordinates, couplings and collision masks remain.
+Instrument diagnostic views are orthographic, including a true top view; metric
+section separates case, 12 mm board and 4 mm cap tops. Unnamed imported collision
+surfaces now retain separate diagnostic entries instead of overwriting one key.
+
+Numerical target error <=1.20e-16 m, minimum cap/nonparent clearance 5.5 mm,
+intentional seams <=6.01 mm. Neutral body-proxy/component minimum 10.842 mm,
+approximate thigh clearances 11.840/11.275 mm. Neutral anatomical humerus/thorax
+overlap remains; no tissue feasibility or load equilibrium is claimed. All 97
+tests, Ruff and ty pass; saved geometry integrity and render replay are checked.
+[033](experiments/033-physical-cba-regression/notes.md) preserves superseded v1
+multistarts, paths and unsuccessful searches with complete frozen integrity;
+those poses are not accepted in v2. New-world comparison proceeds separately in
+035, with independent collision coverage and known unchecked overlaps.
+
 ## 2026-10-09 — Ground the generic closed CBA and correct its treble attachment
 
 [032](experiments/032-generic-cba-geometry/notes.md) introduces `generic_cba_v1`,

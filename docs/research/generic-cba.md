@@ -1,11 +1,11 @@
-# One representative closed five-row CBA (generic_cba_v1)
+# One representative closed five-row CBA (generic_cba_v2)
 
 This is a functional geometric hypothesis, not a commercial reconstruction or a
 measured ergonomic instrument. The historical finite 62-button FR-1xb C-system
 mapping is retained on an independently specified medium-sized case with 96 bass
 buttons. No single manufacturer sells the exact combination represented here.
 `rectangular_v0` remains the implicit selector for historical inputs and hashes;
-new work selects `geometry.geometry_model = "generic_cba_v1"` explicitly.
+new work selects `geometry.geometry_model = "generic_cba_v2"` explicitly.
 
 ## Public reference investigation (2026-10-09)
 
@@ -44,11 +44,37 @@ geometry or claimed ergonomic benefits apply to our generic CBA. They do not
 supply our metric mounting angle or dimensions.
 
 The selected interpretation is an outer board slanting rearward from an extended
-case cheek. The images support that relation but do **not** determine 55°. 
+case cheek. Product pictures support that relation but determine no mounting angle.
 We choose a flat board with constant released cap height. Weltmeister's stepped
 alternative is explicitly outside this one profile. Rim radii, grille holes,
 registers, internal reeds and bellows fold mechanics are omitted. Angular and
 metric calibration remain necessary for conclusions about actual instruments.
+
+## Construction sections and the angle revision (034)
+
+The owner challenged the local 55° angle, then explicitly requested evidence
+beyond perspective product pictures. The short-lived 30° trial was also only a
+hypothesis and was not published as validated geometry. The following primary
+construction records now guide the cross-section:
+
+| Source | Direct structural evidence | Limits |
+|---|---|---|
+| [Johann Pascher build notes](https://www.hyperbox.org/en/h/The_building_of_a_diatonic_Harmonika.htm) and [cut drawing](https://www.hyperbox.org/de/h/bilder/schnittsz.gif) | Drawn section shows the rear-adjacent board extending mostly outward with a gentle rearward slope; distinct cover, action, board, rear wall and closed cases. Author describes screwing keyboard to rear case edge from inside. | A handmade diatonic instrument using chromatic action, not a five-row CBA. The drawing labels overall sizes but does not specify a board angle or establish drafting accuracy. No exact angle is extracted. |
+| Fadeev & Kuznetsov, *Repair of harmonicas, bayans and accordions*, 2nd ed., 1971: [p49 fig25](https://djvu.online/jpg/n/K/e/nKeZ6VMzQPck1/049.jpg), [p145 fig66](https://djvu.online/jpg/n/K/e/nKeZ6VMzQPck1/145.jpg), [p151 fig70](https://djvu.online/jpg/n/K/e/nKeZ6VMzQPck1/151.jpg), [catalog/text](https://ru.djvu.online/file/nKeZ6VMzQPck1) | Actual transverse sections of three-row bayans separate grille, case, fingerboard and button mechanism; stepped constructions have near-forward cap normals. Fig70 explicitly labels rear/front case walls and the board. | Historical three-row stepped bayan variants, not a measured modern flat five-row CBA; no angular or metric transfer. Scans stay local, not redistributed. |
+| [Hohner DE3006581A1](https://patents.google.com/patent/DE3006581A1/en), description figs1–3 | Distinguishes flat and stepped grip plates and protruding caps. Its 15° refers to button axis versus lever normal. | That mechanical angle is **not** a measured board-to-case angle. Drawing assets could not be obtained from this record; text alone is used. |
+
+These sections reject the steep-wing interpretation as the default for this
+reference. We choose **20°** of rearward slope for the flat board. This is
+engineering judgment supported qualitatively by a directly drawn shallow
+section and contrasting near-forward bayan caps, not a measured 20° commercial
+specification or an averaged universal angle. The same 12 mm panel, 4 mm released
+caps and musical lattice remain. Independently choose H origin (78,100,−160) mm
+for B so its inner back edge meets the case shoulder near H.u=0 and its outer
+edge stays ahead of the rear case plane. Case return joins the *backing* edge,
+not the panel underside; all resulting primitive seams are audited. No dimensions
+or angle were tuned to obtain IK success. V1 is reproduced with its archived
+source; current parsing explicitly rejects that retired selector rather than
+silently assigning v2 geometry to it.
 
 ## Geometric specification (all following metrics are chosen assumptions)
 
@@ -59,8 +85,8 @@ instrument yaw/tilt. B retains canonical +u outer, +v down, +n released cap norm
 
 | Component | Extent / transform in H |
 |---|---|
-| Treble housing | Main u −150..0, v 0..380, n −200..0 mm; rear-adjacent shaped cheek extends u to approximately +52 mm; 6 mm walls |
-| Fingerboard B | Origin (55,100,−165) mm, rotation +55° about H.v; 12 mm thick |
+| Treble housing | Main u −150..0, v 0..380, n −200..0 mm; rear-adjacent shaped cheek extends u to approximately +83 mm; 6 mm walls |
+| Fingerboard B | Origin (78,100,−160) mm, rotation +20° about H.v; 12 mm thick |
 | Board surface | B.u −78..12, B.v −41..221 mm, B.n=0; 90 × 262 mm |
 | Usable treble centers | Existing finite row/column IDs; 19 mm same-row pitch, 16.454 mm adjacent-row separation, existing staggers |
 | Treble caps / targets | Radius 6.5 mm; cylinder base B.n=0, top/target B.n=4 mm; normal R_HB[:,2] |
@@ -77,7 +103,7 @@ instrument yaw/tilt. B retains canonical +u outer, +v down, +n released cap norm
 (M−5+stagger[N−1]) column_pitch, cap_height)`.
 Target normal is `R_WH R_HB (0,0,1)`. It never derives from the global case box.
 The outer board edge extends sideways and toward the rear of the grille plane;
-the inner edge meets a case shoulder roughly 108 mm behind the grille plane. “Offset” therefore is a vector and
+the inner edge meets a case shoulder roughly 145 mm behind the grille plane. “Offset” therefore is a vector and
 orientation, not a guessed anterior-only lift. Cross-section diagnostics show
 this explicitly, including the rear return and case backing enclosing the keyboard cheek.
 
@@ -97,9 +123,9 @@ a collision-valid leather strap, hand fit, force model or active left-hand task.
 
 ## Hierarchy, collisions and independent checks
 
-`generic_cba_v1 → treble_assembly → keyboard → right caps/targets`;
-`generic_cba_v1 → closed_bellows_connection`;
-`generic_cba_v1 → bass_assembly → bass_fingerboard → bass caps/targets`.
+`generic_cba_v2 → treble_assembly → keyboard → right caps/targets`;
+`generic_cba_v2 → closed_bellows_connection`;
+`generic_cba_v2 → bass_assembly → bass_fingerboard → bass caps/targets`.
 Both case frames remain rigid. `BellowsConfiguration` names the closed interface
 and rejects nonzero opening. Its independent `bass_relative` rigid transform
 supports pure hypothetical frame tests, not physical opening studies. A future
@@ -140,7 +166,13 @@ Case rear and bottom extrema, including the board shoulder, replace the old
 rectangular-shell origin rule. The board rim is shoulder-relative; lowest case
 edge clears the approximate MyoSim femur-centered support envelope by 10 mm.
 Rear component extrema clear the conservative imported thorax support plane by
-10 mm at the reference yaw −30°. Actual component distances are queried too.
+10 mm. `SeatedSetup` angles specify the **playing board B**, preserving the
+canonical frame contract: `R_H = R_B R_HB^T`. At reference B yaw −30°, the
+housing yaw is −10°, not −30°. The first mounted 032/033 implementation mistakenly
+applied −30° to H, then composed its 55° board tilt, yielding an almost lateral
+85° button normal. Those frozen records retain that mistake for reproduction;
+[034](../../experiments/034-cba-mounted-orientation/notes.md) corrects it and
+rerenders the saved state. Actual component distances are queried too.
 The old instrument width/depth/height/C4 insets are ignored by this version;
 profile records preserve them as legacy setup inputs, not generic metric evidence.
 
@@ -156,14 +188,13 @@ anatomical activation, marker, collision and wearing-position validation.
 ## Reproduce
 
 ```sh
-uv run aec frozen cba-geometry experiments/032-generic-cba-geometry/experiment.json --output artifacts/032
-uv run aec cba-render artifacts/032/result.json --output artifacts/032-replay
-uv run aec verify artifacts/032 --require-complete
+uv run aec frozen cba-geometry experiments/034-cba-mounted-orientation/experiment.json --output artifacts/034
+uv run aec cba-render artifacts/034/result.json --output artifacts/034-replay
+uv run aec verify artifacts/034 --require-complete
 ```
 
 Six instrument views, a metric treble section and five mounted views accompany
 the saved numerical state. The section is a coordinate-derived engineering
 illustration; `instrument_top_section.png` separately renders actual MuJoCo
 geometry. The geometry reference is a neutral prescribed arm state, not a playing
-pose. Experiment 033 records new-world playing states and independent collision
-audits; unchecked anatomical overlap still precludes human-feasibility claims.
+pose. Experiment 033 is a superseded v1 search record, not a v2 validation; unchecked anatomical overlap still precludes human-feasibility claims.

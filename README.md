@@ -42,7 +42,7 @@ The lockfile records the full tested dependency stack.
 ```sh
 uv sync --locked
 uv run aec check
-uv run aec frozen cba-geometry experiments/032-generic-cba-geometry/experiment.json --output artifacts/cba
+uv run aec frozen cba-geometry experiments/034-cba-mounted-orientation/experiment.json --output artifacts/cba
 uv run aec cba-render artifacts/cba/result.json --output artifacts/cba-replay
 uv run aec frozen architecture experiments/031-full-body-architecture/experiment.json --output artifacts/full-body-comparison
 uv run aec body-render experiments/031-full-body-architecture/myofullbody_reduced/result.json --output artifacts/full-body-replay

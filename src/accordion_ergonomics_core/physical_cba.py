@@ -1,4 +1,4 @@
-"""Generic closed CBA v1: public structural evidence, explicitly assumed metrics.
+"""Generic closed CBA v2: public structural evidence, explicitly assumed metrics.
 
 H axes: outer treble (+u), down (+v), grille anterior (+n). H origin is
 upper outer grille corner. Keyboard B keeps the historical canonical meanings.
@@ -14,7 +14,7 @@ from scipy.spatial.transform import Rotation
 
 from .instrument import BOARD_TO_WORLD, buttons
 
-MODEL = "generic_cba_v1"
+MODEL = "generic_cba_v2"
 LEGACY = "rectangular_v0"
 
 
@@ -82,8 +82,8 @@ class GenericCBA:
     closed_bellows_width_m: float = 0.10
     bass_width_m: float = 0.11
     case_wall_m: float = 0.006
-    treble_board_origin_h_m: tuple[float, float, float] = (0.055, 0.100, -0.165)
-    treble_board_angle_rad: float = radians(55)
+    treble_board_origin_h_m: tuple[float, float, float] = (0.078, 0.100, -0.160)
+    treble_board_angle_rad: float = radians(20)
     treble_board_thickness_m: float = 0.012
     bass_button_radius_m: float = 0.0045
     bass_button_height_m: float = 0.003
@@ -152,7 +152,7 @@ def validate_keyboard(geometry):
     ):
         raise ValueError("Right-hand fixture exceeds generic CBA usable region")
     if geometry.panel_thickness_m != REFERENCE.treble_board_thickness_m:
-        raise ValueError("Generic CBA v1 requires a 12 mm treble board")
+        raise ValueError("Generic CBA v2 requires a 12 mm treble board")
     if geometry.button_radius_m > 0.008 or geometry.button_height_m > 0.008:
         raise ValueError("Unsupported generic cap size")
     lateral = centers[:, :2]
@@ -195,11 +195,15 @@ def derive_physical_setup(geometry, setup):
     canonical = Rotation.from_quat([q[1], q[2], q[3], q[0]]).as_matrix() @ np.diag(
         [-1.0, -1.0, 1.0]
     )
+    # SeatedSetup orientation defines B (the playing board), as in the legacy
+    # frame contract. Derive H by removing H->B; applying it to H directly
+    # would add the fingerboard mounting angle a second time in world space.
     rh = (
         Rotation.from_euler(
             "ZYX", [p.yaw_rad, p.long_axis_tilt_rad, p.fore_aft_tilt_rad]
         ).as_matrix()
         @ BOARD_TO_WORLD
+        @ REFERENCE.fingerboard.rotation.T
     )
     corners = np.array(
         [(u, v, n) for u in (-0.36, 0) for v in (0, 0.38) for n in (-0.20, 0)]
@@ -354,7 +358,7 @@ def attach_instrument(spec, geometry, bellows=None):
     # the keyboard is not a plate on a block at the grille corner.
     color = [0.25, 0.32, 0.40, 1]
     inner = fb.apply((-0.078, 0, -0.012))
-    outer = fb.apply((0.012, 0, -0.012))
+    outer = fb.apply((0.012, 0, -0.018))
     inner[1] = outer[1] = 0.0  # cross-section, not B origin height
     for label, a, b in (
         ("shoulder", np.array([0.0, 0.0, 0.0]), inner),

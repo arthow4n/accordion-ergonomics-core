@@ -141,3 +141,17 @@ FR-1xb topology does not make the new medium case a Roland reconstruction.
 Imported MyoFullBody bone anatomy, original collision proxies and approximate
 thigh support envelopes remain distinct. Historical rectangular results retain
 their original identity and interpretation.
+
+
+## Construction-grounded treble angle revision (034)
+
+The owner rejected the steep local angle and requested non-product references.
+[Generic CBA documentation](generic-cba.md#construction-sections-and-the-angle-revision-034)
+records a builder's direct cut drawing, historical bayan repair sections and a
+flat/stepped grip construction patent. They establish distinct physical structures
+and shallow or near-forward playing surfaces; they do not measure a universal
+mounting angle. V2's 20 degrees and (78,100,-160) mm board origin are explicit
+engineering choices. Do not substitute the patent's 15 degree button/lever angle,
+or a proposed forward-keyboard invention's 45 degrees, for a conventional case
+measurement. Product photos remain qualitative corroboration only. V1's frozen
+numerical successes do not validate its challenged geometry.

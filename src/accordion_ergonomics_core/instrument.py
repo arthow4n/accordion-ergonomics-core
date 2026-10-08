@@ -115,7 +115,7 @@ class BoardGeometry:
         )
 
     def __post_init__(self) -> None:
-        if self.geometry_model not in ("rectangular_v0", "generic_cba_v1"):
+        if self.geometry_model not in ("rectangular_v0", "generic_cba_v2"):
             raise ValueError("Unsupported instrument geometry version")
         values = (
             self.column_spacing_m,

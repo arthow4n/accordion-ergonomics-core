@@ -47,7 +47,7 @@ def render_views(
         },
     }
     physical = any(
-        scene.model.body(i).name == "generic_cba_v1" for i in range(scene.model.nbody)
+        scene.model.body(i).name == "generic_cba_v2" for i in range(scene.model.nbody)
     )
     seated = physical or any(
         scene.model.geom(i).name == "instrument_envelope"
@@ -61,7 +61,7 @@ def render_views(
     if seated:
         mujoco.mj_forward(scene.model, scene.data)
         center = (
-            scene.data.body("generic_cba_v1").xpos.tolist()
+            scene.data.body("generic_cba_v2").xpos.tolist()
             if physical
             else scene.data.geom("instrument_envelope").xpos.tolist()
         )
@@ -80,7 +80,7 @@ def render_views(
         for i in range(scene.model.nbody)
     ):
         center = (
-            scene.data.body("generic_cba_v1").xpos.tolist()
+            scene.data.body("generic_cba_v2").xpos.tolist()
             if physical
             else scene.data.geom("instrument_envelope").xpos.tolist()
         )
@@ -144,7 +144,7 @@ def render_views(
                 draw = ImageDraw.Draw(picture)
                 draw.rectangle((0, 0, 960, 45), fill=(18, 25, 36))
                 label = (
-                    "generic CBA v1"
+                    "generic CBA v2"
                     if physical
                     else "seated setup / assumed shell"
                     if seated
