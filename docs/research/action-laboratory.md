@@ -2,8 +2,11 @@
 
 `aec atlas` re-solves a recorded source contact for the supplied parameter
 profile, then discovers index-button endpoint candidates and independently
-searches transitions. States carry named radian coordinates, current contact
-IDs and a resolved-profile hash. A state from another parameter world is rejected.
+searches transitions. States carry named radian coordinates, explicit button
+and finger bindings and a resolved-profile hash. State schema 2 rejects ambiguous
+legacy contact strings; archived schema-1 algorithms remain replayable. A state
+from another parameter world is rejected, as is a state whose declared contacts
+fail independent current-geometry validation.
 Candidate descriptors preserve palm pose, elbow position, wrist/forearm/shoulder
 and finger articulation and both all-coordinate and active-coordinate margins.
 
@@ -50,7 +53,32 @@ old experiments inspectable.
 `aec experiment` now accepts one or two distinct index/middle contacts.
 Both marker/normal tasks are solved together; acceptance independently checks
 both actual distal-envelope/button distances, all source equalities, limits
-and detected collisions. Unused digits remain present and frozen. This is not
-button depression, force, a held-contact path or human feasibility. Candidate
+and detected collisions. Unused digits remain present; the default freezes
+them, while an explicitly sourced `inactive_digits_policy=allow_articulation`
+allows imported digit movement. This is not button depression, force or human
+feasibility. Candidate
 and transition discovery currently explicitly support one index contact only;
 unsupported requests are rejected rather than silently solved with another digit.
+
+`aec held` is a separate small index-held/middle-moving experiment: it constrains
+the held contact while building Cartesian withdrawal/translation/approach
+waypoints, then audits every sampled configuration independently. It exports
+the resulting gesture, which need not equal the supplied local-IK endpoint.
+No holding force or continuous certificate is inferred.
+
+`aec exercise` selects a large discovered relocation from a hash-checked atlas,
+refines its edge audit and exports the physical action, trajectory, excursions,
+musical surface-contact events and independently checked endpoint. Its ranking
+is descriptive, not a universal difficulty score or proof of minimum relocation.
+
+## Collision coverage is part of the contract
+
+`aec collision-coverage` checks recorded compiled models, enumerates mask and
+explicit-pair policy and independently queries cross-digit proxy distances.
+Imported proxies disable automatic anatomical self-collision; only four explicit
+thorax/arm pairs remain. General finger clearance is not enforced. Diagnostic
+magenta highlights unchecked overlaps separately from detected contacts.
+The [014 audit](../../experiments/014-collision-coverage/notes.md) identifies large
+overlaps in dual-contact poses. Neither the atlas nor held-task successes are
+certificates of full anatomical nonpenetration. Envelopes need validation before
+broader ergonomic conclusions, rather than arbitrary shrinking or relaxed costs.

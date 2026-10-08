@@ -1,10 +1,42 @@
 """Hash source inputs without publishing environment values or local secrets."""
 
 import hashlib
+import os
+import platform
+from importlib.metadata import version
 from pathlib import Path
 from typing import Any
 
 import myo_sim
+
+
+def current_execution_metadata(model: Any) -> dict[str, Any]:
+    """Describe this execution, rather than inheriting an input record's runtime."""
+    return {
+        "provenance": {
+            "compiled_model_sha256": compiled_model_digest(model),
+            "anatomy_source_sha256": anatomy_digest(),
+            "project_source_sha256": project_source_digest(),
+            "lock_sha256": hashlib.sha256(Path("uv.lock").read_bytes()).hexdigest(),
+            "render_backend": os.environ.get("MUJOCO_GL", "egl"),
+        },
+        "runtime": {
+            "python": platform.python_version(),
+            "platform": platform.platform(),
+            "packages": {
+                p: version(p)
+                for p in (
+                    "mujoco",
+                    "myo-sim",
+                    "mink",
+                    "numpy",
+                    "scipy",
+                    "clarabel",
+                    "pillow",
+                )
+            },
+        },
+    }
 
 
 def anatomy_digest() -> str:

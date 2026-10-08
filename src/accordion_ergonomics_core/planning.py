@@ -7,6 +7,7 @@ from typing import Any
 import numpy as np
 
 from ._engine import mujoco
+from .anatomy import digit_dofs
 from .candidates import descriptors
 from .experiment import Experiment
 from .scene import Scene
@@ -50,6 +51,10 @@ def audit_path(
     settings: PlanningSettings,
 ) -> dict[str, Any]:
     model, data = scene.model, scene.data
+    if not waypoints:
+        raise ValueError("A path requires at least one recorded configuration")
+    if len(waypoints) == 1:
+        waypoints = [waypoints[0], waypoints[0]]
     records = []
     for segment, (start, end) in enumerate(
         zip(waypoints[:-1], waypoints[1:], strict=True)
@@ -231,11 +236,13 @@ def rrt_connect(
     if np.any(model.eq_data[:, 2:5] != 0):
         raise ValueError("RRT edge interpolation requires affine joint couplings")
     dependent = set(int(model.eq_obj1id[i]) for i in range(model.neq))
-    frozen = set(
-        list(range(18, 22))
-        + list(range(26, model.nv))
-        + [int(model.joint(n).id) for n in experiment.frozen_joints]
+    digits = digit_dofs(model)
+    frozen = (
+        set(i for digit, indices in digits.items() if digit != "index" for i in indices)
+        if scene.contact_profile.inactive_digits_policy == "freeze"
+        else set()
     )
+    frozen.update(int(model.joint(n).dofadr[0]) for n in experiment.frozen_joints)
     active = [i for i in range(model.njnt) if i not in dependent and i not in frozen]
     names = [model.joint(i).name for i in range(model.njnt)]
     a, b = np.array(start), np.array(end)

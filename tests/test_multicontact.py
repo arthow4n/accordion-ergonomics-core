@@ -74,3 +74,23 @@ def test_two_contacts_are_accepted_only_with_individual_geometric_checks() -> No
         assert abs(check["target_contact_distance_m"]) <= e.solver.position_tolerance_m
         assert check["position_error_m"] <= e.solver.position_tolerance_m
         assert check["max_penetration_m"] <= e.solver.penetration_tolerance_m
+
+
+def test_unused_digits_can_articulate_without_empty_freezing_constraint() -> None:
+    from accordion_ergonomics_core.profiles import ContactProfile
+
+    e = load_input(Path("experiments/004-profile-recalculation/experiment.json"))
+    b = json.loads(
+        Path("experiments/004-profile-recalculation/result.json").read_text()
+    )
+    scene = build_scene(
+        e.geometry, contact=ContactProfile(inactive_digits_policy="allow_articulation")
+    )
+    result = solve_contact(
+        scene,
+        e.geometry.surface_world_m(button_at(1, 5)),
+        dict(zip(b["joint_names"], b["qpos_rad"], strict=True)),
+        e.solver,
+    )
+    assert result["status"] == "success"
+    assert result["frozen_dof_indices"] == []

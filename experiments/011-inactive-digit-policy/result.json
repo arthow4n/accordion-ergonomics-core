@@ -1,0 +1,287 @@
+{
+  "id": "011-inactive-digit-policy",
+  "input": {
+    "schema_version": 1,
+    "id": "011-inactive-digit-policy",
+    "question": "How much does freezing unrequested digits restrict discovered next actions?",
+    "atlas_definition": "../007-index-atlas/experiment.json",
+    "atlas_definition_sha256": "29cb8c58c76f1c5251ddcf6496f3228c6990cd9d1a9a0774153d5931f4d1cd82",
+    "targets": [
+      {
+        "row": 1,
+        "column": 9,
+        "finger": "index"
+      },
+      {
+        "row": 3,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 3,
+        "column": 9,
+        "finger": "index"
+      },
+      {
+        "row": 4,
+        "column": 8,
+        "finger": "index"
+      },
+      {
+        "row": 5,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 5,
+        "column": 8,
+        "finger": "index"
+      }
+    ],
+    "cases": [
+      {
+        "id": "reference",
+        "patch": {}
+      },
+      {
+        "id": "unrequested-digits-articulate",
+        "patch": {
+          "physical_contact": {
+            "inactive_digits_policy": "allow_articulation",
+            "inactive_digits_evidence": {
+              "kind": "assumption",
+              "source": "Movement-policy ablation",
+              "note": "Unrequested digits may move within imported ranges; complete self-collision remains unvalidated."
+            }
+          }
+        }
+      }
+    ]
+  },
+  "definition_sha256": "f3aa0411051d84d9de8d1aa0574a91c319913a2356fd0bff71c22f47ce282335",
+  "cases": [
+    {
+      "case": {
+        "id": "reference",
+        "patch": {}
+      },
+      "summary": {
+        "buttons_explored": 6,
+        "sampled_transition_found": 2,
+        "no_pose_found": 4,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "4be20c295a19deadbd862a24f9c667d6c40b32b1128ba2e619344171fcdd6072",
+      "anchor_qpos_rad": [
+        -0.12067596591336266,
+        0.051112754157519306,
+        -0.051112754157519306,
+        0.12067596591336266,
+        -0.024434389792375083,
+        0.19746976240368436,
+        0.08876166087842377,
+        -0.08876166087842377,
+        -0.19746976240368436,
+        0.024434389792375083,
+        0.18059323210569775,
+        0.49866101617092007,
+        -0.18059323210569775,
+        -0.12870181234096836,
+        1.5892974908621782,
+        0.16419982690925058,
+        -0.1655875307000419,
+        0.47857648363616245,
+        2.127624151507682e-17,
+        -4.9003846229222e-18,
+        -4.1476406297662584e-22,
+        3.564926984293268e-22,
+        1.054019406124545,
+        -0.25350942459085224,
+        1.020186302486375,
+        0.7555249475134678,
+        2.2115467879771112e-10,
+        2.91796445184302e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.211546787979763e-10,
+        -8.148912829194521e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.2115467894110523e-10,
+        4.2260793009678716e-23,
+        2.2115467885890568e-10,
+        2.2115467881366255e-10
+      ],
+      "elapsed_s": 18.122146262998285,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r3c9",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.0,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "reference/result.json",
+      "result_sha256": "9657817c0fc27065cee01de96e9239522a07501d9cbab34033ed3bf83b32da4c"
+    },
+    {
+      "case": {
+        "id": "unrequested-digits-articulate",
+        "patch": {
+          "physical_contact": {
+            "inactive_digits_policy": "allow_articulation",
+            "inactive_digits_evidence": {
+              "kind": "assumption",
+              "source": "Movement-policy ablation",
+              "note": "Unrequested digits may move within imported ranges; complete self-collision remains unvalidated."
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 6,
+        "sampled_transition_found": 2,
+        "no_pose_found": 3,
+        "no_transition_found": 1
+      },
+      "status": "completed_search",
+      "profile_sha256": "5e063d429b640b875f1ff1e7d85bfb35171e2a13c0d921dc61a028db3fbaf270",
+      "anchor_qpos_rad": [
+        -0.12067596591336266,
+        0.051112754157519306,
+        -0.051112754157519306,
+        0.12067596591336266,
+        -0.024434389792375083,
+        0.19746976240368436,
+        0.08876166087842377,
+        -0.08876166087842377,
+        -0.19746976240368436,
+        0.024434389792375083,
+        0.18059323210569775,
+        0.49866101617092007,
+        -0.18059323210569775,
+        -0.12870181234096836,
+        1.5892974908621782,
+        0.16419982690925058,
+        -0.1655875307000419,
+        0.47857648363616245,
+        2.127624151507682e-17,
+        -4.9003846229222e-18,
+        -4.1476406297662584e-22,
+        3.564926984293268e-22,
+        1.054019406124545,
+        -0.25350942459085224,
+        1.020186302486375,
+        0.7555249475134678,
+        2.2115467879771112e-10,
+        2.91796445184302e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.211546787979763e-10,
+        -8.148912829194521e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.2115467894110523e-10,
+        4.2260793009678716e-23,
+        2.2115467885890568e-10,
+        2.2115467881366255e-10
+      ],
+      "elapsed_s": 22.08671801699893,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.014660115932642881
+          },
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.00701164250501227
+          },
+          {
+            "button_id": "r3c9",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r4c8",
+            "reference_status": "no_pose_found",
+            "status": "no_transition_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c5",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r5c8",
+            "reference_status": "no_pose_found",
+            "status": "no_pose_found",
+            "status_changed": false,
+            "relocation_difference_m": null
+          }
+        ],
+        "status_changes": 1,
+        "maximum_common_relocation_change_m": 0.014660115932642881,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "unrequested-digits-articulate/result.json",
+      "result_sha256": "b24489594ee1489bf9d660dd9d441d78efd3325ce4f966a42daadf522dad883b"
+    }
+  ],
+  "anchor_policy": "Recalibrate source contact from same prior per profile",
+  "claim": "Synthetic local-search sensitivity, not calibrated human ergonomics"
+}

@@ -6,6 +6,7 @@ import mink
 import numpy as np
 from numpy.typing import NDArray
 
+from .anatomy import digit_dofs
 from .experiment import SolverSettings
 from .scene import Scene, coupled_initial_pose, diagnostics
 
@@ -20,11 +21,16 @@ def solve_contact(
     contact_required: bool = True,
     finger: str = "index",
     additional_contacts: tuple[tuple[NDArray[np.float64], str, str], ...] = (),
+    additional_contact_required: bool = True,
 ) -> dict[str, Any]:
     model = scene.model
     q0 = coupled_initial_pose(model, initial)
     configuration = mink.Configuration(model, q=q0)
     requirements = ((target, finger, button_id),) + additional_contacts
+    required = [contact_required] + [additional_contact_required] * len(
+        additional_contacts
+    )
+    require_any_contact = any(required)
     contact_tasks: list[mink.Task] = []
     for point, digit, _ in requirements:
         position = mink.FrameTask(
@@ -46,9 +52,14 @@ def solve_contact(
         aggregate = dict(checks[0])
         for key in ("position_error_m", "normal_error_rad"):
             aggregate[key] = max(c[key] for c in checks)
-        aggregate["target_contact_distance_m"] = max(
-            checks, key=lambda c: abs(c["target_contact_distance_m"])
-        )["target_contact_distance_m"]
+        actual_contacts = [c for c, r in zip(checks, required, strict=True) if r]
+        aggregate["target_contact_distance_m"] = (
+            max(actual_contacts, key=lambda c: abs(c["target_contact_distance_m"]))[
+                "target_contact_distance_m"
+            ]
+            if actual_contacts
+            else 0.0
+        )
         if len(checks) > 1:
             aggregate["contact_diagnostics"] = [
                 {"finger": r[1], "button_id": r[2], **c}
@@ -61,18 +72,26 @@ def solve_contact(
     coupled = mink.EqualityConstraintTask(model, cost=1.0)
     # Only requested digits articulate; other digits remain present and frozen.
     active_digits = {r[1] for r in requirements}
-    active_finger_dofs = set(
+    digits = digit_dofs(model)
+    inactive = [
         i
-        for digit in active_digits
-        for i in {"index": range(22, 26), "middle": range(26, 30)}[digit]
-    )
+        for digit, indices in digits.items()
+        if digit not in active_digits
+        for i in indices
+    ]
     frozen = sorted(
         set(
-            [i for i in range(18, model.nv) if i not in active_finger_dofs]
+            (
+                inactive
+                if scene.contact_profile.inactive_digits_policy == "freeze"
+                else []
+            )
             + [int(model.joint(name).dofadr[0]) for name in frozen_joints]
         )
     )
-    constraints = [coupled, mink.DofFreezingTask(model, frozen)]
+    constraints: list[mink.Task] = [coupled]
+    if frozen:
+        constraints.append(mink.DofFreezingTask(model, frozen))
     limits: list[mink.Limit] = [mink.ConfigurationLimit(model)]
     if settings.collision_avoidance:
         limits.append(
@@ -105,7 +124,7 @@ def solve_contact(
                 },
             }
         )
-        if accepted(check, settings, contact_required):
+        if accepted(check, settings, require_any_contact):
             break
         try:
             velocity = mink.solve_ik(
@@ -131,7 +150,7 @@ def solve_contact(
     check = check_contacts()
     return {
         "status": "success"
-        if accepted(check, settings, contact_required)
+        if accepted(check, settings, require_any_contact)
         else "failed",
         "feasible": None,
         "claim": (
@@ -140,12 +159,12 @@ def solve_contact(
         "failure": failure,
         "termination_reason": (
             "accepted_endpoint"
-            if accepted(check, settings, contact_required)
+            if accepted(check, settings, require_any_contact)
             else "solver_error"
             if failure
             else "iteration_budget_exhausted"
         ),
-        "diagnostic_reasons": violation_reasons(check, settings, contact_required),
+        "diagnostic_reasons": violation_reasons(check, settings, require_any_contact),
         "state_semantics": "Kinematic configuration; dynamic state unestablished",
         "qvel_rad_s": None,
         "diagnostics": check,
@@ -156,6 +175,10 @@ def solve_contact(
         "solver_history": history,
         "trajectory": None,
         "contact_required": contact_required,
+        "contact_requirements": [
+            {"finger": r[1], "button_id": r[2], "surface_contact_required": v}
+            for r, v in zip(requirements, required, strict=True)
+        ],
         "unvalidated": [
             "measured keyboard geometry and body placement",
             "button depression/force",

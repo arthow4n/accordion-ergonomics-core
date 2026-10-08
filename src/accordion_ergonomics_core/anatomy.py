@@ -2,7 +2,7 @@
 
 import numpy as np
 
-from ._engine import Spec, mujoco
+from ._engine import Model, Spec, mujoco
 from .profiles import PlayerProfile
 
 
@@ -64,3 +64,29 @@ def transform_anatomy(spec: Spec, player: PlayerProfile) -> None:
         spec.delete(actuator)
     for tendon in list(spec.tendons):
         spec.delete(tendon)
+
+
+def digit_dofs(model: Model) -> dict[str, tuple[int, ...]]:
+    """Bind anatomical digits by imported body subtrees, not coordinate indices."""
+    roots = {
+        "thumb": "firstmc_r",
+        "index": "secondmc_r",
+        "middle": "thirdmc_r",
+        "ring": "fourthmc_r",
+        "little": "fifthmc_r",
+    }
+    result = {}
+    for digit, name in roots.items():
+        root = model.body(name).id
+        bodies = {root}
+        for i in range(root + 1, model.nbody):
+            if int(model.body_parentid[i]) in bodies:
+                bodies.add(i)
+        result[digit] = tuple(
+            int(model.jnt_dofadr[j])
+            for j in range(model.njnt)
+            if int(model.jnt_bodyid[j]) in bodies
+        )
+        if len(result[digit]) != 4:
+            raise ValueError("Pinned digit anatomy has unexpected coordinates")
+    return result

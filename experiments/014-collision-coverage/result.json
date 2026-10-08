@@ -1,0 +1,2819 @@
+{
+  "id": "014-collision-coverage",
+  "input": {
+    "schema_version": 1,
+    "id": "014-collision-coverage",
+    "question": "Which accepted poses contain cross-digit proxy overlaps excluded by imported collision policy?",
+    "poses": [
+      {
+        "id": "single-contact",
+        "result": "../004-profile-recalculation/result.json",
+        "sha256": "fc98301adf768a17a12f7290fcfbe0f6199cbfb6e174b1988142365049e1df6b"
+      },
+      {
+        "id": "two-contact-bb",
+        "result": "../009-two-contacts/r2c4/result.json",
+        "sha256": "3328f4d4be6a93272b17292327d5f7455d994f0558b30f4f91b27397bfdeffce"
+      },
+      {
+        "id": "two-contact-csharp",
+        "result": "../009-two-contacts/r2c5/result.json",
+        "sha256": "8f0704df9ba96d791b47188b999a395872f135447e100f63d081063f60dab360"
+      },
+      {
+        "id": "large-relocation",
+        "result": "../012-large-relocation/endpoint.json",
+        "sha256": "7ac5023a791270176a3092624540e631a7fade7ababd445ed4f9c04237885d61"
+      },
+      {
+        "id": "held-result",
+        "result": "../013-held-index-transition/resulting-gesture/result.json",
+        "sha256": "a25e718019533eff181cfce8e689f034fee30ce199b7ae9b98469751fd956731"
+      }
+    ]
+  },
+  "definition_sha256": "d89efd803947ae1599c0a859564701adf06f2bbfaea08562c7cee0a67e71a768",
+  "status": "coverage_audited",
+  "poses": [
+    {
+      "id": "single-contact",
+      "source": {
+        "id": "single-contact",
+        "result": "../004-profile-recalculation/result.json",
+        "sha256": "fc98301adf768a17a12f7290fcfbe0f6199cbfb6e174b1988142365049e1df6b"
+      },
+      "qpos_rad": [
+        -0.12067596591336266,
+        0.051112754157519306,
+        -0.0511127541575193,
+        0.12067596591336266,
+        -0.024434389792375083,
+        0.19746976240368436,
+        0.08876166087842377,
+        -0.08876166087842377,
+        -0.19746976240368436,
+        0.024434389792375083,
+        0.18059323210569775,
+        0.49866101617092007,
+        -0.18059323210569775,
+        -0.12870181234096836,
+        1.5892974908621782,
+        0.16419982690925058,
+        -0.1655875307000419,
+        0.47857648363616245,
+        2.127624151507682e-17,
+        -4.9003846229222e-18,
+        -4.1476406297662584e-22,
+        3.564926984293268e-22,
+        1.054019406124545,
+        -0.25350942459085224,
+        1.020186302486375,
+        0.7555249475134678,
+        2.2115467879771112e-10,
+        2.91796445184302e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.211546787979763e-10,
+        -8.148912829194521e-28,
+        2.2115467879773922e-10,
+        2.2115467879773922e-10,
+        2.2115467894110523e-10,
+        4.2260793009678716e-23,
+        2.2115467885890568e-10,
+        2.2115467881366255e-10
+      ],
+      "joint_names": [
+        "sternoclavicular_r2_r",
+        "sternoclavicular_r3_r",
+        "unrotscap_r3_r",
+        "unrotscap_r2_r",
+        "acromioclavicular_r2_r",
+        "acromioclavicular_r3_r",
+        "acromioclavicular_r1_r",
+        "unrothum_r1_r",
+        "unrothum_r3_r",
+        "unrothum_r2_r",
+        "elv_angle_r",
+        "shoulder_elv_r",
+        "shoulder1_r2_r",
+        "shoulder_rot_r",
+        "elbow_flexion_r",
+        "pro_sup_r",
+        "deviation_r",
+        "flexion_r",
+        "cmc_flexion",
+        "cmc_abduction",
+        "mp_flexion_r",
+        "ip_flexion_r",
+        "mcp2_flexion_r",
+        "mcp2_abduction_r",
+        "pm2_flexion_r",
+        "md2_flexion_r",
+        "mcp3_flexion_r",
+        "mcp3_abduction_r",
+        "pm3_flexion_r",
+        "md3_flexion",
+        "mcp4_flexion_r",
+        "mcp4_abduction_r",
+        "pm4_flexion",
+        "md4_flexion_r",
+        "mcp5_flexion_r",
+        "mcp5_abduction_r",
+        "pm5_flexion_r",
+        "md5_flexion_r"
+      ],
+      "resolved_profiles": {
+        "instrument": {
+          "column_spacing_m": 0.019,
+          "row_spacing_m": 0.016454482671904334,
+          "button_radius_m": 0.0065,
+          "button_height_m": 0.004,
+          "origin_m": [
+            0.26,
+            0.22,
+            1.25
+          ],
+          "evidence": {
+            "kind": "assumption",
+            "source": "Synthetic laboratory fixture, 2026-10-08",
+            "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+          },
+          "button_travel_m": null,
+          "stagger_columns": [
+            0,
+            0.5,
+            1,
+            0.5,
+            1
+          ],
+          "panel_margin_m": 0.012,
+          "panel_thickness_m": 0.008,
+          "rotation_wxyz": [
+            0.7071067811865476,
+            -0.7071067811865476,
+            0,
+            0
+          ]
+        },
+        "player": {
+          "model": "myoarm_r",
+          "model_mode": "imported_musculoskeletal",
+          "geometric_hand_scale": 1.0,
+          "geometry_evidence": {
+            "kind": "hypothesis",
+            "source": "Wrist-origin geometric perturbation",
+            "note": "Uniform hand scaling is not physiological personalization.",
+            "uncertainty": null
+          },
+          "joint_ranges_rad": {},
+          "provenance": {
+            "kind": "imported_model",
+            "source": "myo-sim 0.2.3",
+            "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+          },
+          "joint_range_evidence": {},
+          "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+        },
+        "setup": {
+          "torso_origin_m": [
+            0,
+            0,
+            1
+          ],
+          "torso_rotation_wxyz": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy laboratory setup",
+            "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+          },
+          "board": {
+            "origin_m": [
+              0.26,
+              0.22,
+              1.25
+            ],
+            "rotation_wxyz": [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0,
+              0
+            ],
+            "provenance": {
+              "kind": "assumption",
+              "source": "Legacy synthetic fixture",
+              "note": "Board orientation and origin unmeasured; quaternion wxyz."
+            }
+          }
+        },
+        "contact": {
+          "inactive_digits_policy": "freeze",
+          "inactive_digits_evidence": {
+            "kind": "assumption",
+            "source": "Laboratory movement restriction",
+            "note": "Unrequested digits freeze by default; a laboratory restriction."
+          },
+          "collision_detection_distance_m": 0.03,
+          "collision_minimum_distance_m": 0,
+          "collision_gain": 0.85,
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy rigid distal-envelope contact",
+            "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+          }
+        },
+        "solver": {
+          "backend": "mink-clarabel",
+          "max_iterations": 400,
+          "integration_dt_s": 0.02,
+          "position_cost": 1.0,
+          "normal_cost": 0.05,
+          "posture_cost": 0.0001,
+          "damping": 1e-06,
+          "position_tolerance_m": 0.0001,
+          "normal_tolerance_rad": 0.05,
+          "joint_tolerance_rad": 1e-06,
+          "equality_tolerance_rad": 1e-06,
+          "penetration_tolerance_m": 0.0001,
+          "collision_avoidance": true
+        }
+      },
+      "provenance": {
+        "compiled_model_sha256": "4e36af2851bfb139457be31e001bab019fdbc56cc41244062d875d39b4031f47",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "6914bf1723bbaadef493129e594da7a93f19a67e9402c2cf25254fec515dc6e0",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "audit": {
+        "anatomical_proxy_count": 36,
+        "mask_counts": [
+          {
+            "contype": 1,
+            "conaffinity": 0,
+            "count": 36
+          }
+        ],
+        "explicit_pairs": [
+          [
+            "thorax_coll1",
+            "humerus_coll_r"
+          ],
+          [
+            "thorax_coll1",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll2",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll3",
+            "radius_coll_r"
+          ]
+        ],
+        "cross_digit_pairs_distance_queried": 230,
+        "overlaps": [
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.010318393721652597,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.009362531798145052,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.007069344342212009,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "thumb",
+              "index"
+            ],
+            "geoms": [
+              "1mcskin_r",
+              "2mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.004260499986233816,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.002681806370492777,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0025663512769169023,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.001755605839961991,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0014703880807874544,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0007724770597937261,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0005364180469541457,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.00043759377347112917,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.00021812909211490691,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ],
+        "unchecked_overlap_count": 12,
+        "claim": "Collision-filter coverage and rigid-proxy overlap, not tissue feasibility",
+        "phalangeal_overlaps": [
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0014703880807874544,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ]
+      },
+      "cameras": {
+        "overview": {
+          "lookat": [
+            0.06,
+            0.1,
+            1.35
+          ],
+          "distance": 1.3,
+          "azimuth": -110.0,
+          "elevation": -12.0
+        },
+        "keyboard": {
+          "lookat": [
+            0.22,
+            0.22,
+            1.18
+          ],
+          "distance": 0.65,
+          "azimuth": -90.0,
+          "elevation": 0.0
+        },
+        "side": {
+          "lookat": [
+            0.2,
+            0.12,
+            1.2
+          ],
+          "distance": 0.85,
+          "azimuth": 180.0,
+          "elevation": 0.0
+        },
+        "hand": {
+          "lookat": [
+            0.26,
+            0.224,
+            1.25
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        },
+        "collision": {
+          "lookat": [
+            0.26,
+            0.224,
+            1.25
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        }
+      },
+      "highlighted_proxy_names": [
+        "proxph3_coll_r",
+        "proxph4_coll_r"
+      ]
+    },
+    {
+      "id": "two-contact-bb",
+      "source": {
+        "id": "two-contact-bb",
+        "result": "../009-two-contacts/r2c4/result.json",
+        "sha256": "3328f4d4be6a93272b17292327d5f7455d994f0558b30f4f91b27397bfdeffce"
+      },
+      "qpos_rad": [
+        -0.060355033833230855,
+        0.025563599040934557,
+        -0.025563599040934557,
+        0.060355033833230855,
+        -0.012220647346397984,
+        0.09876278263619595,
+        0.04439337199303757,
+        -0.04439337199303757,
+        -0.09876278263619595,
+        0.012220647346397984,
+        0.5436597280335345,
+        0.24940096625302008,
+        -0.5436597280335345,
+        -0.20891627506553467,
+        1.2422294028197467,
+        -0.9484255945776915,
+        -0.16649513707367014,
+        0.7726999569377887,
+        2.1276015669925287e-17,
+        -4.898868802279889e-18,
+        -3.3165279360476183e-22,
+        7.056923018541057e-22,
+        0.7999996263514945,
+        -0.2314310899847509,
+        1.119800074100461,
+        0.7098667144719876,
+        1.0936255643303834,
+        -0.2099328552023826,
+        0.0770216233679075,
+        1.3405525597393144,
+        2.1946152309753325e-12,
+        1.0841911539072996e-25,
+        2.1946152280694244e-12,
+        2.1946152280694244e-12,
+        2.1946152832128932e-12,
+        4.9453777413785474e-23,
+        2.1946152280839574e-12,
+        2.194615228073221e-12
+      ],
+      "joint_names": [
+        "sternoclavicular_r2_r",
+        "sternoclavicular_r3_r",
+        "unrotscap_r3_r",
+        "unrotscap_r2_r",
+        "acromioclavicular_r2_r",
+        "acromioclavicular_r3_r",
+        "acromioclavicular_r1_r",
+        "unrothum_r1_r",
+        "unrothum_r3_r",
+        "unrothum_r2_r",
+        "elv_angle_r",
+        "shoulder_elv_r",
+        "shoulder1_r2_r",
+        "shoulder_rot_r",
+        "elbow_flexion_r",
+        "pro_sup_r",
+        "deviation_r",
+        "flexion_r",
+        "cmc_flexion",
+        "cmc_abduction",
+        "mp_flexion_r",
+        "ip_flexion_r",
+        "mcp2_flexion_r",
+        "mcp2_abduction_r",
+        "pm2_flexion_r",
+        "md2_flexion_r",
+        "mcp3_flexion_r",
+        "mcp3_abduction_r",
+        "pm3_flexion_r",
+        "md3_flexion",
+        "mcp4_flexion_r",
+        "mcp4_abduction_r",
+        "pm4_flexion",
+        "md4_flexion_r",
+        "mcp5_flexion_r",
+        "mcp5_abduction_r",
+        "pm5_flexion_r",
+        "md5_flexion_r"
+      ],
+      "resolved_profiles": {
+        "instrument": {
+          "column_spacing_m": 0.019,
+          "row_spacing_m": 0.016454482671904334,
+          "button_radius_m": 0.0065,
+          "button_height_m": 0.004,
+          "origin_m": [
+            0.26,
+            0.22,
+            1.25
+          ],
+          "evidence": {
+            "kind": "assumption",
+            "source": "Synthetic laboratory fixture, 2026-10-08",
+            "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+          },
+          "button_travel_m": null,
+          "stagger_columns": [
+            0,
+            0.5,
+            1,
+            0.5,
+            1
+          ],
+          "panel_margin_m": 0.012,
+          "panel_thickness_m": 0.008,
+          "rotation_wxyz": [
+            0.7071067811865476,
+            -0.7071067811865476,
+            0,
+            0
+          ]
+        },
+        "player": {
+          "model": "myoarm_r",
+          "model_mode": "imported_musculoskeletal",
+          "geometric_hand_scale": 1.0,
+          "geometry_evidence": {
+            "kind": "hypothesis",
+            "source": "Wrist-origin geometric perturbation",
+            "note": "Uniform hand scaling is not physiological personalization.",
+            "uncertainty": null
+          },
+          "joint_ranges_rad": {},
+          "provenance": {
+            "kind": "imported_model",
+            "source": "myo-sim 0.2.3",
+            "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+          },
+          "joint_range_evidence": {},
+          "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+        },
+        "setup": {
+          "torso_origin_m": [
+            0,
+            0,
+            1
+          ],
+          "torso_rotation_wxyz": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy laboratory setup",
+            "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+          },
+          "board": {
+            "origin_m": [
+              0.26,
+              0.22,
+              1.25
+            ],
+            "rotation_wxyz": [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0,
+              0
+            ],
+            "provenance": {
+              "kind": "assumption",
+              "source": "Legacy synthetic fixture",
+              "note": "Board orientation and origin unmeasured; quaternion wxyz."
+            }
+          }
+        },
+        "contact": {
+          "inactive_digits_policy": "freeze",
+          "inactive_digits_evidence": {
+            "kind": "assumption",
+            "source": "Laboratory movement restriction",
+            "note": "Unrequested digits freeze by default; a laboratory restriction."
+          },
+          "collision_detection_distance_m": 0.03,
+          "collision_minimum_distance_m": 0,
+          "collision_gain": 0.85,
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy rigid distal-envelope contact",
+            "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+          }
+        },
+        "solver": {
+          "backend": "mink-clarabel",
+          "max_iterations": 400,
+          "integration_dt_s": 0.02,
+          "position_cost": 1.0,
+          "normal_cost": 0.05,
+          "posture_cost": 0.0001,
+          "damping": 1e-06,
+          "position_tolerance_m": 0.0001,
+          "normal_tolerance_rad": 0.05,
+          "joint_tolerance_rad": 1e-06,
+          "equality_tolerance_rad": 1e-06,
+          "penetration_tolerance_m": 0.0001,
+          "collision_avoidance": true
+        }
+      },
+      "provenance": {
+        "compiled_model_sha256": "d2ff35ce7d346b7b10c3544d1efda0ac8506400b5018f639bb34e94fd535d995",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "6914bf1723bbaadef493129e594da7a93f19a67e9402c2cf25254fec515dc6e0",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "audit": {
+        "anatomical_proxy_count": 36,
+        "mask_counts": [
+          {
+            "contype": 1,
+            "conaffinity": 0,
+            "count": 36
+          }
+        ],
+        "explicit_pairs": [
+          [
+            "thorax_coll1",
+            "humerus_coll_r"
+          ],
+          [
+            "thorax_coll1",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll2",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll3",
+            "radius_coll_r"
+          ]
+        ],
+        "cross_digit_pairs_distance_queried": 230,
+        "overlaps": [
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.010318393721652388,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.009362531798144962,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.009309994918545634,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.008182663702130492,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.007069344342212434,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.006557727323052147,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "thumb",
+              "index"
+            ],
+            "geoms": [
+              "1mcskin_r",
+              "2mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.004260499986234036,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.0031162907940739584,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.002859382565294297,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.00260935563246285,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.002566351276933868,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0017556058399953254,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0014452263836550391,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0008841768477662534,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0005757506977287011,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.00043759377342046483,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0002181290922115449,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ],
+        "unchecked_overlap_count": 17,
+        "claim": "Collision-filter coverage and rigid-proxy overlap, not tissue feasibility",
+        "phalangeal_overlaps": [
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.009309994918545634,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.008182663702130492,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.006557727323052147,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.002859382565294297,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.00260935563246285,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0014452263836550391,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ]
+      },
+      "cameras": {
+        "overview": {
+          "lookat": [
+            0.06,
+            0.1,
+            1.35
+          ],
+          "distance": 1.3,
+          "azimuth": -110.0,
+          "elevation": -12.0
+        },
+        "keyboard": {
+          "lookat": [
+            0.22,
+            0.22,
+            1.18
+          ],
+          "distance": 0.65,
+          "azimuth": -90.0,
+          "elevation": 0.0
+        },
+        "side": {
+          "lookat": [
+            0.2,
+            0.12,
+            1.2
+          ],
+          "distance": 0.85,
+          "azimuth": 180.0,
+          "elevation": 0.0
+        },
+        "hand": {
+          "lookat": [
+            0.26,
+            0.224,
+            1.25
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        },
+        "collision": {
+          "lookat": [
+            0.26,
+            0.224,
+            1.25
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        }
+      },
+      "highlighted_proxy_names": [
+        "midph2_coll_r",
+        "midph3_coll_r"
+      ]
+    },
+    {
+      "id": "two-contact-csharp",
+      "source": {
+        "id": "two-contact-csharp",
+        "result": "../009-two-contacts/r2c5/result.json",
+        "sha256": "8f0704df9ba96d791b47188b999a395872f135447e100f63d081063f60dab360"
+      },
+      "qpos_rad": [
+        -0.13294536935333814,
+        0.05630950561453371,
+        -0.05630950561453371,
+        0.13294536935333814,
+        -0.026918690488899045,
+        0.21754696803273513,
+        0.09778626340865366,
+        -0.09778626340865366,
+        -0.21754696803273513,
+        0.02691869048889904,
+        0.16066510161283823,
+        0.5493610303856947,
+        -0.16066510161283823,
+        -0.09364102749471938,
+        1.604367122988457,
+        0.21503066498955167,
+        -0.16043466520218175,
+        0.5572477311034254,
+        1.872508761978798e-15,
+        -4.909536033332765e-16,
+        1.0741484651339572e-16,
+        4.0051751150011666e-22,
+        0.8449563210727882,
+        -0.26079853414315396,
+        1.244471521706769,
+        0.6375602966780655,
+        1.0714364904759404,
+        -0.09266669498038398,
+        0.39980240953707746,
+        1.1563912199018611,
+        1.839290382736534e-12,
+        -8.148912829194521e-28,
+        1.8392903827365263e-12,
+        1.8392903827365263e-12,
+        1.839290382737842e-12,
+        4.2260793009678716e-23,
+        1.839290382737093e-12,
+        1.8392903827366652e-12
+      ],
+      "joint_names": [
+        "sternoclavicular_r2_r",
+        "sternoclavicular_r3_r",
+        "unrotscap_r3_r",
+        "unrotscap_r2_r",
+        "acromioclavicular_r2_r",
+        "acromioclavicular_r3_r",
+        "acromioclavicular_r1_r",
+        "unrothum_r1_r",
+        "unrothum_r3_r",
+        "unrothum_r2_r",
+        "elv_angle_r",
+        "shoulder_elv_r",
+        "shoulder1_r2_r",
+        "shoulder_rot_r",
+        "elbow_flexion_r",
+        "pro_sup_r",
+        "deviation_r",
+        "flexion_r",
+        "cmc_flexion",
+        "cmc_abduction",
+        "mp_flexion_r",
+        "ip_flexion_r",
+        "mcp2_flexion_r",
+        "mcp2_abduction_r",
+        "pm2_flexion_r",
+        "md2_flexion_r",
+        "mcp3_flexion_r",
+        "mcp3_abduction_r",
+        "pm3_flexion_r",
+        "md3_flexion",
+        "mcp4_flexion_r",
+        "mcp4_abduction_r",
+        "pm4_flexion",
+        "md4_flexion_r",
+        "mcp5_flexion_r",
+        "mcp5_abduction_r",
+        "pm5_flexion_r",
+        "md5_flexion_r"
+      ],
+      "resolved_profiles": {
+        "instrument": {
+          "column_spacing_m": 0.019,
+          "row_spacing_m": 0.016454482671904334,
+          "button_radius_m": 0.0065,
+          "button_height_m": 0.004,
+          "origin_m": [
+            0.26,
+            0.22,
+            1.25
+          ],
+          "evidence": {
+            "kind": "assumption",
+            "source": "Synthetic laboratory fixture, 2026-10-08",
+            "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+          },
+          "button_travel_m": null,
+          "stagger_columns": [
+            0,
+            0.5,
+            1,
+            0.5,
+            1
+          ],
+          "panel_margin_m": 0.012,
+          "panel_thickness_m": 0.008,
+          "rotation_wxyz": [
+            0.7071067811865476,
+            -0.7071067811865476,
+            0,
+            0
+          ]
+        },
+        "player": {
+          "model": "myoarm_r",
+          "model_mode": "imported_musculoskeletal",
+          "geometric_hand_scale": 1.0,
+          "geometry_evidence": {
+            "kind": "hypothesis",
+            "source": "Wrist-origin geometric perturbation",
+            "note": "Uniform hand scaling is not physiological personalization.",
+            "uncertainty": null
+          },
+          "joint_ranges_rad": {},
+          "provenance": {
+            "kind": "imported_model",
+            "source": "myo-sim 0.2.3",
+            "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+          },
+          "joint_range_evidence": {},
+          "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+        },
+        "setup": {
+          "torso_origin_m": [
+            0,
+            0,
+            1
+          ],
+          "torso_rotation_wxyz": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy laboratory setup",
+            "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+          },
+          "board": {
+            "origin_m": [
+              0.26,
+              0.22,
+              1.25
+            ],
+            "rotation_wxyz": [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0,
+              0
+            ],
+            "provenance": {
+              "kind": "assumption",
+              "source": "Legacy synthetic fixture",
+              "note": "Board orientation and origin unmeasured; quaternion wxyz."
+            }
+          }
+        },
+        "contact": {
+          "inactive_digits_policy": "freeze",
+          "inactive_digits_evidence": {
+            "kind": "assumption",
+            "source": "Laboratory movement restriction",
+            "note": "Unrequested digits freeze by default; a laboratory restriction."
+          },
+          "collision_detection_distance_m": 0.03,
+          "collision_minimum_distance_m": 0,
+          "collision_gain": 0.85,
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy rigid distal-envelope contact",
+            "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+          }
+        },
+        "solver": {
+          "backend": "mink-clarabel",
+          "max_iterations": 400,
+          "integration_dt_s": 0.02,
+          "position_cost": 1.0,
+          "normal_cost": 0.05,
+          "posture_cost": 0.0001,
+          "damping": 1e-06,
+          "position_tolerance_m": 0.0001,
+          "normal_tolerance_rad": 0.05,
+          "joint_tolerance_rad": 1e-06,
+          "equality_tolerance_rad": 1e-06,
+          "penetration_tolerance_m": 0.0001,
+          "collision_avoidance": true
+        }
+      },
+      "provenance": {
+        "compiled_model_sha256": "d2ff35ce7d346b7b10c3544d1efda0ac8506400b5018f639bb34e94fd535d995",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "6914bf1723bbaadef493129e594da7a93f19a67e9402c2cf25254fec515dc6e0",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "audit": {
+        "anatomical_proxy_count": 36,
+        "mask_counts": [
+          {
+            "contype": 1,
+            "conaffinity": 0,
+            "count": 36
+          }
+        ],
+        "explicit_pairs": [
+          [
+            "thorax_coll1",
+            "humerus_coll_r"
+          ],
+          [
+            "thorax_coll1",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll2",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll3",
+            "radius_coll_r"
+          ]
+        ],
+        "cross_digit_pairs_distance_queried": 230,
+        "overlaps": [
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.01400048967676035,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.013049635977199494,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.010318393721652394,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.009362531798144908,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.009172964606884087,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.007069344342212543,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0060678304441241695,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.004777242845515225,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "thumb",
+              "index"
+            ],
+            "geoms": [
+              "1mcskin_r",
+              "2mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0042604999862339565,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.003410222319399807,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.002817500767196255,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.002566351276933677,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0020512532800658467,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0017556058399956134,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0009812516965508854,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0006082153133226097,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.0004375937734204926,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.00021812909221214163,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ],
+        "unchecked_overlap_count": 18,
+        "claim": "Collision-filter coverage and rigid-proxy overlap, not tissue feasibility",
+        "phalangeal_overlaps": [
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.01400048967676035,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.013049635977199494,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.009172964606884087,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0060678304441241695,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.004777242845515225,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.003410222319399807,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0020512532800658467,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ]
+      },
+      "cameras": {
+        "overview": {
+          "lookat": [
+            0.06,
+            0.1,
+            1.35
+          ],
+          "distance": 1.3,
+          "azimuth": -110.0,
+          "elevation": -12.0
+        },
+        "keyboard": {
+          "lookat": [
+            0.22,
+            0.22,
+            1.18
+          ],
+          "distance": 0.65,
+          "azimuth": -90.0,
+          "elevation": 0.0
+        },
+        "side": {
+          "lookat": [
+            0.2,
+            0.12,
+            1.2
+          ],
+          "distance": 0.85,
+          "azimuth": 180.0,
+          "elevation": 0.0
+        },
+        "hand": {
+          "lookat": [
+            0.26,
+            0.224,
+            1.25
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        },
+        "collision": {
+          "lookat": [
+            0.26,
+            0.224,
+            1.25
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        }
+      },
+      "highlighted_proxy_names": [
+        "midph2_coll_r",
+        "midph3_coll_r"
+      ]
+    },
+    {
+      "id": "large-relocation",
+      "source": {
+        "id": "large-relocation",
+        "result": "../012-large-relocation/endpoint.json",
+        "sha256": "7ac5023a791270176a3092624540e631a7fade7ababd445ed4f9c04237885d61"
+      },
+      "qpos_rad": [
+        -0.10980805942761424,
+        0.04650961194764652,
+        -0.04650961194764652,
+        0.10980805942761424,
+        -0.02223386327253346,
+        0.17968591542700513,
+        0.08076791147981544,
+        -0.08076791147981544,
+        -0.17968591542700513,
+        0.02223386327253346,
+        1.5451194207188435,
+        0.45375231168435637,
+        -1.5451194207188435,
+        -0.3520050186971236,
+        0.17318658575988688,
+        -1.1925966447520957,
+        -0.13033878210775063,
+        0.6677576954144172,
+        2.087484143504116e-17,
+        -4.195111855331549e-18,
+        2.1321008585977374e-22,
+        3.489407422210887e-21,
+        1.5490558700832417,
+        -0.12232243055438126,
+        0.3586736709247505,
+        1.5264760122791043,
+        2.260713663313645e-11,
+        -4.472674578808033e-25,
+        2.2607136630015006e-11,
+        2.2607136630015006e-11,
+        2.260713662474403e-11,
+        -1.4685664699240346e-24,
+        2.2607136630015006e-11,
+        2.2607136630015006e-11,
+        2.2607136628805804e-11,
+        4.3753857698774e-23,
+        2.260713663007318e-11,
+        2.260713663002969e-11
+      ],
+      "joint_names": [
+        "sternoclavicular_r2_r",
+        "sternoclavicular_r3_r",
+        "unrotscap_r3_r",
+        "unrotscap_r2_r",
+        "acromioclavicular_r2_r",
+        "acromioclavicular_r3_r",
+        "acromioclavicular_r1_r",
+        "unrothum_r1_r",
+        "unrothum_r3_r",
+        "unrothum_r2_r",
+        "elv_angle_r",
+        "shoulder_elv_r",
+        "shoulder1_r2_r",
+        "shoulder_rot_r",
+        "elbow_flexion_r",
+        "pro_sup_r",
+        "deviation_r",
+        "flexion_r",
+        "cmc_flexion",
+        "cmc_abduction",
+        "mp_flexion_r",
+        "ip_flexion_r",
+        "mcp2_flexion_r",
+        "mcp2_abduction_r",
+        "pm2_flexion_r",
+        "md2_flexion_r",
+        "mcp3_flexion_r",
+        "mcp3_abduction_r",
+        "pm3_flexion_r",
+        "md3_flexion",
+        "mcp4_flexion_r",
+        "mcp4_abduction_r",
+        "pm4_flexion",
+        "md4_flexion_r",
+        "mcp5_flexion_r",
+        "mcp5_abduction_r",
+        "pm5_flexion_r",
+        "md5_flexion_r"
+      ],
+      "resolved_profiles": {
+        "instrument": {
+          "column_spacing_m": 0.019,
+          "row_spacing_m": 0.016454482671904334,
+          "button_radius_m": 0.0065,
+          "button_height_m": 0.004,
+          "origin_m": [
+            0.26,
+            0.22,
+            1.25
+          ],
+          "evidence": {
+            "kind": "assumption",
+            "source": "Synthetic laboratory fixture, 2026-10-08",
+            "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+          },
+          "button_travel_m": null,
+          "stagger_columns": [
+            0,
+            0.5,
+            1,
+            0.5,
+            1
+          ],
+          "panel_margin_m": 0.012,
+          "panel_thickness_m": 0.008,
+          "rotation_wxyz": [
+            0.7071067811865476,
+            -0.7071067811865476,
+            0,
+            0
+          ]
+        },
+        "player": {
+          "model": "myoarm_r",
+          "model_mode": "imported_musculoskeletal",
+          "geometric_hand_scale": 1.0,
+          "geometry_evidence": {
+            "kind": "hypothesis",
+            "source": "Wrist-origin geometric perturbation",
+            "note": "Uniform hand scaling is not physiological personalization.",
+            "uncertainty": null
+          },
+          "joint_ranges_rad": {},
+          "provenance": {
+            "kind": "imported_model",
+            "source": "myo-sim 0.2.3",
+            "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+          },
+          "joint_range_evidence": {},
+          "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+        },
+        "setup": {
+          "torso_origin_m": [
+            0,
+            0,
+            1
+          ],
+          "torso_rotation_wxyz": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy laboratory setup",
+            "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+          },
+          "board": {
+            "origin_m": [
+              0.26,
+              0.22,
+              1.25
+            ],
+            "rotation_wxyz": [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0,
+              0
+            ],
+            "provenance": {
+              "kind": "assumption",
+              "source": "Legacy synthetic fixture",
+              "note": "Board orientation and origin unmeasured; quaternion wxyz."
+            }
+          }
+        },
+        "contact": {
+          "inactive_digits_policy": "freeze",
+          "inactive_digits_evidence": {
+            "kind": "assumption",
+            "source": "Laboratory movement restriction",
+            "note": "Unrequested digits freeze by default; a laboratory restriction."
+          },
+          "collision_detection_distance_m": 0.03,
+          "collision_minimum_distance_m": 0,
+          "collision_gain": 0.85,
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy rigid distal-envelope contact",
+            "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+          }
+        },
+        "solver": {
+          "backend": "mink-clarabel",
+          "max_iterations": 400,
+          "integration_dt_s": 0.02,
+          "position_cost": 1.0,
+          "normal_cost": 0.05,
+          "posture_cost": 0.0001,
+          "damping": 1e-06,
+          "position_tolerance_m": 0.0001,
+          "normal_tolerance_rad": 0.05,
+          "joint_tolerance_rad": 1e-06,
+          "equality_tolerance_rad": 1e-06,
+          "penetration_tolerance_m": 0.0001,
+          "collision_avoidance": true
+        }
+      },
+      "provenance": {
+        "compiled_model_sha256": "4e36af2851bfb139457be31e001bab019fdbc56cc41244062d875d39b4031f47",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "6914bf1723bbaadef493129e594da7a93f19a67e9402c2cf25254fec515dc6e0",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "audit": {
+        "anatomical_proxy_count": 36,
+        "mask_counts": [
+          {
+            "contype": 1,
+            "conaffinity": 0,
+            "count": 36
+          }
+        ],
+        "explicit_pairs": [
+          [
+            "thorax_coll1",
+            "humerus_coll_r"
+          ],
+          [
+            "thorax_coll1",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll2",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll3",
+            "radius_coll_r"
+          ]
+        ],
+        "cross_digit_pairs_distance_queried": 230,
+        "overlaps": [
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.010318393721652488,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.00936253179814498,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.007069344342212408,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "thumb",
+              "index"
+            ],
+            "geoms": [
+              "1mcskin_r",
+              "2mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.004260499986233884,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.002681806370523676,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.002566351276932383,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0017556058399920884,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0014703880807824272,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0007724770598490499,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.000437593773425159,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0002392057679722441,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.00021812909220245147,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ],
+        "unchecked_overlap_count": 12,
+        "claim": "Collision-filter coverage and rigid-proxy overlap, not tissue feasibility",
+        "phalangeal_overlaps": [
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0014703880807824272,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ]
+      },
+      "cameras": {
+        "overview": {
+          "lookat": [
+            0.06,
+            0.1,
+            1.35
+          ],
+          "distance": 1.3,
+          "azimuth": -110.0,
+          "elevation": -12.0
+        },
+        "keyboard": {
+          "lookat": [
+            0.22,
+            0.22,
+            1.18
+          ],
+          "distance": 0.65,
+          "azimuth": -90.0,
+          "elevation": 0.0
+        },
+        "side": {
+          "lookat": [
+            0.2,
+            0.12,
+            1.2
+          ],
+          "distance": 0.85,
+          "azimuth": 180.0,
+          "elevation": 0.0
+        },
+        "hand": {
+          "lookat": [
+            0.24354551732809568,
+            0.224,
+            1.0505
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        },
+        "collision": {
+          "lookat": [
+            0.24354551732809568,
+            0.224,
+            1.0505
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        }
+      },
+      "highlighted_proxy_names": [
+        "proxph3_coll_r",
+        "proxph4_coll_r"
+      ]
+    },
+    {
+      "id": "held-result",
+      "source": {
+        "id": "held-result",
+        "result": "../013-held-index-transition/resulting-gesture/result.json",
+        "sha256": "a25e718019533eff181cfce8e689f034fee30ce199b7ae9b98469751fd956731"
+      },
+      "qpos_rad": [
+        -0.05659720371856281,
+        0.023971956120465654,
+        -0.023971956120465654,
+        0.05659720371856281,
+        -0.011459764389295777,
+        0.09261360608492097,
+        0.041629348189686693,
+        -0.041629348189686693,
+        -0.09261360608492097,
+        0.011459764389295777,
+        0.3896378299210046,
+        0.23387274263868932,
+        -0.3896378299210046,
+        -0.3302011396557188,
+        1.3906760345102354,
+        -0.42521443203677645,
+        -0.1250754342356812,
+        0.6805482248820779,
+        2.1274598246506242e-17,
+        -4.898332727746775e-18,
+        -7.620249653200147e-22,
+        2.6671749075220102e-21,
+        0.8018523884452978,
+        -0.06289468927644733,
+        0.9175770618458717,
+        1.0906399701443208,
+        1.0162624549864294,
+        -0.17525331318022758,
+        0.22974860143865106,
+        1.4350885331896321,
+        2.3078309148428784e-11,
+        1.577542082205512e-23,
+        2.3078309147599607e-11,
+        2.3078309147599607e-11,
+        2.307830924800178e-11,
+        5.55951543855471e-22,
+        2.3078309148268683e-11,
+        2.3078309147599594e-11
+      ],
+      "joint_names": [
+        "sternoclavicular_r2_r",
+        "sternoclavicular_r3_r",
+        "unrotscap_r3_r",
+        "unrotscap_r2_r",
+        "acromioclavicular_r2_r",
+        "acromioclavicular_r3_r",
+        "acromioclavicular_r1_r",
+        "unrothum_r1_r",
+        "unrothum_r3_r",
+        "unrothum_r2_r",
+        "elv_angle_r",
+        "shoulder_elv_r",
+        "shoulder1_r2_r",
+        "shoulder_rot_r",
+        "elbow_flexion_r",
+        "pro_sup_r",
+        "deviation_r",
+        "flexion_r",
+        "cmc_flexion",
+        "cmc_abduction",
+        "mp_flexion_r",
+        "ip_flexion_r",
+        "mcp2_flexion_r",
+        "mcp2_abduction_r",
+        "pm2_flexion_r",
+        "md2_flexion_r",
+        "mcp3_flexion_r",
+        "mcp3_abduction_r",
+        "pm3_flexion_r",
+        "md3_flexion",
+        "mcp4_flexion_r",
+        "mcp4_abduction_r",
+        "pm4_flexion",
+        "md4_flexion_r",
+        "mcp5_flexion_r",
+        "mcp5_abduction_r",
+        "pm5_flexion_r",
+        "md5_flexion_r"
+      ],
+      "resolved_profiles": {
+        "instrument": {
+          "column_spacing_m": 0.019,
+          "row_spacing_m": 0.016454482671904334,
+          "button_radius_m": 0.0065,
+          "button_height_m": 0.004,
+          "origin_m": [
+            0.26,
+            0.22,
+            1.25
+          ],
+          "evidence": {
+            "kind": "assumption",
+            "source": "Synthetic laboratory fixture, 2026-10-08",
+            "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+          },
+          "button_travel_m": null,
+          "stagger_columns": [
+            0,
+            0.5,
+            1,
+            0.5,
+            1
+          ],
+          "panel_margin_m": 0.012,
+          "panel_thickness_m": 0.008,
+          "rotation_wxyz": [
+            0.7071067811865476,
+            -0.7071067811865476,
+            0,
+            0
+          ]
+        },
+        "player": {
+          "model": "myoarm_r",
+          "model_mode": "imported_musculoskeletal",
+          "geometric_hand_scale": 1.0,
+          "geometry_evidence": {
+            "kind": "hypothesis",
+            "source": "Wrist-origin geometric perturbation",
+            "note": "Uniform hand scaling is not physiological personalization.",
+            "uncertainty": null
+          },
+          "joint_ranges_rad": {},
+          "provenance": {
+            "kind": "imported_model",
+            "source": "myo-sim 0.2.3",
+            "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+          },
+          "joint_range_evidence": {},
+          "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+        },
+        "setup": {
+          "torso_origin_m": [
+            0,
+            0,
+            1
+          ],
+          "torso_rotation_wxyz": [
+            0,
+            0,
+            0,
+            1
+          ],
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy laboratory setup",
+            "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+          },
+          "board": {
+            "origin_m": [
+              0.26,
+              0.22,
+              1.25
+            ],
+            "rotation_wxyz": [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0,
+              0
+            ],
+            "provenance": {
+              "kind": "assumption",
+              "source": "Legacy synthetic fixture",
+              "note": "Board orientation and origin unmeasured; quaternion wxyz."
+            }
+          }
+        },
+        "contact": {
+          "inactive_digits_policy": "freeze",
+          "inactive_digits_evidence": {
+            "kind": "assumption",
+            "source": "Laboratory movement restriction",
+            "note": "Unrequested digits freeze by default; a laboratory restriction."
+          },
+          "collision_detection_distance_m": 0.03,
+          "collision_minimum_distance_m": 0,
+          "collision_gain": 0.85,
+          "provenance": {
+            "kind": "assumption",
+            "source": "Legacy rigid distal-envelope contact",
+            "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+          }
+        },
+        "solver": {
+          "backend": "mink-clarabel",
+          "max_iterations": 400,
+          "integration_dt_s": 0.02,
+          "position_cost": 1.0,
+          "normal_cost": 0.05,
+          "posture_cost": 0.0001,
+          "damping": 1e-06,
+          "position_tolerance_m": 0.0001,
+          "normal_tolerance_rad": 0.05,
+          "joint_tolerance_rad": 1e-06,
+          "equality_tolerance_rad": 1e-06,
+          "penetration_tolerance_m": 0.0001,
+          "collision_avoidance": true
+        }
+      },
+      "provenance": {
+        "compiled_model_sha256": "d2ff35ce7d346b7b10c3544d1efda0ac8506400b5018f639bb34e94fd535d995",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "6914bf1723bbaadef493129e594da7a93f19a67e9402c2cf25254fec515dc6e0",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "audit": {
+        "anatomical_proxy_count": 36,
+        "mask_counts": [
+          {
+            "contype": 1,
+            "conaffinity": 0,
+            "count": 36
+          }
+        ],
+        "explicit_pairs": [
+          [
+            "thorax_coll1",
+            "humerus_coll_r"
+          ],
+          [
+            "thorax_coll1",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll2",
+            "radius_coll_r"
+          ],
+          [
+            "thorax_coll3",
+            "radius_coll_r"
+          ]
+        ],
+        "cross_digit_pairs_distance_queried": 230,
+        "overlaps": [
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.010318393721652448,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.009362531798144946,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.007069344342212307,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "thumb",
+              "index"
+            ],
+            "geoms": [
+              "1mcskin_r",
+              "2mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0042604999862339635,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "4mcski_r"
+            ],
+            "signed_proxy_distance_m": -0.002963868928963845,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "3mcskin_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0025663512769324246,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0024304481350280738,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "4mcski_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0017556058399919496,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0016883641104553666,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "2mcskin_coll_r",
+              "proxph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0008587036259426299,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0006994333581771721,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5mcskin_r"
+            ],
+            "signed_proxy_distance_m": -0.0004375937734250549,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "proxph2_coll_r",
+              "3mcskin_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0003245855635207809,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "ring",
+              "little"
+            ],
+            "geoms": [
+              "proxph4_coll_r",
+              "5proxph_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.00021812909220205595,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ],
+        "unchecked_overlap_count": 14,
+        "claim": "Collision-filter coverage and rigid-proxy overlap, not tissue feasibility",
+        "phalangeal_overlaps": [
+          {
+            "digits": [
+              "middle",
+              "ring"
+            ],
+            "geoms": [
+              "proxph3_coll_r",
+              "proxph4_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0024304481350280738,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "midph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0016883641104553666,
+            "mask_compatible": false,
+            "explicit_pair": false
+          },
+          {
+            "digits": [
+              "index",
+              "middle"
+            ],
+            "geoms": [
+              "distph2_coll_r",
+              "midph3_coll_r"
+            ],
+            "signed_proxy_distance_m": -0.0006994333581771721,
+            "mask_compatible": false,
+            "explicit_pair": false
+          }
+        ]
+      },
+      "cameras": {
+        "overview": {
+          "lookat": [
+            0.06,
+            0.1,
+            1.35
+          ],
+          "distance": 1.3,
+          "azimuth": -110.0,
+          "elevation": -12.0
+        },
+        "keyboard": {
+          "lookat": [
+            0.22,
+            0.22,
+            1.18
+          ],
+          "distance": 0.65,
+          "azimuth": -90.0,
+          "elevation": 0.0
+        },
+        "side": {
+          "lookat": [
+            0.2,
+            0.12,
+            1.2
+          ],
+          "distance": 0.85,
+          "azimuth": 180.0,
+          "elevation": 0.0
+        },
+        "hand": {
+          "lookat": [
+            0.26,
+            0.224,
+            1.25
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        },
+        "collision": {
+          "lookat": [
+            0.26,
+            0.224,
+            1.25
+          ],
+          "distance": 0.28,
+          "azimuth": -65.0,
+          "elevation": -25.0
+        }
+      },
+      "highlighted_proxy_names": [
+        "proxph3_coll_r",
+        "proxph4_coll_r"
+      ]
+    }
+  ],
+  "physical_feasibility": null,
+  "interpretation": "Unchecked proxy overlaps need envelope and human-pose validation; enabling every pair is not automatically a valid repair"
+}

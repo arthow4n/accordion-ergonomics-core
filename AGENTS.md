@@ -34,3 +34,10 @@ with uv. It archives the executed source; direct long runs can record hashes
 of files different from cached modules. Treat changing search outcomes as
 numerical/model evidence, not global human reachability. Refine borderline
 withdrawal edges before attributing failures to instrument spacing.
+
+Before interpreting accepted poses as collision-valid anatomy, read experiment
+014 and run `uv run aec collision-coverage` on recorded pose inputs. Imported
+anatomical masks suppress automatic self-collision; four explicit thorax/arm
+pairs do not cover fingers. Independent proxy distances and observed/calibrated
+envelopes are necessary. Do not repair this by blindly enabling all pairs or
+shrinking envelopes until IK succeeds. State contacts require explicit fingers.

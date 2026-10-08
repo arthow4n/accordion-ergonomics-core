@@ -1,22 +1,35 @@
-# Next falsifiable questions
+# Next falsifiable questions after the parameterized action laboratory
 
-The first milestone tests infrastructure and a static contact proxy. It does
-not complete a trustworthy playing model.
+Experiments 004–014 establish parameter-bound recalculation, multi-start poses,
+withdrawal/seeded path search, a full index atlas, geometry/hand hypotheses,
+large-relocation model action selection and small held-contact task solving.
+They do not establish human playing feasibility. The collision audit changes
+the next priority: accepted dual-contact poses contain unchecked phalangeal
+proxy overlap up to 14 mm.
 
-1. Repeat single-contact solves with multiple starting postures; preserve candidates and diagnose frozen-finger/regularization bias. Calibrate the board and body placement before interpreting angle magnitudes as real playing.
-2. Compare finger-only movement from a fixed arm/palm with arm-enabled movement. Seek a distant grid target relieved by relocation and a nearby grid target forcing a near-limit pose. Report joint/palm changes independently; avoid calling them comfortable merely because IK succeeds.
-3. Add approach/contact/release paths with collision checking and maximum-step refinement. IK iteration order is solver history, **not** a physical trajectory. A valid endpoint pair does not establish reachability between them.
-4. Add multiple contacts and held events while preserving all requested contact states. Experiment input uses a contacts collection already, but the first solver rejects unsupported simultaneous requests explicitly.
-5. Explore reachable actions from a saved physical state under explicit palm/arm movement budgets, then passages/button-and-finger search and targeted challenge generation.
+1. Validate hand envelopes against measured segment widths and observed playing
+   poses using the measurement protocol. Decide which overlap composes one
+   envelope and which must be prohibited. Enabling all imported self-pairs
+   blindly rejects even the reference pose. Do not tune geometry merely until
+   the desired solver result succeeds.
+2. Calibrate board metrics and one shoulder/torso/instrument placement. Recompute
+   single/dual-contact, atlas and sensitivity studies under new profiles. Keep
+   synthetic studies as a matched reference; separate model change from planner
+   resolution sensitivity.
+3. With defensible collision coverage, revisit dual-contact and held-task poses,
+   then extend diverse candidate/transition exploration beyond the index. Carry
+   explicit contact preservation and named fingers through every playing state.
+4. Develop validated individual segment transforms if calibration supports them.
+   Uniform geometric hand scale is a sensitivity hypothesis, not anatomical
+   personalization. Imported muscle paths and parameters cannot simply inherit
+   independently altered finger lengths.
+5. Add approach/depression/release constraints when cap geometry and travel are
+   measured. Force, timing and physiological effort need their own evidence.
+6. Expand sequences and deliberate challenges after these gates, then investigate
+   whether a reduced representation preserves useful physical predictions.
 
-Maintain the boundary: musical intent -> finite physical buttons -> articulated
-configurations/contact trajectories -> measured diagnostics -> search.
-Candidate measurements include per-joint range margins, wrist/forearm angles,
-palm displacement/rotation, elbow/shoulder excursion and contact preservation.
-A difficulty scalar is not required. Local solver failure means “not found”,
-not “physically impossible”; impossibility needs a validated constraint or
-search certificate. Feasibility remains nullable while essential constraints
-are unvalidated.
-
-The eventual browser runtime may use a reduced or fitted model, but only after
-the lab establishes what the representation predicts reliably.
+Maintain the boundary: musical intent → finite buttons → articulated contact
+trajectories → physical diagnostics → search. Keep multidimensional descriptors,
+not a universal difficulty scalar. Local failures mean "not found"; sampled
+paths do not certify unsampled intervals. Browser runtime remains a later derived
+representation, not a constraint on the lab.

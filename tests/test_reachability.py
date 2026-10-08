@@ -74,3 +74,29 @@ def test_sensitivity_distinguishes_search_change_from_quantitative_change() -> N
     assert c["status_changes"] == 1
     assert c["maximum_common_relocation_change_m"] == pytest.approx(0.015)
     assert c["changes"][1]["relocation_difference_m"] is None
+
+
+def test_query_rejects_wrong_declared_contact_before_search(tmp_path: Path) -> None:
+    import hashlib
+    import json
+
+    from accordion_ergonomics_core.domain import ContactRequirement
+
+    e = load_input(Path("experiments/004-profile-recalculation/experiment.json"))
+    scene = build_scene(e.geometry)
+    baseline = json.loads(
+        Path("experiments/004-profile-recalculation/result.json").read_text()
+    )
+    profile = hashlib.sha256(
+        json.dumps(e.resolved_profiles(), sort_keys=True, allow_nan=False).encode()
+    ).hexdigest()
+    state = PlayingState(
+        tuple(baseline["joint_names"]),
+        tuple(baseline["qpos_rad"]),
+        profile,
+        (ContactRequirement("r1c9", "index"),),
+    )
+    with pytest.raises(ValueError, match="declared contact"):
+        reachable_actions(
+            state, scene, e, (), CandidateSettings(()), PlanningSettings(), tmp_path
+        )

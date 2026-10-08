@@ -15,6 +15,7 @@ def render_views(
     target: list[float],
     button_id: str,
     collision_overlay: bool = False,
+    highlighted_proxy_names: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     output.mkdir(parents=True, exist_ok=True)
     views = {
@@ -71,6 +72,8 @@ def render_views(
                         if contact.dist < 0:
                             for geom_id in (int(contact.geom1), int(contact.geom2)):
                                 scene.model.geom_rgba[geom_id] = [1.0, 0.1, 0.1, 0.9]
+                    for proxy_name in highlighted_proxy_names:
+                        scene.model.geom(proxy_name).rgba[:] = [0.95, 0.1, 0.9, 1.0]
                 camera = mujoco.MjvCamera()
                 camera.type = mujoco.mjtCamera.mjCAMERA_FREE
                 camera.lookat[:] = settings["lookat"]
@@ -89,7 +92,9 @@ def render_views(
                 draw.text(
                     (12, 26),
                     (
-                        "Board axes: red outward / green down (higher pitch) / "
+                        "Magenta: unchecked proxy overlap; not engine contact"
+                        if name == "collision" and highlighted_proxy_names
+                        else "Board axes: red outward / green down (higher pitch) / "
                         "blue surface normal"
                     ),
                     fill=(220, 225, 230),

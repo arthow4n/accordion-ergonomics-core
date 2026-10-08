@@ -11,9 +11,11 @@ Explicit profiles now support recalculation; multi-start contact discovery and
 seeded withdrawal/path search preserve diverse configurations and trajectories.
 A 62-button index atlas and parameter sweeps quantify discovered movement;
 small simultaneous contacts and explicit geometric hand hypotheses are supported.
+Atlas-derived model challenges and held-contact waypoint search are reproducible.
 
-**Current result: a static kinematic candidate on assumed geometry. Real playing
-feasibility, button operation and continuous transitions are not yet established.**
+**Current results are sampled kinematic predictions on assumed geometry with
+incomplete anatomical self-collision coverage. Real playing feasibility,
+button operation and continuous validity are not established.**
 See [RESEARCH_LOG.md](RESEARCH_LOG.md) for findings and failed investigations.
 
 ## Reproduce
@@ -32,6 +34,9 @@ uv run aec explore experiments/005-pose-diversity/experiment.json
 uv run aec plan experiments/006-transition-search/experiment.json
 uv run aec frozen atlas experiments/007-index-atlas/experiment.json --output artifacts/atlas
 uv run aec frozen sweep experiments/008-geometry-sensitivity/experiment.json --output artifacts/sensitivity
+uv run aec frozen exercise experiments/012-large-relocation/experiment.json --output artifacts/exercise
+uv run aec frozen held experiments/013-held-index-transition/experiment.json --output artifacts/held
+uv run aec frozen collision-coverage experiments/014-collision-coverage/experiment.json --output artifacts/coverage
 ```
 
 The experiment writes structured input/state/solver history/diagnostics/version
@@ -59,4 +64,7 @@ Finite topology, metric geometry, anatomical model constraints, numerical
 solver weights and ergonomic hypotheses have distinct provenance. Unknown
 button travel is represented by null. No grid-distance difficulty or universal
 ergonomic score is implemented. Contact requests are a collection; unsupported
-chords are rejected explicitly until the solver can validate them.
+gestures beyond the implemented index/middle pair are rejected explicitly.
+The latest collision audit reveals unchecked finger-proxy overlaps even in
+accepted gestures. See [014](experiments/014-collision-coverage/notes.md) and the
+measurement protocol before treating a solver acceptance as human feasibility.

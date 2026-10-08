@@ -56,3 +56,14 @@ archives and executes immutable package source. Replay its exact algorithm with
 lock and instrument/anatomy inputs; source isolation does not calibrate physics.
 Search-resolution failures near collision tolerance need refinement before any
 measurement sensitivity is interpreted as a physical boundary.
+
+For accepted but implausible multi-contact poses, run
+`uv run aec frozen collision-coverage experiments/014-collision-coverage/experiment.json
+--output artifacts/coverage` and inspect the highlighted collision view. Adapt
+the definition with pose paths and SHA256 values to audit new candidates. The
+auditor independently queries cross-digit proxies, even when masks suppress
+engine contacts. Magenta is unchecked overlap, not engine-reported penetration.
+The imported 36 proxies have no automatic self-mask compatibility and only four
+explicit thorax/arm pairs. Separate intentional envelope composition from
+forbidden finger penetration; both tissue geometry and human pose validation
+remain required. A zero detected-penetration result is not complete clearance.

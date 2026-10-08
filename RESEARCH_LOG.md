@@ -1,5 +1,43 @@
 # Research log
 
+## 2026-10-08 — Held tasks and large-relocation selection expose a collision-coverage boundary
+
+[012](experiments/012-large-relocation/notes.md) selects a model next action from
+the physical atlas: C4→G6 with **300.29 mm discovered palm relocation**, 480.12 mm
+sampled palm path. A finer 2,230-sample audit passes existing constraints.
+This is a selected realization, not proof that the action requires that movement
+or a validated human exercise. Explicit finger-bound states/actions/trajectories
+and independently checked endpoint exports preserve the physical question.
+
+[013](experiments/013-held-index-transition/notes.md) holds index C4 while middle
+moves Bb3→C#4. Direct interpolation is collision-clear under current coverage
+but loses index contact by **25.66 mm**. Incremental withdrawal/translation/
+approach finds 43 configurations whose 855-sample audit retains contact within
+0.08307 mm; a twice-finer regression also passes. The resulting gesture is a
+new endpoint, independently revalidated. Force and continuous validity remain
+unknown. [011](experiments/011-inactive-digit-policy/notes.md) allows unused
+digit articulation: one additional endpoint in six queries, no additional path
+within budget. Search failures remain distinct from impossibility.
+
+**Important falsification:** [014](experiments/014-collision-coverage/notes.md)
+finds all 36 imported anatomical proxies suppress automatic self-collision.
+Four explicit pairs cover thorax/arm only. Independent cross-digit distances
+find up to **14.00 mm unchecked phalangeal overlap** in an accepted dual contact;
+even the single-contact reference has 1.47 mm. These numerical contact successes
+do not establish full anatomical nonpenetration. Simply enabling all pairs
+would also reject intentional palm-envelope composition and the reference.
+
+![Unchecked phalangeal proxies highlighted magenta](experiments/014-collision-coverage/renders/two-contact-csharp/collision.png)
+
+**Validation:** 37 tests pass with Ruff and ty; frozen executed source and current
+dependency metadata accompany new records. Rendering restores model arrays.
+The next scientifically grounded step is validating hand envelopes and observed
+playing poses, then measured board/body setup and button operation. Expanded
+[measurement protocol](docs/research/frames-and-measurements.md) specifies raw
+observations, uncertainty, frames and calibration acceptance. Further human
+ergonomic inference is not justified by adding more searches to this unvalidated
+world; preserve the synthetic laboratory and rerun its studies after calibration.
+
 ## 2026-10-08 — Full-board atlas and parameter sensitivity, with a numerical falsification
 
 [007](experiments/007-index-atlas/notes.md) explores all 62 buttons from C4 with

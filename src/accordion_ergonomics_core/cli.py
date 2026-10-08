@@ -183,7 +183,17 @@ def main() -> None:
     frozen = sub.add_parser("frozen")
     frozen.add_argument(
         "workflow",
-        choices=("atlas", "sweep", "explore", "plan", "experiment", "render"),
+        choices=(
+            "atlas",
+            "sweep",
+            "explore",
+            "plan",
+            "experiment",
+            "render",
+            "exercise",
+            "held",
+            "collision-coverage",
+        ),
     )
     frozen.add_argument("definition", type=Path)
     frozen.add_argument("--output", type=Path, required=True)
@@ -191,6 +201,17 @@ def main() -> None:
     diagram = sub.add_parser("atlas-render")
     diagram.add_argument("result", type=Path)
     diagram.add_argument("--output", type=Path, default=Path("artifacts/atlas.png"))
+    exercise = sub.add_parser("exercise")
+    exercise.add_argument("definition", type=Path)
+    exercise.add_argument("--output", type=Path, default=Path("artifacts/exercise"))
+    held = sub.add_parser("held")
+    held.add_argument("definition", type=Path)
+    held.add_argument("--output", type=Path, default=Path("artifacts/held"))
+    coverage = sub.add_parser("collision-coverage")
+    coverage.add_argument("definition", type=Path)
+    coverage.add_argument(
+        "--output", type=Path, default=Path("artifacts/collision-coverage")
+    )
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -201,6 +222,31 @@ def main() -> None:
             [sys.executable, "-m", "pytest"],
         ):
             subprocess.run(command, check=True)
+    elif args.command == "collision-coverage":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .collision_coverage import run_coverage
+
+        result = run_coverage(args.definition, args.output)
+        print(json.dumps({"status": result["status"], "poses": len(result["poses"])}))
+    elif args.command == "held":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .held import run_held
+
+        result = run_held(args.definition, args.output)
+        print(json.dumps({"status": result["status"], "failure": result["failure"]}))
+    elif args.command == "exercise":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .exercise import run_exercise
+
+        result = run_exercise(args.definition, args.output)
+        print(
+            json.dumps(
+                {
+                    "status": result["status"],
+                    "relocation_m": result.get("selected_endpoint_relocation_m"),
+                }
+            )
+        )
     elif args.command == "atlas-render":
         from .reachability import render_atlas
 

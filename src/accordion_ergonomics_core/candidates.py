@@ -7,7 +7,13 @@ from typing import Any
 import numpy as np
 
 from ._engine import mujoco
-from .domain import CandidateRealization, PhysicalDescriptors, PlayingState
+from .anatomy import digit_dofs
+from .domain import (
+    CandidateRealization,
+    ContactRequirement,
+    PhysicalDescriptors,
+    PlayingState,
+)
 from .experiment import Experiment
 from .instrument import button_at
 from .scene import Scene, coupled_initial_pose
@@ -63,6 +69,11 @@ def descriptors(scene: Scene) -> PhysicalDescriptors:
                 "md2_flexion_r",
             )
         ),
+        {
+            digit: tuple(float(data.qpos[i]) for i in indices)
+            for digit, indices in digit_dofs(model).items()
+            if digit != "index"
+        },
     )
 
 
@@ -145,7 +156,10 @@ def discover_candidates(
             physical = descriptors(scene)
             candidate = CandidateRealization(
                 PlayingState(
-                    tuple(names), tuple(result["qpos_rad"]), profile_hash, (button.id,)
+                    tuple(names),
+                    tuple(result["qpos_rad"]),
+                    profile_hash,
+                    (ContactRequirement(button.id, contact.finger),),
                 ),
                 physical,
                 str(index),

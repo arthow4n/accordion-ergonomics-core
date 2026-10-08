@@ -28,6 +28,7 @@ def test_render_refreshes_pose_and_restores_model(tmp_path: Path) -> None:
             state["target"]["surface_world_m"],
             state["target"]["button_id"],
             collision_overlay=True,
+            highlighted_proxy_names=("proxph3_coll_r", "proxph4_coll_r"),
         )
         assert compiled_model_digest(scene.model) == original
         np.testing.assert_allclose(

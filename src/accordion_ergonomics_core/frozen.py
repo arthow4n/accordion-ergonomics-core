@@ -14,7 +14,17 @@ def frozen_run(
     workflow: str, definition: Path, output: Path, source_snapshot: Path | None = None
 ) -> None:
     """Use the current locked environment with a frozen package-source snapshot."""
-    if workflow not in ("atlas", "sweep", "explore", "plan", "experiment", "render"):
+    if workflow not in (
+        "atlas",
+        "sweep",
+        "explore",
+        "plan",
+        "experiment",
+        "render",
+        "exercise",
+        "held",
+        "collision-coverage",
+    ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)
     snapshot = output / "source-snapshot.zip"

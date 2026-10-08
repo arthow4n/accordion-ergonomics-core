@@ -102,6 +102,14 @@ class SetupProfile:
 
 @dataclass(frozen=True)
 class ContactProfile:
+    inactive_digits_policy: str = "freeze"
+    inactive_digits_evidence: dict[str, Any] = field(
+        default_factory=lambda: {
+            "kind": "assumption",
+            "source": "Laboratory movement restriction",
+            "note": "Unrequested digits freeze by default; a laboratory restriction.",
+        }
+    )
     collision_detection_distance_m: float = 0.03
     collision_minimum_distance_m: float = 0.0
     collision_gain: float = 0.85
@@ -114,6 +122,8 @@ class ContactProfile:
     )
 
     def __post_init__(self) -> None:
+        if self.inactive_digits_policy not in ("freeze", "allow_articulation"):
+            raise ValueError("Unsupported inactive digit policy")
         values = (
             self.collision_detection_distance_m,
             self.collision_minimum_distance_m,

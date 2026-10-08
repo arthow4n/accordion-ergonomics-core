@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "id": "011-inactive-digit-policy",
+  "question": "How much does freezing unrequested digits restrict discovered next actions?",
+  "atlas_definition": "../007-index-atlas/experiment.json",
+  "atlas_definition_sha256": "29cb8c58c76f1c5251ddcf6496f3228c6990cd9d1a9a0774153d5931f4d1cd82",
+  "targets": [
+    {
+      "row": 1,
+      "column": 9,
+      "finger": "index"
+    },
+    {
+      "row": 3,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 3,
+      "column": 9,
+      "finger": "index"
+    },
+    {
+      "row": 4,
+      "column": 8,
+      "finger": "index"
+    },
+    {
+      "row": 5,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 5,
+      "column": 8,
+      "finger": "index"
+    }
+  ],
+  "cases": [
+    {
+      "id": "reference",
+      "patch": {}
+    },
+    {
+      "id": "unrequested-digits-articulate",
+      "patch": {
+        "physical_contact": {
+          "inactive_digits_policy": "allow_articulation",
+          "inactive_digits_evidence": {
+            "kind": "assumption",
+            "source": "Movement-policy ablation",
+            "note": "Unrequested digits may move within imported ranges; complete self-collision remains unvalidated."
+          }
+        }
+      }
+    }
+  ]
+}

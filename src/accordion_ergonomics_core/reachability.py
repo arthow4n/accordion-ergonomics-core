@@ -11,12 +11,13 @@ from PIL import Image, ImageDraw
 
 from .candidates import CandidateSettings, discover_candidates
 from .cli import run_experiment
-from .domain import PlayingState
+from .domain import ContactRequirement, PlayingState
 from .experiment import ContactRequest, Experiment
 from .exploration import read_hashed
 from .instrument import button_at, buttons
 from .planning import PlanningSettings, plan_transition
-from .scene import Scene, build_scene
+from .scene import Scene, build_scene, diagnostics
+from .solver import accepted
 
 
 def reachable_actions(
@@ -39,6 +40,33 @@ def reachable_actions(
         raise ValueError("State parameter profile differs; recalibrate the anchor")
     if names != state.joint_names:
         raise ValueError("State coordinate names do not match player model")
+    scene.data.qpos[:] = state.joint_angles_rad
+    if state.contacts:
+        for requirement in state.contacts:
+            button = next((b for b in buttons() if b.id == requirement.button_id), None)
+            if button is None:
+                raise ValueError("Unknown current contact button")
+            check = diagnostics(
+                scene,
+                experiment.geometry.surface_world_m(button),
+                button.id,
+                requirement.finger,
+            )
+            if not accepted(check, experiment.solver):
+                raise ValueError(
+                    "Current playing state violates declared contact constraints"
+                )
+    else:
+        check = diagnostics(scene, experiment.geometry.surface_world_m(button_at(1, 5)))
+        if any(
+            check[k] > v
+            for k, v in (
+                ("max_penetration_m", experiment.solver.penetration_tolerance_m),
+                ("joint_max_violation_rad", experiment.solver.joint_tolerance_rad),
+                ("equality_max_residual_rad", experiment.solver.equality_tolerance_rad),
+            )
+        ):
+            raise ValueError("Current unanchored state violates model constraints")
     output.mkdir(parents=True, exist_ok=True)
     actions = []
     for request in requests:
@@ -88,7 +116,7 @@ def reachable_actions(
             "best_discovered_relocation_m": min(
                 (p["endpoint_relocation_m"] for p in found), default=None
             ),
-            "contacts_allowed_to_release": state.contacts,
+            "contacts_allowed_to_release": [asdict(c) for c in state.contacts],
             "required_preserved_contacts": [],
             "claim": "Finite rigid-proxy search; human feasibility unknown",
         }
@@ -267,7 +295,12 @@ def run_atlas(definition: Path, output: Path) -> dict[str, Any]:
             tuple(anchor["joint_names"]),
             tuple(anchor["qpos_rad"]),
             anchor["profiles_sha256"],
-            (anchor["target"]["button_id"],),
+            (
+                ContactRequirement(
+                    anchor["target"]["button_id"],
+                    anchor["input"]["contacts"][0]["finger"],
+                ),
+            ),
         )
         result["state"] = asdict(state)
         result["actions"] = reachable_actions(
