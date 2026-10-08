@@ -6,7 +6,7 @@
 joint interpolation? **Negative result:** no for this supplied path.
 
 [Experiment 003](experiments/003-transition-counterexample/notes.md) interpolates
-C4/r1c5 to E5/r1c9 through 101 samples. Both endpoints pass; all sampled joint
+C4/r1c5 to C5/r1c9 through 101 samples. Both endpoints pass; all sampled joint
 ranges and shoulder couplings pass. Yet 95 samples exceed the collision
 tolerance, peaking at **13.49 mm** penetration of the hand/metacarpal proxy
 into the board at progress 0.33.
@@ -25,10 +25,15 @@ bone meshes cannot show; penetrating objects appear red. Four standard views
 remain available, and the worst state can be rendered directly from the saved
 record. All five views reproduced identically locally.
 
-**Validation:** canonical checks now include 17 tests. The new regression checks
-both valid endpoints, preserved ranges/couplings and the intermediate collision.
+**Validation:** canonical checks now include 17 tests. The final implementation
+passed [remote CI](https://github.com/arthow4n/accordion-ergonomics-core/actions/runs/37708173931),
+including locked setup, Ruff, ty, all tests and EGL reproduction. The new
+regression checks both valid endpoints, preserved ranges/couplings and the
+intermediate collision.
 `aec transition` records every sample, input/state hashes and rejection reason.
 Updated the repository contact skill with the display-group failure mode.
+A prose endpoint label was corrected from E5 to C5: r1c9 is MIDI 72. The
+stored mapping, poses and numerical experiment were already correct.
 
 **Next direction:** explicit withdrawal/approach trajectories, continuous or
 adaptive collision checking, then multi-start pose comparisons and calibration.

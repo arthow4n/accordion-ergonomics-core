@@ -1,7 +1,7 @@
 # 003 — Valid endpoints do not imply a valid supplied path
 
 Linearly interpolate the 38 hinge coordinates between accepted C4/r1c5 and
-E5/r1c9 endpoint configurations. Inputs identify both immutable result files
+C5/r1c9 endpoint configurations. Inputs identify both immutable result files
 with SHA-256 checks. Sample 101 equally spaced dimensionless progress values.
 The start contact may release; no held-contact constraint or tempo is assumed.
 
