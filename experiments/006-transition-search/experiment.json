@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "006-transition-search",
+  "question": "Can withdrawal and seeded bidirectional search connect the endpoints whose direct interpolation collides?",
+  "start_result": "../004-profile-recalculation/result.json",
+  "end_result": "../002-arm-ablation/r1c9-arm-enabled/result.json",
+  "planning": {
+    "withdrawal_depths_m": [
+      0.02,
+      0.04,
+      0.08,
+      0.12,
+      0.18
+    ],
+    "max_joint_step_rad": 0.005,
+    "waypoint_iterations": 160,
+    "withdrawal_step_m": 0.005,
+    "rrt_iterations": 1500,
+    "rrt_step_rad": 0.15,
+    "rrt_bound_expansion_rad": 0.4,
+    "seed": 614
+  },
+  "start_sha256": "fc98301adf768a17a12f7290fcfbe0f6199cbfb6e174b1988142365049e1df6b",
+  "end_sha256": "4ff429078ee5657d386c9ff4fb3320bcb01cb85ac211afc9bfd2bdeca59a496c"
+}

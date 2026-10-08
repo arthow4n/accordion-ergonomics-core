@@ -129,6 +129,14 @@ def main() -> None:
     transition = sub.add_parser("transition")
     transition.add_argument("definition", type=Path)
     transition.add_argument("--output", type=Path, default=Path("artifacts/transition"))
+    exploration = sub.add_parser("explore")
+    exploration.add_argument("definition", type=Path)
+    exploration.add_argument("--output", type=Path, default=Path("artifacts/explore"))
+    exploration.add_argument("--no-render", action="store_true")
+    planning = sub.add_parser("plan")
+    planning.add_argument("definition", type=Path)
+    planning.add_argument("--output", type=Path, default=Path("artifacts/plan"))
+    planning.add_argument("--no-render", action="store_true")
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -139,6 +147,29 @@ def main() -> None:
             [sys.executable, "-m", "pytest"],
         ):
             subprocess.run(command, check=True)
+    elif args.command == "plan":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .exploration import run_planning
+
+        result = run_planning(args.definition, args.output, not args.no_render)
+        print(
+            json.dumps({"status": result["status"], "elapsed_s": result["elapsed_s"]})
+        )
+    elif args.command == "explore":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .exploration import run_exploration
+
+        result = run_exploration(args.definition, args.output, not args.no_render)
+        print(
+            json.dumps(
+                {
+                    "targets": [
+                        {"button": t["button_id"], "candidates": len(t["candidates"])}
+                        for t in result["targets"]
+                    ]
+                }
+            )
+        )
     elif args.command == "transition":
         from .transition import run_transition
 

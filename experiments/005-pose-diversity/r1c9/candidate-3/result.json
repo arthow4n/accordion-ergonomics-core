@@ -1,0 +1,661 @@
+{
+  "status": "success",
+  "feasible": null,
+  "claim": "Static kinematic candidate only; playing feasibility is unestablished",
+  "failure": null,
+  "termination_reason": "accepted_endpoint",
+  "diagnostic_reasons": [],
+  "state_semantics": "Kinematic configuration; dynamic state unestablished",
+  "qvel_rad_s": null,
+  "diagnostics": {
+    "target_contact_distance_m": 9.406169812702466e-06,
+    "position_error_m": 9.698858617554813e-06,
+    "normal_error_rad": 3.2930699803509776e-05,
+    "equality_max_residual_rad": 1.3877787807814457e-17,
+    "joint_max_violation_rad": 0.0,
+    "joint_margins_rad": {
+      "sternoclavicular_r2_r": 0.09110261966359406,
+      "sternoclavicular_r3_r": 0.038586853369910704,
+      "unrotscap_r3_r": 0.038586853369910704,
+      "unrotscap_r2_r": 0.09110261966359406,
+      "acromioclavicular_r2_r": 0.01844639819634756,
+      "acromioclavicular_r3_r": 0.1490770139949721,
+      "acromioclavicular_r1_r": 0.06700936487652785,
+      "unrothum_r1_r": 0.06700936487652785,
+      "unrothum_r3_r": 0.1490770139949721,
+      "unrothum_r2_r": 0.01844639819634756,
+      "elv_angle_r": 1.9349469621015138,
+      "shoulder_elv_r": 0.37645710604790933,
+      "shoulder1_r2_r": 1.9079469621015137,
+      "shoulder_rot_r": 1.3945972673574132,
+      "elbow_flexion_r": 0.9475549965143253,
+      "pro_sup_r": 1.304590302007343,
+      "deviation_r": 0.21020530537107232,
+      "flexion_r": 0.2228192562984015,
+      "cmc_flexion": 0.7,
+      "cmc_abduction": 0.5,
+      "mp_flexion_r": 0.698132,
+      "ip_flexion_r": 0.436332,
+      "mcp2_flexion_r": 0.41216621844809453,
+      "mcp2_abduction_r": 0.03954721114434229,
+      "pm2_flexion_r": 0.6090803047322236,
+      "md2_flexion_r": 0.6220544502246996,
+      "mcp3_flexion_r": 2.287955542966819e-11,
+      "mcp3_abduction_r": 0.261799,
+      "pm3_flexion_r": 2.2879555429668744e-11,
+      "md3_flexion": 2.2879555429668744e-11,
+      "mcp4_flexion_r": 2.2879555429673745e-11,
+      "mcp4_abduction_r": 0.261799,
+      "pm4_flexion": 2.2879555429668744e-11,
+      "md4_flexion_r": 2.2879555429668744e-11,
+      "mcp5_flexion_r": 2.287955544154638e-11,
+      "mcp5_abduction_r": 0.261799,
+      "pm5_flexion_r": 2.287955543096339e-11,
+      "md5_flexion_r": 2.287955543000553e-11
+    },
+    "contacts": [
+      {
+        "geom1": "1mcskin_r",
+        "geom2": "keyboard_panel",
+        "distance_m": 0.00033399780452604035,
+        "position_world_m": [
+          0.272101497697596,
+          0.22013261542421517,
+          1.2250993699458432
+        ]
+      },
+      {
+        "geom1": "distph2_coll_2_r",
+        "geom2": "r1c9",
+        "distance_m": 9.412272759142838e-06,
+        "position_world_m": [
+          0.2599983038949173,
+          0.22400470493092817,
+          1.1740022547714086
+        ]
+      }
+    ],
+    "max_penetration_m": 0.0,
+    "pad_world_m": [
+      0.2599997180166662,
+      0.2240094057784141,
+      1.1740023493991374
+    ],
+    "pad_normal_world": [
+      -2.8651515895872226e-05,
+      -0.9999999994577843,
+      1.623328466404672e-05
+    ],
+    "palm_world_m": [
+      0.32731900475571,
+      0.20193265130123267,
+      1.2164567182219375
+    ]
+  },
+  "initial_qpos_rad": [
+    -0.12067596591336266,
+    0.051112754157519306,
+    -0.051112754157519306,
+    0.12067596591336266,
+    -0.024434389792375083,
+    0.19746976240368436,
+    0.08876166087842377,
+    -0.08876166087842377,
+    -0.19746976240368436,
+    0.024434389792375083,
+    0.4805932321056977,
+    0.49866101617092007,
+    -0.4805932321056977,
+    -0.12870181234096836,
+    1.5892974908621782,
+    0.16419982690925058,
+    -0.1655875307000419,
+    0.47857648363616245,
+    2.127624151507682e-17,
+    -4.9003846229222e-18,
+    -4.1476406297662584e-22,
+    3.564926984293268e-22,
+    1.054019406124545,
+    -0.25350942459085224,
+    1.020186302486375,
+    0.7555249475134678,
+    2.2115467879771112e-10,
+    2.91796445184302e-28,
+    2.2115467879773922e-10,
+    2.2115467879773922e-10,
+    2.211546787979763e-10,
+    -8.148912829194521e-28,
+    2.2115467879773922e-10,
+    2.2115467879773922e-10,
+    2.2115467894110523e-10,
+    4.2260793009678716e-23,
+    2.2115467885890568e-10,
+    2.2115467881366255e-10
+  ],
+  "frozen_dof_indices": [
+    18,
+    19,
+    20,
+    21,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37
+  ],
+  "qpos_rad": [
+    -0.09110261966359406,
+    0.038586853369910704,
+    -0.038586853369910704,
+    0.09110261966359406,
+    -0.01844639819634756,
+    0.1490770139949721,
+    0.06700936487652785,
+    -0.06700936487652785,
+    -0.1490770139949721,
+    0.01844639819634756,
+    0.33405303789848634,
+    0.37645710604790933,
+    -0.33405303789848634,
+    -0.17640273264258674,
+    1.3214450034856748,
+    0.26620969799265687,
+    0.03567230537107232,
+    0.5625787437015985,
+    2.123026856537273e-17,
+    -7.145997587008665e-18,
+    -7.997389025615844e-22,
+    8.39040661040484e-22,
+    1.1586337815519054,
+    -0.22225178885565772,
+    0.9617196952677763,
+    0.6220544502246996,
+    2.287955542966819e-11,
+    2.91796445184302e-28,
+    2.2879555429668744e-11,
+    2.2879555429668744e-11,
+    2.2879555429673745e-11,
+    -8.148912829194521e-28,
+    2.2879555429668744e-11,
+    2.2879555429668744e-11,
+    2.287955544154638e-11,
+    4.511132675860173e-23,
+    2.287955543096339e-11,
+    2.287955543000553e-11
+  ],
+  "joint_names": [
+    "sternoclavicular_r2_r",
+    "sternoclavicular_r3_r",
+    "unrotscap_r3_r",
+    "unrotscap_r2_r",
+    "acromioclavicular_r2_r",
+    "acromioclavicular_r3_r",
+    "acromioclavicular_r1_r",
+    "unrothum_r1_r",
+    "unrothum_r3_r",
+    "unrothum_r2_r",
+    "elv_angle_r",
+    "shoulder_elv_r",
+    "shoulder1_r2_r",
+    "shoulder_rot_r",
+    "elbow_flexion_r",
+    "pro_sup_r",
+    "deviation_r",
+    "flexion_r",
+    "cmc_flexion",
+    "cmc_abduction",
+    "mp_flexion_r",
+    "ip_flexion_r",
+    "mcp2_flexion_r",
+    "mcp2_abduction_r",
+    "pm2_flexion_r",
+    "md2_flexion_r",
+    "mcp3_flexion_r",
+    "mcp3_abduction_r",
+    "pm3_flexion_r",
+    "md3_flexion",
+    "mcp4_flexion_r",
+    "mcp4_abduction_r",
+    "pm4_flexion",
+    "md4_flexion_r",
+    "mcp5_flexion_r",
+    "mcp5_abduction_r",
+    "pm5_flexion_r",
+    "md5_flexion_r"
+  ],
+  "solver_history": [
+    {
+      "iteration": 0,
+      "position_error_m": 0.1240860433427038,
+      "normal_error_rad": 0.1371098631923322,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 0.0,
+      "joint_max_violation_rad": 0.0
+    },
+    {
+      "iteration": 1,
+      "position_error_m": 0.015150428044417234,
+      "normal_error_rad": 0.025102956520889844,
+      "max_penetration_m": 0.012707305650280519,
+      "equality_max_residual_rad": 1.3877787807814457e-17,
+      "joint_max_violation_rad": 0.0
+    },
+    {
+      "iteration": 2,
+      "position_error_m": 0.0003125324911469849,
+      "normal_error_rad": 0.000771308309171092,
+      "max_penetration_m": 0.0019056740190345608,
+      "equality_max_residual_rad": 1.3877787807814457e-17,
+      "joint_max_violation_rad": 0.0
+    },
+    {
+      "iteration": 3,
+      "position_error_m": 1.3585741204186433e-05,
+      "normal_error_rad": 9.744072804428591e-05,
+      "max_penetration_m": 0.0012455014209328645,
+      "equality_max_residual_rad": 1.3877787807814457e-17,
+      "joint_max_violation_rad": 0.0
+    },
+    {
+      "iteration": 4,
+      "position_error_m": 2.320647148710313e-05,
+      "normal_error_rad": 6.740272899239061e-05,
+      "max_penetration_m": 0.0005996191767754944,
+      "equality_max_residual_rad": 3.469446951953614e-18,
+      "joint_max_violation_rad": 0.0
+    },
+    {
+      "iteration": 5,
+      "position_error_m": 5.287560054478246e-06,
+      "normal_error_rad": 3.848382902623414e-05,
+      "max_penetration_m": 0.00012203927250667608,
+      "equality_max_residual_rad": 0.0,
+      "joint_max_violation_rad": 0.0
+    },
+    {
+      "iteration": 6,
+      "position_error_m": 9.698858617554813e-06,
+      "normal_error_rad": 3.2930699803509776e-05,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.3877787807814457e-17,
+      "joint_max_violation_rad": 0.0
+    }
+  ],
+  "trajectory": null,
+  "contact_required": true,
+  "unvalidated": [
+    "measured keyboard geometry and body placement",
+    "button depression/force",
+    "continuous approach, hold and release",
+    "muscle actuation/equilibrium",
+    "complete self-collision coverage",
+    "player-specific anatomy",
+    "pad deformation and anatomical validity of generic contact proxy"
+  ],
+  "resolved_profiles": {
+    "instrument": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "origin_m": [
+        0.26,
+        0.22,
+        1.25
+      ],
+      "evidence": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      },
+      "button_travel_m": null,
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.008,
+      "rotation_wxyz": [
+        0.7071067811865476,
+        -0.7071067811865476,
+        0,
+        0
+      ]
+    },
+    "player": {
+      "model": "myoarm_r",
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      }
+    },
+    "setup": {
+      "torso_origin_m": [
+        0,
+        0,
+        1
+      ],
+      "torso_rotation_wxyz": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy laboratory setup",
+        "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+      }
+    },
+    "contact": {
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 400,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true
+    }
+  },
+  "profiles_sha256": "1b32a7f245bcf1bf702fe3b67a0b436f1771c0bae2cf8a46d5eee2bc41877141",
+  "schema_version": 1,
+  "experiment_id": "005-pose-diversity-r1c9",
+  "input_sha256": "d29e03ea830eb4a1b887a9a4c90b5154421976e074de41edd58b2b9cdfc428f3",
+  "input": {
+    "schema_version": 2,
+    "id": "005-pose-diversity-r1c9",
+    "question": "Can the maintained MyoArm compose with a finite CBA fixture and preserve coupled joints while solving an index-pad surface target headlessly?",
+    "geometry": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "button_travel_m": null,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      },
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.008
+    },
+    "contacts": [
+      {
+        "row": 1,
+        "column": 9,
+        "finger": "index"
+      }
+    ],
+    "initial_joints_rad": {
+      "sternoclavicular_r2_r": -0.12067596591336266,
+      "sternoclavicular_r3_r": 0.051112754157519306,
+      "unrotscap_r3_r": -0.0511127541575193,
+      "unrotscap_r2_r": 0.12067596591336266,
+      "acromioclavicular_r2_r": -0.024434389792375083,
+      "acromioclavicular_r3_r": 0.19746976240368436,
+      "acromioclavicular_r1_r": 0.08876166087842377,
+      "unrothum_r1_r": -0.08876166087842377,
+      "unrothum_r3_r": -0.19746976240368436,
+      "unrothum_r2_r": 0.024434389792375083,
+      "elv_angle_r": 0.18059323210569775,
+      "shoulder_elv_r": 0.49866101617092007,
+      "shoulder1_r2_r": -0.18059323210569775,
+      "shoulder_rot_r": -0.12870181234096836,
+      "elbow_flexion_r": 1.5892974908621782,
+      "pro_sup_r": 0.16419982690925058,
+      "deviation_r": -0.1655875307000419,
+      "flexion_r": 0.47857648363616245,
+      "cmc_flexion": 2.127624151507682e-17,
+      "cmc_abduction": -4.9003846229222e-18,
+      "mp_flexion_r": -4.1476406297662584e-22,
+      "ip_flexion_r": 3.564926984293268e-22,
+      "mcp2_flexion_r": 1.054019406124545,
+      "mcp2_abduction_r": -0.25350942459085224,
+      "pm2_flexion_r": 1.020186302486375,
+      "md2_flexion_r": 0.7555249475134678,
+      "mcp3_flexion_r": 2.2115467879771112e-10,
+      "mcp3_abduction_r": 2.91796445184302e-28,
+      "pm3_flexion_r": 2.2115467879773922e-10,
+      "md3_flexion": 2.2115467879773922e-10,
+      "mcp4_flexion_r": 2.211546787979763e-10,
+      "mcp4_abduction_r": -8.148912829194521e-28,
+      "pm4_flexion": 2.2115467879773922e-10,
+      "md4_flexion_r": 2.2115467879773922e-10,
+      "mcp5_flexion_r": 2.2115467894110523e-10,
+      "mcp5_abduction_r": 4.2260793009678716e-23,
+      "pm5_flexion_r": 2.2115467885890568e-10,
+      "md5_flexion_r": 2.2115467881366255e-10
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 400,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true
+    },
+    "randomness": {
+      "used": false,
+      "seed": null
+    },
+    "anatomy": {
+      "package": "myo-sim",
+      "version": "0.2.3",
+      "model": "myoarm_r",
+      "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+    },
+    "render": {
+      "width": 960,
+      "height": 720,
+      "backend": "egl"
+    },
+    "setup": {
+      "board": {
+        "origin_m": [
+          0.26,
+          0.22,
+          1.25
+        ],
+        "rotation_wxyz": [
+          0.7071067811865476,
+          -0.7071067811865476,
+          0,
+          0
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "Legacy synthetic fixture",
+          "note": "Board orientation and origin unmeasured; quaternion wxyz."
+        }
+      },
+      "torso": {
+        "torso_origin_m": [
+          0,
+          0,
+          1
+        ],
+        "torso_rotation_wxyz": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "Legacy laboratory setup",
+          "note": "Fixed imported torso scaffold, not calibrated shoulder position."
+        }
+      }
+    },
+    "player": {
+      "model": "myoarm_r",
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      }
+    },
+    "physical_contact": {
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    }
+  },
+  "provenance": {
+    "compiled_model_sha256": "4e36af2851bfb139457be31e001bab019fdbc56cc41244062d875d39b4031f47",
+    "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+    "project_source_sha256": "16d7ab937ae07bca283aa9a60b99e64b2ce64e229dea7f00077e433223400ab5",
+    "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+    "render_backend": "egl"
+  },
+  "runtime": {
+    "python": "3.14.7",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "packages": {
+      "mujoco": "3.15.0",
+      "myo-sim": "0.2.3",
+      "mink": "1.3.0",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "clarabel": "0.11.1",
+      "pillow": "12.3.0"
+    }
+  },
+  "model": {
+    "nq": 38,
+    "nv": 38,
+    "neq": 11,
+    "nu": 63,
+    "index_pad_local_m": [
+      0.004100182009418455,
+      -0.02575251249753332,
+      0.003963612992642634
+    ],
+    "index_pad_quat_wxyz": [
+      0.7270496471899948,
+      0.6606737120958207,
+      0.16878297258962194,
+      -0.08013341893519518
+    ],
+    "index_pad_provenance": "Outer envelope of compiled distal capsule and ellipsoid; normal along distal capsule axis"
+  },
+  "target": {
+    "button_id": "r1c9",
+    "midi": 72,
+    "surface_world_m": [
+      0.26,
+      0.22399999999999998,
+      1.174
+    ],
+    "normal_world": [
+      0.0,
+      1.0000000000000002,
+      -2.220446049250313e-16
+    ]
+  },
+  "start_id": "5",
+  "offset_rad": {
+    "elv_angle_r": 0.3
+  },
+  "candidate_index": 3,
+  "cameras": {
+    "overview": {
+      "lookat": [
+        0.06,
+        0.1,
+        1.35
+      ],
+      "distance": 1.3,
+      "azimuth": -110.0,
+      "elevation": -12.0
+    },
+    "keyboard": {
+      "lookat": [
+        0.22,
+        0.22,
+        1.18
+      ],
+      "distance": 0.65,
+      "azimuth": -90.0,
+      "elevation": 0.0
+    },
+    "side": {
+      "lookat": [
+        0.2,
+        0.12,
+        1.2
+      ],
+      "distance": 0.85,
+      "azimuth": 180.0,
+      "elevation": 0.0
+    },
+    "hand": {
+      "lookat": [
+        0.26,
+        0.22399999999999998,
+        1.174
+      ],
+      "distance": 0.28,
+      "azimuth": -65.0,
+      "elevation": -25.0
+    },
+    "collision": {
+      "lookat": [
+        0.26,
+        0.22399999999999998,
+        1.174
+      ],
+      "distance": 0.28,
+      "azimuth": -65.0,
+      "elevation": -25.0
+    }
+  }
+}

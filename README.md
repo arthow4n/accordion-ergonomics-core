@@ -7,6 +7,8 @@ fingertip contact, checks imported joint limits/couplings and collision proxies,
 and renders four views without a desktop session. A second experiment compares
 finger-only and arm-enabled candidates from a recorded physical configuration.
 A third audits a supplied path and exposes collisions between valid endpoints.
+Explicit profiles now support recalculation; multi-start contact discovery and
+seeded withdrawal/path search preserve diverse configurations and trajectories.
 
 **Current result: a static kinematic candidate on assumed geometry. Real playing
 feasibility, button operation and continuous transitions are not yet established.**
@@ -24,6 +26,8 @@ uv run aec experiment experiments/001-single-contact/experiment.json
 uv run aec render artifacts/single-contact/result.json
 uv run aec ablation experiments/002-arm-ablation/experiment.json
 uv run aec transition experiments/003-transition-counterexample/experiment.json
+uv run aec explore experiments/005-pose-diversity/experiment.json
+uv run aec plan experiments/006-transition-search/experiment.json
 ```
 
 The experiment writes structured input/state/solver history/diagnostics/version

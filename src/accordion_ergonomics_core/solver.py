@@ -17,6 +17,7 @@ def solve_contact(
     settings: SolverSettings,
     button_id: str = "r1c5",
     frozen_joints: tuple[str, ...] = (),
+    contact_required: bool = True,
 ) -> dict[str, Any]:
     model = scene.model
     q0 = coupled_initial_pose(model, initial)
@@ -78,7 +79,7 @@ def solve_contact(
                 },
             }
         )
-        if accepted(check, settings):
+        if accepted(check, settings, contact_required):
             break
         try:
             velocity = mink.solve_ik(
@@ -103,7 +104,9 @@ def solve_contact(
     scene.data.qpos[:] = configuration.q
     check = diagnostics(scene, target, button_id)
     return {
-        "status": "success" if accepted(check, settings) else "failed",
+        "status": "success"
+        if accepted(check, settings, contact_required)
+        else "failed",
         "feasible": None,
         "claim": (
             "Static kinematic candidate only; playing feasibility is unestablished"
@@ -111,12 +114,12 @@ def solve_contact(
         "failure": failure,
         "termination_reason": (
             "accepted_endpoint"
-            if accepted(check, settings)
+            if accepted(check, settings, contact_required)
             else "solver_error"
             if failure
             else "iteration_budget_exhausted"
         ),
-        "diagnostic_reasons": violation_reasons(check, settings),
+        "diagnostic_reasons": violation_reasons(check, settings, contact_required),
         "state_semantics": "Kinematic configuration; dynamic state unestablished",
         "qvel_rad_s": None,
         "diagnostics": check,
@@ -126,6 +129,7 @@ def solve_contact(
         "joint_names": [model.joint(i).name for i in range(model.njnt)],
         "solver_history": history,
         "trajectory": None,
+        "contact_required": contact_required,
         "unvalidated": [
             "measured keyboard geometry and body placement",
             "button depression/force",
@@ -138,9 +142,14 @@ def solve_contact(
     }
 
 
-def accepted(check: dict[str, Any], settings: SolverSettings) -> bool:
+def accepted(
+    check: dict[str, Any], settings: SolverSettings, contact_required: bool = True
+) -> bool:
     return bool(
-        abs(check["target_contact_distance_m"]) <= settings.position_tolerance_m
+        (
+            not contact_required
+            or abs(check["target_contact_distance_m"]) <= settings.position_tolerance_m
+        )
         and check["position_error_m"] <= settings.position_tolerance_m
         and check["normal_error_rad"] <= settings.normal_tolerance_rad
         and check["equality_max_residual_rad"] <= settings.equality_tolerance_rad
@@ -149,7 +158,9 @@ def accepted(check: dict[str, Any], settings: SolverSettings) -> bool:
     )
 
 
-def violation_reasons(check: dict[str, Any], settings: SolverSettings) -> list[str]:
+def violation_reasons(
+    check: dict[str, Any], settings: SolverSettings, contact_required: bool = True
+) -> list[str]:
     dimensions = (
         ("position_error_m", settings.position_tolerance_m),
         ("normal_error_rad", settings.normal_tolerance_rad),
@@ -162,6 +173,9 @@ def violation_reasons(check: dict[str, Any], settings: SolverSettings) -> list[s
         for name, limit in dimensions
         if check[name] > limit
     ]
-    if abs(check["target_contact_distance_m"]) > settings.position_tolerance_m:
+    if (
+        contact_required
+        and abs(check["target_contact_distance_m"]) > settings.position_tolerance_m
+    ):
         reasons.append("Requested fingertip/button contact is outside tolerance")
     return reasons

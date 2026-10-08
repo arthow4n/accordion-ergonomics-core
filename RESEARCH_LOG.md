@@ -1,5 +1,30 @@
 # Research log
 
+## 2026-10-08 — Diverse poses and a discovered path around the keyboard
+
+[005](experiments/005-pose-diversity/notes.md) finds six D4 and seven C5 contact
+configurations from eleven deterministic starts each. The earlier D4 wrist
+margins (0.45°/0.73°) are not necessary: another pose has 5.19°/10.84° margins,
+with 70.1 mm rather than 29.6 mm palm relocation. Pose diversity changes the
+interpretation; no configuration is designated representative of humans.
+
+[006](experiments/006-transition-search/notes.md) connects the previously
+colliding C4→C5 endpoints using 20 mm incremental withdrawal and seeded
+bidirectional joint-space search. Direct interpolation penetrates 13.49 mm;
+the discovered path peaks at 0.03583 mm under the 0.1 mm tolerance. All 331
+samples pass; a five-times-finer edge audit also passes. Palm path length is
+223.1 mm. Unsampled intervals and human/dynamic feasibility remain unknown.
+A restricted single-waypoint/no-RRT search failed and is preserved.
+
+![Sampled path; illustrative animation speed](experiments/006-transition-search/trajectory.gif)
+
+**Diagnostic repair:** new multi-state rendering exposed missing forward
+kinematics and persistent overlay colours. Fixed both, regenerated new evidence,
+and tested that poses change and rendering preserves the compiled-model hash.
+Twenty-three tests now cover diverse contact and path-search regressions plus
+headless rendering. Next: explore the board from a recorded state, then test
+sensitivity to uncertain geometry and placement.
+
 ## 2026-10-08 — Recalculation profiles and model-verified replay
 
 Separated instrument dimensions, board/torso placement, imported player ranges,
