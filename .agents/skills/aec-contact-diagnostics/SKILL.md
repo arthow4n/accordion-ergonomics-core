@@ -33,7 +33,9 @@ Inspect overview, keyboard, side and hand PNGs. Match red outward, green down
 (higher pitch), blue outward normal against the canonical frame and Roland
 reference. The camera azimuth describes look direction; a rear view can hide
 an incorrectly approached button. Distinguish visible bone meshes from
-collision proxies. If rendering needs different drivers, record that; pixel
+collision proxies. MuJoCo hides group4 by default; use the trajectory audit
+collision.png or `render_views(..., collision_overlay=True)` to expose imported
+contact shapes and highlight penetration. If rendering needs different drivers, record that; pixel
 identity is specific to a rendering environment.
 
 Preserve inputs, source/package hashes, solver settings and useful rejected

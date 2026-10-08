@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "id": "003-transition-counterexample",
+  "question": "Do accepted endpoint poses imply that a straight joint-space transition is valid?",
+  "start_result": "../001-single-contact/result.json",
+  "end_result": "../002-arm-ablation/r1c9-arm-enabled/result.json",
+  "start_sha256": "af957f37864fd0841792b982a29ceb3026e805bfb09baffd6adc7e9a4bcfe0e6",
+  "end_sha256": "4ff429078ee5657d386c9ff4fb3320bcb01cb85ac211afc9bfd2bdeca59a496c",
+  "interpolation": "linear-hinge-qpos",
+  "samples": 101,
+  "assumptions": [
+    "No held contacts required",
+    "Progress is dimensionless, no tempo",
+    "Synthetic fixture and generic imported anatomy",
+    "Sampling can falsify this candidate, not certify a globally valid path"
+  ]
+}

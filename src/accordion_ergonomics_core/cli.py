@@ -117,6 +117,9 @@ def main() -> None:
     ablation = sub.add_parser("ablation")
     ablation.add_argument("definition", type=Path)
     ablation.add_argument("--output", type=Path, default=Path("artifacts/ablation"))
+    transition = sub.add_parser("transition")
+    transition.add_argument("definition", type=Path)
+    transition.add_argument("--output", type=Path, default=Path("artifacts/transition"))
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -127,6 +130,18 @@ def main() -> None:
             [sys.executable, "-m", "pytest"],
         ):
             subprocess.run(command, check=True)
+    elif args.command == "transition":
+        from .transition import run_transition
+
+        result = run_transition(args.definition, args.output)
+        print(
+            json.dumps(
+                {
+                    "status": result["status"],
+                    "max_penetration_m": result["maximum_detected_penetration_m"],
+                }
+            )
+        )
     elif args.command == "ablation":
         from .ablation import run_ablation
 
@@ -162,6 +177,7 @@ def main() -> None:
         from .scene import build_scene
 
         result = json.loads(args.result.read_text())
+        result = result.get("render_state", result)
         experiment = Experiment.from_dict(result["input"])
         if (
             result.get("provenance", {}).get("anatomy_source_sha256", anatomy_digest())
@@ -182,4 +198,5 @@ def main() -> None:
             args.output,
             result["target"]["surface_world_m"],
             result["target"]["button_id"],
+            collision_overlay=result.get("collision_overlay", False),
         )

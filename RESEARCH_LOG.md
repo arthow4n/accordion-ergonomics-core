@@ -1,5 +1,40 @@
 # Research log
 
+## 2026-10-08 — An invalid transition between accepted endpoints
+
+**Question:** Can accepted contact endpoints be safely connected by linear
+joint interpolation? **Negative result:** no for this supplied path.
+
+[Experiment 003](experiments/003-transition-counterexample/notes.md) interpolates
+C4/r1c5 to E5/r1c9 through 101 samples. Both endpoints pass; all sampled joint
+ranges and shoulder couplings pass. Yet 95 samples exceed the collision
+tolerance, peaking at **13.49 mm** penetration of the hand/metacarpal proxy
+into the board at progress 0.33.
+
+![Worst path sample: penetrating collision proxies in red](experiments/003-transition-counterexample/renders/collision.png)
+
+**Interpretation:** pose feasibility and path validity require separate checks.
+This candidate is rejected (`candidate_valid=false`). Whether another path
+exists remains unknown (`global_transition_feasible=null`). Sampling can expose
+a violation but cannot certify unsampled intervals. The parameter is progress,
+not time; no dynamics or button-operation claim is made.
+
+**Debugging discovery:** MuJoCo's default display hides the imported group4
+collision proxies. The fifth, proxy-only diagnostic view exposes what the
+bone meshes cannot show; penetrating objects appear red. Four standard views
+remain available, and the worst state can be rendered directly from the saved
+record. All five views reproduced identically locally.
+
+**Validation:** canonical checks now include 17 tests. The new regression checks
+both valid endpoints, preserved ranges/couplings and the intermediate collision.
+`aec transition` records every sample, input/state hashes and rejection reason.
+Updated the repository contact skill with the display-group failure mode.
+
+**Next direction:** explicit withdrawal/approach trajectories, continuous or
+adaptive collision checking, then multi-start pose comparisons and calibration.
+The current stack supports the research slice; real instrument/player geometry
+and physiologically plausible actuation remain unvalidated.
+
 ## 2026-10-08 — Movement ablation exposes a relocation/range-margin tradeoff
 
 From the same accepted C4 pose, compare index-only movement with seven

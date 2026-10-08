@@ -14,6 +14,7 @@ def render_views(
     output: Path,
     target: list[float],
     button_id: str,
+    collision_overlay: bool = False,
 ) -> dict[str, Any]:
     output.mkdir(parents=True, exist_ok=True)
     views = {
@@ -42,6 +43,8 @@ def render_views(
             "elevation": -25.0,
         },
     }
+    if collision_overlay:
+        views["collision"] = dict(views["hand"])
     scene.model.geom(button_id).rgba[:] = [1.0, 0.5, 0.05, 1.0]
     option = mujoco.MjvOption()
     option.geomgroup[3] = 0  # muscle wrapping objects are not body surfaces
@@ -50,6 +53,18 @@ def render_views(
     option.flags[mujoco.mjtVisFlag.mjVIS_TENDON] = False
     with mujoco.Renderer(scene.model, height=720, width=960) as renderer:
         for name, settings in views.items():
+            if name == "collision":
+                # Show the actual contact proxies without the visual bone meshes.
+                option.geomgroup[0] = 0
+                option.geomgroup[4] = 1
+                for geom_id in scene.anatomy_geoms:
+                    scene.model.geom_matid[geom_id] = -1
+                for geom_id in scene.board_geoms:
+                    scene.model.geom_group[geom_id] = 2
+                for contact in scene.data.contact:
+                    if contact.dist < 0:
+                        for geom_id in (int(contact.geom1), int(contact.geom2)):
+                            scene.model.geom_rgba[geom_id] = [1.0, 0.1, 0.1, 0.9]
             camera = mujoco.MjvCamera()
             camera.type = mujoco.mjtCamera.mjCAMERA_FREE
             camera.lookat[:] = settings["lookat"]
