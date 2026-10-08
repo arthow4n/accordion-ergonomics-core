@@ -10,6 +10,12 @@ source tree. All seven record roots from 018–022 pass. Missing metadata report
 `partial`; mismatches fail. Tamper tests change archive, input, profiles and
 lock commitments; older incomplete evidence stays explicitly incomplete.
 
+The first verifier CI run exposed a publication mistake: Node's broad `coverage`
+ignore pattern had omitted 019's anatomical audit directory. Local checks saw
+files absent remotely. Restored the unchanged audit records and renders with a
+scoped exception for published experiment coverage. Verification now also checks
+the staged tree in a fresh exported checkout before pushing.
+
 Seventy-one tests pass with Ruff and ty. Research commits through the held
 continuation pass remote CI. Integrity is distinct from numerical reproduction
 and human validity; the verifier does not authenticate records or certify every
