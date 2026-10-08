@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "id": "002-arm-ablation/r3c5-finger-only",
+  "question": "Does an articulated arm change static reach/joint-margin conclusions relative to a grid distance proxy from the same accepted C4 pose?",
+  "geometry": {
+    "column_spacing_m": 0.019,
+    "row_spacing_m": 0.016454482671904334,
+    "button_radius_m": 0.0065,
+    "button_height_m": 0.004,
+    "origin_m": [
+      0.26,
+      0.22,
+      1.25
+    ],
+    "button_travel_m": null,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Synthetic laboratory fixture, 2026-10-08",
+      "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+    }
+  },
+  "contacts": [
+    {
+      "row": 3,
+      "column": 5,
+      "finger": "index"
+    }
+  ],
+  "initial_joints_rad": {
+    "sternoclavicular_r2_r": -0.12067596591336266,
+    "sternoclavicular_r3_r": 0.051112754157519306,
+    "unrotscap_r3_r": -0.0511127541575193,
+    "unrotscap_r2_r": 0.12067596591336266,
+    "acromioclavicular_r2_r": -0.024434389792375083,
+    "acromioclavicular_r3_r": 0.19746976240368436,
+    "acromioclavicular_r1_r": 0.08876166087842377,
+    "unrothum_r1_r": -0.08876166087842377,
+    "unrothum_r3_r": -0.19746976240368436,
+    "unrothum_r2_r": 0.024434389792375083,
+    "elv_angle_r": 0.18059323210569775,
+    "shoulder_elv_r": 0.49866101617092007,
+    "shoulder1_r2_r": -0.18059323210569775,
+    "shoulder_rot_r": -0.12870181234096836,
+    "elbow_flexion_r": 1.5892974908621782,
+    "pro_sup_r": 0.16419982690925058,
+    "deviation_r": -0.1655875307000419,
+    "flexion_r": 0.47857648363616245,
+    "cmc_flexion": 2.127624151507682e-17,
+    "cmc_abduction": -4.9003846229222e-18,
+    "mp_flexion_r": -4.1476406297662584e-22,
+    "ip_flexion_r": 3.564926984293268e-22,
+    "mcp2_flexion_r": 1.054019406124545,
+    "mcp2_abduction_r": -0.25350942459085224,
+    "pm2_flexion_r": 1.020186302486375,
+    "md2_flexion_r": 0.7555249475134678,
+    "mcp3_flexion_r": 2.2115467879771112e-10,
+    "mcp3_abduction_r": 2.91796445184302e-28,
+    "pm3_flexion_r": 2.2115467879773922e-10,
+    "md3_flexion": 2.2115467879773922e-10,
+    "mcp4_flexion_r": 2.211546787979763e-10,
+    "mcp4_abduction_r": -8.148912829194521e-28,
+    "pm4_flexion": 2.2115467879773922e-10,
+    "md4_flexion_r": 2.2115467879773922e-10,
+    "mcp5_flexion_r": 2.2115467894110523e-10,
+    "mcp5_abduction_r": 4.2260793009678716e-23,
+    "pm5_flexion_r": 2.2115467885890568e-10,
+    "md5_flexion_r": 2.2115467881366255e-10
+  },
+  "solver": {
+    "backend": "mink-clarabel",
+    "max_iterations": 400,
+    "integration_dt_s": 0.02,
+    "position_cost": 1.0,
+    "normal_cost": 0.05,
+    "posture_cost": 0.0001,
+    "damping": 1e-06,
+    "position_tolerance_m": 0.0001,
+    "normal_tolerance_rad": 0.05,
+    "joint_tolerance_rad": 1e-06,
+    "equality_tolerance_rad": 1e-06,
+    "penetration_tolerance_m": 0.0001,
+    "collision_avoidance": true
+  },
+  "randomness": {
+    "used": false,
+    "seed": null
+  },
+  "anatomy": {
+    "package": "myo-sim",
+    "version": "0.2.3",
+    "model": "myoarm_r",
+    "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+  },
+  "render": {
+    "width": 960,
+    "height": 720,
+    "backend": "egl"
+  },
+  "frozen_joints": [
+    "elv_angle_r",
+    "shoulder_elv_r",
+    "shoulder_rot_r",
+    "elbow_flexion_r",
+    "pro_sup_r",
+    "deviation_r",
+    "flexion_r"
+  ],
+  "starting_state": {
+    "source_sha256": "af957f37864fd0841792b982a29ceb3026e805bfb09baffd6adc7e9a4bcfe0e6",
+    "contact_preservation_required": false
+  }
+}

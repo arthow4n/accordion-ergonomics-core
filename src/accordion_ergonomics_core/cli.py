@@ -34,7 +34,12 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
     button = button_at(contact.row, contact.column)
     target = geometry.surface_world_m(button)
     result = solve_contact(
-        scene, target, experiment.initial_joints_rad, experiment.solver, button.id
+        scene,
+        target,
+        experiment.initial_joints_rad,
+        experiment.solver,
+        button.id,
+        experiment.frozen_joints,
     )
     result.update(
         {
@@ -109,6 +114,9 @@ def main() -> None:
     render = sub.add_parser("render")
     render.add_argument("result", type=Path)
     render.add_argument("--output", type=Path, default=Path("artifacts/renders"))
+    ablation = sub.add_parser("ablation")
+    ablation.add_argument("definition", type=Path)
+    ablation.add_argument("--output", type=Path, default=Path("artifacts/ablation"))
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -119,6 +127,21 @@ def main() -> None:
             [sys.executable, "-m", "pytest"],
         ):
             subprocess.run(command, check=True)
+    elif args.command == "ablation":
+        from .ablation import run_ablation
+
+        summary = run_ablation(args.definition, args.output)
+        print(
+            json.dumps(
+                {
+                    "id": summary["id"],
+                    "cases": [
+                        {"case": c["case_id"], "status": c["status"]}
+                        for c in summary["cases"]
+                    ],
+                }
+            )
+        )
     elif args.command == "experiment":
         result = run_experiment(args.input, args.output, not args.no_render)
         print(

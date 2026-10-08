@@ -98,3 +98,28 @@ def test_solved_endpoints_do_not_imply_a_trajectory(scene) -> None:
     assert result["status"] == "failed"
     assert result["feasible"] is None  # local solver failure is not impossibility proof
     assert result["diagnostics"]["position_error_m"] > 1
+
+
+def test_frozen_arm_really_preserves_palm_and_joint_configuration(scene) -> None:
+    from dataclasses import replace
+
+    from accordion_ergonomics_core.ablation import ARM_INDEPENDENT_JOINTS
+
+    experiment = load_input(INPUT)
+    initial = coupled_initial_pose(scene.model, experiment.initial_joints_rad)
+    scene.data.qpos[:] = initial
+    mujoco.mj_forward(scene.model, scene.data)
+    palm = scene.data.body("capitate_r").xpos.copy()
+    rotation = scene.data.body("capitate_r").xmat.copy()
+    result = solve_contact(
+        scene,
+        experiment.geometry.surface_world_m(button_at(1, 9)),
+        experiment.initial_joints_rad,
+        replace(experiment.solver, max_iterations=8),
+        "r1c9",
+        ARM_INDEPENDENT_JOINTS,
+    )
+    np.testing.assert_allclose(result["qpos_rad"][:18], initial[:18], atol=1e-8)
+    np.testing.assert_allclose(scene.data.body("capitate_r").xpos, palm, atol=1e-8)
+    np.testing.assert_allclose(scene.data.body("capitate_r").xmat, rotation, atol=1e-8)
+    assert result["status"] == "failed"

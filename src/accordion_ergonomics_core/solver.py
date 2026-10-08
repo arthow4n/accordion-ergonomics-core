@@ -16,6 +16,7 @@ def solve_contact(
     initial: dict[str, float],
     settings: SolverSettings,
     button_id: str = "r1c5",
+    frozen_joints: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     model = scene.model
     q0 = coupled_initial_pose(model, initial)
@@ -37,7 +38,13 @@ def solve_contact(
     posture.set_target(q0)
     coupled = mink.EqualityConstraintTask(model, cost=1.0)
     # Unused fingers are frozen in this monophonic experiment, not removed.
-    frozen = list(range(18, 22)) + list(range(26, model.nv))
+    frozen = sorted(
+        set(
+            list(range(18, 22))
+            + list(range(26, model.nv))
+            + [int(model.joint(name).dofadr[0]) for name in frozen_joints]
+        )
+    )
     constraints = [coupled, mink.DofFreezingTask(model, frozen)]
     limits: list[mink.Limit] = [mink.ConfigurationLimit(model)]
     if settings.collision_avoidance:
@@ -101,8 +108,19 @@ def solve_contact(
             "Static kinematic candidate only; playing feasibility is unestablished"
         ),
         "failure": failure,
+        "termination_reason": (
+            "accepted_endpoint"
+            if accepted(check, settings)
+            else "solver_error"
+            if failure
+            else "iteration_budget_exhausted"
+        ),
+        "diagnostic_reasons": violation_reasons(check, settings),
+        "state_semantics": "Kinematic configuration; dynamic state unestablished",
+        "qvel_rad_s": None,
         "diagnostics": check,
         "initial_qpos_rad": q0.tolist(),
+        "frozen_dof_indices": frozen,
         "qpos_rad": configuration.q.tolist(),
         "joint_names": [model.joint(i).name for i in range(model.njnt)],
         "solver_history": history,
@@ -128,3 +146,21 @@ def accepted(check: dict[str, Any], settings: SolverSettings) -> bool:
         and check["joint_max_violation_rad"] <= settings.joint_tolerance_rad
         and check["max_penetration_m"] <= settings.penetration_tolerance_m
     )
+
+
+def violation_reasons(check: dict[str, Any], settings: SolverSettings) -> list[str]:
+    dimensions = (
+        ("position_error_m", settings.position_tolerance_m),
+        ("normal_error_rad", settings.normal_tolerance_rad),
+        ("equality_max_residual_rad", settings.equality_tolerance_rad),
+        ("joint_max_violation_rad", settings.joint_tolerance_rad),
+        ("max_penetration_m", settings.penetration_tolerance_m),
+    )
+    reasons = [
+        f"{name}={check[name]:.6g} exceeds {limit:.6g}"
+        for name, limit in dimensions
+        if check[name] > limit
+    ]
+    if abs(check["target_contact_distance_m"]) > settings.position_tolerance_m:
+        reasons.append("Requested fingertip/button contact is outside tolerance")
+    return reasons

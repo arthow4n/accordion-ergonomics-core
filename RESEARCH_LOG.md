@@ -1,13 +1,51 @@
 # Research log
 
+## 2026-10-08 — Movement ablation exposes a relocation/range-margin tradeoff
+
+From the same accepted C4 pose, compare index-only movement with seven
+independent arm/wrist coordinates frozen against arm-enabled solves.
+[Experiment 002](experiments/002-arm-ablation/notes.md) preserves every generated
+input, accepted/rejected endpoint and four diagnostic views per condition.
+
+| Arm-enabled target | Board displacement | Palm relocation | Wrist flexion limit margin | Index abduction limit margin |
+|---|---:|---:|---:|---:|
+| Farther r1c9 | 76 mm | 61.6 mm | 38.63° | 9.32° |
+| Nearer r3c5 | 38 mm | 29.6 mm | 0.73° | 0.55° |
+
+The farther target costs more relocation and substantial shoulder/forearm
+rotation, yet its chosen wrist/finger pose has larger range margins. The
+closer target has a near-limit local candidate. Both finger-only searches
+failed; that is not an impossibility certificate. The grid distance terms
+alone rank these oppositely to their wrist margins, but no physical dimension
+has been shown to define overall difficulty.
+
+<table><tr><td><img src="experiments/002-arm-ablation/r1c9-arm-enabled/renders/hand.png" width="420" alt="Far target endpoint"></td><td><img src="experiments/002-arm-ablation/r3c5-arm-enabled/renders/hand.png" width="420" alt="Near target endpoint"></td></tr></table>
+
+**Learned:** articulated state is needed to describe the actual relocation and
+joint tradeoffs. **Still inconclusive:** whether the model outperforms simpler
+reasoning for real ergonomic preference, whether these poses are comfortable,
+or whether the near-target joint demands are unavoidable. One start and
+assumed geometry cannot establish those claims. No transition path is validated.
+
+**Validation:** 16 tests plus Ruff/ty; a regression verifies frozen arm angles
+and palm translation/rotation really remain fixed. A second ablation reproduced
+structured outputs and all 16 PNGs identically locally. CI's corrected action
+pins passed remotely, including locked installation and headless EGL rendering
+([run](https://github.com/arthow4n/accordion-ergonomics-core/actions/runs/37707470593)).
+The demonstrated contact/frame workflow is now a narrow repository skill at
+`.agents/skills/aec-contact-diagnostics/SKILL.md`, validated using skill-creator.
+
+**Next:** test candidate transitions between these accepted endpoints, then
+multiple starts to determine which near-limit results are solver bias.
+
 ## 2026-10-08 — CI setup failure diagnosed remotely
 
 The first pushed workflow failed before checkout: GitHub could not resolve
 `astral-sh/setup-uv@v10`. The latest release tag is v10.2.0 but no v10 major alias
 exists. Remote job annotations exposed the cause even though unauthenticated
 log download returned HTTP 403. Pin checkout v7.0.1 and setup-uv v10.2.0 to
-verified tag commit hashes. Local canonical checks pass; remote execution is
-pending the corrected push. Do not confuse a workflow file with working CI.
+verified tag commit hashes. Local canonical checks passed. The corrected workflow subsequently passed
+remotely, including its EGL reproduction step (see newer entry).
 
 ## 2026-10-08 — First headless contact slice; surface errors caught by diagnostics
 

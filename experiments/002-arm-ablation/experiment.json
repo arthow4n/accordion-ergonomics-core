@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "id": "002-arm-ablation",
+  "question": "Does an articulated arm change static reach/joint-margin conclusions relative to a grid distance proxy from the same accepted C4 pose?",
+  "base_result": "../001-single-contact/result.json",
+  "base_result_sha256": "af957f37864fd0841792b982a29ceb3026e805bfb09baffd6adc7e9a4bcfe0e6",
+  "targets": [
+    {
+      "row": 1,
+      "column": 9
+    },
+    {
+      "row": 3,
+      "column": 5
+    }
+  ],
+  "assumptions": [
+    "Same synthetic geometry and anatomy as baseline",
+    "Baseline contact released; no continuous path validated",
+    "Unused digits remain frozen",
+    "A single local solve per condition; no claim of optimality"
+  ]
+}

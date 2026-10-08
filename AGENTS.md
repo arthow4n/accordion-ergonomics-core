@@ -24,3 +24,7 @@ or solver failure. Solver iteration history is not a playing trajectory.
 Commit and push coherent validated milestones autonomously as authorized by
 the project owner. Do not rewrite published history. No external messages or
 changes to the evidence repositories are implied by that authorization.
+
+For repeated contact/frame debugging, use the repository skill at
+`.agents/skills/aec-contact-diagnostics/SKILL.md`. Its deterministic operations
+live in the CLI and tests; the skill explains the demonstrated failure modes.

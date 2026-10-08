@@ -60,6 +60,7 @@ class Experiment:
     initial_joints_rad: dict[str, float]
     solver: SolverSettings
     source: dict[str, Any]
+    frozen_joints: tuple[str, ...] = ()
 
     @classmethod
     def from_dict(cls, source: dict[str, Any]) -> Experiment:
@@ -87,6 +88,11 @@ class Experiment:
         initial = source["initial_joints_rad"]
         if not all(type(v) in (int, float) and isfinite(v) for v in initial.values()):
             raise ValueError("Initial joint angles must be finite radians")
+        frozen = tuple(source.get("frozen_joints", []))
+        if not all(isinstance(n, str) for n in frozen) or len(set(frozen)) != len(
+            frozen
+        ):
+            raise ValueError("Frozen joint names must be unique strings")
         return cls(
             source["id"],
             BoardGeometry(**geometry, evidence=evidence),
@@ -94,4 +100,5 @@ class Experiment:
             initial,
             SolverSettings(**source["solver"]),
             source,
+            frozen,
         )
