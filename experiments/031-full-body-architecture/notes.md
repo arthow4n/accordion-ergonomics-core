@@ -190,6 +190,25 @@ No historical evidence files are changed. New assembly/posture profiles and
 compiled hashes prevent accepted 38-coordinate states from silently crossing
 body worlds.
 
+## Default retained for this phase; future active-arm choice
+
+The project owner retains the reduced default for now. Its approximately
+0.31 s per-C4 saving over prescribed native is useful for repeated right-arm
+search, but is modest in absolute terms and does not make reduction mandatory.
+The choice also costs extra setup time, adapter maintenance and runtime
+flexibility in the baked body parts; it offers no anatomical accuracy advantage.
+
+For a future left-hand study, the likely counterpart is a left-arm/hand-active
+model derived from the same native full-body assembly, with the right arm,
+torso and lower body prescribed or baked. That variant is not implemented by
+031 and would require its own parity, contact/collision and state-identity
+validation. Future left-hand support does not by itself require full-body IK.
+Reassess the default against actual left-hand or coordinated two-hand workloads;
+a different reduction or native may be preferable. See the
+[ongoing architecture rationale](../../docs/research/full-body-architecture.md#why-retain-the-reduction-for-now-and-when-to-revisit-it).
+Frozen inputs, numerical results and source snapshots retain their original
+identities; this paragraph clarifies the decision rather than changing evidence.
+
 ## Reproduction
 
 ```sh

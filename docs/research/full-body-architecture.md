@@ -179,6 +179,42 @@ Thus a successful C4 solve certifies only the stated numerical/diagnostic policy
 Anatomical completeness, right-arm kinematic equivalence, collision coverage,
 solver reliability and biomechanical validity remain separate conclusions.
 
+## Why retain the reduction for now, and when to revisit it
+
+The reduced model remains the default for the current right-arm research phase.
+Its justification is preserving the existing small active system while deriving
+complete skeletal anatomy from upstream composition. The measured median C4
+solve is 0.323 s reduced versus 0.634 s prescribed native: about 0.31 s saved
+per solve, which can accumulate over repeated searches. This study did not
+benchmark a complete atlas or establish a general performance ordering.
+The saving is modest in absolute terms, and the benchmark supports keeping a
+reduced option without requiring it to be the default.
+
+The trade-off is explicit. Reduction increases setup time (2.399 s versus
+1.403 s native), adds frame-baking/pruning code, and removes runtime articulation,
+non-right muscle/tendon systems, constraints and sensors for the prescribed
+body parts. All skeletal meshes and tested right-arm kinematics remain. The
+fixed body must be rebuilt to change its prescribed posture. No anatomical
+accuracy advantage or full-body dynamic equivalence is claimed.
+
+This is a revisitable active-system choice. Future left-hand research will
+likely use the same upstream full-body foundation with the **left arm and hand
+active**, while prescribing or baking the **right arm, torso, pelvis and legs**,
+analogous to the current right-active model. Left-hand support alone does not
+require activating every body coordinate or retaining all muscle dynamics.
+That left-active derivation is not implemented or validated yet; it needs its
+own upstream parity, fingertip construction, coupling/range, collision-policy
+and saved-state identity checks. Current right-arm states cannot be reused as
+accepted states in it merely because coordinate counts happen to match.
+
+Revisit the default when left-arm tasks are introduced, when both hands need
+coordinated motion, or when posture changes, setup overhead or adapter maintenance
+outweigh the measured repeated-solve saving. Compare a task-specific left-active
+or both-arms-active reduction with prescribed native again under the actual
+workload. Native remains an available alternative and may become the default if
+its flexibility and simpler upstream ownership prove more useful. Keep current
+and historical model identities explicit through any such change.
+
 ## Maintenance and migration
 
 Native composition owns pelvis, spine, both shoulder attachments, mirrored arm

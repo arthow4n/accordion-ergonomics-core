@@ -1,5 +1,25 @@
 # Research log
 
+## 2026-10-08 — Retain the reduced default with an explicit future active-arm choice
+
+The project owner retains the current reduction for now. Clarify the rationale
+in [031](experiments/031-full-body-architecture/notes.md) and the
+[architecture documentation](docs/research/full-body-architecture.md): native
+is usable; the approximately 0.31 s representative C4 saving supports repeated
+right-arm searches but does not compel a reduced default. Extra setup cost,
+frame-adapter maintenance and lost runtime articulation/non-right dynamics
+remain explicit trade-offs. No anatomical accuracy advantage is claimed.
+
+Future left-hand research will likely activate the left arm/hand and prescribe
+or bake the right arm, torso, pelvis and legs using the same upstream full-body
+source. This is analogous to the current right-active reduction, and remains
+unimplemented until that phase. Left-arm parity, contact markers, constraints,
+collision policy and accepted-state identities will need independent validation.
+Revisit the default for actual left-hand or coordinated two-hand workloads,
+frequent posture changes or maintenance costs; native or another active subset
+may then be preferable. Current default, model code, frozen results and
+instrument scope remain unchanged by this documentation clarification.
+
 ## 2026-10-08 — Reduced native MyoFullBody becomes the new anatomical default
 
 [031](experiments/031-full-body-architecture/notes.md) compiles the locked MyoSim
