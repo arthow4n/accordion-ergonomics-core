@@ -33,7 +33,7 @@ def solve_contact(
         "site",
         cost=settings.normal_cost,
     )
-    normal.set_target([0, -1, 0])
+    normal.set_target(-scene.data.body("keyboard").xmat.reshape(3, 3)[:, 2])
     posture = mink.PostureTask(model, cost=settings.posture_cost)
     posture.set_target(q0)
     coupled = mink.EqualityConstraintTask(model, cost=1.0)
@@ -52,8 +52,9 @@ def solve_contact(
             mink.CollisionAvoidanceLimit(
                 model,
                 [(scene.anatomy_geoms, scene.board_geoms)],
-                minimum_distance_from_collisions=0.0,
-                collision_detection_distance=0.03,
+                minimum_distance_from_collisions=scene.contact_profile.collision_minimum_distance_m,
+                collision_detection_distance=scene.contact_profile.collision_detection_distance_m,
+                gain=scene.contact_profile.collision_gain,
             )
         )
     dt = settings.integration_dt_s

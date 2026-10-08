@@ -1,5 +1,21 @@
 # Research log
 
+## 2026-10-08 — Recalculation profiles and model-verified replay
+
+Separated instrument dimensions, board/torso placement, imported player ranges,
+rigid-contact policy and solver settings in schema 2. Legacy inputs still work.
+[Experiment 004](experiments/004-profile-recalculation/notes.md) reproduces the
+legacy compiled model and contact result exactly. Board rotation, independent
+torso translation and wrist-range changes are tested against compiled geometry.
+New outputs embed resolved profiles and their hash plus the complete compiled
+model hash; replay rejects silent model changes. Twenty tests pass.
+
+**Boundary:** dimensional anatomy personalization is not yet supported. Uniform
+scaling is not assumed physiologically valid. Imported geometry, unmeasured
+setup, rigid collision envelopes and unknown button travel remain explicit.
+[Calibration contract](docs/research/profiles.md). Next: candidate diversity and
+searching paths around the known interpolation collision.
+
 ## 2026-10-08 — An invalid transition between accepted endpoints
 
 **Question:** Can accepted contact endpoints be safely connected by linear

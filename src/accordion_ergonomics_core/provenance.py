@@ -2,6 +2,7 @@
 
 import hashlib
 from pathlib import Path
+from typing import Any
 
 import myo_sim
 
@@ -24,3 +25,18 @@ def project_source_digest() -> str:
         digest.update(b"\0")
         digest.update(path.read_bytes())
     return digest.hexdigest()
+
+
+def compiled_model_digest(model: Any) -> str:
+    """Hash the complete compiled model before diagnostic display mutations.
+
+    MJB captures transformed geometry, limits, equality constraints and assets.
+    It is engine-version-specific; a mismatch requires an explicit recomputation.
+    """
+    import numpy as np
+
+    from ._engine import mujoco
+
+    buffer = np.zeros(mujoco.mj_sizeModel(model), dtype=np.uint8)
+    mujoco.mj_saveModel(model, None, buffer)
+    return hashlib.sha256(buffer.tobytes()).hexdigest()

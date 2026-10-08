@@ -13,7 +13,7 @@ from typing import Any
 
 from .experiment import Experiment
 from .instrument import button_at
-from .provenance import anatomy_digest, project_source_digest
+from .provenance import anatomy_digest, compiled_model_digest, project_source_digest
 
 
 def load_input(path: Path) -> Experiment:
@@ -29,7 +29,9 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
 
     experiment = load_input(path)
     source, geometry = experiment.source, experiment.geometry
-    scene = build_scene(geometry)
+    scene = build_scene(
+        geometry, experiment.player, experiment.setup, experiment.physical_contact
+    )
     contact = experiment.contacts[0]
     button = button_at(contact.row, contact.column)
     target = geometry.surface_world_m(button)
@@ -41,13 +43,20 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
         button.id,
         experiment.frozen_joints,
     )
+    profiles = experiment.resolved_profiles()
+    profiles_hash = hashlib.sha256(
+        json.dumps(profiles, sort_keys=True, allow_nan=False).encode()
+    ).hexdigest()
     result.update(
         {
+            "resolved_profiles": profiles,
+            "profiles_sha256": profiles_hash,
             "schema_version": 1,
             "experiment_id": source["id"],
             "input_sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
             "input": source,
             "provenance": {
+                "compiled_model_sha256": compiled_model_digest(scene.model),
                 "anatomy_source_sha256": anatomy_digest(),
                 "project_source_sha256": project_source_digest(),
                 "lock_sha256": hashlib.sha256(Path("uv.lock").read_bytes()).hexdigest(),
@@ -87,7 +96,7 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
                 "button_id": button.id,
                 "midi": button.midi,
                 "surface_world_m": target.tolist(),
-                "normal_world": [0, 1, 0],
+                "normal_world": geometry.rotation[:, 2].tolist(),
             },
         }
     )
@@ -184,7 +193,20 @@ def main() -> None:
             != anatomy_digest()
         ):
             raise ValueError("Anatomical source differs from the saved result")
-        scene = build_scene(experiment.geometry)
+        scene = build_scene(
+            experiment.geometry,
+            experiment.player,
+            experiment.setup,
+            experiment.physical_contact,
+        )
+        if (
+            "compiled_model_sha256" in result.get("provenance", {})
+            and compiled_model_digest(scene.model)
+            != result["provenance"]["compiled_model_sha256"]
+        ):
+            raise ValueError(
+                "Compiled model differs; recompute explicitly before replay"
+            )
         site = scene.model.site("index_pad").id
         scene.model.site_pos[site] = result["model"]["index_pad_local_m"]
         if "index_pad_quat_wxyz" in result["model"]:

@@ -9,6 +9,7 @@ from numpy.typing import NDArray
 
 from ._engine import Data, Model, Spec, mujoco
 from .instrument import BoardGeometry, buttons
+from .profiles import ContactProfile, PlayerProfile, SetupProfile
 
 
 @dataclass
@@ -18,14 +19,29 @@ class Scene:
     anatomy_geoms: list[int]
     board_geoms: list[int]
     pad_local_m: list[float]
+    contact_profile: ContactProfile
 
 
-def build_scene(geometry: BoardGeometry) -> Scene:
+def build_scene(
+    geometry: BoardGeometry,
+    player: PlayerProfile | None = None,
+    setup: SetupProfile | None = None,
+    contact: ContactProfile | None = None,
+) -> Scene:
+    player = player or PlayerProfile()
+    setup = setup or SetupProfile()
+    contact = contact or ContactProfile()
     spec: Spec = myo_sim.load_spec("myoarm_r")
     root = spec.body("Full Body")
     if root is None:
         raise ValueError("Pinned anatomical model has no expected torso scaffold")
-    root.quat = [0, 0, 0, 1]  # native left/back/up -> right/forward/up
+    root.quat = list(setup.torso_rotation_wxyz)
+    root.pos = list(setup.torso_origin_m)
+    for name, bounds in player.joint_ranges_rad.items():
+        joint = spec.joint(name)
+        if joint is None:
+            raise ValueError(f"Unknown joint override: {name}")
+        joint.range = list(bounds)
     # Distal surface support of imported geometry; no invented finger length.
     geom = spec.geom("distph2_coll_r")
     finger = spec.body("distph2_r")
@@ -69,7 +85,7 @@ def build_scene(geometry: BoardGeometry) -> Scene:
     board = spec.worldbody.add_body(
         name="keyboard",
         pos=list(geometry.origin_m),
-        quat=[2**-0.5, -(2**-0.5), 0, 0],
+        quat=list(geometry.rotation_wxyz),
     )
     centers = np.array([geometry.center_board_m(b) for b in buttons()])
     low, high = centers.min(axis=0), centers.max(axis=0)
@@ -77,8 +93,12 @@ def build_scene(geometry: BoardGeometry) -> Scene:
     board.add_geom(
         name="keyboard_panel",
         type=mujoco.mjtGeom.mjGEOM_BOX,
-        pos=[center[0], center[1], -0.004],
-        size=[(high[0] - low[0]) / 2 + 0.012, (high[1] - low[1]) / 2 + 0.012, 0.004],
+        pos=[center[0], center[1], -geometry.panel_thickness_m / 2],
+        size=[
+            (high[0] - low[0]) / 2 + geometry.panel_margin_m,
+            (high[1] - low[1]) / 2 + geometry.panel_margin_m,
+            geometry.panel_thickness_m / 2,
+        ],
         rgba=[0.12, 0.17, 0.23, 1],
         contype=2,
         conaffinity=1,
@@ -131,7 +151,7 @@ def build_scene(geometry: BoardGeometry) -> Scene:
         for i in range(model.ngeom)
         if i not in board_geoms and model.geom_contype[i] != 0
     ]
-    return Scene(model, data, anatomy_geoms, board_geoms, point.tolist())
+    return Scene(model, data, anatomy_geoms, board_geoms, point.tolist(), contact)
 
 
 def coupled_initial_pose(model: Model, values: dict[str, float]) -> NDArray[np.float64]:
@@ -184,7 +204,11 @@ def diagnostics(
     return {
         "target_contact_distance_m": float(contact_distance),
         "position_error_m": float(np.linalg.norm(data.site("index_pad").xpos - target)),
-        "normal_error_rad": float(np.arccos(np.clip(normal @ [0, -1, 0], -1, 1))),
+        "normal_error_rad": float(
+            np.arccos(
+                np.clip(normal @ -data.body("keyboard").xmat.reshape(3, 3)[:, 2], -1, 1)
+            )
+        ),
         "equality_max_residual_rad": float(np.max(np.abs(equalities), initial=0)),
         "joint_max_violation_rad": float(max(0, -margins.min())),
         "joint_margins_rad": {

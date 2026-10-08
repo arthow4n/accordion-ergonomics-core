@@ -43,6 +43,7 @@ bytes can differ across driver versions; numerical state is the evidence.
 
 - [Evidence audit and stack decisions](docs/research/evidence.md)
 - [SI units, frames, calibration measurements](docs/research/frames-and-measurements.md)
+- [Recalculation profiles and limitations](docs/research/profiles.md)
 - [Next falsifiable experiments](docs/research/roadmap.md)
 
 Finite topology, metric geometry, anatomical model constraints, numerical

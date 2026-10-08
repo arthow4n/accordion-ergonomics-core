@@ -97,6 +97,21 @@ class BoardGeometry:
     origin_m: Vector
     evidence: Evidence
     button_travel_m: float | None = None
+    stagger_columns: tuple[float, ...] = STAGGER_COLUMNS
+    panel_margin_m: float = 0.012
+    panel_thickness_m: float = 0.008
+    rotation_wxyz: tuple[float, float, float, float] = (2**-0.5, -(2**-0.5), 0, 0)
+
+    @property
+    def rotation(self) -> NDArray[np.float64]:
+        w, x, y, z = self.rotation_wxyz
+        return np.array(
+            [
+                [1 - 2 * (y * y + z * z), 2 * (x * y - z * w), 2 * (x * z + y * w)],
+                [2 * (x * y + z * w), 1 - 2 * (x * x + z * z), 2 * (y * z - x * w)],
+                [2 * (x * z - y * w), 2 * (y * z + x * w), 1 - 2 * (x * x + y * y)],
+            ]
+        )
 
     def __post_init__(self) -> None:
         values = (
@@ -104,10 +119,22 @@ class BoardGeometry:
             self.row_spacing_m,
             self.button_radius_m,
             self.button_height_m,
+            self.panel_margin_m,
+            self.panel_thickness_m,
         )
         if not all(isfinite(x) and x > 0 for x in values):
             raise ValueError("Metric fixture dimensions must be finite and positive")
-        if not all(isfinite(x) for x in self.origin_m):
+        if len(self.stagger_columns) != 5 or not all(
+            isfinite(x) for x in self.stagger_columns
+        ):
+            raise ValueError("Five finite row staggers are required")
+        if (
+            len(self.rotation_wxyz) != 4
+            or not all(isfinite(x) for x in self.rotation_wxyz)
+            or abs(sum(x * x for x in self.rotation_wxyz) - 1) > 1e-10
+        ):
+            raise ValueError("Board quaternion must be finite and unit length")
+        if len(self.origin_m) != 3 or not all(isfinite(x) for x in self.origin_m):
             raise ValueError("Board origin must be finite")
         if self.button_travel_m is not None and (
             not isfinite(self.button_travel_m) or self.button_travel_m < 0
@@ -119,12 +146,12 @@ class BoardGeometry:
     def center_board_m(self, button: Button) -> Vector:
         return (
             -(button.row - 1) * self.row_spacing_m,
-            (button.column - 5 + STAGGER_COLUMNS[button.row - 1])
+            (button.column - 5 + self.stagger_columns[button.row - 1])
             * self.column_spacing_m,
             self.button_height_m,
         )
 
     def surface_world_m(self, button: Button) -> NDArray[np.float64]:
-        return np.asarray(self.origin_m) + BOARD_TO_WORLD @ np.asarray(
+        return np.asarray(self.origin_m) + self.rotation @ np.asarray(
             self.center_board_m(button)
         )
