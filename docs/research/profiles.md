@@ -24,7 +24,9 @@ measured. Uniform coordinate multiplication would also affect inertias, muscle
 paths, wrapping surfaces, collision envelopes and anatomical couplings; it is
 not offered as physiological personalization. Segment-specific transformation
 and validation remain research work. The schema does not claim to support
-unimplemented dimensions. Body/strap/instrument-shell contact is absent.
+unimplemented dimensions. Legacy scenes omit body/strap/instrument-shell contact. The optional
+[seated setup](seated-setup.md) adds a coarse collision shell and schematic
+support anchors; strap forces and anatomical thighs remain absent.
 
 Panel extent and thickness were previously buried constants; they are now
 fixture inputs, along with per-row staggering and board orientation. Flat
@@ -83,3 +85,15 @@ profile hashes while sizes, meshes and ranges stay fixed. Unknown/duplicate name
 and same-body composite envelopes are rejected. Avoidance requires displacement
 limits: native Mink filters out masked pairs. Pair distance still describes
 uncalibrated imported shapes. Selective constraints do not validate omitted pairs.
+
+## Generic body-anchored seated setup
+
+`setup.torso.seated` activates the reference compact CBA model. Its typed
+parameters and per-parameter provenance derive board placement from the imported
+neutral shoulder, thorax outer support, instrument size and seated support height.
+Explicit legacy board transforms remain supported. Derived inputs can omit
+`setup.board`; any cached board transform is recalculated. Resolved profiles
+include anchors and all assumptions; hashes change with setup variation.
+Seated composition does not alter imported couplings or tissue proxies. See
+[023](../../experiments/023-reference-seated-setup/notes.md) for validation and
+remaining unchecked middle/ring penetration.

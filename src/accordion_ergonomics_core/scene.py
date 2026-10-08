@@ -33,6 +33,9 @@ def build_scene(
     player = player or PlayerProfile()
     setup = setup or SetupProfile()
     contact = contact or ContactProfile()
+    from .seated_setup import derive_setup
+
+    geometry, anchors = derive_setup(geometry, setup)
     # An explicit anatomical self-pair needs a mask-independent solver limit.
     spec: Spec = myo_sim.load_spec("myoarm_r")
     root = spec.body("Full Body")
@@ -133,6 +136,63 @@ def build_scene(
         pos=list(geometry.origin_m),
         quat=list(geometry.rotation_wxyz),
     )
+    if anchors:
+        for name, body_name, color in (
+            ("shoulder_landmark", "humerus_r", [1, 0.3, 0.2, 1]),
+            ("elbow_landmark", "ulna_r", [1, 0.8, 0.2, 1]),
+            ("wrist_landmark", "lunate_r", [0.5, 0.4, 1, 1]),
+        ):
+            spec.body(body_name).add_site(
+                name=name, pos=[0, 0, 0], size=[0.007, 0, 0], rgba=color, group=0
+            )
+        board.add_geom(
+            name="instrument_envelope",
+            type=mujoco.mjtGeom.mjGEOM_BOX,
+            pos=anchors["shell_center_board_m"],
+            size=anchors["shell_half_size_m"],
+            rgba=[0.22, 0.26, 0.30, 0.55],
+            contype=2,
+            conaffinity=1,
+        )
+        for name, position, color in (
+            (
+                "thigh_support_reference",
+                anchors["right_thigh_reference_world_m"],
+                [0.9, 0.6, 0.1, 1],
+            ),
+            (
+                "treble_support_corner",
+                anchors["treble_support_corner_world_m"],
+                [0.1, 0.8, 0.9, 1],
+            ),
+        ):
+            spec.worldbody.add_site(
+                name=name, pos=position, size=[0.008, 0, 0], rgba=color, group=0
+            )
+        # Schematic thighs are visual support references, not anatomical collision.
+        for side in (-1, 1):
+            p = np.asarray(anchors["right_thigh_reference_world_m"]).copy()
+            from scipy.spatial.transform import Rotation
+
+            q = setup.torso_rotation_wxyz
+            frame = Rotation.from_quat([q[1], q[2], q[3], q[0]]).as_matrix() @ np.diag(
+                [-1.0, -1.0, 1.0]
+            )
+            root_position = np.asarray(setup.torso_origin_m)
+            p = frame.T @ (p - root_position)
+            p[0] = side * 0.16
+            p[2] -= 0.075
+            p = root_position + frame @ p
+            endpoint = p + frame @ np.array([0, 0.32, 0])
+            spec.worldbody.add_geom(
+                name=f"support_thigh_{side}",
+                type=mujoco.mjtGeom.mjGEOM_CAPSULE,
+                fromto=[*p, *endpoint],
+                size=[0.075, 0, 0],
+                rgba=[0.35, 0.42, 0.5, 0.4],
+                contype=0,
+                conaffinity=0,
+            )
     centers = np.array([geometry.center_board_m(b) for b in buttons()])
     low, high = centers.min(axis=0), centers.max(axis=0)
     center = (low + high) / 2
@@ -192,6 +252,8 @@ def build_scene(
     board_geoms = [model.geom("keyboard_panel").id] + [
         model.geom(b.id).id for b in buttons()
     ]
+    if anchors:
+        board_geoms.append(model.geom("instrument_envelope").id)
     anatomy_geoms = [
         i
         for i in range(model.ngeom)
@@ -252,7 +314,21 @@ def diagnostics(
         mujoco.mj_geomDistance(model, data, model.geom(name).id, target_geom, 1.0, None)
         for name in (f"distph{digit}_coll_r", f"distph{digit}_coll_2_r")
     )
+    shell_distances = {}
+    if any(model.geom(i).name == "instrument_envelope" for i in range(model.ngeom)):
+        shell = model.geom("instrument_envelope").id
+        shell_distances = {
+            model.geom(i).name: float(
+                mujoco.mj_geomDistance(model, data, i, shell, 1.0, None)
+            )
+            for i in scene.anatomy_geoms
+        }
     return {
+        "instrument_envelope_distances_m": shell_distances,
+        "landmarks_world_m": {
+            name: data.body(name).xpos.tolist()
+            for name in ("humerus_r", "ulna_r", "lunate_r", "torso")
+        },
         "target_contact_distance_m": float(contact_distance),
         "position_error_m": float(np.linalg.norm(data.site(site_name).xpos - target)),
         "normal_error_rad": float(
@@ -266,7 +342,11 @@ def diagnostics(
             model.joint(i).name: float(margins[i]) for i in range(model.njnt)
         },
         "contacts": contacts,
-        "max_penetration_m": max([0.0] + [-c["distance_m"] for c in contacts]),
+        "max_penetration_m": max(
+            [0.0]
+            + [-c["distance_m"] for c in contacts]
+            + [-d for d in shell_distances.values()]
+        ),
         "pad_world_m": data.site(site_name).xpos.tolist(),
         "pad_normal_world": normal.tolist(),
         "palm_world_m": data.body("capitate_r").xpos.tolist(),

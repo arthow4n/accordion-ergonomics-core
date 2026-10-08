@@ -17,6 +17,8 @@ pitch, +n out of the playing surface. Increasing row index goes **inward**
 `R_WB = [[1,0,0],[0,0,1],[0,-1,0]]`. Its determinant is +1, and
 `p_W = origin_W + R_WB p_B`. The board normal is world +y; pressing normal is -y.
 Front diagnostic view sees world +x on its left, matching the manual diagram.
+This is the historical fixture transform; the new
+[seated setup](seated-setup.md) derives `R_WB` from torso and setup orientation.
 The fixture has no measured tilt. Rigid button top is n=height; board top is n=0.
 
 The origin is the base plane under row1/col5 C4. Logical column 5 also maps to
@@ -97,3 +99,11 @@ intentional same-envelope overlaps from forbidden cross-finger penetration.
 Preserve model failures. Then rerun the same atlas, geometry/player sweeps and
 held-task records under measured profiles. State whether conclusions persist;
 matching one pose does not validate the entire reachable action space.
+
+## Public generic setup before individual calibration
+
+Experiment 023 implements a public-evidence-guided seated setup family. Its
+anchors and broad intervals are model hypotheses; they are useful at the generic
+reference/variation levels without private calibration. The individual protocol
+above remains optional for later player-specific inference. Generic setup
+validation does not validate anatomical envelopes or button operation.

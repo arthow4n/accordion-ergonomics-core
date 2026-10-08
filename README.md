@@ -14,7 +14,9 @@ small simultaneous contacts and explicit geometric hand hypotheses are supported
 Atlas-derived model challenges and held-contact waypoint search are reproducible.
 Displacement collision limits and sampled IK-step backtracking address two
 confirmed defects in the locked Mink release. Named self-pair hypotheses can
-constrain selected phalanges without altering imported envelopes.
+constrain selected phalanges without altering imported envelopes. A new generic
+seated setup derives an FR-1xb-sized shell and board placement from explicit
+torso, shoulder and support anchors, with a documented setup family.
 
 **Current results are sampled kinematic predictions on assumed geometry with
 incomplete anatomical self-collision coverage. Real playing feasibility,
@@ -29,6 +31,7 @@ The lockfile records the full tested dependency stack.
 ```sh
 uv sync --locked
 uv run aec check
+uv run aec frozen experiment experiments/023-reference-seated-setup/experiment.json --output artifacts/seated-reference
 uv run aec experiment experiments/001-single-contact/experiment.json
 uv run aec render artifacts/single-contact/result.json
 uv run aec ablation experiments/002-arm-ablation/experiment.json
@@ -63,6 +66,7 @@ bytes can differ across driver versions; numerical state is the evidence.
 - [SI units, frames, calibration measurements](docs/research/frames-and-measurements.md)
 - [States, action exploration, sweeps and frozen execution](docs/research/action-laboratory.md)
 - [Recalculation profiles and limitations](docs/research/profiles.md)
+- [Public evidence and generic seated setup family](docs/research/seated-setup.md)
 - [Next falsifiable experiments](docs/research/roadmap.md)
 
 Finite topology, metric geometry, anatomical model constraints, numerical

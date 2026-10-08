@@ -4,6 +4,8 @@ from dataclasses import dataclass, field
 from math import isfinite
 from typing import Any
 
+from .seated_setup import SeatedSetup
+
 
 @dataclass(frozen=True)
 class PlayerProfile:
@@ -77,6 +79,7 @@ class PlayerProfile:
 
 @dataclass(frozen=True)
 class SetupProfile:
+    seated: SeatedSetup | None = None
     torso_origin_m: tuple[float, float, float] = (0, 0, 1)
     torso_rotation_wxyz: tuple[float, float, float, float] = (0, 0, 0, 1)
     provenance: dict[str, Any] = field(
@@ -88,6 +91,8 @@ class SetupProfile:
     )
 
     def __post_init__(self) -> None:
+        if isinstance(self.seated, dict):
+            object.__setattr__(self, "seated", SeatedSetup(**self.seated))
         if len(self.torso_origin_m) != 3 or not all(
             isfinite(v) for v in self.torso_origin_m
         ):

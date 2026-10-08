@@ -86,9 +86,23 @@ class Experiment:
     setup: SetupProfile = field(default_factory=SetupProfile)
     physical_contact: ContactProfile = field(default_factory=ContactProfile)
 
+    def __post_init__(self) -> None:
+        if self.setup.seated is not None:
+            from .seated_setup import derive_setup
+
+            object.__setattr__(
+                self, "geometry", derive_setup(self.geometry, self.setup)[0]
+            )
+
     def resolved_profiles(self) -> dict[str, Any]:
         instrument = asdict(self.geometry)
         setup = asdict(self.setup)
+        if self.setup.seated is None:
+            setup.pop("seated")
+        else:
+            from .seated_setup import derive_setup
+
+            setup["derived_anchors"] = derive_setup(self.geometry, self.setup)[1]
         setup["board"] = {
             "origin_m": self.geometry.origin_m,
             "rotation_wxyz": self.geometry.rotation_wxyz,
@@ -96,6 +110,12 @@ class Experiment:
             .get("board", {})
             .get("provenance", asdict(self.geometry.evidence)),
         }
+        if self.setup.seated is not None:
+            setup["board"]["provenance"] = {
+                "kind": "derived",
+                "source": self.setup.seated.evidence,
+                "note": "Recalculated from torso, instrument scale and support anchors",
+            }
         solver = asdict(self.solver)
         contact = asdict(self.physical_contact)
         if not self.physical_contact.additional_collision_pairs:
@@ -128,8 +148,11 @@ class Experiment:
         result["player"] = asdict(self.player)
         result["physical_contact"] = asdict(self.physical_contact)
         result["solver"] = asdict(self.solver)
+        torso = asdict(self.setup)
+        if self.setup.seated is None:
+            torso.pop("seated")
         result["setup"] = {
-            "torso": asdict(self.setup),
+            "torso": torso,
             "board": {
                 "origin_m": origin,
                 "rotation_wxyz": rotation,
@@ -158,9 +181,11 @@ class Experiment:
             )
         geometry = dict(source["geometry"])
         if source["schema_version"] == 2:
-            placement = source["setup"]["board"]
-            geometry["origin_m"] = placement["origin_m"]
-            geometry["rotation_wxyz"] = tuple(placement["rotation_wxyz"])
+            placement = source["setup"].get("board", {})
+            geometry["origin_m"] = placement.get("origin_m", (0, 0, 0))
+            geometry["rotation_wxyz"] = tuple(
+                placement.get("rotation_wxyz", (2**-0.5, -(2**-0.5), 0, 0))
+            )
         if "stagger_columns" in geometry:
             geometry["stagger_columns"] = tuple(geometry["stagger_columns"])
         provenance = geometry.pop("provenance")

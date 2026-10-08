@@ -1,5 +1,35 @@
 # Research log
 
+## 2026-10-08 — Public-evidence-guided body-anchored seated setup
+
+[023](experiments/023-reference-seated-setup/notes.md) adds a generic compact CBA
+setup with Roland's 365/195/380 mm catalogue scale, compiled thorax support
+planes, shoulder-relative treble edge and pelvis-relative thigh-height reference.
+[Public evidence and broad parameter ranges](docs/research/seated-setup.md)
+separate pedagogy, visual examples and model assumptions. Sources disagree on
+bellows/left-thigh contact and right-thigh engagement; no rigid pin or inferred
+load fraction is introduced. No private calibration or copied public media.
+
+Compared with 018, C4 is 180 mm higher and 90 mm inward relative to neutral
+shoulder; forward offset changes only 10 mm. Instrument depth makes a large
+surface-forward offset unsurprising. New four-view diagnostics expose the shell,
+support references and side arm approach. The solved wrist flexion is straighter,
+but deviation is larger; this first pose comparison changes digit/pair policy too.
+Matched-policy comparisons and family search are underway.
+
+C4 marker error is 0.03922 mm; actual button separation 0.03826 mm; all 11
+couplings hold. Independent shell distances are ≥4.038 mm; fixed thorax shapes
+are checked despite engine weld filtering. **Coverage falsification:** seven
+unchecked middle/ring phalangeal overlaps reach 8.68 mm. A more plausible gross
+setup is not a fully collision-valid human pose. The shell is a conservative
+box, thighs schematic, straps/support forces and real hand envelopes uncalibrated.
+
+Saved-state rendering reproduces all four views; both frozen records verify.
+75 tests, Ruff and ty pass, including frame covariance, scale recalculation,
+cached-transform rejection and unchanged legacy profile hashes. Old published
+worlds remain intact. This is a validated setup implementation milestone;
+family robustness and representative transition results remain to be established.
+
 ## 2026-10-08 — Automated integrity checks across research workflows
 
 Manual checks repeatedly tripped over different pose, coverage, sweep and

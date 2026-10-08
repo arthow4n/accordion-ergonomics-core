@@ -67,3 +67,15 @@ installation. Ty reports unresolved attributes even for `MjModel` and
 `mj_forward`. `_engine.py` explicitly isolates that untyped native boundary;
 project domain inputs retain annotations and validation. No global type-check
 rule was disabled.
+
+## Generic seated setup evidence (023)
+
+[Seated setup provenance](seated-setup.md) distinguishes Roland catalogue
+365/195/380 mm overall dimensions from the unmeasured button lattice, case shape
+and mount registration. Public pedagogy and inspected illustrations support
+qualitative torso/thigh/upright-board relationships; disagreements about bellows
+and thigh engagement remain documented. Broad numeric family intervals are
+assumptions, not photo-derived measurements or population bounds. The implemented
+solid shell is a separate conservative geometry hypothesis. Straps/support forces
+and personalized calibration are not identified. Historical synthetic records
+are preserved.

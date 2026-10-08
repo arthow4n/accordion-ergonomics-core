@@ -45,6 +45,23 @@ def render_views(
             "elevation": -25.0,
         },
     }
+    seated = any(
+        scene.model.geom(i).name == "instrument_envelope"
+        for i in range(scene.model.ngeom)
+    )
+    if seated:
+        mujoco.mj_forward(scene.model, scene.data)
+        center = scene.data.geom("instrument_envelope").xpos.tolist()
+        views["overview"] = dict(
+            lookat=center, distance=1.15, azimuth=-125.0, elevation=-12.0
+        )
+        views["keyboard"] = dict(
+            lookat=center, distance=1.0, azimuth=-90.0, elevation=0.0
+        )
+        views["side"] = dict(lookat=center, distance=1.0, azimuth=180.0, elevation=0.0)
+        views["hand"] = dict(
+            lookat=target, distance=0.55, azimuth=-55.0, elevation=-15.0
+        )
     if collision_overlay:
         views["collision"] = dict(views["hand"])
     if views_to_render is not None:
@@ -89,9 +106,10 @@ def render_views(
                 picture = Image.fromarray(renderer.render())
                 draw = ImageDraw.Draw(picture)
                 draw.rectangle((0, 0, 960, 45), fill=(18, 25, 36))
+                label = "seated setup / assumed shell" if seated else "synthetic board"
                 draw.text(
                     (12, 10),
-                    f"{name} | synthetic board | {button_id} orange | index pad green",
+                    (f"{name} | {label} | {button_id} orange"),
                     fill=(255, 255, 255),
                 )
                 draw.text(
