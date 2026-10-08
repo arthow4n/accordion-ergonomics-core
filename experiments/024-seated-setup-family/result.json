@@ -1,0 +1,983 @@
+{
+  "id": "024-seated-setup-family",
+  "input": {
+    "id": "024-seated-setup-family",
+    "atlas_definition": "atlas-definition.json",
+    "atlas_definition_sha256": "483770968c644c051490ccba621c396f52b4696dadf9a88b07e0e5665e6d9bd0",
+    "targets": [
+      {
+        "row": 3,
+        "column": 5,
+        "finger": "index"
+      },
+      {
+        "row": 1,
+        "column": 9,
+        "finger": "index"
+      },
+      {
+        "row": 2,
+        "column": 15,
+        "finger": "index"
+      }
+    ],
+    "cases": [
+      {
+        "id": "reference",
+        "patch": {}
+      },
+      {
+        "id": "synthetic-matched-policy",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": null
+            },
+            "board": {
+              "origin_m": [
+                0.26,
+                0.22,
+                0.9
+              ],
+              "rotation_wxyz": [
+                0.7071067811865476,
+                -0.7071067811865476,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": "torso-gap-30mm",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "torso_gap_m": 0.03
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "treble-outward-30mm",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "treble_edge_to_shoulder_m": 0.03
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "support-lower-30mm",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "support_height_above_root_m": 0.07
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "yaw-zero",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "yaw_rad": 0.0
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "yaw-minus45",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "yaw_rad": -0.7853981633974483
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "side-tilt10",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "long_axis_tilt_rad": 0.17453292519943295
+              }
+            }
+          }
+        }
+      },
+      {
+        "id": "fore-aft10",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "fore_aft_tilt_rad": 0.17453292519943295
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "definition_sha256": "d0f2c6c8bbb45541c5291c7356b2a645eab5bc220e15c08ccb68b8ea022f1147",
+  "cases": [
+    {
+      "case": {
+        "id": "reference",
+        "patch": {}
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 3,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "b7a348142f86e6d663cb8fdc641bd95907ca85977a743368ac42a649a82377c3",
+      "anchor_qpos_rad": [
+        -0.18489901230066277,
+        0.07831466430090055,
+        -0.07831466430090055,
+        0.18489901230066277,
+        -0.03743822976335734,
+        0.30256202012835726,
+        0.13600009995668583,
+        -0.13600009995668583,
+        -0.30256202012835726,
+        0.03743822976335734,
+        0.09275163499439094,
+        0.7640455053746396,
+        -0.09275163499439094,
+        0.30250022735267307,
+        1.8853512743953356,
+        -0.9127009510696572,
+        0.20140296349139267,
+        -0.028890771777355093,
+        0.04909701908885756,
+        -0.13264045327194432,
+        0.015298608514431574,
+        0.01652087037893722,
+        0.6577106979155134,
+        0.24212730876704894,
+        0.09292619776476158,
+        1.3679414974111506,
+        0.04663093755264252,
+        -0.22154956352810798,
+        0.7572288868255767,
+        0.3881070835290425,
+        0.27482854720714606,
+        -0.062331168529371414,
+        0.4103497297794083,
+        0.059614349262710795,
+        0.18234082120492348,
+        0.10331193456242217,
+        0.37021780579792585,
+        0.0540571840489151
+      ],
+      "elapsed_s": 12.97513977799099,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.0,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "reference/result.json",
+      "result_sha256": "fa642536186401c6fd83f3d4491860b98b231368a9f2fb414a88152ce4cb30f3"
+    },
+    {
+      "case": {
+        "id": "synthetic-matched-policy",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": null
+            },
+            "board": {
+              "origin_m": [
+                0.26,
+                0.22,
+                0.9
+              ],
+              "rotation_wxyz": [
+                0.7071067811865476,
+                -0.7071067811865476,
+                0,
+                0
+              ]
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 3,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "5a3abdf32e14f26dcf5de47fc49768abbb221a6475c844010fd4f399ff342c03",
+      "anchor_qpos_rad": [
+        -0.14898345448660932,
+        0.06310249621850189,
+        -0.06310249621850189,
+        0.14898345448660932,
+        -0.03016607136299115,
+        0.24379110734172438,
+        0.10958287148188621,
+        -0.10958287148188621,
+        -0.24379110734172438,
+        0.03016607136299115,
+        0.19011046273239887,
+        0.6156341094487989,
+        -0.19011046273239887,
+        0.012133566020761547,
+        1.8807035064693753,
+        1.2425386562499736,
+        -0.15613117339429686,
+        0.766375368638324,
+        -0.6497874115081778,
+        -0.46527326711681966,
+        -0.7043152674267984,
+        0.03860267129867044,
+        1.151945855402146,
+        0.09580845039157325,
+        0.10458148507936645,
+        1.5307265910201668,
+        0.08504022051106676,
+        -0.19033822270674733,
+        0.757265807660441,
+        0.38900427655693287,
+        0.2767062260414474,
+        -0.06108423790213695,
+        0.41113985849236606,
+        0.08767158807745824,
+        1.4661260538926526,
+        0.16581141652849546,
+        0.5263992065733789,
+        0.2758481411060324
+      ],
+      "elapsed_s": 38.665309073010576,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.0694916494031068
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.07799103422551439
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.15003980797528482
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.15003980797528482,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "synthetic-matched-policy/result.json",
+      "result_sha256": "734623205fc540fee7b0065d9b206b22d9a8a549c4cfa44cf7bf2e91459a8270"
+    },
+    {
+      "case": {
+        "id": "torso-gap-30mm",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "torso_gap_m": 0.03
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 3,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "7592646a4d5e32fff3f4b99f07ca266b13a3c2f8f2e416ceaed1bdf00e0d7e35",
+      "anchor_qpos_rad": [
+        -0.17912482070787292,
+        0.07586898397750816,
+        -0.07586898397750816,
+        0.17912482070787292,
+        -0.036269075267296585,
+        0.29311334297651936,
+        0.13175296729752636,
+        -0.13175296729752636,
+        -0.29311334297651936,
+        0.036269075267296585,
+        0.18514034159963733,
+        0.740185209536665,
+        -0.18514034159963733,
+        0.2823178545280845,
+        1.8228271936480378,
+        -0.9111912051141772,
+        0.11970391995167796,
+        -0.017254515690824642,
+        0.0505807374734415,
+        -0.13294104949680668,
+        0.016182002463509353,
+        0.01677218408894466,
+        0.6505401069279464,
+        0.24237087539744,
+        0.09410669200927696,
+        1.392694630728711,
+        0.054925090099710375,
+        -0.21338659851368957,
+        0.756831670114784,
+        0.38813047638324105,
+        0.27288058638483426,
+        -0.0611527447832627,
+        0.4094615433411956,
+        0.06503510828322932,
+        0.1796843859665429,
+        0.10498866160217067,
+        0.3690414576304235,
+        0.0601493120591361
+      ],
+      "elapsed_s": 25.06808400299633,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.007326156079303828
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.013302255361305478
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.0169780249699773
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.0169780249699773,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "torso-gap-30mm/result.json",
+      "result_sha256": "17c47161e3625a73304f2c04f505fca04e21258b53ba0b14cd2fe58e388c9967"
+    },
+    {
+      "case": {
+        "id": "treble-outward-30mm",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "treble_edge_to_shoulder_m": 0.03
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 3,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "d88507d4976ac736d67d238cdc9f25a643a35cadd901ebd2977d280d4f89024e",
+      "anchor_qpos_rad": [
+        -0.1678792359000924,
+        0.07110587470974988,
+        -0.07110587470974988,
+        0.1678792359000924,
+        -0.03399207669051458,
+        0.274711476927424,
+        0.12348142144717542,
+        -0.12348142144717542,
+        -0.274711476927424,
+        0.03399207669051458,
+        -0.03653245915222321,
+        0.6937158508268282,
+        0.03653245915222321,
+        0.16664858749400344,
+        1.9109706437460714,
+        -0.9391251699419934,
+        0.18818545654446914,
+        0.03850092666913305,
+        0.05077700818611903,
+        -0.13317627558388226,
+        0.016255011561891387,
+        0.01676020899015503,
+        0.7233240582831028,
+        0.23004690965136843,
+        0.104803829474004,
+        1.3466877653443385,
+        0.056530319751819574,
+        -0.2147070490957239,
+        0.7572352489264748,
+        0.3882738529489856,
+        0.2739726847100395,
+        -0.0614476992860032,
+        0.4099435944701556,
+        0.06567538722279213,
+        0.1805885827302141,
+        0.10452481950190705,
+        0.3695560839242886,
+        0.0607063472100658
+      ],
+      "elapsed_s": 17.88233225599106,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.018448941803410883
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.025513318742475692
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.06121441644540092
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.06121441644540092,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "treble-outward-30mm/result.json",
+      "result_sha256": "5e36f2fc1e028a6283246a0db3a08fb73ca19828552e8e5a68cedbc582b092d6"
+    },
+    {
+      "case": {
+        "id": "support-lower-30mm",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "support_height_above_root_m": 0.07
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 3,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "388c70a11ece4c199561e5d7e5c9a6c62b7756cd88d7dbb45f3159728c883039",
+      "anchor_qpos_rad": [
+        -0.27228471348022926,
+        0.11532720302365082,
+        -0.11532720302365083,
+        0.2722847134802293,
+        -0.055132028762525764,
+        0.44555680387673885,
+        0.2002755330557058,
+        -0.2002755330557058,
+        -0.44555680387673885,
+        0.055132028762525764,
+        0.06532160229040117,
+        1.125143444133179,
+        -0.06532160229040117,
+        0.2815870847920623,
+        1.9589114601664295,
+        -1.0744437219018665,
+        -0.1608406361177548,
+        -0.028865227549096248,
+        0.049406537981959445,
+        -0.13284680478781066,
+        0.01546742641228683,
+        0.0165795966975157,
+        0.6365364838001347,
+        -0.2457986151335954,
+        0.11815808012109179,
+        1.286287117660842,
+        0.046638923719894684,
+        -0.2216122371303754,
+        0.7564448505208909,
+        0.38790112356029777,
+        0.2732304333778787,
+        -0.06148543923645979,
+        0.40954506863541135,
+        0.06002122747236442,
+        0.18129950505339346,
+        0.10401366757865275,
+        0.3696706098995081,
+        0.05489196538162029
+      ],
+      "elapsed_s": 13.63727090798784,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.014883713231221729
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.039459386996658886
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.043685245029133096
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.043685245029133096,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "support-lower-30mm/result.json",
+      "result_sha256": "23fb30edd2b872344465469d7e51253f9d5f6d2179fbcb778ac778ef4444f699"
+    },
+    {
+      "case": {
+        "id": "yaw-zero",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "yaw_rad": 0.0
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 3,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "385741ae8d8fe681febcfc4c1f68b1ff9bf822beb18b6f2371b9d60633b3f4b0",
+      "anchor_qpos_rad": [
+        -0.19588990538291384,
+        0.0829698979411102,
+        -0.0829698979411102,
+        0.19588990538291384,
+        -0.03966365852794537,
+        0.3205471178993136,
+        0.14408431057090357,
+        -0.14408431057090357,
+        -0.3205471178993136,
+        0.03966365852794537,
+        0.26532383344270966,
+        0.8094624189376606,
+        -0.26532383344270966,
+        0.39980492166894344,
+        1.7551773301114617,
+        -1.2595119292419656,
+        0.1265470458355623,
+        0.18908184501823525,
+        0.05097332385078342,
+        -0.13339962283013168,
+        0.016269465618851175,
+        0.0166483831532112,
+        0.8252554527977798,
+        0.227477881275021,
+        0.16110305738761013,
+        1.4269339865656083,
+        0.05610128601865822,
+        -0.2148371500824323,
+        0.7572393620201583,
+        0.3883369917643167,
+        0.27522659735061045,
+        -0.06200743377713215,
+        0.41055512622278034,
+        0.0661710251159174,
+        0.18201357280323696,
+        0.10362825807239458,
+        0.37024051469068653,
+        0.06157940697444179
+      ],
+      "elapsed_s": 15.267883689986775,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.1628391305467471
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.017786257736686663
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.015444804535084095
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.1628391305467471,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "yaw-zero/result.json",
+      "result_sha256": "96bdc03732f3fcc94973c3159263e6030f3ff04332388420ce397212a602b4f9"
+    },
+    {
+      "case": {
+        "id": "yaw-minus45",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "yaw_rad": -0.7853981633974483
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 2,
+        "no_pose_found": 1,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "7e2d90dcfb1ece0cdbe55c40ecef9d2e818ec79922f1bb5fa221bc09a92a8414",
+      "anchor_qpos_rad": [
+        -0.21554983619781973,
+        0.09129693475320877,
+        -0.09129693475320877,
+        0.21554983619781973,
+        -0.04364438832104615,
+        0.3527179137782505,
+        0.15854492083971863,
+        -0.15854492083971863,
+        -0.3527179137782505,
+        0.04364438832104615,
+        0.46194118368698583,
+        0.8907018024703295,
+        -0.46194118368698583,
+        0.4234151402972084,
+        1.5223234353197903,
+        -1.1577603137164243,
+        0.4073719006798769,
+        0.03560491967926051,
+        0.04893496929327662,
+        -0.13149581121546672,
+        0.015195058960011155,
+        0.015364586299696704,
+        1.3715393426117761,
+        -0.08299194199906422,
+        0.2905798716313638,
+        0.2802487057380565,
+        0.07713811858941232,
+        -0.20393707013247542,
+        0.27935693988852156,
+        0.3870219781778411,
+        0.07815722802622349,
+        -0.19601184318301013,
+        0.09117121678309664,
+        0.06244167047354804,
+        0.4071270091168268,
+        0.20273886081434594,
+        0.5263458839344963,
+        0.16926637479291604
+      ],
+      "elapsed_s": 36.16826912500255,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.006333236858258408
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "no_pose_found",
+            "status_changed": true,
+            "relocation_difference_m": null
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.05229877202323789
+          }
+        ],
+        "status_changes": 1,
+        "maximum_common_relocation_change_m": 0.05229877202323789,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "yaw-minus45/result.json",
+      "result_sha256": "e7a8fc3d482a03b5c691669a5da3ed0c140571600f3fc504acb5e7d49e8850ba"
+    },
+    {
+      "case": {
+        "id": "side-tilt10",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "long_axis_tilt_rad": 0.17453292519943295
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 3,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "4f4a33abf8bccacadbee83226cafdb2441d693854a22ec09ed9469679132e3a2",
+      "anchor_qpos_rad": [
+        -0.1849215348411524,
+        0.07832420380668643,
+        -0.07832420380668643,
+        0.1849215348411524,
+        -0.03744279011246474,
+        0.302598875194613,
+        0.1360166661228311,
+        -0.1360166661228311,
+        -0.302598875194613,
+        0.03744279011246474,
+        0.08820328855842868,
+        0.7641385737237701,
+        -0.08820328855842868,
+        0.3041162022990989,
+        1.8827519636077321,
+        -0.9095422542540854,
+        0.2022591837581543,
+        -0.028497247910571146,
+        0.049733119733955874,
+        -0.13286296868434763,
+        0.0156730027034276,
+        0.016673535113811623,
+        0.661089871478454,
+        0.2392584344804479,
+        0.0936137130511449,
+        1.3662969736396497,
+        0.04757948203043812,
+        -0.21965831654468582,
+        0.7570907890020308,
+        0.3880856209837664,
+        0.27389114761511285,
+        -0.061827474559707364,
+        0.40992025135971316,
+        0.060143943577617064,
+        0.18120968068916507,
+        0.10405535823369917,
+        0.3697315728590009,
+        0.0545857889892225
+      ],
+      "elapsed_s": 14.193473942010314,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.0003417725050506165
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.05304360167023914
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.030798894841012864
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.05304360167023914,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "side-tilt10/result.json",
+      "result_sha256": "e2fa45a60e09866cc4affe00b77f2d6bd0c6aa4a531dc94d6366924fc83c3029"
+    },
+    {
+      "case": {
+        "id": "fore-aft10",
+        "patch": {
+          "setup": {
+            "torso": {
+              "seated": {
+                "fore_aft_tilt_rad": 0.17453292519943295
+              }
+            }
+          }
+        }
+      },
+      "summary": {
+        "buttons_explored": 3,
+        "sampled_transition_found": 3,
+        "no_pose_found": 0,
+        "no_transition_found": 0
+      },
+      "status": "completed_search",
+      "profile_sha256": "9740cc1a8022632f53bcf7ec87a856524ba1e4632d97aec977d1c4271f13d36b",
+      "anchor_qpos_rad": [
+        -0.22748358134063662,
+        0.09635151689014569,
+        -0.09635151689014568,
+        0.22748358134063662,
+        -0.04606072514748428,
+        0.37224586037558727,
+        0.1673226342092286,
+        -0.1673226342092286,
+        -0.37224586037558727,
+        0.04606072514748427,
+        0.13469150442473196,
+        0.9400147989282506,
+        -0.13469150442473196,
+        0.27177614701842534,
+        1.8749275063907824,
+        -0.9064143169361362,
+        0.24103496949067807,
+        0.09764923994431088,
+        0.5546727129347944,
+        -0.3991648050061042,
+        0.3653531667601099,
+        0.01554086821694059,
+        0.5897119989989545,
+        0.22656815983826337,
+        0.2753871800788856,
+        1.1483699585185254,
+        0.06487615942944971,
+        -0.16703528721807245,
+        0.5288972254738753,
+        0.31147080011378975,
+        0.15949750607306604,
+        0.020082410524373723,
+        0.3642559594791453,
+        0.09112646156335018,
+        0.06905488105758349,
+        0.20204240099633813,
+        0.11097325301878821,
+        0.06016964845102844
+      ],
+      "elapsed_s": 15.45064367300074,
+      "comparison": {
+        "changes": [
+          {
+            "button_id": "r3c5",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.010141553979972934
+          },
+          {
+            "button_id": "r1c9",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": -0.03688301357476499
+          },
+          {
+            "button_id": "r2c15",
+            "reference_status": "sampled_transition_found",
+            "status": "sampled_transition_found",
+            "status_changed": false,
+            "relocation_difference_m": 0.006132030866988353
+          }
+        ],
+        "status_changes": 0,
+        "maximum_common_relocation_change_m": 0.03688301357476499,
+        "interpretation": "Finite-search sensitivity; human boundaries unknown"
+      },
+      "result": "fore-aft10/result.json",
+      "result_sha256": "04243acbcb5513ee088c1ed36d3262678991c8454e7d6a7560e423d2bf6fe054"
+    }
+  ],
+  "anchor_policy": "Recalibrate source contact from same prior per profile",
+  "claim": "Synthetic local-search sensitivity, not calibrated human ergonomics"
+}

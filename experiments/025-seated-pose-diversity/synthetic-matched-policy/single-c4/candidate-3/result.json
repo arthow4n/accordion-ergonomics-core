@@ -1,0 +1,2156 @@
+{
+  "status": "success",
+  "feasible": null,
+  "collision_limit_implementation": "displacement",
+  "solver_settings": {
+    "backend": "mink-clarabel",
+    "max_iterations": 180,
+    "integration_dt_s": 0.02,
+    "position_cost": 1.0,
+    "normal_cost": 0.05,
+    "posture_cost": 0.0001,
+    "damping": 1e-06,
+    "position_tolerance_m": 0.0001,
+    "normal_tolerance_rad": 0.05,
+    "joint_tolerance_rad": 1e-06,
+    "equality_tolerance_rad": 1e-06,
+    "penetration_tolerance_m": 0.0001,
+    "collision_avoidance": true,
+    "collision_limit_implementation": "displacement",
+    "collision_backtrack_steps": 12,
+    "collision_edge_step_rad": 0.01
+  },
+  "claim": "Static kinematic candidate only; playing feasibility is unestablished",
+  "failure": null,
+  "termination_reason": "accepted_endpoint",
+  "diagnostic_reasons": [],
+  "state_semantics": "Kinematic configuration; dynamic state unestablished",
+  "qvel_rad_s": null,
+  "diagnostics": {
+    "instrument_envelope_distances_m": {},
+    "landmarks_world_m": {
+      "humerus_r": [
+        0.16852530145638386,
+        -0.11352026306726978,
+        1.1349995748669472
+      ],
+      "ulna_r": [
+        0.348337502907596,
+        -0.04921238270238967,
+        0.9157902485775647
+      ],
+      "lunate_r": [
+        0.3632441758200646,
+        0.1969787353809272,
+        0.8362257356625911
+      ],
+      "torso": [
+        5.092508192916511e-13,
+        -0.1040000000005445,
+        0.7611999999994907
+      ]
+    },
+    "target_contact_distance_m": 1.3143000059598117e-05,
+    "position_error_m": 1.4227132300412189e-05,
+    "normal_error_rad": 1.675057551365827e-05,
+    "equality_max_residual_rad": 6.938893903907228e-18,
+    "joint_max_violation_rad": 0.0,
+    "joint_margins_rad": {
+      "sternoclavicular_r2_r": 0.1844369470036052,
+      "sternoclavicular_r3_r": 0.07811895482590715,
+      "unrotscap_r3_r": 0.07811895482590715,
+      "unrotscap_r2_r": 0.1844369470036052,
+      "acromioclavicular_r2_r": 0.03734467108750684,
+      "acromioclavicular_r3_r": 0.30180591327862666,
+      "acromioclavicular_r1_r": 0.1356602337464534,
+      "unrothum_r1_r": 0.1356602337464534,
+      "unrothum_r3_r": 0.30180591327862666,
+      "unrothum_r2_r": 0.03734467108750683,
+      "elv_angle_r": 1.895080127838707,
+      "shoulder_elv_r": 0.7621361446429966,
+      "shoulder1_r2_r": 1.895080127838707,
+      "shoulder_rot_r": 1.6303769762482094,
+      "elbow_flexion_r": 1.0203063668973507,
+      "pro_sup_r": 0.4728641932689883,
+      "deviation_r": 0.014903060352898734,
+      "flexion_r": 0.021367128055078455,
+      "cmc_flexion": 0.4253676340832298,
+      "cmc_abduction": 0.21025093290451025,
+      "mp_flexion_r": 0.5527818648830537,
+      "ip_flexion_r": 0.3492167722786029,
+      "mcp2_flexion_r": 0.4700588072637646,
+      "mcp2_abduction_r": 0.14228012291623005,
+      "pm2_flexion_r": 0.014119482915261768,
+      "md2_flexion_r": 0.24868588263913427,
+      "mcp3_flexion_r": 0.05619036606069261,
+      "mcp3_abduction_r": 0.13795246661981342,
+      "pm3_flexion_r": 0.1729547066768422,
+      "md3_flexion": 0.3887975644325887,
+      "mcp4_flexion_r": 0.05975109639472809,
+      "mcp4_abduction_r": 0.0382086704844993,
+      "pm4_flexion": 0.6441558503617995,
+      "md4_flexion_r": 0.10179909928206596,
+      "mcp5_flexion_r": 0.04563982714138359,
+      "mcp5_abduction_r": 0.022348340797804372,
+      "pm5_flexion_r": 0.6770935854893823,
+      "md5_flexion_r": 0.11687122497381044
+    },
+    "contacts": [
+      {
+        "geom1": "proxph2_coll_r",
+        "geom2": "proxph3_coll_r",
+        "distance_m": -9.55366041891191e-05,
+        "position_world_m": [
+          0.31651624971914094,
+          0.2629010832764391,
+          0.8616770913727803
+        ]
+      },
+      {
+        "geom1": "distph2_coll_2_r",
+        "geom2": "r1c5",
+        "distance_m": 1.314920987169994e-05,
+        "position_world_m": [
+          0.2599991057987704,
+          0.2240065733807953,
+          0.8999959880079217
+        ]
+      }
+    ],
+    "max_penetration_m": 9.55366041891191e-05,
+    "pad_world_m": [
+      0.25999953542969223,
+      0.2240131426254551,
+      0.8999945716610211
+    ],
+    "pad_normal_world": [
+      5.0070849084704605e-06,
+      -0.9999999998597089,
+      1.5984736686805445e-05
+    ],
+    "palm_world_m": [
+      0.35553261067907566,
+      0.20941022559843675,
+      0.8420535760042828
+    ]
+  },
+  "initial_qpos_rad": [
+    -0.18489901230066277,
+    0.07831466430090055,
+    -0.07831466430090055,
+    0.18489901230066277,
+    -0.03743822976335734,
+    0.30256202012835726,
+    0.13600009995668583,
+    -0.13600009995668583,
+    -0.30256202012835726,
+    0.03743822976335734,
+    0.09275163499439094,
+    0.7640455053746396,
+    -0.09275163499439094,
+    0.5025002273526731,
+    1.8853512743953356,
+    -0.9127009510696572,
+    0.20140296349139267,
+    -0.028890771777355093,
+    0.04909701908885756,
+    -0.13264045327194432,
+    0.015298608514431574,
+    0.01652087037893722,
+    0.6577106979155134,
+    0.24212730876704894,
+    0.09292619776476158,
+    1.3679414974111506,
+    0.04663093755264252,
+    -0.22154956352810798,
+    0.7572288868255767,
+    0.3881070835290425,
+    0.27482854720714606,
+    -0.062331168529371414,
+    0.4103497297794083,
+    0.059614349262710795,
+    0.18234082120492348,
+    0.10331193456242217,
+    0.37021780579792585,
+    0.0540571840489151
+  ],
+  "frozen_dof_indices": [],
+  "qpos_rad": [
+    -0.1844369470036052,
+    0.07811895482590715,
+    -0.07811895482590715,
+    0.1844369470036052,
+    -0.03734467108750684,
+    0.30180591327862666,
+    0.1356602337464534,
+    -0.1356602337464534,
+    -0.30180591327862666,
+    0.03734467108750683,
+    0.2370801278387071,
+    0.7621361446429966,
+    -0.2370801278387071,
+    0.46362302375179043,
+    1.0203063668973507,
+    -1.0979358067310117,
+    0.42142893964710126,
+    0.7640308719449216,
+    0.27463236591677015,
+    -0.28974906709548975,
+    0.1453501351169463,
+    0.0871152277213971,
+    1.1007411927362354,
+    0.11951887708376997,
+    0.014119482915261768,
+    1.3221141173608657,
+    1.5146096339393074,
+    -0.1238465333801866,
+    1.3978452933231578,
+    0.3887975644325887,
+    1.5110489036052719,
+    0.2235903295155007,
+    0.6441558503617995,
+    0.10179909928206596,
+    1.5251601728586164,
+    0.23945065920219563,
+    0.6770935854893823,
+    0.11687122497381044
+  ],
+  "joint_names": [
+    "sternoclavicular_r2_r",
+    "sternoclavicular_r3_r",
+    "unrotscap_r3_r",
+    "unrotscap_r2_r",
+    "acromioclavicular_r2_r",
+    "acromioclavicular_r3_r",
+    "acromioclavicular_r1_r",
+    "unrothum_r1_r",
+    "unrothum_r3_r",
+    "unrothum_r2_r",
+    "elv_angle_r",
+    "shoulder_elv_r",
+    "shoulder1_r2_r",
+    "shoulder_rot_r",
+    "elbow_flexion_r",
+    "pro_sup_r",
+    "deviation_r",
+    "flexion_r",
+    "cmc_flexion",
+    "cmc_abduction",
+    "mp_flexion_r",
+    "ip_flexion_r",
+    "mcp2_flexion_r",
+    "mcp2_abduction_r",
+    "pm2_flexion_r",
+    "md2_flexion_r",
+    "mcp3_flexion_r",
+    "mcp3_abduction_r",
+    "pm3_flexion_r",
+    "md3_flexion",
+    "mcp4_flexion_r",
+    "mcp4_abduction_r",
+    "pm4_flexion",
+    "md4_flexion_r",
+    "mcp5_flexion_r",
+    "mcp5_abduction_r",
+    "pm5_flexion_r",
+    "md5_flexion_r"
+  ],
+  "solver_history": [
+    {
+      "iteration": 0,
+      "position_error_m": 0.19402115738954492,
+      "normal_error_rad": 0.39192920564524947,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 0.0,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 69,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00040253099283799054
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 1,
+      "position_error_m": 0.16453977035018225,
+      "normal_error_rad": 0.20819600990157514,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 4.2049697057677804e-15,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 10,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0005362116436876795
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0005362116436876795
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 2,
+      "position_error_m": 0.12175164181688622,
+      "normal_error_rad": 0.1580591255680669,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 3.1502578323738817e-15,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 36,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00015042894699920234
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 3,
+      "position_error_m": 0.0952699444595022,
+      "normal_error_rad": 0.18727247379554912,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.5681900222830336e-15,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 37,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 4,
+      "position_error_m": 0.08205540943895372,
+      "normal_error_rad": 0.33373182773479343,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 136,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 5,
+      "position_error_m": 0.1461571549003108,
+      "normal_error_rad": 0.1651933958643086,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1102230246251565e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 22,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0018098669067174323
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 6,
+      "position_error_m": 0.07386449513278072,
+      "normal_error_rad": 0.0908377077707407,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1102230246251565e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 75,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00036710203035126947
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 7,
+      "position_error_m": 0.06347268279648524,
+      "normal_error_rad": 0.10026568622778087,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.326672684688674e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 141,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010159331354350071
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 8,
+      "position_error_m": 0.152158497889532,
+      "normal_error_rad": 0.16556619241055248,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 3.3306690738754696e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 13,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0022981717536242697
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 9,
+      "position_error_m": 0.08110555242244467,
+      "normal_error_rad": 0.07129070640285798,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.6653345369377348e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 8,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0006888542438494589
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 10,
+      "position_error_m": 0.04184578120791252,
+      "normal_error_rad": 0.031492070473665895,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.326672684688674e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 118,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 11,
+      "position_error_m": 0.11265425759477676,
+      "normal_error_rad": 0.5468845109943726,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.3877787807814457e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 14,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.001868150533893667
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 12,
+      "position_error_m": 0.05475433431676428,
+      "normal_error_rad": 0.28567599707453967,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.326672684688674e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 34,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 13,
+      "position_error_m": 0.010157472547558971,
+      "normal_error_rad": 0.11390834127183654,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 4.163336342344337e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 95,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 5.348390231776218e-06
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 14,
+      "position_error_m": 0.09478883095240802,
+      "normal_error_rad": 0.23631418513733926,
+      "max_penetration_m": 5.348390231776218e-06,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 17,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0006306970467899536
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 2.5424325636215495e-06
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 15,
+      "position_error_m": 0.05500255767629552,
+      "normal_error_rad": 0.11524501444006653,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 10,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00042865586228936817
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 16,
+      "position_error_m": 0.029639778169377778,
+      "normal_error_rad": 0.055770810862672326,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 16,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 17,
+      "position_error_m": 0.014017195945327509,
+      "normal_error_rad": 0.04805489782789993,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 69,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 18,
+      "position_error_m": 0.0817100690476307,
+      "normal_error_rad": 0.2733468965705877,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.326672684688674e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 16,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0006872142263734382
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 19,
+      "position_error_m": 0.040741622658021275,
+      "normal_error_rad": 0.13678499420876888,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 24,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 20,
+      "position_error_m": 0.031002449736926438,
+      "normal_error_rad": 0.06960084375846574,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 16,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 21,
+      "position_error_m": 0.018157994625989306,
+      "normal_error_rad": 0.06094198050027477,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 62,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 22,
+      "position_error_m": 0.07174837304891439,
+      "normal_error_rad": 0.2703547305832753,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 9,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0008028055744828764
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 23,
+      "position_error_m": 0.03624720261866429,
+      "normal_error_rad": 0.1446863968831024,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 14,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 24,
+      "position_error_m": 0.01860583831223133,
+      "normal_error_rad": 0.05089017519948212,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 4,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 25,
+      "position_error_m": 0.009094196404176733,
+      "normal_error_rad": 0.013338187361289614,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 78,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 3.0438990144716904e-06
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 26,
+      "position_error_m": 0.07571889081625274,
+      "normal_error_rad": 0.22212220978402106,
+      "max_penetration_m": 3.0438990144716904e-06,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 24,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 27,
+      "position_error_m": 0.01567547217389501,
+      "normal_error_rad": 0.011371608366172032,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 23,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 28,
+      "position_error_m": 0.01440345566826849,
+      "normal_error_rad": 0.01872776958857969,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 59,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 29,
+      "position_error_m": 0.04342046308719397,
+      "normal_error_rad": 0.18461966695146384,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.326672684688674e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 70,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010775840656853872
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 30,
+      "position_error_m": 0.0721396486404737,
+      "normal_error_rad": 0.19775022991232258,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 16,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0006095712102507571
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 31,
+      "position_error_m": 0.03802172559319679,
+      "normal_error_rad": 0.09196548165092272,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 21,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 32,
+      "position_error_m": 0.014801066508759956,
+      "normal_error_rad": 0.046428507026977574,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 54,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 33,
+      "position_error_m": 0.06141519276180835,
+      "normal_error_rad": 0.25655197144909403,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.3877787807814457e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 11,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0010354984948567252
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 34,
+      "position_error_m": 0.030343572850078427,
+      "normal_error_rad": 0.12923856838498307,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.326672684688674e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 14,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 35,
+      "position_error_m": 0.01572508011861876,
+      "normal_error_rad": 0.038829348385706786,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 62,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 5.1215729913456354e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 36,
+      "position_error_m": 0.03636158281205473,
+      "normal_error_rad": 0.14523834872913152,
+      "max_penetration_m": 5.1215729913456354e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 11,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 6.317216016397606e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 37,
+      "position_error_m": 0.012951905843774928,
+      "normal_error_rad": 0.028334489878185338,
+      "max_penetration_m": 6.317216016397606e-05,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 23,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0001001582815748775
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0001011977965439323
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 7.50630617421845e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 38,
+      "position_error_m": 0.01581831396936758,
+      "normal_error_rad": 0.031062418023706365,
+      "max_penetration_m": 7.50630617421845e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 22,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010039800980198368
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.322841703615636e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 39,
+      "position_error_m": 0.016446489059846334,
+      "normal_error_rad": 0.02599669231962711,
+      "max_penetration_m": 9.322841703615636e-05,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 10,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010011726352608316
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.619240861978226e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 40,
+      "position_error_m": 0.012723057640249315,
+      "normal_error_rad": 0.013559195524864441,
+      "max_penetration_m": 9.619240861978226e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 5,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010037259531433737
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010013025965171368
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.000100973441414038
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.816738261967176e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 41,
+      "position_error_m": 0.01223743424648802,
+      "normal_error_rad": 0.012348622805906703,
+      "max_penetration_m": 9.816738261967176e-05,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 10,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.957061495534034e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 42,
+      "position_error_m": 0.007542448250456139,
+      "normal_error_rad": 0.00266452927393325,
+      "max_penetration_m": 9.957061495534034e-05,
+      "equality_max_residual_rad": 0.0,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.0625,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010054318022550621
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010054318022550621
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010054318022550621
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010031096826792346
+          },
+          {
+            "fraction": 0.0625,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.989199340406513e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 43,
+      "position_error_m": 0.00712404535798078,
+      "normal_error_rad": 0.002620300374135202,
+      "max_penetration_m": 9.989199340406513e-05,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010045993561249092
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010045993561249092
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010045993561249092
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.971176135407239e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 44,
+      "position_error_m": 0.00630373520391275,
+      "normal_error_rad": 0.0024995424816057327,
+      "max_penetration_m": 9.971176135407239e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010032780482544315
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010032780482544315
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010006518042109114
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.95634568432234e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 45,
+      "position_error_m": 0.005569336679708677,
+      "normal_error_rad": 0.002351857785056505,
+      "max_penetration_m": 9.95634568432234e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010040628644511843
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010040628644511843
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010040628644511843
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.976425252355287e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 46,
+      "position_error_m": 0.004914002668304963,
+      "normal_error_rad": 0.002180291684338249,
+      "max_penetration_m": 9.976425252355287e-05,
+      "equality_max_residual_rad": 1.3877787807814457e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010009240533302363
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010009240533302363
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010029416942594627
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.987953388884002e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 47,
+      "position_error_m": 0.004330927338564188,
+      "normal_error_rad": 0.0019955008158435428,
+      "max_penetration_m": 9.987953388884002e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 1,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010018376183333622
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010018376183333622
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010018376183333622
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.993388495630612e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 48,
+      "position_error_m": 0.003813545839244979,
+      "normal_error_rad": 0.0018064487828984494,
+      "max_penetration_m": 9.993388495630612e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 1,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0001001258438941624
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010006636071705627
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010006636071705627
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.99380165277522e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 49,
+      "position_error_m": 0.0033558125694709657,
+      "normal_error_rad": 0.0016212668979362866,
+      "max_penetration_m": 9.99380165277522e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010001830635402928
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010001830635402928
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.994688104921975e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 50,
+      "position_error_m": 0.002562656291537398,
+      "normal_error_rad": 0.0013259905151620718,
+      "max_penetration_m": 9.994688104921975e-05,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 4,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.974930801123424e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 51,
+      "position_error_m": 0.0002698207364196402,
+      "normal_error_rad": 0.0006763322917109558,
+      "max_penetration_m": 9.974527290286181e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.767156041465622e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 52,
+      "position_error_m": 1.4227132300412189e-05,
+      "normal_error_rad": 1.675057551365827e-05,
+      "max_penetration_m": 9.55366041891191e-05,
+      "equality_max_residual_rad": 6.938893903907228e-18,
+      "joint_max_violation_rad": 0.0
+    }
+  ],
+  "trajectory": null,
+  "contact_required": true,
+  "contact_requirements": [
+    {
+      "finger": "index",
+      "button_id": "r1c5",
+      "surface_contact_required": true
+    }
+  ],
+  "unvalidated": [
+    "measured keyboard geometry and body placement",
+    "button depression/force",
+    "continuous approach, hold and release",
+    "muscle actuation/equilibrium",
+    "complete self-collision coverage",
+    "player-specific anatomy",
+    "pad deformation and anatomical validity of generic contact proxy"
+  ],
+  "resolved_profiles": {
+    "instrument": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "origin_m": [
+        0.26,
+        0.22,
+        0.9
+      ],
+      "evidence": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      },
+      "button_travel_m": null,
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.008,
+      "rotation_wxyz": [
+        0.7071067811865476,
+        -0.7071067811865476,
+        0,
+        0
+      ]
+    },
+    "player": {
+      "model": "myoarm_r",
+      "model_mode": "imported_musculoskeletal",
+      "geometric_hand_scale": 1.0,
+      "geometry_evidence": {
+        "kind": "hypothesis",
+        "source": "Wrist-origin geometric perturbation",
+        "note": "Uniform hand scaling is not physiological personalization.",
+        "uncertainty": null
+      },
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      },
+      "joint_range_evidence": {},
+      "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+    },
+    "setup": {
+      "torso_origin_m": [
+        0,
+        0,
+        0.65
+      ],
+      "torso_rotation_wxyz": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "docs/research/seated-setup.md",
+        "note": "Reference seated scaffold height; no personalized anatomy."
+      },
+      "board": {
+        "origin_m": [
+          0.26,
+          0.22,
+          0.9
+        ],
+        "rotation_wxyz": [
+          0.7071067811865476,
+          -0.7071067811865476,
+          0,
+          0
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "Synthetic laboratory fixture, 2026-10-08",
+          "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+        }
+      }
+    },
+    "contact": {
+      "additional_collision_pairs": [
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "midph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "proxph2_coll_r",
+          "proxph3_coll_r"
+        ]
+      ],
+      "additional_collision_evidence": {
+        "kind": "hypothesis",
+        "source": "019 index-middle phalangeal pair constraint",
+        "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+      },
+      "inactive_digits_policy": "allow_articulation",
+      "inactive_digits_evidence": {
+        "kind": "assumption",
+        "source": "023 setup study",
+        "note": "Unused digits may articulate; not a posture observation."
+      },
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 200,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true,
+      "collision_limit_implementation": "displacement",
+      "collision_backtrack_steps": 12,
+      "collision_edge_step_rad": 0.01
+    }
+  },
+  "profiles_sha256": "5a3abdf32e14f26dcf5de47fc49768abbb221a6475c844010fd4f399ff342c03",
+  "schema_version": 1,
+  "experiment_id": "025-synthetic-matched-policy-single-c4",
+  "input_sha256": "bd21bb57555627ad58e924b3bdb6dfccae213ff9a7f0203568042824733c191b",
+  "input": {
+    "schema_version": 2,
+    "id": "025-synthetic-matched-policy-single-c4",
+    "question": "Does a body-anchored generic compact CBA setup admit a central C4 contact without arbitrary board placement?",
+    "geometry": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "button_travel_m": null,
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.008,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      }
+    },
+    "contacts": [
+      {
+        "row": 1,
+        "column": 5,
+        "finger": "index"
+      }
+    ],
+    "initial_joints_rad": {
+      "sternoclavicular_r2_r": -0.18489901230066277,
+      "sternoclavicular_r3_r": 0.07831466430090056,
+      "unrotscap_r3_r": -0.07831466430090056,
+      "unrotscap_r2_r": 0.18489901230066277,
+      "acromioclavicular_r2_r": -0.03743822976335734,
+      "acromioclavicular_r3_r": 0.3025620201283573,
+      "acromioclavicular_r1_r": 0.13600009995668585,
+      "unrothum_r1_r": -0.13600009995668585,
+      "unrothum_r3_r": -0.3025620201283573,
+      "unrothum_r2_r": 0.03743822976335734,
+      "elv_angle_r": 0.09275163499439094,
+      "shoulder_elv_r": 0.7640455053746396,
+      "shoulder1_r2_r": -0.09275163499439094,
+      "shoulder_rot_r": 0.30250022735267307,
+      "elbow_flexion_r": 1.8853512743953356,
+      "pro_sup_r": -0.9127009510696572,
+      "deviation_r": 0.20140296349139267,
+      "flexion_r": -0.028890771777355093,
+      "cmc_flexion": 0.04909701908885756,
+      "cmc_abduction": -0.13264045327194432,
+      "mp_flexion_r": 0.015298608514431574,
+      "ip_flexion_r": 0.01652087037893722,
+      "mcp2_flexion_r": 0.6577106979155134,
+      "mcp2_abduction_r": 0.24212730876704894,
+      "pm2_flexion_r": 0.09292619776476158,
+      "md2_flexion_r": 1.3679414974111506,
+      "mcp3_flexion_r": 0.04663093755264252,
+      "mcp3_abduction_r": -0.22154956352810798,
+      "pm3_flexion_r": 0.7572288868255767,
+      "md3_flexion": 0.3881070835290425,
+      "mcp4_flexion_r": 0.27482854720714606,
+      "mcp4_abduction_r": -0.062331168529371414,
+      "pm4_flexion": 0.4103497297794083,
+      "md4_flexion_r": 0.059614349262710795,
+      "mcp5_flexion_r": 0.18234082120492348,
+      "mcp5_abduction_r": 0.10331193456242217,
+      "pm5_flexion_r": 0.37021780579792585,
+      "md5_flexion_r": 0.0540571840489151
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 200,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true,
+      "collision_limit_implementation": "displacement",
+      "collision_backtrack_steps": 12,
+      "collision_edge_step_rad": 0.01
+    },
+    "randomness": {
+      "used": false,
+      "seed": null
+    },
+    "anatomy": {
+      "package": "myo-sim",
+      "version": "0.2.3",
+      "model": "myoarm_r",
+      "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+    },
+    "render": {
+      "width": 960,
+      "height": 720,
+      "backend": "egl"
+    },
+    "setup": {
+      "torso": {
+        "seated": null,
+        "torso_origin_m": [
+          0,
+          0,
+          0.65
+        ],
+        "torso_rotation_wxyz": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "docs/research/seated-setup.md",
+          "note": "Reference seated scaffold height; no personalized anatomy."
+        }
+      },
+      "board": {
+        "origin_m": [
+          0.26,
+          0.22,
+          0.9
+        ],
+        "rotation_wxyz": [
+          0.7071067811865476,
+          -0.7071067811865476,
+          0,
+          0
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "Synthetic laboratory fixture, 2026-10-08",
+          "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+        }
+      }
+    },
+    "player": {
+      "model": "myoarm_r",
+      "model_mode": "imported_musculoskeletal",
+      "geometric_hand_scale": 1.0,
+      "geometry_evidence": {
+        "kind": "hypothesis",
+        "source": "Wrist-origin geometric perturbation",
+        "note": "Uniform hand scaling is not physiological personalization.",
+        "uncertainty": null
+      },
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      },
+      "joint_range_evidence": {},
+      "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+    },
+    "physical_contact": {
+      "additional_collision_pairs": [
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "midph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "proxph2_coll_r",
+          "proxph3_coll_r"
+        ]
+      ],
+      "additional_collision_evidence": {
+        "kind": "hypothesis",
+        "source": "019 index-middle phalangeal pair constraint",
+        "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+      },
+      "inactive_digits_policy": "allow_articulation",
+      "inactive_digits_evidence": {
+        "kind": "assumption",
+        "source": "023 setup study",
+        "note": "Unused digits may articulate; not a posture observation."
+      },
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    }
+  },
+  "provenance": {
+    "compiled_model_sha256": "4cf788c4133f52253601914e6126fe6069187076ab797b5dbe05a7bd5982cea8",
+    "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+    "project_source_sha256": "1337dab73826f9d244cc4081a445c8d5f379c3e22fa7ef302d731dfa471df3dc",
+    "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+    "render_backend": "egl"
+  },
+  "runtime": {
+    "python": "3.14.7",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "packages": {
+      "mujoco": "3.15.0",
+      "myo-sim": "0.2.3",
+      "mink": "1.3.0",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "clarabel": "0.11.1",
+      "pillow": "12.3.0"
+    }
+  },
+  "model": {
+    "nq": 38,
+    "nv": 38,
+    "neq": 11,
+    "nu": 63,
+    "index_pad_local_m": [
+      0.004100182009418455,
+      -0.02575251249753332,
+      0.003963612992642634
+    ],
+    "index_pad_quat_wxyz": [
+      0.7270496471899948,
+      0.6606737120958207,
+      0.16878297258962194,
+      -0.08013341893519518
+    ],
+    "contact_sites": {
+      "index_pad": {
+        "pos_m": [
+          0.004100182009418455,
+          -0.02575251249753332,
+          0.003963612992642634
+        ],
+        "quat_wxyz": [
+          0.7270496471899948,
+          0.6606737120958207,
+          0.16878297258962194,
+          -0.08013341893519518
+        ]
+      }
+    },
+    "index_pad_provenance": "Outer envelope of compiled distal capsule and ellipsoid; normal along distal capsule axis"
+  },
+  "targets": [
+    {
+      "button_id": "r1c5",
+      "finger": "index",
+      "midi": 60,
+      "surface_world_m": [
+        0.26,
+        0.224,
+        0.9
+      ],
+      "normal_world": [
+        0.0,
+        1.0000000000000002,
+        -2.220446049250313e-16
+      ]
+    }
+  ],
+  "target": {
+    "button_id": "r1c5",
+    "midi": 60,
+    "surface_world_m": [
+      0.26,
+      0.224,
+      0.9
+    ],
+    "normal_world": [
+      0.0,
+      1.0000000000000002,
+      -2.220446049250313e-16
+    ]
+  },
+  "start_id": "4",
+  "offset_rad": {
+    "shoulder_rot_r": 0.2
+  },
+  "candidate_index": 3,
+  "cameras": {
+    "overview": {
+      "lookat": [
+        0.06,
+        0.1,
+        1.35
+      ],
+      "distance": 1.3,
+      "azimuth": -110.0,
+      "elevation": -12.0
+    },
+    "keyboard": {
+      "lookat": [
+        0.22,
+        0.22,
+        1.18
+      ],
+      "distance": 0.65,
+      "azimuth": -90.0,
+      "elevation": 0.0
+    },
+    "side": {
+      "lookat": [
+        0.2,
+        0.12,
+        1.2
+      ],
+      "distance": 0.85,
+      "azimuth": 180.0,
+      "elevation": 0.0
+    },
+    "hand": {
+      "lookat": [
+        0.26,
+        0.224,
+        0.9
+      ],
+      "distance": 0.28,
+      "azimuth": -65.0,
+      "elevation": -25.0
+    },
+    "collision": {
+      "lookat": [
+        0.26,
+        0.224,
+        0.9
+      ],
+      "distance": 0.28,
+      "azimuth": -65.0,
+      "elevation": -25.0
+    }
+  }
+}

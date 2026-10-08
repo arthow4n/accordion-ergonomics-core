@@ -1,0 +1,2686 @@
+{
+  "status": "success",
+  "feasible": null,
+  "collision_limit_implementation": "displacement",
+  "solver_settings": {
+    "backend": "mink-clarabel",
+    "max_iterations": 200,
+    "integration_dt_s": 0.02,
+    "position_cost": 1.0,
+    "normal_cost": 0.05,
+    "posture_cost": 0.0001,
+    "damping": 1e-06,
+    "position_tolerance_m": 0.0001,
+    "normal_tolerance_rad": 0.05,
+    "joint_tolerance_rad": 1e-06,
+    "equality_tolerance_rad": 1e-06,
+    "penetration_tolerance_m": 0.0001,
+    "collision_avoidance": true,
+    "collision_limit_implementation": "displacement",
+    "collision_backtrack_steps": 12,
+    "collision_edge_step_rad": 0.01
+  },
+  "claim": "Static kinematic candidate only; playing feasibility is unestablished",
+  "failure": null,
+  "termination_reason": "accepted_endpoint",
+  "diagnostic_reasons": [],
+  "state_semantics": "Kinematic configuration; dynamic state unestablished",
+  "qvel_rad_s": null,
+  "diagnostics": {
+    "instrument_envelope_distances_m": {
+      "": 0.06665976035047229,
+      "thorax_coll1": 0.05823677361796752,
+      "thorax_coll2": 0.01839954431678585,
+      "thorax_coll3": 0.05772012910995199,
+      "hat_cervical_coll": 0.1251050065496277,
+      "hat_jaw_coll2": 0.0903627041800346,
+      "hat_skull_coll": 0.14492442072796044,
+      "humerus_coll_r": 0.11292709933641756,
+      "ulna_coll_r": 0.12661991191999322,
+      "radius_coll_r": 0.07412743492885263,
+      "radius_coll_2_r": 0.08021026264624569,
+      "radius_coll_3_r": 0.07908364505818148,
+      "1mcskin_r": 0.06035627652230014,
+      "proximal_thumb_coll_r": 0.06135627652230006,
+      "distal_thumb_coll_r": 0.06803299746253,
+      "distal_thumb_coll_2_r": 0.08172899102466764,
+      "2mcskin_coll_r": 0.04789672660643082,
+      "proxph2_coll_r": 0.031373385844053275,
+      "midph2_coll_r": 0.022465630098709423,
+      "distph2_coll_r": 0.007244195112769753,
+      "distph2_coll_2_r": 0.00399779950711397,
+      "3mcskin_coll_r": 0.04635378220319103,
+      "proxph3_coll_r": 0.04562175492761181,
+      "midph3_coll_r": 0.04685865473423038,
+      "distph3_coll_r": 0.038142971615356965,
+      "distph3_coll_2_r": 0.04269624725567777,
+      "4mcski_r": 0.03776084069295287,
+      "proxph4_coll_r": 0.03586354715524762,
+      "midph4_coll_r": 0.03781870038728364,
+      "distph4_coll_r": 0.03434453607308735,
+      "distph4_coll_2_r": 0.04218080988250753,
+      "5mcskin_r": 0.028554888603624325,
+      "5proxph_coll_r": 0.026548145815856974,
+      "5midph_coll_r": 0.031361393153242774,
+      "5distph_coll_r": 0.03681653138362199,
+      "5distph_coll_2_r": 0.045616724884093456
+    },
+    "landmarks_world_m": {
+      "humerus_r": [
+        0.16731104917091835,
+        -0.11659421632601487,
+        1.1379588337601767
+      ],
+      "ulna_r": [
+        0.3883678902351583,
+        -0.0650230368091086,
+        0.9563137224526206
+      ],
+      "lunate_r": [
+        0.2772423494748441,
+        0.15897444313307962,
+        1.0238587628435813
+      ],
+      "torso": [
+        5.092508192916511e-13,
+        -0.1040000000005445,
+        0.7611999999994907
+      ]
+    },
+    "target_contact_distance_m": -2.1295351912600298e-06,
+    "position_error_m": 5.730667179835305e-05,
+    "normal_error_rad": 0.0005931030343629333,
+    "equality_max_residual_rad": 1.3877787807814457e-17,
+    "joint_max_violation_rad": 0.0,
+    "joint_margins_rad": {
+      "sternoclavicular_r2_r": 0.22748358134063662,
+      "sternoclavicular_r3_r": 0.09635151689014569,
+      "unrotscap_r3_r": 0.09635151689014568,
+      "unrotscap_r2_r": 0.22748358134063662,
+      "acromioclavicular_r2_r": 0.04606072514748428,
+      "acromioclavicular_r3_r": 0.37224586037558727,
+      "acromioclavicular_r1_r": 0.1673226342092286,
+      "unrothum_r1_r": 0.1673226342092286,
+      "unrothum_r3_r": 0.37224586037558727,
+      "unrothum_r2_r": 0.04606072514748427,
+      "elv_angle_r": 1.7926915044247318,
+      "shoulder_elv_r": 0.9400147989282506,
+      "shoulder1_r2_r": 1.7926915044247318,
+      "shoulder_rot_r": 1.8222238529815744,
+      "elbow_flexion_r": 0.3940724936092177,
+      "pro_sup_r": 0.6643856830638638,
+      "deviation_r": 0.19529703050932193,
+      "flexion_r": 0.6877487600556892,
+      "cmc_flexion": 0.1453272870652056,
+      "cmc_abduction": 0.10083519499389582,
+      "mp_flexion_r": 0.33277883323989005,
+      "ip_flexion_r": 0.4207911317830594,
+      "mcp2_flexion_r": 0.5897119989989545,
+      "mcp2_abduction_r": 0.03523084016173664,
+      "pm2_flexion_r": 0.2753871800788856,
+      "md2_flexion_r": 0.42243004148147456,
+      "mcp3_flexion_r": 0.06487615942944971,
+      "mcp3_abduction_r": 0.09476371278192755,
+      "pm3_flexion_r": 0.5288972254738753,
+      "md3_flexion": 0.31147080011378975,
+      "mcp4_flexion_r": 0.15949750607306604,
+      "mcp4_abduction_r": 0.24171658947562627,
+      "pm4_flexion": 0.3642559594791453,
+      "md4_flexion_r": 0.09112646156335018,
+      "mcp5_flexion_r": 0.06905488105758349,
+      "mcp5_abduction_r": 0.05975659900366187,
+      "pm5_flexion_r": 0.11097325301878821,
+      "md5_flexion_r": 0.06016964845102844
+    },
+    "contacts": [
+      {
+        "geom1": "distph2_coll_2_r",
+        "geom2": "r1c5",
+        "distance_m": -2.18938271804984e-06,
+        "position_world_m": [
+          0.17192688295253888,
+          0.2017093458808895,
+          1.109642718626509
+        ]
+      }
+    ],
+    "max_penetration_m": 2.18938271804984e-06,
+    "pad_world_m": [
+      0.1719258639585798,
+      0.2017092945697692,
+      1.1096395066956248
+    ],
+    "pad_normal_world": [
+      -0.4918918053161945,
+      -0.8531370883322484,
+      -0.1737802070857015
+    ],
+    "palm_world_m": [
+      0.27051541438195686,
+      0.16975082618543308,
+      1.0331642355110513
+    ]
+  },
+  "initial_qpos_rad": [
+    -0.18489901230066277,
+    0.07831466430090055,
+    -0.07831466430090055,
+    0.18489901230066277,
+    -0.03743822976335734,
+    0.30256202012835726,
+    0.13600009995668583,
+    -0.13600009995668583,
+    -0.30256202012835726,
+    0.03743822976335734,
+    0.09275163499439094,
+    0.7640455053746396,
+    -0.09275163499439094,
+    0.30250022735267307,
+    1.8853512743953356,
+    -0.9127009510696572,
+    0.20140296349139267,
+    -0.028890771777355093,
+    0.04909701908885756,
+    -0.13264045327194432,
+    0.015298608514431574,
+    0.01652087037893722,
+    0.6577106979155134,
+    0.24212730876704894,
+    0.09292619776476158,
+    1.3679414974111506,
+    0.04663093755264252,
+    -0.22154956352810798,
+    0.7572288868255767,
+    0.3881070835290425,
+    0.27482854720714606,
+    -0.062331168529371414,
+    0.4103497297794083,
+    0.059614349262710795,
+    0.18234082120492348,
+    0.10331193456242217,
+    0.37021780579792585,
+    0.0540571840489151
+  ],
+  "frozen_dof_indices": [],
+  "qpos_rad": [
+    -0.22748358134063662,
+    0.09635151689014569,
+    -0.09635151689014568,
+    0.22748358134063662,
+    -0.04606072514748428,
+    0.37224586037558727,
+    0.1673226342092286,
+    -0.1673226342092286,
+    -0.37224586037558727,
+    0.04606072514748427,
+    0.13469150442473196,
+    0.9400147989282506,
+    -0.13469150442473196,
+    0.27177614701842534,
+    1.8749275063907824,
+    -0.9064143169361362,
+    0.24103496949067807,
+    0.09764923994431088,
+    0.5546727129347944,
+    -0.3991648050061042,
+    0.3653531667601099,
+    0.01554086821694059,
+    0.5897119989989545,
+    0.22656815983826337,
+    0.2753871800788856,
+    1.1483699585185254,
+    0.06487615942944971,
+    -0.16703528721807245,
+    0.5288972254738753,
+    0.31147080011378975,
+    0.15949750607306604,
+    0.020082410524373723,
+    0.3642559594791453,
+    0.09112646156335018,
+    0.06905488105758349,
+    0.20204240099633813,
+    0.11097325301878821,
+    0.06016964845102844
+  ],
+  "joint_names": [
+    "sternoclavicular_r2_r",
+    "sternoclavicular_r3_r",
+    "unrotscap_r3_r",
+    "unrotscap_r2_r",
+    "acromioclavicular_r2_r",
+    "acromioclavicular_r3_r",
+    "acromioclavicular_r1_r",
+    "unrothum_r1_r",
+    "unrothum_r3_r",
+    "unrothum_r2_r",
+    "elv_angle_r",
+    "shoulder_elv_r",
+    "shoulder1_r2_r",
+    "shoulder_rot_r",
+    "elbow_flexion_r",
+    "pro_sup_r",
+    "deviation_r",
+    "flexion_r",
+    "cmc_flexion",
+    "cmc_abduction",
+    "mp_flexion_r",
+    "ip_flexion_r",
+    "mcp2_flexion_r",
+    "mcp2_abduction_r",
+    "pm2_flexion_r",
+    "md2_flexion_r",
+    "mcp3_flexion_r",
+    "mcp3_abduction_r",
+    "pm3_flexion_r",
+    "md3_flexion",
+    "mcp4_flexion_r",
+    "mcp4_abduction_r",
+    "pm4_flexion",
+    "md4_flexion_r",
+    "mcp5_flexion_r",
+    "mcp5_abduction_r",
+    "pm5_flexion_r",
+    "md5_flexion_r"
+  ],
+  "solver_history": [
+    {
+      "iteration": 0,
+      "position_error_m": 0.032006371386363364,
+      "normal_error_rad": 0.17452651973656588,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 0.0,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 37,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0007619231753671467
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 1,
+      "position_error_m": 0.0328842012977831,
+      "normal_error_rad": 0.08983834218187173,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 31,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0002050901602530012
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 2,
+      "position_error_m": 0.051547624732791515,
+      "normal_error_rad": 0.0849604479543078,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.326672684688674e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 203,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 3,
+      "position_error_m": 0.586683660956987,
+      "normal_error_rad": 1.2833181777555576,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.881784197001252e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 54,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0010660989771392564
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.002474350632571263
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 4,
+      "position_error_m": 0.46392895980424137,
+      "normal_error_rad": 1.1943170563792265,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 3.2612801348363973e-15,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 48,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0004430396278689887
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0009400162138102248
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 5,
+      "position_error_m": 0.3556026272931443,
+      "normal_error_rad": 1.0455251048772125,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.5673907444456745e-15,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 11,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0006872207318333289
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.004429746995770893
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.004429746995770893
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 6,
+      "position_error_m": 0.31039385407388914,
+      "normal_error_rad": 0.9454465116547474,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.248201624865942e-15,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 35,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0002864321750219497
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 7,
+      "position_error_m": 0.23906772812053828,
+      "normal_error_rad": 1.4248969719002724,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1171619185290638e-15,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 9,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0007359553042251077
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0007359553042251077
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 8,
+      "position_error_m": 0.22357905019347615,
+      "normal_error_rad": 1.5790000591187807,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.396061623727746e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 7,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0021928723015257716
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0021928723015257716
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 9,
+      "position_error_m": 0.21274578657034088,
+      "normal_error_rad": 1.7402873738681974,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 6.38378239159465e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 19,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00016683444952115493
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00016683444952115493
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 2.4544015470162085e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 10,
+      "position_error_m": 0.2083903638182693,
+      "normal_error_rad": 1.7721014637897348,
+      "max_penetration_m": 2.4544015470162085e-05,
+      "equality_max_residual_rad": 4.718447854656915e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 5,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010762706451699581
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010762706451699581
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010762706451699581
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 3.885370474118136e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 11,
+      "position_error_m": 0.20737004972531223,
+      "normal_error_rad": 1.771498879565796,
+      "max_penetration_m": 3.885370474118136e-05,
+      "equality_max_residual_rad": 4.163336342344337e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 5,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00012465557976549472
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00012465557976549472
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00012465557976549472
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 4.264123472840723e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 12,
+      "position_error_m": 0.20657552936515533,
+      "normal_error_rad": 1.7692274719308325,
+      "max_penetration_m": 4.264123472840723e-05,
+      "equality_max_residual_rad": 3.608224830031759e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 5,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010076575370655209
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00011858034361874551
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010659386599503554
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 3.523039121488495e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 13,
+      "position_error_m": 0.2059297219920071,
+      "normal_error_rad": 1.7677297761704682,
+      "max_penetration_m": 3.523039121488495e-05,
+      "equality_max_residual_rad": 3.122502256758253e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.25,
+        "edge_steps": 9,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00011632627179736037
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010627478184509296
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 7.309265131192396e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 14,
+      "position_error_m": 0.20481595963985796,
+      "normal_error_rad": 1.768581131229017,
+      "max_penetration_m": 7.309265131192396e-05,
+      "equality_max_residual_rad": 2.3592239273284576e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 4,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010390547522645568
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010390547522645568
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010017151602727064
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.039319180856884e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 15,
+      "position_error_m": 0.20445343404516417,
+      "normal_error_rad": 1.7688641483478114,
+      "max_penetration_m": 9.039319180856884e-05,
+      "equality_max_residual_rad": 2.0122792321330962e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.0625,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010595424400270791
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010595424400270791
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010379767399582647
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0001006305186871529
+          },
+          {
+            "fraction": 0.0625,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.287446280552346e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 16,
+      "position_error_m": 0.2043013737965619,
+      "normal_error_rad": 1.76903090329254,
+      "max_penetration_m": 9.287446280552346e-05,
+      "equality_max_residual_rad": 1.942890293094024e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.0625,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010011201275064935
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0001048412515178359
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0001031786617856818
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010073746956114978
+          },
+          {
+            "fraction": 0.0625,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.47659929315457e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 17,
+      "position_error_m": 0.20416148951959273,
+      "normal_error_rad": 1.7692653065493458,
+      "max_penetration_m": 9.47659929315457e-05,
+      "equality_max_residual_rad": 1.8041124150158794e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.0625,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010074834249154218
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010074834249154218
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010074834249154218
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010074834249154218
+          },
+          {
+            "fraction": 0.0625,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.619063162302549e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 18,
+      "position_error_m": 0.20403298078895338,
+      "normal_error_rad": 1.7695472226316766,
+      "max_penetration_m": 9.619063162302549e-05,
+      "equality_max_residual_rad": 1.6653345369377348e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.0625,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.000101548848769344
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.000101548848769344
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010067481495207482
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010067481495207482
+          },
+          {
+            "fraction": 0.0625,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.72435026718899e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 19,
+      "position_error_m": 0.20391506103414977,
+      "normal_error_rad": 1.76986107904653,
+      "max_penetration_m": 9.72435026718899e-05,
+      "equality_max_residual_rad": 1.5959455978986625e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.0625,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0001015729322961915
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010117806327356645
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010053144325060511
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010053144325060511
+          },
+          {
+            "fraction": 0.0625,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.799968934846057e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 20,
+      "position_error_m": 0.2038069686795608,
+      "normal_error_rad": 1.7701947879105622,
+      "max_penetration_m": 9.799968934846057e-05,
+      "equality_max_residual_rad": 1.5265566588595902e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.0625,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010140798174627344
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010140798174627344
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010140798174627344
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010033147727886004
+          },
+          {
+            "fraction": 0.0625,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.851886856717339e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 21,
+      "position_error_m": 0.20370797489256562,
+      "normal_error_rad": 1.77053892744985,
+      "max_penetration_m": 9.851886856717339e-05,
+      "equality_max_residual_rad": 1.457167719820518e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.0625,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010113546097899957
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010086941424668748
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010086941424668748
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010011799556973043
+          },
+          {
+            "fraction": 0.0625,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.885941586205483e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 22,
+      "position_error_m": 0.20361741086072363,
+      "normal_error_rad": 1.7708846423129563,
+      "max_penetration_m": 9.885941586205483e-05,
+      "equality_max_residual_rad": 1.3877787807814457e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 3,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010068935834629225
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010068935834629225
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010031995748523343
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.984048460103087e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 23,
+      "position_error_m": 0.20345402269310367,
+      "normal_error_rad": 1.7717090315672823,
+      "max_penetration_m": 9.984048460103087e-05,
+      "equality_max_residual_rad": 1.1796119636642288e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.125,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010022960954784738
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010022960954784738
+          },
+          {
+            "fraction": 0.25,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00010022960954784738
+          },
+          {
+            "fraction": 0.125,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.995035167681323e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 24,
+      "position_error_m": 0.2033188284894059,
+      "normal_error_rad": 1.7724632559177553,
+      "max_penetration_m": 9.995035167681323e-05,
+      "equality_max_residual_rad": 1.0408340855860843e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 14,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 9.975900874008986e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 25,
+      "position_error_m": 0.2026913245280805,
+      "normal_error_rad": 1.7877644972922972,
+      "max_penetration_m": 7.473455301377509e-05,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 64,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 7.450315252347677e-05
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 26,
+      "position_error_m": 0.20667762349090088,
+      "normal_error_rad": 1.5975634094459479,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 0.0,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 61,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 27,
+      "position_error_m": 0.20441823759331354,
+      "normal_error_rad": 1.7333609000901518,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 202,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 28,
+      "position_error_m": 0.23847061609897344,
+      "normal_error_rad": 0.2672072212045115,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.220446049250313e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 89,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 29,
+      "position_error_m": 0.15115144125723595,
+      "normal_error_rad": 0.057281642932836156,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.220446049250313e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 23,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00018171876446022666
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 30,
+      "position_error_m": 0.08675925768370357,
+      "normal_error_rad": 0.060495907258319694,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 18,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.001632209741799236
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 31,
+      "position_error_m": 0.04543481864096252,
+      "normal_error_rad": 0.04468284996425872,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1102230246251565e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 236,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 32,
+      "position_error_m": 0.402996593920524,
+      "normal_error_rad": 1.8477819246446043,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.498001805406602e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 127,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 33,
+      "position_error_m": 0.08260364305030268,
+      "normal_error_rad": 0.9153254518054573,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 6.938893903907228e-18,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 52,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0004629895489179428
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 34,
+      "position_error_m": 0.05563170935889064,
+      "normal_error_rad": 0.5128250287616952,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 45,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00017149929360707082
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 35,
+      "position_error_m": 0.023620349540947883,
+      "normal_error_rad": 0.26978267734370864,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 8.326672684688674e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 127,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 36,
+      "position_error_m": 0.17491264259619768,
+      "normal_error_rad": 0.4031965616292376,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 21,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0009459173721285191
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 37,
+      "position_error_m": 0.09118597529746054,
+      "normal_error_rad": 0.21142837233766829,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.6653345369377348e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 9,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0009196409185978733
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 38,
+      "position_error_m": 0.045887199787555184,
+      "normal_error_rad": 0.10822729216977377,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1102230246251565e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 84,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 39,
+      "position_error_m": 0.036444832203275275,
+      "normal_error_rad": 0.19156943833972512,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.220446049250313e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 76,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 40,
+      "position_error_m": 0.15138826913847112,
+      "normal_error_rad": 0.5619239621364415,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.220446049250313e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 51,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 41,
+      "position_error_m": 0.015119477830617482,
+      "normal_error_rad": 0.2043322785949247,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 47,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 42,
+      "position_error_m": 0.008170485983641921,
+      "normal_error_rad": 0.12464047034901252,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.5265566588595902e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 46,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 43,
+      "position_error_m": 0.023817090548008332,
+      "normal_error_rad": 0.057300123263182685,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1102230246251565e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 17,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 44,
+      "position_error_m": 0.01328032022775382,
+      "normal_error_rad": 0.025588887138686327,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 50,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 45,
+      "position_error_m": 0.03429829053298907,
+      "normal_error_rad": 0.05270835651149165,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.249000902703301e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 193,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 46,
+      "position_error_m": 0.25772376416099196,
+      "normal_error_rad": 0.8595191720114872,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 3.3306690738754696e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 153,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 47,
+      "position_error_m": 0.15817566601263872,
+      "normal_error_rad": 0.5436538581500256,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.220446049250313e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 21,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 48,
+      "position_error_m": 0.012036604992648822,
+      "normal_error_rad": 0.15004039341356334,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 63,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 49,
+      "position_error_m": 0.03373386204467946,
+      "normal_error_rad": 0.10652710369862883,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.942890293094024e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 124,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 50,
+      "position_error_m": 0.12101351051517407,
+      "normal_error_rad": 0.25703283883271266,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1102230246251565e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 18,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0017072870658632285
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 51,
+      "position_error_m": 0.06514794347259038,
+      "normal_error_rad": 0.11113088821836205,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1102230246251565e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 8,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.000574349691727966
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 52,
+      "position_error_m": 0.033684404067736436,
+      "normal_error_rad": 0.053114392575413234,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 38,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 53,
+      "position_error_m": 0.022157622713304598,
+      "normal_error_rad": 0.10002307114713173,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.1102230246251565e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 109,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 54,
+      "position_error_m": 0.21558333599090743,
+      "normal_error_rad": 0.5874726500655105,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 3.3306690738754696e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 35,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.0006513099021690509
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 55,
+      "position_error_m": 0.11160789649182855,
+      "normal_error_rad": 0.3259188346119699,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.220446049250313e-16,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 40,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 56,
+      "position_error_m": 0.006835960293219898,
+      "normal_error_rad": 0.07070167208182021,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 0.5,
+        "edge_steps": 34,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": false,
+            "maximum_sampled_penetration_m": 0.00011757100484590809
+          },
+          {
+            "fraction": 0.5,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 1.3816504808169486e-06
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 57,
+      "position_error_m": 0.0018906708354600084,
+      "normal_error_rad": 0.05047725657908849,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 5.551115123125783e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 5,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 2.18938271804984e-06
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 58,
+      "position_error_m": 5.730667179835305e-05,
+      "normal_error_rad": 0.0005931030343629333,
+      "max_penetration_m": 2.18938271804984e-06,
+      "equality_max_residual_rad": 1.3877787807814457e-17,
+      "joint_max_violation_rad": 0.0
+    }
+  ],
+  "trajectory": null,
+  "contact_required": true,
+  "contact_requirements": [
+    {
+      "finger": "index",
+      "button_id": "r1c5",
+      "surface_contact_required": true
+    }
+  ],
+  "unvalidated": [
+    "measured keyboard geometry and body placement",
+    "button depression/force",
+    "continuous approach, hold and release",
+    "muscle actuation/equilibrium",
+    "complete self-collision coverage",
+    "player-specific anatomy",
+    "pad deformation and anatomical validity of generic contact proxy"
+  ],
+  "resolved_profiles": {
+    "instrument": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "origin_m": [
+        0.16996500000045317,
+        0.1982841571726148,
+        1.108999875608958
+      ],
+      "evidence": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      },
+      "button_travel_m": null,
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.008,
+      "rotation_wxyz": [
+        0.739942111693848,
+        -0.6208851530148457,
+        0.16636567534280194,
+        -0.19826689127414615
+      ]
+    },
+    "player": {
+      "model": "myoarm_r",
+      "model_mode": "imported_musculoskeletal",
+      "geometric_hand_scale": 1.0,
+      "geometry_evidence": {
+        "kind": "hypothesis",
+        "source": "Wrist-origin geometric perturbation",
+        "note": "Uniform hand scaling is not physiological personalization.",
+        "uncertainty": null
+      },
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      },
+      "joint_range_evidence": {},
+      "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+    },
+    "setup": {
+      "seated": {
+        "name": "reference_seated_cba_setup",
+        "instrument_width_m": 0.365,
+        "instrument_depth_m": 0.195,
+        "instrument_height_m": 0.38,
+        "torso_gap_m": 0.01,
+        "treble_edge_to_shoulder_m": 0.0,
+        "support_height_above_root_m": 0.1,
+        "support_clearance_m": 0.01,
+        "c4_top_inset_m": 0.06,
+        "outer_edge_inset_m": 0.015,
+        "yaw_rad": -0.5235987755982988,
+        "long_axis_tilt_rad": 0.0,
+        "fore_aft_tilt_rad": 0.17453292519943295,
+        "evidence": "docs/research/seated-setup.md",
+        "parameter_evidence": {
+          "torso_gap_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.0,
+              0.04
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "treble_edge_to_shoulder_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.03,
+              0.03
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "support_height_above_root_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.07,
+              0.13
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "support_clearance_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.0,
+              0.04
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "c4_top_inset_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.045,
+              0.095
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "outer_edge_inset_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.01,
+              0.025
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "yaw_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.7853981633974483,
+              0.0
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "long_axis_tilt_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.17453292519943295,
+              0.17453292519943295
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "fore_aft_tilt_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.17453292519943295,
+              0.17453292519943295
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "instrument_width_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          },
+          "instrument_depth_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          },
+          "instrument_height_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          }
+        }
+      },
+      "torso_origin_m": [
+        0,
+        0,
+        0.65
+      ],
+      "torso_rotation_wxyz": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "docs/research/seated-setup.md",
+        "note": "Reference seated scaffold height; no personalized anatomy."
+      },
+      "derived_anchors": {
+        "shell_center_board_m": [
+          -0.16749999999999998,
+          0.13,
+          -0.0975
+        ],
+        "shell_half_size_m": [
+          0.1825,
+          0.19,
+          0.0975
+        ],
+        "shell_center_world_m": [
+          -0.011816501544434976,
+          0.21842936062070814,
+          0.9640441703948452
+        ],
+        "shoulder_world_m": [
+          0.16996500000045317,
+          -0.09954500000145543,
+          1.1241999999986043
+        ],
+        "torso_reference_world_m": [
+          4.309143708525197e-13,
+          -0.08800000000132796,
+          0.921199999999569
+        ],
+        "right_thigh_reference_world_m": [
+          0.09996500000045316,
+          0.20216123526879953,
+          0.75
+        ],
+        "treble_support_corner_world_m": [
+          0.0823470256224036,
+          0.20216123526879953,
+          0.7769306973225257
+        ],
+        "support_reference_separation_m": 0.03218160156771416,
+        "rear_thorax_support_plane_gap_m": 0.01,
+        "shell_bottom_above_support_m": 0.01,
+        "anchor_policy": "Thorax support plane; shoulder-relative treble edge; pelvis-relative thigh-height plane. No force equilibrium or rigid thigh pin."
+      },
+      "board": {
+        "origin_m": [
+          0.16996500000045317,
+          0.1982841571726148,
+          1.108999875608958
+        ],
+        "rotation_wxyz": [
+          0.739942111693848,
+          -0.6208851530148457,
+          0.16636567534280194,
+          -0.19826689127414615
+        ],
+        "provenance": {
+          "kind": "derived",
+          "source": "docs/research/seated-setup.md",
+          "note": "Recalculated from torso, instrument scale and support anchors"
+        }
+      }
+    },
+    "contact": {
+      "additional_collision_pairs": [
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "midph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "proxph2_coll_r",
+          "proxph3_coll_r"
+        ]
+      ],
+      "additional_collision_evidence": {
+        "kind": "hypothesis",
+        "source": "019 index-middle phalangeal pair constraint",
+        "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+      },
+      "inactive_digits_policy": "allow_articulation",
+      "inactive_digits_evidence": {
+        "kind": "assumption",
+        "source": "023 setup study",
+        "note": "Unused digits may articulate; not a posture observation."
+      },
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 200,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true,
+      "collision_limit_implementation": "displacement",
+      "collision_backtrack_steps": 12,
+      "collision_edge_step_rad": 0.01
+    }
+  },
+  "profiles_sha256": "9740cc1a8022632f53bcf7ec87a856524ba1e4632d97aec977d1c4271f13d36b",
+  "schema_version": 1,
+  "experiment_id": "024-seated-setup-family-fore-aft10-anchor",
+  "input_sha256": "1169b609ca9e77b0c6f0a946ef3f9a5a24a160cf26515b7b2142495ee8868609",
+  "input": {
+    "schema_version": 2,
+    "id": "024-seated-setup-family-fore-aft10-anchor",
+    "question": "Does a body-anchored generic compact CBA setup admit a central C4 contact without arbitrary board placement?",
+    "geometry": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "button_travel_m": null,
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.008,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      }
+    },
+    "contacts": [
+      {
+        "row": 1,
+        "column": 5,
+        "finger": "index"
+      }
+    ],
+    "initial_joints_rad": {
+      "sternoclavicular_r2_r": -0.18489901230066277,
+      "sternoclavicular_r3_r": 0.07831466430090056,
+      "unrotscap_r3_r": -0.07831466430090056,
+      "unrotscap_r2_r": 0.18489901230066277,
+      "acromioclavicular_r2_r": -0.03743822976335734,
+      "acromioclavicular_r3_r": 0.3025620201283573,
+      "acromioclavicular_r1_r": 0.13600009995668585,
+      "unrothum_r1_r": -0.13600009995668585,
+      "unrothum_r3_r": -0.3025620201283573,
+      "unrothum_r2_r": 0.03743822976335734,
+      "elv_angle_r": 0.09275163499439094,
+      "shoulder_elv_r": 0.7640455053746396,
+      "shoulder1_r2_r": -0.09275163499439094,
+      "shoulder_rot_r": 0.30250022735267307,
+      "elbow_flexion_r": 1.8853512743953356,
+      "pro_sup_r": -0.9127009510696572,
+      "deviation_r": 0.20140296349139267,
+      "flexion_r": -0.028890771777355093,
+      "cmc_flexion": 0.04909701908885756,
+      "cmc_abduction": -0.13264045327194432,
+      "mp_flexion_r": 0.015298608514431574,
+      "ip_flexion_r": 0.01652087037893722,
+      "mcp2_flexion_r": 0.6577106979155134,
+      "mcp2_abduction_r": 0.24212730876704894,
+      "pm2_flexion_r": 0.09292619776476158,
+      "md2_flexion_r": 1.3679414974111506,
+      "mcp3_flexion_r": 0.04663093755264252,
+      "mcp3_abduction_r": -0.22154956352810798,
+      "pm3_flexion_r": 0.7572288868255767,
+      "md3_flexion": 0.3881070835290425,
+      "mcp4_flexion_r": 0.27482854720714606,
+      "mcp4_abduction_r": -0.062331168529371414,
+      "pm4_flexion": 0.4103497297794083,
+      "md4_flexion_r": 0.059614349262710795,
+      "mcp5_flexion_r": 0.18234082120492348,
+      "mcp5_abduction_r": 0.10331193456242217,
+      "pm5_flexion_r": 0.37021780579792585,
+      "md5_flexion_r": 0.0540571840489151
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 200,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true,
+      "collision_limit_implementation": "displacement",
+      "collision_backtrack_steps": 12,
+      "collision_edge_step_rad": 0.01
+    },
+    "randomness": {
+      "used": false,
+      "seed": null
+    },
+    "anatomy": {
+      "package": "myo-sim",
+      "version": "0.2.3",
+      "model": "myoarm_r",
+      "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+    },
+    "render": {
+      "width": 960,
+      "height": 720,
+      "backend": "egl"
+    },
+    "setup": {
+      "torso": {
+        "seated": {
+          "name": "reference_seated_cba_setup",
+          "instrument_width_m": 0.365,
+          "instrument_depth_m": 0.195,
+          "instrument_height_m": 0.38,
+          "torso_gap_m": 0.01,
+          "treble_edge_to_shoulder_m": 0.0,
+          "support_height_above_root_m": 0.1,
+          "support_clearance_m": 0.01,
+          "c4_top_inset_m": 0.06,
+          "outer_edge_inset_m": 0.015,
+          "yaw_rad": -0.5235987755982988,
+          "long_axis_tilt_rad": 0.0,
+          "fore_aft_tilt_rad": 0.17453292519943295,
+          "evidence": "docs/research/seated-setup.md",
+          "parameter_evidence": {
+            "torso_gap_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.0,
+                0.04
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "treble_edge_to_shoulder_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.03,
+                0.03
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "support_height_above_root_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.07,
+                0.13
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "support_clearance_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.0,
+                0.04
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "c4_top_inset_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.045,
+                0.095
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "outer_edge_inset_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.01,
+                0.025
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "yaw_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.7853981633974483,
+                0.0
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "long_axis_tilt_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.17453292519943295,
+                0.17453292519943295
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "fore_aft_tilt_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.17453292519943295,
+                0.17453292519943295
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "instrument_width_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            },
+            "instrument_depth_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            },
+            "instrument_height_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            }
+          }
+        },
+        "torso_origin_m": [
+          0,
+          0,
+          0.65
+        ],
+        "torso_rotation_wxyz": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "docs/research/seated-setup.md",
+          "note": "Reference seated scaffold height; no personalized anatomy."
+        }
+      },
+      "board": {
+        "origin_m": [
+          0.16996500000045317,
+          0.21012909858252607,
+          1.08
+        ],
+        "rotation_wxyz": [
+          -0.6830127018922193,
+          0.6830127018922193,
+          -0.18301270189221927,
+          0.18301270189221927
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "Synthetic laboratory fixture, 2026-10-08",
+          "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+        }
+      }
+    },
+    "player": {
+      "model": "myoarm_r",
+      "model_mode": "imported_musculoskeletal",
+      "geometric_hand_scale": 1.0,
+      "geometry_evidence": {
+        "kind": "hypothesis",
+        "source": "Wrist-origin geometric perturbation",
+        "note": "Uniform hand scaling is not physiological personalization.",
+        "uncertainty": null
+      },
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      },
+      "joint_range_evidence": {},
+      "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+    },
+    "physical_contact": {
+      "additional_collision_pairs": [
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "midph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "proxph2_coll_r",
+          "proxph3_coll_r"
+        ]
+      ],
+      "additional_collision_evidence": {
+        "kind": "hypothesis",
+        "source": "019 index-middle phalangeal pair constraint",
+        "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+      },
+      "inactive_digits_policy": "allow_articulation",
+      "inactive_digits_evidence": {
+        "kind": "assumption",
+        "source": "023 setup study",
+        "note": "Unused digits may articulate; not a posture observation."
+      },
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    }
+  },
+  "provenance": {
+    "compiled_model_sha256": "d613210e468a6361fea0034fc38bc112f5ec5c92a9e6b7d2c9e369d7a0e00f71",
+    "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+    "project_source_sha256": "1337dab73826f9d244cc4081a445c8d5f379c3e22fa7ef302d731dfa471df3dc",
+    "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+    "render_backend": "egl"
+  },
+  "runtime": {
+    "python": "3.14.7",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "packages": {
+      "mujoco": "3.15.0",
+      "myo-sim": "0.2.3",
+      "mink": "1.3.0",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "clarabel": "0.11.1",
+      "pillow": "12.3.0"
+    }
+  },
+  "model": {
+    "nq": 38,
+    "nv": 38,
+    "neq": 11,
+    "nu": 63,
+    "index_pad_local_m": [
+      0.004100182009418455,
+      -0.02575251249753332,
+      0.003963612992642634
+    ],
+    "index_pad_quat_wxyz": [
+      0.7270496471899948,
+      0.6606737120958207,
+      0.16878297258962194,
+      -0.08013341893519518
+    ],
+    "contact_sites": {
+      "index_pad": {
+        "pos_m": [
+          0.004100182009418455,
+          -0.02575251249753332,
+          0.003963612992642634
+        ],
+        "quat_wxyz": [
+          0.7270496471899948,
+          0.6606737120958207,
+          0.16878297258962194,
+          -0.08013341893519518
+        ]
+      }
+    },
+    "index_pad_provenance": "Outer envelope of compiled distal capsule and ellipsoid; normal along distal capsule axis"
+  },
+  "targets": [
+    {
+      "button_id": "r1c5",
+      "finger": "index",
+      "midi": 60,
+      "surface_world_m": [
+        0.1719346155064776,
+        0.20169563130042456,
+        1.1096944683196257
+      ],
+      "normal_world": [
+        0.49240387650610407,
+        0.8528685319524434,
+        0.17364817766693008
+      ]
+    }
+  ],
+  "target": {
+    "button_id": "r1c5",
+    "midi": 60,
+    "surface_world_m": [
+      0.1719346155064776,
+      0.20169563130042456,
+      1.1096944683196257
+    ],
+    "normal_world": [
+      0.49240387650610407,
+      0.8528685319524434,
+      0.17364817766693008
+    ]
+  }
+}

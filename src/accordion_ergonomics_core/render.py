@@ -49,6 +49,11 @@ def render_views(
         scene.model.geom(i).name == "instrument_envelope"
         for i in range(scene.model.ngeom)
     )
+    if not seated:
+        mujoco.mj_forward(scene.model, scene.data)
+        shift = scene.data.body("Full Body").xpos - [0.0, 0.0, 1.0]
+        for name in ("overview", "keyboard", "side"):
+            views[name]["lookat"] = (shift + views[name]["lookat"]).tolist()
     if seated:
         mujoco.mj_forward(scene.model, scene.data)
         center = scene.data.geom("instrument_envelope").xpos.tolist()

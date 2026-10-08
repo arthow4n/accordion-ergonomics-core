@@ -1,0 +1,89 @@
+{
+  "id": "025-synthetic-recalibrated-anchor",
+  "baseline_result": "../../024-seated-setup-family/synthetic-matched-policy/anchor/result.json",
+  "baseline_sha256": "d13e95bbcba3bae54e04e147fc4b6ca049d8aff9f2159d58900bfcf28a106900",
+  "parameter_patch": {},
+  "candidate_search": {
+    "offsets_rad": [
+      {
+        "elbow_flexion_r": -0.3,
+        "pro_sup_r": -0.3
+      },
+      {
+        "elbow_flexion_r": 0.3,
+        "pro_sup_r": 0.3
+      },
+      {
+        "shoulder_rot_r": -0.2
+      },
+      {
+        "shoulder_rot_r": 0.2
+      },
+      {
+        "flexion_r": -0.15
+      },
+      {
+        "mcp3_abduction_r": -0.1
+      },
+      {
+        "mcp3_abduction_r": 0.1
+      }
+    ],
+    "max_iterations": 180,
+    "palm_dedup_m": 0.005,
+    "elbow_dedup_m": 0.01,
+    "joint_dedup_rad": 0.1
+  },
+  "targets": [
+    {
+      "id": "single-c4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "nearby-d4",
+      "contacts": [
+        {
+          "row": 3,
+          "column": 5,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "c4-csharp4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 5,
+          "finger": "middle"
+        }
+      ]
+    },
+    {
+      "id": "c4-e4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 6,
+          "finger": "middle"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "schema_version": 2,
+  "id": "024-synthetic-matched-policy-g6-endpoint",
+  "question": "Replay selected G6 endpoint from the finite three-start setup-family search",
+  "geometry": {
+    "column_spacing_m": 0.019,
+    "row_spacing_m": 0.016454482671904334,
+    "button_radius_m": 0.0065,
+    "button_height_m": 0.004,
+    "button_travel_m": null,
+    "stagger_columns": [
+      0,
+      0.5,
+      1,
+      0.5,
+      1
+    ],
+    "panel_margin_m": 0.012,
+    "panel_thickness_m": 0.008,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Synthetic laboratory fixture, 2026-10-08",
+      "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+    }
+  },
+  "contacts": [
+    {
+      "row": 2,
+      "column": 15,
+      "finger": "index"
+    }
+  ],
+  "initial_joints_rad": {
+    "sternoclavicular_r2_r": -0.09902290349364126,
+    "sternoclavicular_r3_r": 0.041941519041728215,
+    "unrotscap_r3_r": -0.04194151904172822,
+    "unrotscap_r2_r": 0.09902290349364126,
+    "acromioclavicular_r2_r": -0.020050092029704224,
+    "acromioclavicular_r3_r": 0.16203747844414024,
+    "acromioclavicular_r1_r": 0.07283502818953778,
+    "unrothum_r1_r": -0.07283502818953778,
+    "unrothum_r3_r": -0.16203747844414024,
+    "unrothum_r2_r": 0.020050092029704224,
+    "elv_angle_r": 1.4090593553081376,
+    "shoulder_elv_r": 0.4091855516266168,
+    "shoulder1_r2_r": -1.4090593553081376,
+    "shoulder_rot_r": -0.19891902045503768,
+    "elbow_flexion_r": 0.26280079716375304,
+    "pro_sup_r": -0.9671991470365753,
+    "deviation_r": 0.33963517311054264,
+    "flexion_r": 0.5233812209201171,
+    "cmc_flexion": 0.4089812554722158,
+    "cmc_abduction": -0.4685453003767127,
+    "mp_flexion_r": -0.6506031358353239,
+    "ip_flexion_r": 0.03795623841923562,
+    "mcp2_flexion_r": 1.4743174843874898,
+    "mcp2_abduction_r": -0.2402618164136166,
+    "pm2_flexion_r": 1.0174461205196002,
+    "md2_flexion_r": 0.9947048275129037,
+    "mcp3_flexion_r": 0.09891419544260639,
+    "mcp3_abduction_r": -0.17933280510080962,
+    "pm3_flexion_r": 0.7572921878992528,
+    "md3_flexion": 0.38962050698984835,
+    "mcp4_flexion_r": 0.2779697851849225,
+    "mcp4_abduction_r": -0.06024723414009859,
+    "pm4_flexion": 0.4116854307527343,
+    "md4_flexion_r": 0.10025073026565975,
+    "mcp5_flexion_r": 0.1608914164243352,
+    "mcp5_abduction_r": 0.21432812927666622,
+    "pm5_flexion_r": 0.07684882537430737,
+    "md5_flexion_r": 0.06204940434215344
+  },
+  "solver": {
+    "backend": "mink-clarabel",
+    "max_iterations": 200,
+    "integration_dt_s": 0.02,
+    "position_cost": 1.0,
+    "normal_cost": 0.05,
+    "posture_cost": 0.0001,
+    "damping": 1e-06,
+    "position_tolerance_m": 0.0001,
+    "normal_tolerance_rad": 0.05,
+    "joint_tolerance_rad": 1e-06,
+    "equality_tolerance_rad": 1e-06,
+    "penetration_tolerance_m": 0.0001,
+    "collision_avoidance": true,
+    "collision_limit_implementation": "displacement",
+    "collision_backtrack_steps": 12,
+    "collision_edge_step_rad": 0.01
+  },
+  "randomness": {
+    "used": false,
+    "seed": null
+  },
+  "anatomy": {
+    "package": "myo-sim",
+    "version": "0.2.3",
+    "model": "myoarm_r",
+    "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+  },
+  "render": {
+    "width": 960,
+    "height": 720,
+    "backend": "egl"
+  },
+  "setup": {
+    "torso": {
+      "seated": null,
+      "torso_origin_m": [
+        0,
+        0,
+        0.65
+      ],
+      "torso_rotation_wxyz": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "docs/research/seated-setup.md",
+        "note": "Reference seated scaffold height; no personalized anatomy."
+      }
+    },
+    "board": {
+      "origin_m": [
+        0.26,
+        0.22,
+        0.9
+      ],
+      "rotation_wxyz": [
+        0.7071067811865476,
+        -0.7071067811865476,
+        0,
+        0
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      }
+    }
+  },
+  "player": {
+    "model": "myoarm_r",
+    "model_mode": "imported_musculoskeletal",
+    "geometric_hand_scale": 1.0,
+    "geometry_evidence": {
+      "kind": "hypothesis",
+      "source": "Wrist-origin geometric perturbation",
+      "note": "Uniform hand scaling is not physiological personalization.",
+      "uncertainty": null
+    },
+    "joint_ranges_rad": {},
+    "provenance": {
+      "kind": "imported_model",
+      "source": "myo-sim 0.2.3",
+      "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+    },
+    "joint_range_evidence": {},
+    "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+  },
+  "physical_contact": {
+    "additional_collision_pairs": [
+      [
+        "distph2_coll_2_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "distph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "midph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "distph2_coll_r",
+        "distph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "distph3_coll_2_r",
+        "midph2_coll_r"
+      ],
+      [
+        "distph3_coll_2_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "distph3_coll_r",
+        "midph2_coll_r"
+      ],
+      [
+        "distph3_coll_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "midph3_coll_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "proxph2_coll_r",
+        "proxph3_coll_r"
+      ]
+    ],
+    "additional_collision_evidence": {
+      "kind": "hypothesis",
+      "source": "019 index-middle phalangeal pair constraint",
+      "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+    },
+    "inactive_digits_policy": "allow_articulation",
+    "inactive_digits_evidence": {
+      "kind": "assumption",
+      "source": "023 setup study",
+      "note": "Unused digits may articulate; not a posture observation."
+    },
+    "collision_detection_distance_m": 0.03,
+    "collision_minimum_distance_m": 0,
+    "collision_gain": 0.85,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Legacy rigid distal-envelope contact",
+      "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+    }
+  },
+  "selected_action_source": {
+    "path": "../actions/r2c15-index.json",
+    "sha256": "c5a64f583e25b27afc46be281cff9b4730bcf97700e4d9c6f7b97f87ca7373ac",
+    "endpoint_relocation_m": 0.32023754413222183,
+    "start_id": "0"
+  }
+}

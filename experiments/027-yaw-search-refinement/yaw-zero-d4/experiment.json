@@ -1,0 +1,73 @@
+{
+  "id": "027-yaw-zero-d4-refinement",
+  "baseline_result": "../../024-seated-setup-family/yaw-zero/anchor/result.json",
+  "baseline_sha256": "79bcbf383d10e199d82168c9eade4d637af463f2ab165e9b7fe64f913e53d583",
+  "parameter_patch": {},
+  "candidate_search": {
+    "offsets_rad": [
+      {
+        "elbow_flexion_r": -0.3,
+        "pro_sup_r": -0.3
+      },
+      {
+        "elbow_flexion_r": 0.3,
+        "pro_sup_r": 0.3
+      },
+      {
+        "shoulder_rot_r": -0.2
+      },
+      {
+        "shoulder_rot_r": 0.2
+      },
+      {
+        "flexion_r": -0.15
+      },
+      {
+        "mcp3_abduction_r": -0.1
+      },
+      {
+        "mcp3_abduction_r": 0.1
+      },
+      {
+        "shoulder_elv_r": 0.25
+      },
+      {
+        "shoulder_elv_r": -0.25
+      },
+      {
+        "elv_angle_r": 0.4
+      },
+      {
+        "elv_angle_r": -0.4
+      },
+      {
+        "pro_sup_r": 0.6
+      },
+      {
+        "pro_sup_r": -0.6
+      },
+      {
+        "mcp2_flexion_r": 0.3
+      },
+      {
+        "mcp2_flexion_r": -0.3
+      }
+    ],
+    "max_iterations": 300,
+    "palm_dedup_m": 0.005,
+    "elbow_dedup_m": 0.01,
+    "joint_dedup_rad": 0.1
+  },
+  "targets": [
+    {
+      "id": "d4",
+      "contacts": [
+        {
+          "row": 3,
+          "column": 5,
+          "finger": "index"
+        }
+      ]
+    }
+  ]
+}

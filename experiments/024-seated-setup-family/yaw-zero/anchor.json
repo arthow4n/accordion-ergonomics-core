@@ -1,0 +1,385 @@
+{
+  "schema_version": 2,
+  "id": "024-seated-setup-family-yaw-zero-anchor",
+  "question": "Does a body-anchored generic compact CBA setup admit a central C4 contact without arbitrary board placement?",
+  "geometry": {
+    "column_spacing_m": 0.019,
+    "row_spacing_m": 0.016454482671904334,
+    "button_radius_m": 0.0065,
+    "button_height_m": 0.004,
+    "button_travel_m": null,
+    "stagger_columns": [
+      0,
+      0.5,
+      1,
+      0.5,
+      1
+    ],
+    "panel_margin_m": 0.012,
+    "panel_thickness_m": 0.008,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Synthetic laboratory fixture, 2026-10-08",
+      "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+    }
+  },
+  "contacts": [
+    {
+      "row": 1,
+      "column": 5,
+      "finger": "index"
+    }
+  ],
+  "initial_joints_rad": {
+    "sternoclavicular_r2_r": -0.19588990538291384,
+    "sternoclavicular_r3_r": 0.08296989794111022,
+    "unrotscap_r3_r": -0.0829698979411102,
+    "unrotscap_r2_r": 0.19588990538291384,
+    "acromioclavicular_r2_r": -0.03966365852794537,
+    "acromioclavicular_r3_r": 0.3205471178993136,
+    "acromioclavicular_r1_r": 0.1440843105709036,
+    "unrothum_r1_r": -0.1440843105709036,
+    "unrothum_r3_r": -0.3205471178993136,
+    "unrothum_r2_r": 0.03966365852794537,
+    "elv_angle_r": 0.26532383344270966,
+    "shoulder_elv_r": 0.8094624189376606,
+    "shoulder1_r2_r": -0.26532383344270966,
+    "shoulder_rot_r": 0.39980492166894344,
+    "elbow_flexion_r": 1.7551773301114617,
+    "pro_sup_r": -1.2595119292419656,
+    "deviation_r": 0.1265470458355623,
+    "flexion_r": 0.18908184501823525,
+    "cmc_flexion": 0.05097332385078342,
+    "cmc_abduction": -0.13339962283013168,
+    "mp_flexion_r": 0.016269465618851175,
+    "ip_flexion_r": 0.0166483831532112,
+    "mcp2_flexion_r": 0.8252554527977798,
+    "mcp2_abduction_r": 0.227477881275021,
+    "pm2_flexion_r": 0.16110305738761013,
+    "md2_flexion_r": 1.4269339865656083,
+    "mcp3_flexion_r": 0.05610128601865822,
+    "mcp3_abduction_r": -0.2148371500824323,
+    "pm3_flexion_r": 0.7572393620201583,
+    "md3_flexion": 0.3883369917643167,
+    "mcp4_flexion_r": 0.27522659735061045,
+    "mcp4_abduction_r": -0.06200743377713215,
+    "pm4_flexion": 0.41055512622278034,
+    "md4_flexion_r": 0.0661710251159174,
+    "mcp5_flexion_r": 0.18201357280323696,
+    "mcp5_abduction_r": 0.10362825807239458,
+    "pm5_flexion_r": 0.37024051469068653,
+    "md5_flexion_r": 0.06157940697444179
+  },
+  "solver": {
+    "backend": "mink-clarabel",
+    "max_iterations": 200,
+    "integration_dt_s": 0.02,
+    "position_cost": 1.0,
+    "normal_cost": 0.05,
+    "posture_cost": 0.0001,
+    "damping": 1e-06,
+    "position_tolerance_m": 0.0001,
+    "normal_tolerance_rad": 0.05,
+    "joint_tolerance_rad": 1e-06,
+    "equality_tolerance_rad": 1e-06,
+    "penetration_tolerance_m": 0.0001,
+    "collision_avoidance": true,
+    "collision_limit_implementation": "displacement",
+    "collision_backtrack_steps": 12,
+    "collision_edge_step_rad": 0.01
+  },
+  "randomness": {
+    "used": false,
+    "seed": null
+  },
+  "anatomy": {
+    "package": "myo-sim",
+    "version": "0.2.3",
+    "model": "myoarm_r",
+    "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+  },
+  "render": {
+    "width": 960,
+    "height": 720,
+    "backend": "egl"
+  },
+  "setup": {
+    "torso": {
+      "seated": {
+        "name": "reference_seated_cba_setup",
+        "instrument_width_m": 0.365,
+        "instrument_depth_m": 0.195,
+        "instrument_height_m": 0.38,
+        "torso_gap_m": 0.01,
+        "treble_edge_to_shoulder_m": 0.0,
+        "support_height_above_root_m": 0.1,
+        "support_clearance_m": 0.01,
+        "c4_top_inset_m": 0.06,
+        "outer_edge_inset_m": 0.015,
+        "yaw_rad": 0.0,
+        "long_axis_tilt_rad": 0.0,
+        "fore_aft_tilt_rad": 0.0,
+        "evidence": "docs/research/seated-setup.md",
+        "parameter_evidence": {
+          "torso_gap_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.0,
+              0.04
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "treble_edge_to_shoulder_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.03,
+              0.03
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "support_height_above_root_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.07,
+              0.13
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "support_clearance_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.0,
+              0.04
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "c4_top_inset_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.045,
+              0.095
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "outer_edge_inset_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.01,
+              0.025
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "yaw_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.7853981633974483,
+              0.0
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "long_axis_tilt_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.17453292519943295,
+              0.17453292519943295
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "fore_aft_tilt_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.17453292519943295,
+              0.17453292519943295
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "instrument_width_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          },
+          "instrument_depth_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          },
+          "instrument_height_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          }
+        }
+      },
+      "torso_origin_m": [
+        0,
+        0,
+        0.65
+      ],
+      "torso_rotation_wxyz": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "docs/research/seated-setup.md",
+        "note": "Reference seated scaffold height; no personalized anatomy."
+      }
+    },
+    "board": {
+      "origin_m": [
+        0.16996500000045317,
+        0.21012909858252607,
+        1.08
+      ],
+      "rotation_wxyz": [
+        -0.6830127018922193,
+        0.6830127018922193,
+        -0.18301270189221927,
+        0.18301270189221927
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      }
+    }
+  },
+  "player": {
+    "model": "myoarm_r",
+    "model_mode": "imported_musculoskeletal",
+    "geometric_hand_scale": 1.0,
+    "geometry_evidence": {
+      "kind": "hypothesis",
+      "source": "Wrist-origin geometric perturbation",
+      "note": "Uniform hand scaling is not physiological personalization.",
+      "uncertainty": null
+    },
+    "joint_ranges_rad": {},
+    "provenance": {
+      "kind": "imported_model",
+      "source": "myo-sim 0.2.3",
+      "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+    },
+    "joint_range_evidence": {},
+    "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+  },
+  "physical_contact": {
+    "additional_collision_pairs": [
+      [
+        "distph2_coll_2_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "distph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "midph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "distph2_coll_r",
+        "distph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "distph3_coll_2_r",
+        "midph2_coll_r"
+      ],
+      [
+        "distph3_coll_2_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "distph3_coll_r",
+        "midph2_coll_r"
+      ],
+      [
+        "distph3_coll_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "midph3_coll_r",
+        "proxph2_coll_r"
+      ],
+      [
+        "proxph2_coll_r",
+        "proxph3_coll_r"
+      ]
+    ],
+    "additional_collision_evidence": {
+      "kind": "hypothesis",
+      "source": "019 index-middle phalangeal pair constraint",
+      "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+    },
+    "inactive_digits_policy": "allow_articulation",
+    "inactive_digits_evidence": {
+      "kind": "assumption",
+      "source": "023 setup study",
+      "note": "Unused digits may articulate; not a posture observation."
+    },
+    "collision_detection_distance_m": 0.03,
+    "collision_minimum_distance_m": 0,
+    "collision_gain": 0.85,
+    "provenance": {
+      "kind": "assumption",
+      "source": "Legacy rigid distal-envelope contact",
+      "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+    }
+  }
+}

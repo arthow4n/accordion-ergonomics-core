@@ -54,8 +54,9 @@ board edge and middle of instrument depth. Its separation from the reference
 is reported; it is **not** a rigid point contact. The left thigh illustrates the
 support system; strap forces, pressure, weight sharing and equilibrium are not
 solved. Straps are not new independent parameters because they would have no
-implemented mechanical effect. Torso inclination already uses the existing
-rigid torso quaternion.
+implemented mechanical effect. The existing torso quaternion places the entire scaffold and support frame; it
+does not independently simulate seated torso inclination with stationary thighs.
+That extra anatomical degree of freedom is not implemented.
 
 ## Parameter family
 
@@ -104,3 +105,26 @@ Start with [023](../../experiments/023-reference-seated-setup/notes.md).
 A solver acceptance is a static numerical contact, not observed playing posture;
 pose diversity and collision coverage must be checked independently. Compare
 shoulder-relative metrics rather than absolute heights across world translations.
+
+## What the family experiments establish
+
+[024](../../experiments/024-seated-setup-family/notes.md) samples eight seated
+members plus a matched-policy synthetic control. All discover D4/G6 transitions;
+G6 best discovered palm relocation spans 109–214 mm seated versus 320 mm synthetic.
+These are sampled realizations, not lower bounds. [027](../../experiments/027-yaw-search-refinement/notes.md)
+recovers a missing yaw-case C5 and reduces nearby D4 from 213 to 19 mm without
+geometry changes: search/branch controls are essential before physical inference.
+
+[025](../../experiments/025-seated-pose-diversity/notes.md) separates accepted
+own-world C4 initialization from transferred numeric priors. Seated central and
+nearby candidates generally have less wrist flexion than the own-anchor synthetic
+candidates, but two-finger near-limit branches remain. [026](../../experiments/026-seated-held-contact/notes.md)
+finds held paths with explicit contact auditing and preserves an initialization-
+dependent failure. A successful seated path is longer than a successful synthetic
+branch; the correction is not a universal movement reduction.
+
+[028](../../experiments/028-seated-collision-coverage/notes.md) finds unchecked
+phalangeal overlaps in all 73 audited poses. Gross body/instrument placement is
+substantially more plausible; full anatomical playing validity remains unresolved.
+Useful current claims concern explicit setup hypotheses and numerical sensitivity,
+not human reachability, fatigue, force or individualized recommendations.

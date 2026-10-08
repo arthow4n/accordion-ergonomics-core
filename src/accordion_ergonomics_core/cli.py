@@ -435,10 +435,27 @@ def main() -> None:
         from ._engine import mujoco
 
         mujoco.mj_forward(scene.model, scene.data)
-        render_views(
+        cameras = render_views(
             scene,
             args.output,
             result["target"]["surface_world_m"],
             result["target"]["button_id"],
             collision_overlay=result.get("collision_overlay", False),
+        )
+
+        from .provenance import current_execution_metadata
+
+        (args.output / "render-manifest.json").write_text(
+            json.dumps(
+                {
+                    "cameras": cameras,
+                    "saved_result_sha256": hashlib.sha256(
+                        args.result.read_bytes()
+                    ).hexdigest(),
+                    **current_execution_metadata(scene.model),
+                },
+                indent=2,
+                allow_nan=False,
+            )
+            + "\n"
         )

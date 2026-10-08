@@ -39,3 +39,37 @@ def test_render_refreshes_pose_and_restores_model(tmp_path: Path) -> None:
     assert (tmp_path / "0" / "keyboard.png").read_bytes() != (
         tmp_path / "1" / "keyboard.png"
     ).read_bytes()
+
+
+def test_legacy_comparison_cameras_follow_translated_torso(tmp_path: Path) -> None:
+    from dataclasses import replace
+
+    from accordion_ergonomics_core.profiles import SetupProfile
+
+    e = load_input(Path("experiments/004-profile-recalculation/experiment.json"))
+    shift = np.array([0.1, 0.2, -0.35])
+    moved = replace(e.geometry, origin_m=tuple(np.array(e.geometry.origin_m) + shift))
+    settings = []
+    for i, scene in enumerate(
+        (
+            build_scene(e.geometry),
+            build_scene(
+                moved,
+                setup=SetupProfile(torso_origin_m=tuple(np.array([0, 0, 1]) + shift)),
+            ),
+        )
+    ):
+        settings.append(
+            render_views(
+                scene,
+                tmp_path / str(i),
+                list(scene.data.site("target_r1c5").xpos),
+                "r1c5",
+                views_to_render=("overview", "keyboard", "side"),
+            )
+        )
+    for name in settings[0]:
+        np.testing.assert_allclose(
+            np.array(settings[1][name]["lookat"]) - settings[0][name]["lookat"], shift
+        )
+        assert settings[1][name]["distance"] == settings[0][name]["distance"]

@@ -32,6 +32,7 @@ The lockfile records the full tested dependency stack.
 uv sync --locked
 uv run aec check
 uv run aec frozen experiment experiments/023-reference-seated-setup/experiment.json --output artifacts/seated-reference
+uv run aec frozen sweep experiments/024-seated-setup-family/experiment.json --output artifacts/seated-family
 uv run aec experiment experiments/001-single-contact/experiment.json
 uv run aec render artifacts/single-contact/result.json
 uv run aec ablation experiments/002-arm-ablation/experiment.json

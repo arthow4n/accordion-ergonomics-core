@@ -1,5 +1,53 @@
 # Research log
 
+## 2026-10-08 — Setup-family comparison and two placement/search counterexamples
+
+[024](experiments/024-seated-setup-family/notes.md) compares eight seated members
+with a matched-policy synthetic control, recalibrating C4 in every world. All
+find D4 and G6 sampled transitions. G6 best discovered palm relocation spans
+109–214 mm across the family, versus 320 mm synthetic; it is not a lower bound
+on required movement. Four setup views were inspected for every case, and selected
+G6 endpoints independently replayed. The corrected gross setup has a plausible
+side arm approach and compact upper-torso/thigh relationship.
+
+**Counterexamples to physical overinterpretation:** [027](experiments/027-yaw-search-refinement/notes.md)
+recovers four C5 poses and a sampled path in the initially missing −45° yaw case.
+Expanded starts also reduce zero-yaw D4 from 213.06 to 19.16 mm, with a direct
+sampled path, unchanged geometry/tolerances. Thus apparent yaw boundaries and
+large nearby movements can be search/branch artifacts. Preserve the coarse
+results and refinement settings separately.
+
+[025](experiments/025-seated-pose-diversity/notes.md) compares reference/own-world
+synthetic C4 initializations and retains a transferred-prior control. Both own-
+anchor cases find four central poses; nearby counts are 3/5, not a true feasible-
+set comparison. Wrist flexion spans −5.3–2.0° seated C4 versus 5.3–43.9° synthetic;
+nearby D4 spans −2.5–20.3° versus 44.0–44.7°. Dual-contact branches can still reach
+wrist limits. Contact formulation, assumed lattice, anatomy and solver bias
+remain alternatives to placement error.
+
+[026](experiments/026-seated-held-contact/notes.md) holds C4 while middle moves
+C#4→E4. Reference and transferred-prior synthetic searches find held paths, but
+palm paths are 65.82/44.72 mm: the new setup is not uniformly smaller. Direct
+interpolation loses held contact in all three controls. Own-anchor synthetic
+endpoint selection fails its waypoint solve and partial held-edge audit; another
+initialization succeeds, so no physical impossibility claim. Both successful
+paths reproduce with twice-finer sampling, preserving all failures and inputs.
+
+[028](experiments/028-seated-collision-coverage/notes.md) independently audits
+73 poses: **every one has an omitted phalangeal proxy overlap**, up to 13.62 mm.
+The setup correction does not establish full anatomical nonpenetration. Neither
+proxy sizes nor blanket self-pairs were changed. Real hand envelopes, shell shape,
+button operation and strap/support forces remain unvalidated; personal photos
+were not requested. Public evidence suffices for the generic setup hypothesis,
+not precise tissue or population inference.
+
+76 tests, Ruff and ty pass. Frozen numerical roots verify completely, including
+an exported staged checkout. Saved-state renders accompany representative poses;
+translated legacy comparison cameras now follow the torso and write source/model
+manifests. Original published experiments 001–022 remain unchanged. The baseline
+is now an explicit body-anchored setup family, with robust discovered outcomes
+and sensitive numerical magnitudes distinguished from human ergonomic claims.
+
 ## 2026-10-08 — Public-evidence-guided body-anchored seated setup
 
 [023](experiments/023-reference-seated-setup/notes.md) adds a generic compact CBA

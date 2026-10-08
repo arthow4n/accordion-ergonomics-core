@@ -1,0 +1,135 @@
+{
+  "id": "024-seated-setup-family",
+  "atlas_definition": "atlas-definition.json",
+  "atlas_definition_sha256": "483770968c644c051490ccba621c396f52b4696dadf9a88b07e0e5665e6d9bd0",
+  "targets": [
+    {
+      "row": 3,
+      "column": 5,
+      "finger": "index"
+    },
+    {
+      "row": 1,
+      "column": 9,
+      "finger": "index"
+    },
+    {
+      "row": 2,
+      "column": 15,
+      "finger": "index"
+    }
+  ],
+  "cases": [
+    {
+      "id": "reference",
+      "patch": {}
+    },
+    {
+      "id": "synthetic-matched-policy",
+      "patch": {
+        "setup": {
+          "torso": {
+            "seated": null
+          },
+          "board": {
+            "origin_m": [
+              0.26,
+              0.22,
+              0.9
+            ],
+            "rotation_wxyz": [
+              0.7071067811865476,
+              -0.7071067811865476,
+              0,
+              0
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "torso-gap-30mm",
+      "patch": {
+        "setup": {
+          "torso": {
+            "seated": {
+              "torso_gap_m": 0.03
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "treble-outward-30mm",
+      "patch": {
+        "setup": {
+          "torso": {
+            "seated": {
+              "treble_edge_to_shoulder_m": 0.03
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "support-lower-30mm",
+      "patch": {
+        "setup": {
+          "torso": {
+            "seated": {
+              "support_height_above_root_m": 0.07
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "yaw-zero",
+      "patch": {
+        "setup": {
+          "torso": {
+            "seated": {
+              "yaw_rad": 0.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "yaw-minus45",
+      "patch": {
+        "setup": {
+          "torso": {
+            "seated": {
+              "yaw_rad": -0.7853981633974483
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "side-tilt10",
+      "patch": {
+        "setup": {
+          "torso": {
+            "seated": {
+              "long_axis_tilt_rad": 0.17453292519943295
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "fore-aft10",
+      "patch": {
+        "setup": {
+          "torso": {
+            "seated": {
+              "fore_aft_tilt_rad": 0.17453292519943295
+            }
+          }
+        }
+      }
+    }
+  ]
+}
