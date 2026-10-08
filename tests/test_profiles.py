@@ -15,7 +15,7 @@ def test_legacy_and_explicit_profiles_compile_identically() -> None:
     old = load_input(Path("experiments/001-single-contact/experiment.json"))
     new = load_input(Path("experiments/004-profile-recalculation/experiment.json"))
     assert compiled_model_digest(
-        build_scene(old.geometry).model
+        build_scene(old.geometry, old.player).model
     ) == compiled_model_digest(
         build_scene(new.geometry, new.player, new.setup, new.physical_contact).model
     )

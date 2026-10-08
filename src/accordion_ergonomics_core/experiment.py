@@ -129,9 +129,12 @@ class Experiment:
             solver.pop("collision_limit_implementation")
             solver.pop("collision_backtrack_steps")
             solver.pop("collision_edge_step_rad")
+        player = asdict(self.player)
+        if self.player.model == "myoarm_r":
+            player.pop("full_body_posture")
         return {
             "instrument": instrument,
-            "player": asdict(self.player),
+            "player": player,
             "setup": setup,
             "contact": contact,
             "solver": solver,
@@ -143,11 +146,14 @@ class Experiment:
 
         result: dict[str, Any] = json.loads(json.dumps(self.source))
         result["schema_version"] = 2
+        result["anatomy"]["model"] = self.player.model
         geometry = asdict(self.geometry)
         evidence = geometry.pop("evidence")
         origin, rotation = geometry.pop("origin_m"), geometry.pop("rotation_wxyz")
         result["geometry"] = {**geometry, "provenance": evidence}
         result["player"] = asdict(self.player)
+        if self.player.model == "myoarm_r":
+            result["player"].pop("full_body_posture")
         result["physical_contact"] = asdict(self.physical_contact)
         result["solver"] = asdict(self.solver)
         torso = asdict(self.setup)
@@ -177,12 +183,19 @@ class Experiment:
             raise ValueError(
                 "Recorded anatomy package version differs from installed model"
             )
-        if source["anatomy"]["model"] != "myoarm_r":
+        from .full_body import ASSEMBLIES
+
+        if source["anatomy"]["model"] not in ASSEMBLIES:
             raise ValueError("Unsupported anatomy model")
         if source["render"] != {"width": 960, "height": 720, "backend": "egl"}:
             raise ValueError(
                 "Prototype requires the recorded canonical render settings"
             )
+        if (
+            source.get("player", {}).get("model", source["anatomy"]["model"])
+            != source["anatomy"]["model"]
+        ):
+            raise ValueError("Anatomy assembly disagrees with player profile")
         geometry = dict(source["geometry"])
         if source["schema_version"] == 2:
             placement = source["setup"].get("board", {})
@@ -224,7 +237,9 @@ class Experiment:
             SolverSettings(**solver),
             source,
             frozen,
-            PlayerProfile(**source.get("player", {})),
+            PlayerProfile(
+                **{"model": source["anatomy"]["model"], **source.get("player", {})}
+            ),
             SetupProfile(**source.get("setup", {}).get("torso", {})),
             ContactProfile(**source.get("physical_contact", {})),
         )

@@ -1,6 +1,6 @@
 """MyoArm composition, exact source couplings, and model-derived contact marker."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any
 
 import myo_sim
@@ -21,6 +21,8 @@ class Scene:
     board_geoms: list[int]
     pad_local_m: list[float]
     contact_profile: ContactProfile
+    prescribed_joints: dict[str, float] = field(default_factory=dict)
+    passive_joints: tuple[str, ...] = ()
 
 
 def build_scene(
@@ -37,7 +39,15 @@ def build_scene(
 
     geometry, anchors = derive_setup(geometry, setup)
     # An explicit anatomical self-pair needs a mask-independent solver limit.
-    spec: Spec = myo_sim.load_spec("myoarm_r")
+    prescribed, passive = {}, ()
+    if player.model == "myoarm_r":
+        spec: Spec = myo_sim.load_spec("myoarm_r")
+    else:
+        from .full_body import build_full_body
+
+        spec, prescribed, passive = build_full_body(
+            player.model, setup, player.full_body_posture
+        )
     root = spec.body("Full Body")
     if root is None:
         raise ValueError("Pinned anatomical model has no expected torso scaffold")
@@ -171,7 +181,7 @@ def build_scene(
                 name=name, pos=position, size=[0.008, 0, 0], rgba=color, group=0
             )
         # Schematic thighs are visual support references, not anatomical collision.
-        if setup.seated.lower_body is not None:
+        if setup.seated.lower_body is not None and player.model == "myoarm_r":
             from .lower_body import attach_fixed_lower_body
 
             attach_fixed_lower_body(spec, setup)
@@ -253,6 +263,10 @@ def build_scene(
     model = spec.compile()
     model.opt.jacobian = mujoco.mjtJacobian.mjJAC_DENSE
     data = mujoco.MjData(model)
+    if prescribed:
+        from .full_body import prescribed_pose
+
+        data.qpos[:] = prescribed_pose(model, prescribed)
     mujoco.mj_forward(model, data)
     board_geoms = [model.geom("keyboard_panel").id] + [
         model.geom(b.id).id for b in buttons()
@@ -264,11 +278,24 @@ def build_scene(
         for i in range(model.ngeom)
         if i not in board_geoms and model.geom_contype[i] != 0
     ]
-    return Scene(model, data, anatomy_geoms, board_geoms, point.tolist(), contact)
+    return Scene(
+        model,
+        data,
+        anatomy_geoms,
+        board_geoms,
+        point.tolist(),
+        contact,
+        prescribed,
+        passive,
+    )
 
 
 def coupled_initial_pose(model: Model, values: dict[str, float]) -> NDArray[np.float64]:
     """Apply source polynomial constraints exactly, not as guessed joint limits."""
+    if any(model.joint(i).name == "flex_extension" for i in range(model.njnt)):
+        from .full_body import prescribed_pose
+
+        return prescribed_pose(model, values)
     q = model.qpos0.copy()
     for name, value in values.items():
         q[model.joint(name).qposadr[0]] = value

@@ -33,7 +33,10 @@ def solve_contact(
         and settings.collision_limit_implementation != "displacement"
     ):
         raise ValueError("Explicit self-pair avoidance requires displacement limits")
-    q0 = coupled_initial_pose(model, initial)
+    if set(initial) & set(scene.passive_joints):
+        raise ValueError("IK initial input cannot override prescribed passive anatomy")
+    q0 = coupled_initial_pose(model, {**scene.prescribed_joints, **initial})
+    frozen_joints = tuple(sorted(set(frozen_joints) | set(scene.passive_joints)))
     configuration = mink.Configuration(model, q=q0)
     requirements = ((target, finger, button_id),) + additional_contacts
     required = [contact_required] + [additional_contact_required] * len(
@@ -164,6 +167,11 @@ def solve_contact(
             )
             if not np.all(np.isfinite(velocity)):
                 raise ValueError("Nonfinite IK velocity")
+            for name in scene.passive_joints:
+                index = int(model.joint(name).dofadr[0])
+                if abs(velocity[index] * dt) > 1e-9:
+                    raise ValueError("Passive anatomy freezing constraint violated")
+                velocity[index] = 0.0
             if (
                 settings.collision_avoidance
                 and settings.collision_limit_implementation == "displacement"

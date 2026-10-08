@@ -119,3 +119,26 @@ there is no extra guessed pelvis alignment. `tests/test_lower_body.py` compares
 retained bone geometry with upstream seated FK, under upright and rotated roots,
 and checks historical 023 profiles/MJB preservation. See
 [seated-lower-body.md](seated-lower-body.md) for support planes versus brace points.
+
+## Native full-body-derived frames (031)
+
+New `PlayerProfile()` defaults to `myofullbody_reduced`; historical input parsing
+selects its recorded assembly explicitly. World axes/root orientation are the
+same as above. The native full-body default root translation (-0.025, 0.1, 1) m
+is replaced by the profile's root, not used as a hidden shoulder calibration.
+A fixed root removes the upstream free joint through its supported build option.
+
+The native spine/sacrum and bilateral pelvis/legs share that root; no extra
+pelvis alignment is invented. Compile prescribed hip/knee and torso/left-arm
+coordinates, resolve their equality chains, then bake passive body transforms
+relative to compiled parents. Preserve the active right-arm attachment frame.
+Original leg-frame rounding is retained. Root-rotation, every-body/bone FK,
+non-neutral right-arm Jacobian and left mirror tests accompany this composition.
+See [full-body-architecture.md](full-body-architecture.md).
+
+Model coordinate order is backend-specific: prescribed native includes torso,
+left-arm and slide coordinates; reduced has the original 38 right-arm scalar
+coordinates. Bind by verified joint/body names and retain complete compiled
+world hashes. Matching array length is not evidence that historical qpos can be
+reused in a new assembly. No free-root qpos is interpreted as hinge angles.
+The existing instrument-anchor computation remains unchanged in this phase.

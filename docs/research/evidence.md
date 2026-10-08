@@ -95,3 +95,36 @@ support capsules; **assumed** brace station/direction and shell clearance; deriv
 board placement. A fixed bone mesh is not skin or a calibrated contact envelope.
 No metric posture or tissue thickness is inferred from a photograph. 023–028
 retain their original synthetic thighs and historical physical worlds.
+
+## Native full-body assembly and kinematic reduction (031)
+
+[031](../../experiments/031-full-body-architecture/notes.md) compiles the locked
+MyoSim 0.2.3 `myoarm_r`, `myoarms`, `myolegs`, torso/arms assemblies and
+`myofullbody`. The selected new default derives the whole skeleton from native
+full-body composition and bakes prescribed passive posture, retaining the
+original right-arm geometry, 38 coordinates, 63 actuators and 11 couplings.
+Controlled compiled FK, Jacobians, bone meshes, tendon lengths and parameters
+support right-arm parity; repeated measured runtimes support the reduction.
+See [full-body-architecture.md](full-body-architecture.md) for source mechanisms,
+benchmarks, migration and unresolved coverage.
+
+Keep imported anatomical lineages separate: upper extremity from
+[MoBL/MyoHand](https://github.com/MyoHub/myo_sim/blob/main/myo_sim/models/arm/README.md),
+spine/torso from
+[constrained lumbar spine/MyoBack](https://github.com/MyoHub/myo_sim/blob/main/myo_sim/models/torso/README.md),
+legs from
+[Rajagopal conversion](https://github.com/MyoHub/myo_sim/blob/main/myo_sim/models/leg/README.md),
+and rigid cervical/skull/jaw meshes from upstream head resources. The native
+assembly uses a shared root with separate sacrum and leg-pelvis descendants;
+this phase preserves rather than recalibrates that relationship. Upstream
+reported conversion/manual adjustments and muscle/soft-tissue limitations still
+apply. The phase does not test original OpenSim equivalence or muscle force.
+
+Generic seated angles, root height and relaxed left-arm posture are **assumed**.
+Unchanged thigh capsules are **approximate support envelopes**. Native collision
+proxies are uncalibrated rigid envelopes, distinct from skeletal meshes. New
+independent queries expose up to about 87 mm left-arm/torso and torso/pelvis
+proxy overlaps; right-hand coverage remains incomplete. We preserve that
+negative evidence without shrinking envelopes or certifying accepted solves as
+collision-valid human anatomy. No accordion metric/geometry changes or new
+support/left-hand playing mechanics are inferred from anatomical completeness.

@@ -67,8 +67,9 @@ def render_views(
         views["hand"] = dict(
             lookat=target, distance=0.55, azimuth=-55.0, elevation=-15.0
         )
-    if any(
-        scene.model.body(i).name == "seated_pelvis" for i in range(scene.model.nbody)
+    if seated and any(
+        scene.model.body(i).name in ("seated_pelvis", "pelvis")
+        for i in range(scene.model.nbody)
     ):
         center = scene.data.geom("instrument_envelope").xpos.tolist()
         center[2] = (

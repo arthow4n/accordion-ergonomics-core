@@ -131,6 +131,18 @@ def verify_record(
         elif workflow in ("limit-probe", "collision-coverage"):
             key = "poses" if workflow == "collision-coverage" else "cases"
             records.extend((f"{key}/{i}", r) for i, r in enumerate(result[key]))
+        elif workflow == "architecture":
+            records.append(("architecture", result))
+            if "artifact_sha256" not in result:
+                limitations.append("Architecture record lacks artifact hash manifest")
+            for relative, expected in result.get("artifact_sha256", {}).items():
+                file_hash(directory / relative, expected, relative)
+            for name, benchmark in result["benchmarks"].items():
+                records.append((name + " benchmark", benchmark))
+                for suffix in ("result.json", "playing/result.json"):
+                    state_path = directory / name / suffix
+                    state = json.loads(state_path.read_text())
+                    records.append((name + "/" + suffix, state))
         elif workflow == "atlas":
             records.append(("anchor", result["anchor"]))
             atlases.append((directory, result))
@@ -166,7 +178,13 @@ def verify_record(
                 )
         if definition.is_file():
             source = result["input"]
-            for key in ("baseline", "start", "end", "atlas"):
+            for key in ("baseline", "start", "end", "atlas", "reference"):
+                if key == "reference" and "reference_input" in source:
+                    file_hash(
+                        definition.parent / source["reference_input"],
+                        source["reference_sha256"],
+                        "reference experiment",
+                    )
                 if key + "_result" in source and key + "_sha256" in source:
                     file_hash(
                         definition.parent / source[key + "_result"],

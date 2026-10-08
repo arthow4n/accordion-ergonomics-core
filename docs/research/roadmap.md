@@ -36,3 +36,12 @@ trajectories → physical diagnostics → search. Keep multidimensional descript
 not a universal difficulty scalar. Local failures mean "not found"; sampled
 paths do not certify unsampled intervals. Browser runtime remains a later derived
 representation, not a constraint on the lab.
+
+Experiment 031 establishes a native full-body-derived skeletal foundation and
+right-arm kinematic parity, with fixed generic left-arm/torso/leg reference and
+historical backend preservation. It also exposes inherited passive proxy
+overlaps; anatomical completeness does not close the collision/tissue questions
+above. The next separately authorized anatomical/instrument phase can investigate
+realistic accordion case/bellows geometry and its relation to this body. That
+work, bilateral playing tasks and support/strap mechanics are not implemented by
+031.

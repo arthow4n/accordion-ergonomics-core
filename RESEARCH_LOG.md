@@ -1,5 +1,59 @@
 # Research log
 
+## 2026-10-08 — Reduced native MyoFullBody becomes the new anatomical default
+
+[031](experiments/031-full-body-architecture/notes.md) compiles the locked MyoSim
+right arm, bilateral arms, standard legs, torso/arms and native full body. The
+native builder uses the same right-arm fragment and an in-memory mirrored left
+arm; torso/sacrum and leg pelvis share the native root rather than a custom
+pelvis alignment. Its “123” is a joint count (nq=129/nv=128 with free root), not
+123 independent coordinates. Original anatomical meshes and mixed upstream
+model lineages remain distinct from seated assumptions and support envelopes.
+
+Choose **Outcome B**, `myofullbody_reduced`, for new programmatic player profiles:
+compile a generic prescribed torso/left-arm/leg posture, resolve source
+couplings and bake passive parent-relative transforms. Keep all skeletal bodies,
+both arms/hands, both legs/feet, and the original right-arm 38 coordinates,
+63 actuators, 67 tendons and 11 couplings. Native prescribed comparator keeps
+122 scalar coordinates and freezes 84 passive coordinates; no full-body motion,
+muscle control or left-hand playing task is introduced. Existing instrument
+box, button geometry, topology, placement derivation and support hypotheses
+are unchanged. Historical inputs explicitly select their original backend;
+legacy profile serialization and strict compiled-world guards remain intact.
+
+18 controlled states preserve right joint fields, geometry/marker frames,
+rotational/positional Jacobians, bone meshes, muscle parameters and tendon
+lengths to floating-point precision (maximum tendon difference 2.72e-15 m).
+Rotated-root, all-body/bone native-to-reduced FK, left mirror and coupled
+finite-difference tests pass. Five repeated C4 solves succeed per architecture:
+median current/native/reduced 0.314/0.634/0.323 s; full forward
+0.173/0.666/0.183 ms. Whole setup rises 1.427→2.399 s for reduction; prepared
+anatomy compilation 64.7→111.4 ms. Serialized models are 74.1/69.9/69.5 MiB,
+but allocator/import/render memory is separately reported, with no memory or
+speed claim inferred solely from coordinate counts. Raw samples and source
+snapshots are preserved, including a synthetic local 2 mm task.
+
+Numerical C4 acceptance is narrow: reduced residual 0.07646 mm, actual distal
+proxy/button distance 0.07622 mm, zero registered penetration/joint violation
+and intact couplings. Independent finger coverage finds six phalangeal overlaps
+in each architecture (maxima 2.295/2.313/2.295 mm). Broader queries expose native
+left-arm/torso and torso/pelvis envelope overlap up to **87 mm**, unregistered
+even in the original native pair list. Keep this negative evidence; do not
+shrink proxies or blanket-enable pairs. The named matched research policy
+retains original right masks/four pairs plus 16 existing finger hypotheses;
+passive non-right coverage and human soft tissue remain unvalidated. A complete
+skeleton is not collision-valid anatomy or biomechanical/ergonomic proof.
+
+Front, both sides, oblique and complete right-hand close-ups were inspected for
+all three architectures, as were all four playing diagnostics and highlighted
+finger audits. Fifteen body images and four selected playing images reproduce
+byte-for-byte from saved states. Native slide initialization exposed the old
+hinge-only sampler; stationary prescribed slides now pass while moving or
+unprescribed slides explicitly reject. Lazy engine import preserves headless
+EGL setup. 93 tests, Ruff and ty pass; two frozen roots verify completely.
+No historical frozen results are rewritten. Case/bellows/strap mechanics and
+bilateral accordion operation remain for a separate phase.
+
 ## 2026-10-08 — Seated leg variation, initialization counterexample and CI portability
 
 [030](experiments/030-seated-leg-variation/notes.md) samples 80/100° hip flexion

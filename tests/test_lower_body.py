@@ -26,7 +26,7 @@ def reference():
 def test_baked_bones_match_upstream_seated_fk_and_arm_is_unchanged():
     e = reference()
     _, upstream, data, landmarks = posed_lower_body(e.setup)
-    s = build_scene(e.geometry, setup=e.setup)
+    s = build_scene(e.geometry, e.player, setup=e.setup)
     assert (s.model.nq, s.model.nv, s.model.nu, s.model.neq) == (38, 38, 63, 11)
     for name, point in landmarks.items():
         np.testing.assert_allclose(
@@ -51,7 +51,7 @@ def test_baked_bones_match_upstream_seated_fk_and_arm_is_unchanged():
             checked += 1
     assert checked >= 14
     legacy = load_input(Path("experiments/023-reference-seated-setup/experiment.json"))
-    before = build_scene(legacy.geometry, setup=legacy.setup).model
+    before = build_scene(legacy.geometry, legacy.player, setup=legacy.setup).model
     for attribute in ("jnt_range", "eq_data", "actuator_gainprm", "actuator_biasprm"):
         np.testing.assert_array_equal(
             getattr(s.model, attribute), getattr(before, attribute)
@@ -149,7 +149,7 @@ def test_baked_leg_frames_follow_rotated_torso():
         e.setup, torso_origin_m=(0.1, 0.2, 0.75), torso_rotation_wxyz=(q[3], *q[:3])
     )
     _, _, _, points = posed_lower_body(e.setup)
-    s = build_scene(e.geometry, setup=setup)
+    s = build_scene(e.geometry, e.player, setup=setup)
     for name, p in points.items():
         np.testing.assert_allclose(
             s.data.body(f"seated_{name}").xpos,

@@ -109,3 +109,20 @@ anchors/board and invalidates accepted states through existing profile/model
 hash guards. The legacy explicit height is inactive with anatomical legs; use
 leg pose/radius and support clearance instead. No lower-body coordinates are
 added to saved arm qpos vectors. See [seated-lower-body.md](seated-lower-body.md).
+
+## Anatomical assembly selection (031)
+
+New programmatic `PlayerProfile()` instances use `myofullbody_reduced`, derived
+from native MyoSim full-body composition at an explicit generic passive posture.
+`myofullbody_native` retains prescribed passive coordinates for comparison;
+`myoarm_r` remains the historical backend. Stored experiments select
+`anatomy.model` explicitly, and a conflicting `player.model` rejects. Old inputs
+are not implicitly migrated by the new programmatic default.
+
+Full-body profiles record `full_body_posture` assumptions. Existing seated-leg
+parameters take precedence for hip/knee reference values, keeping the existing
+instrument-anchor calculation unchanged. Profile and compiled-model hashes bind
+assembly and posture; an equal qpos length does not permit transferring an
+accepted old state. A new solve is required. See
+[full-body architecture](full-body-architecture.md) for collision-policy and
+biomechanical limits, benchmarks, saved-state body rendering and parity tests.

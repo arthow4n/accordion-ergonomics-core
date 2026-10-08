@@ -4,12 +4,14 @@ from dataclasses import dataclass, field
 from math import isfinite
 from typing import Any
 
+from .full_body import ASSEMBLIES, DEFAULT_ASSEMBLY, FullBodyPosture
 from .seated_setup import SeatedSetup
 
 
 @dataclass(frozen=True)
 class PlayerProfile:
-    model: str = "myoarm_r"
+    model: str = DEFAULT_ASSEMBLY
+    full_body_posture: FullBodyPosture | None = None
     model_mode: str = "imported_musculoskeletal"
     geometric_hand_scale: float = 1.0
     geometry_evidence: dict[str, Any] = field(
@@ -64,7 +66,15 @@ class PlayerProfile:
                 },
             )
         object.__setattr__(self, "joint_range_evidence", evidence)
-        if self.model != "myoarm_r":
+        if isinstance(self.full_body_posture, dict):
+            object.__setattr__(
+                self, "full_body_posture", FullBodyPosture(**self.full_body_posture)
+            )
+        if self.model != "myoarm_r" and self.full_body_posture is None:
+            object.__setattr__(self, "full_body_posture", FullBodyPosture())
+        if self.model == "myoarm_r" and self.full_body_posture is not None:
+            raise ValueError("Legacy anatomy cannot prescribe full-body posture")
+        if self.model not in ASSEMBLIES:
             raise ValueError("Unsupported anatomy")
         for bounds in self.joint_ranges_rad.values():
             if (

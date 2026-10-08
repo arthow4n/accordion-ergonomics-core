@@ -93,6 +93,9 @@ def run_experiment(path: Path, output: Path, render: bool) -> dict[str, Any]:
                 },
             },
             "model": {
+                "anatomical_assembly": experiment.player.model,
+                "prescribed_passive_joints_rad": scene.prescribed_joints,
+                "passive_joint_names": scene.passive_joints,
                 "nq": scene.model.nq,
                 "nv": scene.model.nv,
                 "neq": scene.model.neq,
@@ -194,6 +197,7 @@ def main() -> None:
             "held",
             "collision-coverage",
             "limit-probe",
+            "architecture",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -221,6 +225,14 @@ def main() -> None:
     verification.add_argument("--input", type=Path)
     verification.add_argument("--output", type=Path)
     verification.add_argument("--require-complete", action="store_true")
+    architecture = sub.add_parser("architecture")
+    architecture.add_argument("definition", type=Path)
+    architecture.add_argument(
+        "--output", type=Path, default=Path("artifacts/architecture")
+    )
+    body_render = sub.add_parser("body-render")
+    body_render.add_argument("result", type=Path)
+    body_render.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "check":
@@ -298,6 +310,16 @@ def main() -> None:
             )
             + "\n"
         )
+    elif args.command == "architecture":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .architecture import run_architecture
+
+        run_architecture(args.definition, args.output)
+    elif args.command == "body-render":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .architecture import replay_body
+
+        replay_body(args.result, args.output)
     elif args.command == "frozen":
         from .frozen import frozen_run
 

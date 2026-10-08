@@ -52,3 +52,32 @@ def test_colliding_initial_seed_is_diagnostic_failure() -> None:
     found, record = collision_checked_step(scene, q, np.zeros_like(q), e.solver)
     assert found is None
     assert record["reason"] == "initial_collision_violation"
+
+
+def test_prescribed_slide_is_allowed_only_when_stationary():
+    import pytest
+
+    model = mujoco.MjModel.from_xml_string("""<mujoco><worldbody>
+      <body><joint name="passive" type="slide" axis="1 0 0"/>
+      <geom type="sphere" size=".01" contype="0" conaffinity="0"/>
+      </body></worldbody></mujoco>""")
+    scene = Scene(
+        model,
+        mujoco.MjData(model),
+        [],
+        [],
+        [],
+        ContactProfile(),
+        {"passive": 0.0},
+        ("passive",),
+    )
+    settings = load_input(
+        Path("experiments/018-collision-step-backtracking/experiment.json")
+    ).solver
+    found, _ = collision_checked_step(scene, np.zeros(1), np.zeros(1), settings)
+    np.testing.assert_array_equal(found, np.zeros(1))
+    with pytest.raises(ValueError, match="stationary slides"):
+        collision_checked_step(scene, np.zeros(1), np.array([0.001]), settings)
+    scene.passive_joints = ()
+    with pytest.raises(ValueError, match="stationary slides"):
+        collision_checked_step(scene, np.zeros(1), np.zeros(1), settings)

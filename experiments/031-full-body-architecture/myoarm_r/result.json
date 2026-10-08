@@ -1,0 +1,911 @@
+{
+  "input": {
+    "schema_version": 2,
+    "id": "031-full-body-architecture-myoarm_r",
+    "question": "Does fixed MyoSim leg anatomy correct the generic thigh-support reference while preserving central right-hand contact?",
+    "geometry": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "button_travel_m": null,
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.008,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Synthetic laboratory fixture, 2026-10-08",
+        "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+      }
+    },
+    "contacts": [
+      {
+        "row": 1,
+        "column": 5,
+        "finger": "index"
+      }
+    ],
+    "initial_joints_rad": {
+      "elv_angle_r": 0.3,
+      "shoulder_elv_r": 0.6,
+      "shoulder_rot_r": -0.5,
+      "elbow_flexion_r": 1.5,
+      "pro_sup_r": 0.4,
+      "mcp2_flexion_r": 0.3,
+      "pm2_flexion_r": 0.4,
+      "md2_flexion_r": 0.3,
+      "mcp3_flexion_r": 0.3,
+      "pm3_flexion_r": 0.4,
+      "mcp4_flexion_r": 0.3,
+      "pm4_flexion": 0.4,
+      "mcp5_flexion_r": 0.3,
+      "pm5_flexion_r": 0.4
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 200,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true,
+      "collision_limit_implementation": "displacement",
+      "collision_backtrack_steps": 12,
+      "collision_edge_step_rad": 0.01
+    },
+    "randomness": {
+      "used": false,
+      "seed": null
+    },
+    "anatomy": {
+      "package": "myo-sim",
+      "version": "0.2.3",
+      "model": "myoarm_r",
+      "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+    },
+    "render": {
+      "width": 960,
+      "height": 720,
+      "backend": "egl"
+    },
+    "setup": {
+      "torso": {
+        "seated": {
+          "lower_body": {
+            "model": "myolegs",
+            "hip_flexion_rad": 1.5707963267948966,
+            "hip_abduction_rad": 0.08726646259971647,
+            "knee_flexion_rad": 1.5707963267948966,
+            "thigh_envelope_radius_m": 0.075,
+            "support_fraction": 0.45,
+            "evidence": "docs/research/seated-lower-body.md"
+          },
+          "name": "reference_seated_cba_setup",
+          "instrument_width_m": 0.365,
+          "instrument_depth_m": 0.195,
+          "instrument_height_m": 0.38,
+          "torso_gap_m": 0.01,
+          "treble_edge_to_shoulder_m": 0.0,
+          "support_height_above_root_m": 0.1,
+          "support_clearance_m": 0.01,
+          "c4_top_inset_m": 0.06,
+          "outer_edge_inset_m": 0.015,
+          "yaw_rad": -0.5235987755982988,
+          "long_axis_tilt_rad": 0.0,
+          "fore_aft_tilt_rad": 0.0,
+          "evidence": "docs/research/seated-setup.md",
+          "parameter_evidence": {
+            "torso_gap_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.0,
+                0.04
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "treble_edge_to_shoulder_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.03,
+                0.03
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "support_height_above_root_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.07,
+                0.13
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "support_clearance_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.0,
+                0.04
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "c4_top_inset_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.045,
+                0.095
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "outer_edge_inset_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.01,
+                0.025
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "yaw_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.7853981633974483,
+                0.0
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "long_axis_tilt_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.17453292519943295,
+                0.17453292519943295
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "fore_aft_tilt_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.17453292519943295,
+                0.17453292519943295
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "instrument_width_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            },
+            "instrument_depth_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            },
+            "instrument_height_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            }
+          }
+        },
+        "torso_origin_m": [
+          0,
+          0,
+          0.65
+        ],
+        "torso_rotation_wxyz": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "docs/research/seated-setup.md",
+          "note": "Reference seated scaffold height; no personalized anatomy."
+        }
+      },
+      "board": {
+        "origin_m": [
+          0.16996500000045317,
+          0.21012909858252607,
+          0.982692396625059
+        ],
+        "rotation_wxyz": [
+          -0.6830127018922193,
+          0.6830127018922193,
+          -0.18301270189221927,
+          0.18301270189221927
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "Synthetic laboratory fixture, 2026-10-08",
+          "note": "19mm lattice with triangular row spacing; 13mm buttons; 4mm height; placement chosen before IK, unmeasured. No ergonomic inference about a real FR-1XB is warranted."
+        }
+      }
+    },
+    "player": {
+      "model": "myoarm_r",
+      "model_mode": "imported_musculoskeletal",
+      "geometric_hand_scale": 1.0,
+      "geometry_evidence": {
+        "kind": "hypothesis",
+        "source": "Wrist-origin geometric perturbation",
+        "note": "Uniform hand scaling is not physiological personalization.",
+        "uncertainty": null
+      },
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      },
+      "joint_range_evidence": {},
+      "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+    },
+    "physical_contact": {
+      "additional_collision_pairs": [
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "midph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "proxph2_coll_r",
+          "proxph3_coll_r"
+        ]
+      ],
+      "additional_collision_evidence": {
+        "kind": "hypothesis",
+        "source": "019 index-middle phalangeal pair constraint",
+        "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+      },
+      "inactive_digits_policy": "allow_articulation",
+      "inactive_digits_evidence": {
+        "kind": "assumption",
+        "source": "023 setup study",
+        "note": "Unused digits may articulate; not a posture observation."
+      },
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    }
+  },
+  "qpos_rad": [
+    -0.0242,
+    0.01025,
+    -0.01025,
+    0.0242,
+    -0.004900000000000001,
+    0.0396,
+    0.0178,
+    -0.0178,
+    -0.0396,
+    0.004900000000000001,
+    0.0,
+    0.1,
+    0.0,
+    0.0,
+    0.35,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "joint_names": [
+    "sternoclavicular_r2_r",
+    "sternoclavicular_r3_r",
+    "unrotscap_r3_r",
+    "unrotscap_r2_r",
+    "acromioclavicular_r2_r",
+    "acromioclavicular_r3_r",
+    "acromioclavicular_r1_r",
+    "unrothum_r1_r",
+    "unrothum_r3_r",
+    "unrothum_r2_r",
+    "elv_angle_r",
+    "shoulder_elv_r",
+    "shoulder1_r2_r",
+    "shoulder_rot_r",
+    "elbow_flexion_r",
+    "pro_sup_r",
+    "deviation_r",
+    "flexion_r",
+    "cmc_flexion",
+    "cmc_abduction",
+    "mp_flexion_r",
+    "ip_flexion_r",
+    "mcp2_flexion_r",
+    "mcp2_abduction_r",
+    "pm2_flexion_r",
+    "md2_flexion_r",
+    "mcp3_flexion_r",
+    "mcp3_abduction_r",
+    "pm3_flexion_r",
+    "md3_flexion",
+    "mcp4_flexion_r",
+    "mcp4_abduction_r",
+    "pm4_flexion",
+    "md4_flexion_r",
+    "mcp5_flexion_r",
+    "mcp5_abduction_r",
+    "pm5_flexion_r",
+    "md5_flexion_r"
+  ],
+  "body_cameras": {
+    "front": {
+      "lookat": [
+        0.0,
+        0.12,
+        0.73
+      ],
+      "distance": 2.05,
+      "azimuth": -90,
+      "elevation": 0
+    },
+    "right": {
+      "lookat": [
+        0.0,
+        0.12,
+        0.73
+      ],
+      "distance": 2.05,
+      "azimuth": 180,
+      "elevation": 0
+    },
+    "left": {
+      "lookat": [
+        0.0,
+        0.12,
+        0.73
+      ],
+      "distance": 2.05,
+      "azimuth": 0,
+      "elevation": 0
+    },
+    "oblique": {
+      "lookat": [
+        0.0,
+        0.12,
+        0.73
+      ],
+      "distance": 2.05,
+      "azimuth": -125,
+      "elevation": -15
+    },
+    "hand": {
+      "lookat": [
+        0.2650300702569385,
+        0.042963310496926144,
+        0.5388138666419172
+      ],
+      "distance": 0.38,
+      "azimuth": -65,
+      "elevation": -25
+    }
+  },
+  "diagnostics": {
+    "approximate_support_envelope_distances_m": {
+      "approximate_thigh_support_r": 0.011474818802668735,
+      "approximate_thigh_support_l": 0.01000014066283035
+    },
+    "instrument_envelope_distances_m": {
+      "": 0.022104845437810175,
+      "thorax_coll1": 0.03840137120369834,
+      "thorax_coll2": 0.018394064698571397,
+      "thorax_coll3": 0.08120448984727517,
+      "hat_cervical_coll": 0.17509945086903939,
+      "hat_jaw_coll2": 0.17684641234319595,
+      "hat_skull_coll": 0.23015805187990807,
+      "humerus_coll_r": 0.1214427809021735,
+      "ulna_coll_r": 0.1464370151763304,
+      "radius_coll_r": 0.12966773860806402,
+      "radius_coll_2_r": 0.1307947353743589,
+      "radius_coll_3_r": 0.1367357192462905,
+      "1mcskin_r": 0.1303331629215264,
+      "proximal_thumb_coll_r": 0.13129050983544402,
+      "distal_thumb_coll_r": 0.13533714427976717,
+      "distal_thumb_coll_2_r": 0.13777107766099733,
+      "2mcskin_coll_r": 0.1525735563679233,
+      "proxph2_coll_r": 0.1786513095357065,
+      "midph2_coll_r": 0.2019845070186838,
+      "distph2_coll_r": 0.21778544548288617,
+      "distph2_coll_2_r": 0.23255017360904395,
+      "3mcskin_coll_r": 0.16092701747748098,
+      "proxph3_coll_r": 0.19010727277830994,
+      "midph3_coll_r": 0.21696366244117446,
+      "distph3_coll_r": 0.23663391374448325,
+      "distph3_coll_2_r": 0.2516574609053843,
+      "4mcski_r": 0.1672071492291069,
+      "proxph4_coll_r": 0.19511535163182395,
+      "midph4_coll_r": 0.2212012562996311,
+      "distph4_coll_r": 0.23933026340450497,
+      "distph4_coll_2_r": 0.2575600571043131,
+      "5mcskin_r": 0.1659444619567281,
+      "5proxph_coll_r": 0.1924099965972233,
+      "5midph_coll_r": 0.21393154173671147,
+      "5distph_coll_r": 0.22871552130159362,
+      "5distph_coll_2_r": 0.2455502667677019
+    },
+    "landmarks_world_m": {
+      "humerus_r": [
+        0.17010663677562146,
+        -0.1014490425533719,
+        1.1254343601274701
+      ],
+      "ulna_r": [
+        0.1868057020563516,
+        -0.09363748819453706,
+        0.8352951162509327
+      ],
+      "lunate_r": [
+        0.24968240597259972,
+        0.012446798640527335,
+        0.6085387399539821
+      ],
+      "torso": [
+        5.092508192916511e-13,
+        -0.1040000000005445,
+        0.7611999999994907
+      ]
+    },
+    "target_contact_distance_m": 0.5097272371278393,
+    "position_error_m": 0.5432746700776094,
+    "normal_error_rad": 2.0716626207893603,
+    "equality_max_residual_rad": 0.0,
+    "joint_max_violation_rad": 0.0,
+    "joint_margins_rad": {
+      "sternoclavicular_r2_r": 0.0242,
+      "sternoclavicular_r3_r": 0.01025,
+      "unrotscap_r3_r": 0.01025,
+      "unrotscap_r2_r": 0.0242,
+      "acromioclavicular_r2_r": 0.004900000000000001,
+      "acromioclavicular_r3_r": 0.0396,
+      "acromioclavicular_r1_r": 0.0178,
+      "unrothum_r1_r": 0.0178,
+      "unrothum_r3_r": 0.0396,
+      "unrothum_r2_r": 0.004900000000000001,
+      "elv_angle_r": 1.658,
+      "shoulder_elv_r": 0.1,
+      "shoulder1_r2_r": 1.658,
+      "shoulder_rot_r": 1.571,
+      "elbow_flexion_r": 0.35,
+      "pro_sup_r": 1.5708,
+      "deviation_r": 0.174533,
+      "flexion_r": 0.785398,
+      "cmc_flexion": 0.7,
+      "cmc_abduction": 0.5,
+      "mp_flexion_r": 0.698132,
+      "ip_flexion_r": 0.436332,
+      "mcp2_flexion_r": 0.0,
+      "mcp2_abduction_r": 0.261799,
+      "pm2_flexion_r": 0.0,
+      "md2_flexion_r": 0.0,
+      "mcp3_flexion_r": 0.0,
+      "mcp3_abduction_r": 0.261799,
+      "pm3_flexion_r": 0.0,
+      "md3_flexion": 0.0,
+      "mcp4_flexion_r": 0.0,
+      "mcp4_abduction_r": 0.261799,
+      "pm4_flexion": 0.0,
+      "md4_flexion_r": 0.0,
+      "mcp5_flexion_r": 0.0,
+      "mcp5_abduction_r": 0.261799,
+      "pm5_flexion_r": 0.0,
+      "md5_flexion_r": 0.0
+    },
+    "contacts": [],
+    "max_penetration_m": 0.0,
+    "pad_world_m": [
+      0.2843014802392633,
+      0.10770088918812895,
+      0.4618136191493869
+    ],
+    "pad_normal_world": [
+      0.13710052149679586,
+      0.4753155514478263,
+      -0.8690676461341518
+    ],
+    "palm_world_m": [
+      0.2529443711010386,
+      0.021459280141646768,
+      0.5960443944451999
+    ]
+  },
+  "coverage": {
+    "anatomical_proxy_count": 36,
+    "mask_counts": [
+      {
+        "contype": 1,
+        "conaffinity": 0,
+        "count": 36
+      }
+    ],
+    "explicit_pairs": [
+      [
+        "thorax_coll1",
+        "humerus_coll_r"
+      ],
+      [
+        "thorax_coll1",
+        "radius_coll_r"
+      ],
+      [
+        "thorax_coll2",
+        "radius_coll_r"
+      ],
+      [
+        "thorax_coll3",
+        "radius_coll_r"
+      ],
+      [
+        "proxph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "proxph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "proxph2_coll_r",
+        "distph3_coll_r"
+      ],
+      [
+        "proxph2_coll_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "midph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "distph3_coll_r"
+      ],
+      [
+        "midph2_coll_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "distph2_coll_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "midph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "distph3_coll_r"
+      ],
+      [
+        "distph2_coll_r",
+        "distph3_coll_2_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "proxph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "midph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "distph3_coll_r"
+      ],
+      [
+        "distph2_coll_2_r",
+        "distph3_coll_2_r"
+      ]
+    ],
+    "cross_digit_pairs_distance_queried": 230,
+    "overlaps": [
+      {
+        "digits": [
+          "middle",
+          "ring"
+        ],
+        "geoms": [
+          "3mcskin_coll_r",
+          "4mcski_r"
+        ],
+        "signed_proxy_distance_m": -0.010318393721652523,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "index",
+          "middle"
+        ],
+        "geoms": [
+          "2mcskin_coll_r",
+          "3mcskin_coll_r"
+        ],
+        "signed_proxy_distance_m": -0.00936253179814492,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "ring",
+          "little"
+        ],
+        "geoms": [
+          "4mcski_r",
+          "5mcskin_r"
+        ],
+        "signed_proxy_distance_m": -0.007069344342212382,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "thumb",
+          "index"
+        ],
+        "geoms": [
+          "1mcskin_r",
+          "2mcskin_coll_r"
+        ],
+        "signed_proxy_distance_m": -0.004260499986233958,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "middle",
+          "ring"
+        ],
+        "geoms": [
+          "proxph3_coll_r",
+          "4mcski_r"
+        ],
+        "signed_proxy_distance_m": -0.0026818063705272045,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "middle",
+          "ring"
+        ],
+        "geoms": [
+          "3mcskin_coll_r",
+          "proxph4_coll_r"
+        ],
+        "signed_proxy_distance_m": -0.0025663512769340865,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "ring",
+          "little"
+        ],
+        "geoms": [
+          "4mcski_r",
+          "5proxph_coll_r"
+        ],
+        "signed_proxy_distance_m": -0.0017556058399955232,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "middle",
+          "ring"
+        ],
+        "geoms": [
+          "proxph3_coll_r",
+          "proxph4_coll_r"
+        ],
+        "signed_proxy_distance_m": -0.00147038808078182,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "index",
+          "middle"
+        ],
+        "geoms": [
+          "2mcskin_coll_r",
+          "proxph3_coll_r"
+        ],
+        "signed_proxy_distance_m": -0.0007724770598553574,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "index",
+          "middle"
+        ],
+        "geoms": [
+          "proxph2_coll_r",
+          "3mcskin_coll_r"
+        ],
+        "signed_proxy_distance_m": -0.0004794785077344363,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "ring",
+          "little"
+        ],
+        "geoms": [
+          "proxph4_coll_r",
+          "5mcskin_r"
+        ],
+        "signed_proxy_distance_m": -0.0004375937734198889,
+        "mask_compatible": false,
+        "explicit_pair": false
+      },
+      {
+        "digits": [
+          "ring",
+          "little"
+        ],
+        "geoms": [
+          "proxph4_coll_r",
+          "5proxph_coll_r"
+        ],
+        "signed_proxy_distance_m": -0.0002181290922124747,
+        "mask_compatible": false,
+        "explicit_pair": false
+      }
+    ],
+    "unchecked_overlap_count": 12,
+    "claim": "Collision-filter coverage and rigid-proxy overlap, not tissue feasibility"
+  },
+  "passive_envelope_audit": {
+    "available": false,
+    "reason": "Historical scene lacks left anatomy"
+  },
+  "playing_status": "success",
+  "claim": "Assumed seated skeletal rest reference; no ergonomic or collision-valid anatomy claim",
+  "provenance": {
+    "compiled_model_sha256": "e4135ea2d09df5580567af7b8342f15b10084da236883f06659b61770602dc6f",
+    "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+    "project_source_sha256": "2f456f904455dda44573515a9ee2eab823c1b908f7d5b3b03d3a015f94f73c34",
+    "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+    "render_backend": "egl"
+  },
+  "runtime": {
+    "python": "3.14.7",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "packages": {
+      "mujoco": "3.15.0",
+      "myo-sim": "0.2.3",
+      "mink": "1.3.0",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "clarabel": "0.11.1",
+      "pillow": "12.3.0"
+    }
+  }
+}

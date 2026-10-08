@@ -19,7 +19,11 @@ seated setup derives an FR-1xb-sized shell and board placement from explicit
 torso, shoulder and support anchors, with a documented setup family. New seated
 profiles use fixed MyoSim pelvis/leg bones and explicitly approximate thigh
 support envelopes; historical synthetic-leg results remain preserved.
-See [the anatomical seated baseline](experiments/029-myosim-seated-lower-body/notes.md).
+New programmatic player profiles now use a reduced native MyoFullBody assembly:
+original skeletal torso/pelvis, both arms/hands and both legs/feet, with only
+the original right-arm coordinates active. Historical inputs explicitly retain
+their original backend. See [the architecture comparison](experiments/031-full-body-architecture/notes.md)
+and [anatomical foundation](docs/research/full-body-architecture.md).
 
 **Current results are sampled kinematic predictions on assumed geometry with
 incomplete anatomical self-collision coverage. Real playing feasibility,
@@ -34,6 +38,8 @@ The lockfile records the full tested dependency stack.
 ```sh
 uv sync --locked
 uv run aec check
+uv run aec frozen architecture experiments/031-full-body-architecture/experiment.json --output artifacts/full-body-comparison
+uv run aec body-render experiments/031-full-body-architecture/myofullbody_reduced/result.json --output artifacts/full-body-replay
 uv run aec frozen experiment experiments/029-myosim-seated-lower-body/reference/experiment.json --output artifacts/seated-reference
 # Historical family on synthetic thighs (preserved for comparison)
 uv run aec frozen sweep experiments/024-seated-setup-family/experiment.json --output artifacts/seated-family

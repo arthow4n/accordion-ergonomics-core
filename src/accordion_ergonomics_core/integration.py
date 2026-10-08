@@ -23,8 +23,17 @@ def collision_checked_step(
     Unsampled intervals and omitted self-collision pairs remain unestablished.
     """
     model, data = scene.model, scene.data
-    if np.any(model.jnt_type != mujoco.mjtJoint.mjJNT_HINGE):
-        raise ValueError("Collision-step angular sampling currently requires hinges")
+    for i in range(model.njnt):
+        if model.jnt_type[i] == mujoco.mjtJoint.mjJNT_HINGE:
+            continue
+        if (
+            model.jnt_type[i] != mujoco.mjtJoint.mjJNT_SLIDE
+            or model.joint(i).name not in scene.passive_joints
+            or abs(displacement[model.jnt_dofadr[i]]) > 1e-12
+        ):
+            raise ValueError(
+                "Angular sampling requires hinges or prescribed stationary slides"
+            )
     data.qpos[:] = start
     mujoco.mj_forward(model, data)
     tolerance = settings.penetration_tolerance_m

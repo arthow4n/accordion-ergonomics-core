@@ -25,6 +25,7 @@ def frozen_run(
         "held",
         "collision-coverage",
         "limit-probe",
+        "architecture",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)
