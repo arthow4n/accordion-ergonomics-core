@@ -113,3 +113,19 @@ coarse case/bellows box remain hypotheses at Roland's overall published scale.
 Unchecked finger overlaps remain a separate known problem. Lowering the keyboard
 changes arm solutions and can increase wrist flexion; smaller shoulder angles do
 not establish improved technique or lower effort.
+
+## Small variation check and numerical portability
+
+[030](../../experiments/030-seated-leg-variation/notes.md) samples hips at 80/100°
+and an assumed 90 mm thigh radius. All have positive coarse shell/envelope
+clearance; 80° needs another seed to find a central contact. The conservative
+higher-endpoint plane changes board height by −6/+70 mm for the hip cases and
++15 mm for radius alone. Those are model sensitivities, not measured human ranges.
+Unchecked finger overlaps remain in every successful variation pose.
+
+New nontrivial baked transforms need not have identical last-bit arithmetic on
+all hosts. CI compares recorded geometry/profile fields within 1e−12 and exact
+repeat model compilation within its own runtime. Production state/model guards
+still use exact hashes: a cross-environment mismatch requires re-solving the
+recorded inputs, never bypassing the guard. Local byte-identical image replay
+therefore establishes reproducibility only in the recorded rendering environment.

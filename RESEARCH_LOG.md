@@ -1,5 +1,31 @@
 # Research log
 
+## 2026-10-08 — Seated leg variation, initialization counterexample and CI portability
+
+[030](experiments/030-seated-leg-variation/notes.md) samples 80/100° hip flexion
+and a 90 mm assumed thigh envelope around the MyoSim seated reference. The
+conservative support plane shifts shell/board −6.2/+69.5/+15.0 mm respectively.
+All sampled approximate thigh/shell distances are positive. First 80° C4 solve
+exhausts its budget with 471 mm residual and overhead arm; the same physical
+world succeeds at 0.0397 mm after re-solving from a recorded numeric 029 prior.
+This is a solver-seed counterexample, not an anatomical reachability boundary.
+All four views for every success/failure were inspected and preserved.
+
+100° and larger-envelope contacts succeed from the original seed. Discovered
+wrist flexion remains 23–30°, not uniformly more ordinary than historical 023.
+All three variation poses retain unchecked phalangeal overlaps (2.37/3.02/1.56
+mm maxima), independently audited. No tissue/contact-force validity is claimed.
+Five new frozen roots verify completely; successful 80° saved-state replay
+reproduces four images in the same EGL environment.
+
+Initial milestone f39c289 passed 81 local tests but CI rejected an exact new
+derived-profile comparison across hosts. Follow-up regression checks recorded
+fields within 1e−12 and deterministic repeated compilation in the same runtime;
+historical 023 exact commitments still pass. Production profile/model guards
+remain strict and unchanged: cross-host roundoff can require re-solving rather
+than accepting a different compiled world. This portability limit is explicit,
+not a reason to discard hashes or weaken accepted-state validation.
+
 ## 2026-10-08 — MyoSim anatomy replaces the handmade seated-leg default
 
 [029](experiments/029-myosim-seated-lower-body/notes.md) evaluates standard MyoSim
