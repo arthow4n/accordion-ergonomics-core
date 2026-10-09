@@ -1,5 +1,36 @@
 # Research log
 
+## 2026-10-09 — Regress the independently mounted compact reference without anatomy claims
+
+[037](experiments/037-upper-anchor-regression/notes.md) follows the 036 fit choice.
+Raise the same compact case/board 41.507603 mm; keep all horizontal targets,
+button normals, fixed seated anatomy and right mechanics unchanged. Fresh C4,
+nearby D4, G6 relocation and both simultaneous gestures produce candidates.
+Eight matched starts each preserve two initial-collision failures and one invalid
+initialization; distinct counts are 3/4/4/4/4. Palm candidate diameters reach
+115.846 mm. Selected C4 shoulder elevation changes 56.069→23.931 degrees while
+wrist flexion increases 17.405→43.955; this is branch evidence, not comfort.
+
+Nearby withdrawal/RRT/approach and larger direct sampled paths measure
+63.669/162.518 mm. A held-index continuation is found after direct interpolation
+fails: 22 waypoint solves, maximum held residual 81.478 µm and palm path
+71.282 mm. Changed branches prevent global minimum-movement or general placement
+advantage claims; 035's held failure remains published numerical evidence.
+
+Independent all-solid audits of 20 contact endpoints and the held result keep
+11–20 unchecked cross-digit overlaps, maximum depth 10.318 mm. Minimum endpoint
+case/rim/panel clearance is 2.437/4.023 mm; cap clearance 23.403 µm. Intermediate
+finger coverage is not certified. No anatomy was shrunk or masks weakened.
+Four saved-state diagnostics and collision overlays were inspected for selected
+contacts, ordinary-path middle states and held result. Reviewed central caption
+uses v3, same compiled world/qpos; four replay images are byte-identical.
+
+Eight regression and seven geometry frozen roots verify completely. The suite
+passes 100 tests, Ruff and ty; final focused frame/render/identity checks pass.
+The selected compact upper anchor is a reproducible fixed reference, above the
+lap with strap equilibrium unproved. The updated roadmap keeps envelope/observed
+pose and wearing-anchor uncertainty ahead of expanded exercise discovery.
+
 ## 2026-10-09 — Isolate case size from wearing height; retain compact upper anchor
 
 [036](experiments/036-instrument-size-fit/notes.md) confirms the hidden mounting

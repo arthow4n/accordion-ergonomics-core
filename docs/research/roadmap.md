@@ -46,7 +46,9 @@ board/case mounting orientation. 035 preserves small right-hand multistarts,
 paths, failed held attempts and incomplete anatomical collision coverage.
 036 now isolates size from placement: retain a compact `generic_cba_v3` reference
 with an explicit upper anchor; thigh clearance is measured independently. 037
-regresses right-hand tasks only after that fit decision. No full-body motion,
+regresses right-hand tasks only after that fit decision: contacts and ordinary
+paths are found, including a sampled held continuation, with large alternative
+branches and unchecked cross-digit overlaps still present. No full-body motion,
 left playing, instrument optimization, moving bellows or strap dynamics is added.
 
 Next priority remains proxy/skin and observed pose validation, plus uncertainty
