@@ -38,7 +38,8 @@ See [RESEARCH_LOG.md](RESEARCH_LOG.md) for findings and failed investigations.
 ## Reproduce
 
 Use conventional CPython 3.14 managed by [uv](https://docs.astral.sh/uv/).
-The lockfile records the full tested dependency stack.
+The lockfile records the full tested dependency stack. Validation runs locally
+for research milestones; automatic GitHub Actions checks are disabled.
 
 ```sh
 uv sync --locked

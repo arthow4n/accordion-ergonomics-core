@@ -1,5 +1,21 @@
 # Research log
 
+## 2026-10-09 — Remove automatic CI and make historical identity testing portable
+
+The first 036 commit's hosted run failed at the historical compiled-model byte
+hash assertion (99 other tests passed); the following 037 commit's hosted run
+passed. Cross-machine CPU/libm/BLAS differences can alter compiled bytes without
+establishing a source regression. The identity test now compiles 034's archived
+source in an isolated interpreter on the same machine and compares exact current
+model/profile identities against that reference. Production saved-state replay
+hash guards remain unchanged and strict.
+
+At the owner's request, remove `.github/workflows/check.yml`: automatic push/PR
+full-suite and legacy EGL experiment runs stop. Local `uv run aec check`, targeted
+checks and frozen record verification remain available for meaningful research
+milestones. Historical Actions results and frozen experiments remain preserved. Three focused
+fit/identity tests, Ruff and ty pass; no hosted run was triggered for this change.
+
 ## 2026-10-09 — Regress the independently mounted compact reference without anatomy claims
 
 [037](experiments/037-upper-anchor-regression/notes.md) follows the 036 fit choice.
