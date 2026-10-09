@@ -140,12 +140,13 @@ def build_scene(
         spec.add_pair(name=f"research_self_pair_{index}", geomname1=a, geomname2=b)
     # Remove the upstream decorative room; it is unrelated to body geometry.
     for decor in list(spec.worldbody.geoms):
-        if geometry.geometry_model == "generic_cba_v2" and decor.name.startswith(
-            "approximate_thigh_support_"
-        ):
+        if geometry.geometry_model in (
+            "generic_cba_v2",
+            "generic_cba_v3",
+        ) and decor.name.startswith("approximate_thigh_support_"):
             continue
         spec.delete(decor)
-    physical = geometry.geometry_model == "generic_cba_v2"
+    physical = geometry.geometry_model in ("generic_cba_v2", "generic_cba_v3")
     if physical:
         from .physical_cba import attach_instrument
 
@@ -218,6 +219,15 @@ def build_scene(
                 rgba=[0.35, 0.42, 0.5, 0.4],
                 contype=0,
                 conaffinity=0,
+            )
+    if geometry.geometry_model == "generic_cba_v3":
+        for landmark in ("pelvis", "femur_r", "femur_l", "tibia_r", "tibia_l"):
+            spec.body(landmark).add_site(
+                name="fit_" + landmark,
+                pos=[0, 0, 0],
+                size=[0.007, 0, 0],
+                rgba=[0.2, 0.9, 0.5, 1],
+                group=0,
             )
     centers = np.array([geometry.center_board_m(b) for b in buttons()])
     low, high = centers.min(axis=0), centers.max(axis=0)

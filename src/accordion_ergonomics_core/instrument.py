@@ -97,6 +97,7 @@ class BoardGeometry:
     origin_m: Vector
     evidence: Evidence
     geometry_model: str = "rectangular_v0"
+    case_height_m: float | None = None
     button_travel_m: float | None = None
     stagger_columns: tuple[float, ...] = STAGGER_COLUMNS
     panel_margin_m: float = 0.012
@@ -115,8 +116,17 @@ class BoardGeometry:
         )
 
     def __post_init__(self) -> None:
-        if self.geometry_model not in ("rectangular_v0", "generic_cba_v2"):
+        if self.geometry_model not in (
+            "rectangular_v0",
+            "generic_cba_v2",
+            "generic_cba_v3",
+        ):
             raise ValueError("Unsupported instrument geometry version")
+        if self.geometry_model == "generic_cba_v3":
+            if self.case_height_m not in (0.38, 0.43):
+                raise ValueError("Fit study supports only 380/430 mm cases")
+        elif self.case_height_m is not None:
+            raise ValueError("Historical worlds cannot change case height")
         values = (
             self.column_spacing_m,
             self.row_spacing_m,

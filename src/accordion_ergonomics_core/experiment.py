@@ -96,13 +96,20 @@ class Experiment:
 
     def resolved_profiles(self) -> dict[str, Any]:
         instrument = asdict(self.geometry)
+        if self.geometry.case_height_m is None:
+            instrument.pop("case_height_m")
         if self.geometry.geometry_model == "rectangular_v0":
             instrument.pop("geometry_model")
         else:
-            from .physical_cba import REFERENCE
+            from .physical_cba import reference_for
 
-            instrument["physical_model"] = REFERENCE.specification()
+            instrument["physical_model"] = reference_for(self.geometry).specification()
         setup = asdict(self.setup)
+        if (
+            self.setup.seated is not None
+            and self.setup.seated.upper_case_to_shoulder_m is None
+        ):
+            setup["seated"].pop("upper_case_to_shoulder_m")
         if self.setup.seated is not None and self.setup.seated.lower_body is None:
             setup["seated"].pop("lower_body")
         if self.setup.seated is None:
@@ -154,6 +161,8 @@ class Experiment:
         result["schema_version"] = 2
         result["anatomy"]["model"] = self.player.model
         geometry = asdict(self.geometry)
+        if self.geometry.case_height_m is None:
+            geometry.pop("case_height_m")
         if self.geometry.geometry_model == "rectangular_v0":
             geometry.pop("geometry_model")
         evidence = geometry.pop("evidence")
@@ -165,6 +174,11 @@ class Experiment:
         result["physical_contact"] = asdict(self.physical_contact)
         result["solver"] = asdict(self.solver)
         torso = asdict(self.setup)
+        if (
+            self.setup.seated is not None
+            and self.setup.seated.upper_case_to_shoulder_m is None
+        ):
+            torso["seated"].pop("upper_case_to_shoulder_m")
         if self.setup.seated is not None and self.setup.seated.lower_body is None:
             torso["seated"].pop("lower_body")
         if self.setup.seated is None:

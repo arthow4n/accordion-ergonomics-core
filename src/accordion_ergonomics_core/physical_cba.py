@@ -73,7 +73,7 @@ class BellowsConfiguration:
             raise ValueError("Only fixed closed bellows are implemented")
 
 
-@dataclass(frozen=True, init=False)
+@dataclass(frozen=True)
 class GenericCBA:
     version: str = MODEL
     height_m: float = 0.38
@@ -142,6 +142,15 @@ class GenericCBA:
 REFERENCE = GenericCBA()
 
 
+def reference_for(geometry):
+    """Two controlled heights, same finite boards/depth/width; no product profiles."""
+    if geometry.geometry_model == "generic_cba_v3":
+        return replace(
+            REFERENCE, version="generic_cba_v3", height_m=geometry.case_height_m
+        )
+    return REFERENCE
+
+
 def validate_keyboard(geometry):
     centers = np.array([geometry.center_board_m(b) for b in buttons()])
     # Fixed representative profile, not a configurator. Prevent unsupported
@@ -178,6 +187,7 @@ def derive_physical_setup(geometry, setup):
     from .lower_body import lower_body_anchors
 
     validate_keyboard(geometry)
+    ref = reference_for(geometry)
     p = setup.seated
     if p is None:
         # Explicit world B is allowed for instrument-only diagnostics.
@@ -203,25 +213,25 @@ def derive_physical_setup(geometry, setup):
             "ZYX", [p.yaw_rad, p.long_axis_tilt_rad, p.fore_aft_tilt_rad]
         ).as_matrix()
         @ BOARD_TO_WORLD
-        @ REFERENCE.fingerboard.rotation.T
+        @ ref.fingerboard.rotation.T
     )
     corners = np.array(
-        [(u, v, n) for u in (-0.36, 0) for v in (0, 0.38) for n in (-0.20, 0)]
+        [(u, v, n) for u in (-0.36, 0) for v in (0, ref.height_m) for n in (-0.20, 0)]
     )
     board_corners = np.array(
         [
-            REFERENCE.fingerboard.apply((u, v, n))
+            ref.fingerboard.apply((u, v, n))
             for u in (-0.078, 0.012)
             for v in (-0.041, 0.221)
             for n in (-0.012, 0.008)
         ]
     )
-    fb = REFERENCE.fingerboard
+    fb = ref.fingerboard
     cheek = np.array(
         [
             fb.apply((u, v, n))
             for u in (-0.078, 0.012)
-            for v in (-0.100, 0.280)
+            for v in (-0.100, ref.height_m - 0.100)
             for n in (-0.018, -0.012)
         ]
     )
@@ -239,7 +249,16 @@ def derive_physical_setup(geometry, setup):
         )
         + p.lower_body.thigh_envelope_radius_m
     )
-    origin[2] = support_height + p.support_clearance_m - points[:, 2].min()
+    if geometry.geometry_model == "generic_cba_v3":
+        if p.upper_case_to_shoulder_m is None:
+            raise ValueError(
+                "V3 requires an explicit shoulder-relative upper-case height"
+            )
+        origin[2] = shoulder[2] + p.upper_case_to_shoulder_m
+    else:
+        if p.upper_case_to_shoulder_m is not None:
+            raise ValueError("Historical mounting cannot use an upper anchor")
+        origin[2] = support_height + p.support_clearance_m - points[:, 2].min()
     # Each imported thorax proxy has its own forward support; compare actual
     # component rear-most points in the common anterior direction.
     n = rh[:, 2]
@@ -259,16 +278,20 @@ def derive_physical_setup(geometry, setup):
         max(supports) + p.torso_gap_m - rear - origin[0] * n[0] - origin[2] * n[2]
     ) / n[1]
     h_world = transform(root + canonical @ origin, canonical @ rh)
-    b_world = h_world.compose(REFERENCE.fingerboard)
+    b_world = h_world.compose(ref.fingerboard)
     derived = replace(
         geometry, origin_m=b_world.translation_m, rotation_wxyz=b_world.rotation_wxyz
     )
     anchors: dict[str, Any] = {
         "treble_frame_world": asdict(h_world),
-        "shell_center_world_m": h_world.apply((-0.18, 0.19, -0.10)).tolist(),
+        "shell_center_world_m": h_world.apply(
+            (-0.18, ref.height_m / 2, -0.10)
+        ).tolist(),
         "shoulder_world_m": d.body("humerus_r").xpos.tolist(),
         "right_thigh_reference_world_m": thigh.tolist(),
-        "treble_support_corner_world_m": h_world.apply((0, 0.38, -0.10)).tolist(),
+        "treble_support_corner_world_m": h_world.apply(
+            (0, ref.height_m, -0.10)
+        ).tolist(),
         "lower_body_landmarks_world_m": {k: v.tolist() for k, v in landmarks.items()},
         "support_height_above_root_m": float(support_height),
         "anchor_policy": (
@@ -276,6 +299,15 @@ def derive_physical_setup(geometry, setup):
             "approximate thigh envelopes, no load equilibrium"
         ),
     }
+    if geometry.geometry_model == "generic_cba_v3":
+        anchors["anchor_policy"] = (
+            "Explicit upper H corner relative to neutral torso-attached shoulder; "
+            "rear thorax plane; lateral board rim. Thighs are observations, "
+            "no support constraint or forces."
+        )
+        anchors["bottom_above_support_plane_m"] = float(
+            origin[2] + points[:, 2].min() - support_height
+        )
     return derived, anchors
 
 
@@ -285,7 +317,9 @@ def attach_instrument(spec, geometry, bellows=None):
 
     bellows = bellows or BellowsConfiguration()
     validate_keyboard(geometry)
-    fb = REFERENCE.fingerboard
+    ref = reference_for(geometry)
+    height = ref.height_m
+    fb = ref.fingerboard
     h_rotation = geometry.rotation @ fb.rotation.T
     h_position = np.asarray(geometry.origin_m) - h_rotation @ np.asarray(
         fb.translation_m
@@ -295,6 +329,14 @@ def attach_instrument(spec, geometry, bellows=None):
         name=MODEL, pos=list(h.translation_m), quat=list(h.rotation_wxyz)
     )
     treble = root.add_body(name="treble_assembly")
+    if geometry.geometry_model == "generic_cba_v3":
+        treble.add_site(
+            name="fit_upper_case",
+            pos=[0, 0, -0.1],
+            size=[0.007, 0, 0],
+            rgba=[0.1, 0.8, 0.9, 1],
+            group=0,
+        )
     board = treble.add_body(
         name="keyboard", pos=list(fb.translation_m), quat=list(fb.rotation_wxyz)
     )
@@ -305,7 +347,7 @@ def attach_instrument(spec, geometry, bellows=None):
         quat=list(bass_transform.rotation_wxyz),
     )
     connection = root.add_body(
-        name="closed_bellows_connection", pos=[-0.20, 0.19, -0.10]
+        name="closed_bellows_connection", pos=[-0.20, height / 2, -0.10]
     )
 
     def box(body, name, pos, size, color, solid=True):
@@ -324,9 +366,9 @@ def attach_instrument(spec, geometry, bellows=None):
         # Hollow six-wall enclosure: no artificial filled global case volume.
         w, h, dep, t = (
             width,
-            REFERENCE.height_m,
-            REFERENCE.depth_m,
-            REFERENCE.case_wall_m,
+            ref.height_m,
+            ref.depth_m,
+            ref.case_wall_m,
         )
         color = [0.25, 0.32, 0.40, 1] if prefix == "treble" else [0.30, 0.37, 0.45, 1]
         for label, pos, size in (
@@ -374,23 +416,27 @@ def attach_instrument(spec, geometry, bellows=None):
         rotation = np.column_stack(
             (direction, [0.0, 1.0, 0.0], np.cross(direction, [0.0, 1.0, 0.0]))
         )
-        q = transform((a + b) / 2 + normal * 0.003 + [0, 0.19, 0], rotation)
+        q = transform((a + b) / 2 + normal * 0.003 + [0, height / 2, 0], rotation)
         wall = box(
             treble,
             "cba_treble_" + label,
             q.translation_m,
-            (length / 2, 0.19, 0.003),
+            (length / 2, height / 2, 0.003),
             color,
         )
         wall.quat = list(q.rotation_wxyz)
     box(
-        board, "cba_treble_mount", (-0.033, 0.090, -0.015), (0.045, 0.190, 0.003), color
+        board,
+        "cba_treble_mount",
+        (-0.033, 0.090 if height == 0.38 else height / 2 - 0.100, -0.015),
+        (0.045, height / 2, 0.003),
+        color,
     )
     # Full-height cheek backing; close the top/bottom of the external wing
     # with convex triangle meshes made in MuJoCo itself, not a CAD dependency.
     # Main rectangular end walls already close u<=0.
     wing = [(0.0, inner[2]), (inner[0], inner[2]), (outer[0], outer[2]), (0.0, -0.20)]
-    for label, v in (("wing_top", 0.0), ("wing_bottom", 0.374)):
+    for label, v in (("wing_top", 0.0), ("wing_bottom", height - 0.006)):
         vertices = [[u, y, n] for y in (v, v + 0.006) for u, n in wing]
         spec.add_mesh(name=label, uservert=np.asarray(vertices).ravel().tolist())
         treble.add_geom(
@@ -410,10 +456,10 @@ def attach_instrument(spec, geometry, bellows=None):
         box(board, "cba_" + name, pos, size, [0.42, 0.48, 0.53, 1])
     # Bellows envelope: four walls, hollow interior; no fake case bridging boards.
     for name, pos, size in (
-        ("front", (0, 0, 0.094), (0.05, 0.19, 0.006)),
-        ("rear", (0, 0, -0.094), (0.05, 0.19, 0.006)),
-        ("top", (0, -0.184, 0), (0.05, 0.006, 0.088)),
-        ("bottom", (0, 0.184, 0), (0.05, 0.006, 0.088)),
+        ("front", (0, 0, 0.094), (0.05, height / 2, 0.006)),
+        ("rear", (0, 0, -0.094), (0.05, height / 2, 0.006)),
+        ("top", (0, -height / 2 + 0.006, 0), (0.05, 0.006, 0.088)),
+        ("bottom", (0, height / 2 - 0.006, 0), (0.05, 0.006, 0.088)),
     ):
         box(connection, "cba_bellows_" + name, pos, size, [0.43, 0.24, 0.23, 1])
     # Fold ribs are visual only; envelope above is the collision hypothesis.
@@ -422,11 +468,11 @@ def attach_instrument(spec, geometry, bellows=None):
             connection,
             f"bellows_visual_rib_{i}",
             (-0.048 + i * 0.008, 0, 0.1005),
-            (0.001, 0.19, 0.0005),
+            (0.001, height / 2, 0.0005),
             [0.65, 0.58, 0.48, 1],
             False,
         )
-    bf = REFERENCE.bass_board
+    bf = ref.bass_board
     lb = bass.add_body(
         name="bass_fingerboard", pos=list(bf.translation_m), quat=list(bf.rotation_wxyz)
     )
@@ -437,7 +483,7 @@ def attach_instrument(spec, geometry, bellows=None):
         (0.046, 0.1745, 0.004),
         [0.12, 0.19, 0.26, 1],
     )
-    for name, position in REFERENCE.bass_buttons():
+    for name, position in ref.bass_buttons():
         lb.add_geom(
             name=name,
             type=mujoco.mjtGeom.mjGEOM_CYLINDER,
@@ -453,9 +499,9 @@ def attach_instrument(spec, geometry, bellows=None):
         )
     for body, name, position in (
         (treble, "shoulder_strap_upper", (-0.025, 0.010, -0.15)),
-        (treble, "shoulder_strap_lower", (-0.025, 0.370, -0.15)),
+        (treble, "shoulder_strap_lower", (-0.025, height - 0.010, -0.15)),
         (bass, "bass_strap_upper", (-0.11, 0.015, -0.175)),
-        (bass, "bass_strap_lower", (-0.11, 0.365, -0.175)),
+        (bass, "bass_strap_lower", (-0.11, height - 0.015, -0.175)),
     ):
         body.add_site(
             name=name,
@@ -467,8 +513,8 @@ def attach_instrument(spec, geometry, bellows=None):
     box(
         bass,
         "bass_strap_visual",
-        (-0.15, 0.19, -0.175),
-        (0.002, 0.175, 0.012),
+        (-0.15, height / 2, -0.175),
+        (0.002, height / 2 - 0.015, 0.012),
         [0.55, 0.40, 0.21, 1],
         False,
     )

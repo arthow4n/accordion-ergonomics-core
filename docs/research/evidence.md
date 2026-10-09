@@ -155,3 +155,16 @@ engineering choices. Do not substitute the patent's 15 degree button/lever angle
 or a proposed forward-keyboard invention's 45 degrees, for a conventional case
 measurement. Product photos remain qualitative corroboration only. V1's frozen
 numerical successes do not validate its challenged geometry.
+
+## Instrument size versus seated fit (036)
+
+[The source audit](instrument-size-fit.md) distinguishes manufacturer dimensions
+(Roland's explicit H/W/D, Hohner/Pigini two-number size conventions), qualitative
+pedagogy and uncalibrated photographs. Pigini motivates a 430 mm taller generic
+hypothesis; its size pair is not a published total width. The chosen compact
+380×360×200 mm enclosure remains synthetic, close to FR-1xb catalogue scale,
+not a commercial reconstruction. −40 mm upper-case/neutral-shoulder offset and
+−80..0 mm trials are assumptions. Thigh contact is now observed independently,
+not imposed for new reference studies. Strap-supported geometry is not load
+equilibrium. Bone convex queries, passive native proxies and approximate thigh
+capsules are separately reported. Historical v2 evidence remains untouched.

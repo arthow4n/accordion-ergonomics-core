@@ -169,3 +169,17 @@ explicit construction-informed assumption, not photograph metrology. With the
 prescribed reference R_WB, H yaw is -10 degrees. V1 records require their archived
 source; current parsing rejects the retired selector. `rectangular_v0` behavior
 and identities remain unchanged.
+
+## Independent upper anchor (036)
+
+`generic_cba_v3` retains v2 H/B/A/L orientations and finite board transforms.
+Explicit case height is separate from `SeatedSetup.upper_case_to_shoulder_m`.
+In the canonical fixed torso frame, `H.z = neutral_shoulder.z + offset`; the
+thigh-height plane is measured afterward and cannot move H. The shoulder is
+the neutral imported attachment reference, not a moving IK humerus landmark.
+With zero tilts, 50 mm case extension lowers its bottom 50 mm with identical
+upper region and all button targets. Rigid-root and support-radius tests in
+`tests/test_instrument_fit.py` enforce this distinction. Historical v2 profile
+serialization omits new optional fields and keeps its exact compiled identity.
+V3 keeps the existing internal root body name for hierarchy compatibility; the
+geometry selector and specification explicitly identify the revised world.

@@ -2,6 +2,7 @@
 
 A Python research laboratory for articulated accordion ergonomics. New physical
 instrument studies use one [generic closed five-row CBA](docs/research/generic-cba.md):
+380 mm compact case with an independent upper wearing anchor (036),
 rear-adjacent treble fingerboard, independent rigid cases, closed bellows, finite
 62-button C-system treble and 96-button Stradella physical layout. Historical
 rectangular worlds remain available with exact replay guards. The laboratory began
@@ -42,7 +43,7 @@ The lockfile records the full tested dependency stack.
 ```sh
 uv sync --locked
 uv run aec check
-uv run aec frozen cba-geometry experiments/034-cba-mounted-orientation/experiment.json --output artifacts/cba
+uv run aec frozen cba-geometry experiments/036-instrument-size-fit/compact-upper.json --output artifacts/cba
 uv run aec cba-render artifacts/cba/result.json --output artifacts/cba-replay
 uv run aec frozen architecture experiments/031-full-body-architecture/experiment.json --output artifacts/full-body-comparison
 uv run aec body-render experiments/031-full-body-architecture/myofullbody_reduced/result.json --output artifacts/full-body-replay

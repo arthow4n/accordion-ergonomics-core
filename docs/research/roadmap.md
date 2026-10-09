@@ -41,7 +41,18 @@ Experiment 031 establishes a native full-body-derived skeletal foundation and
 right-arm kinematic parity, with fixed generic left-arm/torso/leg reference and
 historical backend preservation. It also exposes inherited passive proxy
 overlaps; anatomical completeness does not close the collision/tissue questions
-above. The next separately authorized anatomical/instrument phase can investigate
-realistic accordion case/bellows geometry and its relation to this body. That
-work, bilateral playing tasks and support/strap mechanics are not implemented by
-031.
+above. Experiments 032–034 add structured fixed closed-CBA components and correct the
+board/case mounting orientation. 035 preserves small right-hand multistarts,
+paths, failed held attempts and incomplete anatomical collision coverage.
+036 now isolates size from placement: retain a compact `generic_cba_v3` reference
+with an explicit upper anchor; thigh clearance is measured independently. 037
+regresses right-hand tasks only after that fit decision. No full-body motion,
+left playing, instrument optimization, moving bellows or strap dynamics is added.
+
+Next priority remains proxy/skin and observed pose validation, plus uncertainty
+in the generic upper-region wearing anchor and conservative thorax envelope.
+Compare plausible anchor changes without reintroducing mandatory lap support.
+Before expanding exercise discovery, carry independent digit and passive body
+audits forward; a solver branch or successful C4 contact cannot establish fit,
+comfort or feasibility. Individual calibration and eventual bilateral support
+mechanics remain separate later work.

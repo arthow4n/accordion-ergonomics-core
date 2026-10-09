@@ -144,7 +144,14 @@ def render_views(
                 draw = ImageDraw.Draw(picture)
                 draw.rectangle((0, 0, 960, 45), fill=(18, 25, 36))
                 label = (
-                    "generic CBA v2"
+                    (
+                        "generic CBA v3"
+                        if any(
+                            scene.model.site(i).name == "fit_upper_case"
+                            for i in range(scene.model.nsite)
+                        )
+                        else "generic CBA v2"
+                    )
                     if physical
                     else "seated setup / assumed shell"
                     if seated

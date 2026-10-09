@@ -1,5 +1,37 @@
 # Research log
 
+## 2026-10-09 — Isolate case size from wearing height; retain compact upper anchor
+
+[036](experiments/036-instrument-size-fit/notes.md) confirms the hidden mounting
+assumption: v2 places actual lowest component points 10 mm above the highest
+hip/knee station plus a synthetic 75 mm thigh radius. It has no independent
+vertical shoulder anchor. This creates near-thigh geometry by construction,
+not evidence of worn support. Manufacturer axes were checked separately:
+FR-3xb is 390 mm tall, not its 430 mm piano counterpart. Pigini five-row size
+pairs support a 420–430 mm taller hypothesis with explicit axis uncertainty.
+Hermosa's inner-right-thigh brace/bellows-off-left-leg differs from lap-support
+instruction; Petosa warns short cases increase strap burden, without load data.
+
+Add `generic_cba_v3` with separately recorded case height and explicit upper-case
+height relative to the neutral torso-attached shoulder. Preserve v2 serialization
+and compiled identity exactly. The 380/430 mm size comparison fixes the upper
+region, all button targets, widths/depth, anatomy and posture. Signed right/left
+thigh clearances change 53.342/52.778→3.348/2.784 mm. Separate compact placement
+trials at −80/−40/0 mm upper offsets give about 13/53/93 mm clearance. The low
+430 mm case intersects thighs by about 37 mm and passive pelvis/femur proxies;
+keep that rejected configuration. Query all native proxies including disabled
+passive ones, bone convex representations and approximate support capsules
+separately. Neutral anatomy's inherited humerus/thorax overlap remains.
+
+Decision C: retain compact 380×360×200 mm geometry and choose the −40 mm upper
+hypothesis for new fixed-body research. It remains above the lap; physical strap
+support, calibrated skin and comfort remain unproved. No hand solve selected
+this placement. All five comparison views inspected; twelve chosen images
+reproduce byte-for-byte. Seven frozen roots verify complete integrity. New
+independence/root-invariance/historical-identity tests bring the suite to 100;
+Ruff and ty pass. Right-hand regression proceeds separately in 037, without
+instrument motion, expanded full-body dynamics or a new reachability atlas.
+
 ## 2026-10-09 — Freeze the v2 right-hand comparison and audit every instrument solid
 
 [035](experiments/035-cba-v2-regression/notes.md) compares validated 20-degree

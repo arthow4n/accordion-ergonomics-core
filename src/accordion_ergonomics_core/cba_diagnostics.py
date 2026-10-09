@@ -10,7 +10,7 @@ from PIL import Image, ImageDraw
 from ._engine import mujoco
 from .experiment import Experiment
 from .instrument import button_at, buttons
-from .physical_cba import MODEL, REFERENCE
+from .physical_cba import MODEL, REFERENCE, reference_for
 from .provenance import compiled_model_digest, current_execution_metadata
 from .scene import build_scene, diagnostics
 
@@ -183,7 +183,10 @@ def render_cba(scene, geometry, output, cameras=None):
                 draw.rectangle((0, 0, 960, 50), fill=(20, 30, 40))
                 draw.text(
                     (12, 10),
-                    name + " | generic CBA v2 | assumed metrics; fixed closed",
+                    name
+                    + " | "
+                    + geometry.geometry_model
+                    + " | assumed metrics; fixed closed",
                     fill="white",
                 )
                 draw.text(
@@ -242,7 +245,7 @@ def audit_geometry(scene, geometry):
         ),
         "component_overlaps": pairs,
         "max_target_frame_error_m": target_error,
-        "specification": REFERENCE.specification(),
+        "specification": reference_for(geometry).specification(),
         "frames_world": {
             name: dict(
                 position=d.body(name).xpos.tolist(), rotation=d.body(name).xmat.tolist()
@@ -262,7 +265,7 @@ def audit_geometry(scene, geometry):
 def run_geometry(definition, output):
     raw = definition.read_bytes()
     e = Experiment.from_dict(json.loads(raw))
-    if e.geometry.geometry_model != MODEL:
+    if e.geometry.geometry_model not in (MODEL, "generic_cba_v3"):
         raise ValueError("Physical geometry diagnostic needs generic_cba_v2")
     output.mkdir(parents=True, exist_ok=True)
     (output / "experiment.json").write_bytes(raw)
@@ -285,6 +288,12 @@ def run_geometry(definition, output):
         "geometry_audit": audit_geometry(s, e.geometry),
         **current_execution_metadata(s.model),
     }
+    if (
+        e.setup.seated is not None
+        and e.setup.seated.lower_body is not None
+        and e.player.model != "myoarm_r"
+    ):
+        result["fit_diagnostics"] = fit_diagnostics(s, e)
     result["cameras"] = render_cba(s, e.geometry, output / "renders")
     result["artifact_sha256"] = {
         str(p.relative_to(output)): hashlib.sha256(p.read_bytes()).hexdigest()
@@ -315,3 +324,154 @@ def replay_geometry(result_path, output):
             raise ValueError("Different profiles")
     s.data.qpos[:] = record["qpos_rad"]
     render_cba(s, e.geometry, output, record["cameras"])
+
+
+def fit_diagnostics(scene, experiment):
+    """Independent compiled distances and landmarks; no wearing optimization."""
+    from .collision_coverage import audit_collision_coverage
+
+    m, d = scene.model, scene.data
+    mujoco.mj_forward(m, d)
+    h = d.body(MODEL)
+    rotation = h.xmat.reshape(3, 3)
+    height = reference_for(experiment.geometry).height_m
+    landmarks = {
+        name: d.body(name).xpos.tolist()
+        for name in (
+            "humerus_r",
+            "torso",
+            "pelvis",
+            "femur_r",
+            "femur_l",
+            "tibia_r",
+            "tibia_l",
+        )
+    }
+    for name, point in {
+        "upper_treble": (0, 0, -0.10),
+        "lower_treble": (0, height, -0.10),
+        "lower_treble_rear": (0, height, -0.20),
+    }.items():
+        landmarks[name] = (h.xpos + rotation @ point).tolist()
+    landmarks["fingerboard_c4"] = experiment.geometry.surface_world_m(
+        button_at(1, 5)
+    ).tolist()
+    for name in ("shoulder_strap_upper", "shoulder_strap_lower"):
+        landmarks[name] = d.site(name).xpos.tolist()
+    root = np.asarray(experiment.setup.torso_origin_m)
+    q = experiment.setup.torso_rotation_wxyz
+    from scipy.spatial.transform import Rotation
+
+    up = Rotation.from_quat([q[1], q[2], q[3], q[0]]).as_matrix()[:, 2]
+    support = (
+        max(
+            np.dot(np.asarray(landmarks[n]) - root, up)
+            for n in ("femur_r", "femur_l", "tibia_r", "tibia_l")
+        )
+        + experiment.setup.seated.lower_body.thigh_envelope_radius_m
+    )
+    corners = np.array(
+        [
+            h.xpos + rotation @ (u, v, n)
+            for u in (-0.36, 0)
+            for v in (0, height)
+            for n in (-0.20, 0)
+        ]
+    )
+    shoulder = np.asarray(landmarks["humerus_r"])
+    torso_length = float(np.dot(shoulder - landmarks["pelvis"], up))
+    support_distances = diagnostics(scene, landmarks["fingerboard_c4"])[
+        "approximate_support_envelope_distances_m"
+    ]
+    # Include passive native proxies whose collision masks were disabled during
+    # reduction. Bone queries use MuJoCo convex collision representation, not skin.
+    instrument_bodies = {int(m.geom_bodyid[j]) for j in scene.board_geoms}
+    distances = {"imported_bone_convex_hulls": {}, "all_imported_proxies": {}}
+    for i in range(m.ngeom):
+        if int(m.geom_bodyid[i]) in instrument_bodies or m.geom(i).name.startswith(
+            "approximate_"
+        ):
+            continue
+        category = (
+            "all_imported_proxies"
+            if m.geom_group[i] == 4
+            else "imported_bone_convex_hulls"
+            if m.geom_group[i] == 0 and m.geom_type[i] == mujoco.mjtGeom.mjGEOM_MESH
+            else None
+        )
+        if category is None:
+            continue
+        value, j = min(
+            (float(mujoco.mj_geomDistance(m, d, i, j, 2, None)), j)
+            for j in scene.board_geoms
+        )
+        distances[category][m.geom(i).name or f"unnamed_geom_{i}"] = {
+            "distance_m": value,
+            "component": m.geom(j).name,
+            "body": m.body(int(m.geom_bodyid[i])).name,
+        }
+    inner_reference = experiment.resolved_profiles()["setup"]["derived_anchors"][
+        "right_thigh_reference_world_m"
+    ]
+    landmarks["right_inner_thigh_reference"] = inner_reference
+    return {
+        "independent_body_distances": distances,
+        "lower_corner_minus_inner_thigh_reference_m": (
+            np.asarray(landmarks["lower_treble"]) - inner_reference
+        ).tolist(),
+        "landmarks_world_m": landmarks,
+        "case_bottom_above_thigh_station_plane_m": float(
+            np.min((corners - root) @ up) - support
+        ),
+        "upper_case_minus_shoulder_m": (
+            np.asarray(landmarks["upper_treble"]) - shoulder
+        ).tolist(),
+        "c4_minus_shoulder_m": (
+            np.asarray(landmarks["fingerboard_c4"]) - shoulder
+        ).tolist(),
+        "lower_corner_minus_right_hip_m": (
+            np.asarray(landmarks["lower_treble"]) - landmarks["femur_r"]
+        ).tolist(),
+        "shoulder_to_pelvis_vertical_m": torso_length,
+        "case_height_over_shoulder_pelvis_vertical": height / torso_length,
+        "approximate_thigh_signed_distances_m": support_distances,
+        "classification": {
+            name: "intersects"
+            if value < 0
+            else "near"
+            if value <= 0.02
+            else "above_or_clear"
+            for name, value in support_distances.items()
+        },
+        "independent_proxy_coverage": audit_collision_coverage(scene),
+        "limits": (
+            "Bone meshes are visual imported skeleton; proxies and thigh "
+            "capsules are uncalibrated envelopes. No skin, strap equilibrium "
+            "or comfort inference."
+        ),
+    }
+
+
+def compare_fit_renders(root, output):
+    """Compose saved-state views without recentering/scaling individual candidates."""
+    output.mkdir(parents=True, exist_ok=True)
+    groups = {
+        "size": ("compact-upper", "tall-upper"),
+        "placement": ("compact-low", "compact-upper", "compact-high"),
+        "coupled": ("historical-plane", "compact-upper", "tall-high"),
+    }
+    manifest = {}
+    for group, names in groups.items():
+        for view in ("front", "right", "left", "oblique", "hand"):
+            sheet = Image.new("RGB", (640 * len(names), 510), "white")
+            draw = ImageDraw.Draw(sheet)
+            for column, name in enumerate(names):
+                path = root / name / "renders" / f"body_{view}.png"
+                picture = Image.open(path).convert("RGB").resize((640, 480))
+                sheet.paste(picture, (640 * column, 30))
+                draw.text((640 * column + 12, 10), name, fill="black")
+                manifest[str(path)] = hashlib.sha256(path.read_bytes()).hexdigest()
+            path = output / f"{group}_{view}.png"
+            sheet.save(path)
+            manifest[path.name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    (output / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

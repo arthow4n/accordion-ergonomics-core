@@ -202,3 +202,13 @@ pose. Experiment 033 is a superseded v1 search record, not a v2 validation.
 small multistart comparison, ordinary transitions, unsuccessful held-contact
 search and independent all-solid collision audit. Unchecked anatomical overlap
 still precludes human-feasibility claims.
+
+## Current reference after 036
+
+Use `generic_cba_v3`, 380 mm case height and explicit upper anchor −40 mm for
+new stationary research: [size/fit decision](instrument-size-fit.md). The mounted
+v2 reference above remains historical evidence. Case shape, 20-degree attachment,
+depth/widths and both button fixtures stay unchanged; mounting height is now
+independent of thighs. A 430 mm case is controlled comparison evidence, not a
+second product default. [037](../../experiments/037-upper-anchor-regression/notes.md)
+records fresh right-hand results; v2 qpos are not accepted silently in this world.

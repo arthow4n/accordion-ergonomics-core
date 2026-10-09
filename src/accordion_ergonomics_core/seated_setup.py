@@ -50,6 +50,7 @@ def parameter_evidence() -> dict[str, Any]:
 @dataclass(frozen=True)
 class SeatedSetup:
     lower_body: SeatedLegs | None = field(default_factory=SeatedLegs)
+    upper_case_to_shoulder_m: float | None = None
     name: str = "reference_seated_cba_setup"
     instrument_width_m: float = 0.365
     instrument_depth_m: float = 0.195
@@ -102,7 +103,7 @@ def derive_setup(
     MyoSim femurs anchor approximate envelopes in new setups; legacy thighs
     remain schematic. Neither support forces nor straps are simulated.
     """
-    if geometry.geometry_model == "generic_cba_v2":
+    if geometry.geometry_model in ("generic_cba_v2", "generic_cba_v3"):
         from .physical_cba import derive_physical_setup
 
         return derive_physical_setup(geometry, setup)
