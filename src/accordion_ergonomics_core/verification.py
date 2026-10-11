@@ -135,6 +135,8 @@ def verify_record(
             "library-validation",
             "strategy-audit",
             "strategy-audit-media",
+            "muscle-validation",
+            "muscle-media",
         ):
             records.append(("result", result))
             if workflow in (
@@ -142,6 +144,7 @@ def verify_record(
                 "discovery-summary",
                 "strategy-audit",
                 "strategy-audit-media",
+                "muscle-media",
             ):
                 if "artifact_sha256" not in result:
                     limitations.append("Passage media lacks artifact hashes")
@@ -278,6 +281,7 @@ def verify_record(
                 "discovery",
                 "catalog",
                 "audit",
+                "muscle",
             ):
                 if key == "reference" and "reference_input" in source:
                     file_hash(
@@ -291,6 +295,12 @@ def verify_record(
                         source[key + "_sha256"],
                         key + " referenced input",
                     )
+            if "benchmark_definition" in source:
+                file_hash(
+                    definition.parent / source["benchmark_definition"],
+                    source["benchmark_definition_sha256"],
+                    "benchmark definition",
+                )
             for case in source.get("cases", []):
                 if "search_result" in case:
                     file_hash(

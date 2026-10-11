@@ -8,15 +8,17 @@ import numpy as np
 COLORS = ("#5bd4dd", "#f5b55c", "#df7bcd", "#92cb70", "#8ca9ff", "#f08080")
 
 
-def trace_svg(path: Path, title: str, panels: list[dict]):
+def trace_svg(
+    path: Path, title: str, panels: list[dict], *, x_axis: str = "actual sample index"
+):
     width, height = 1100, 75 + 235 * len(panels)
     svg = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}">',
         '<rect width="100%" height="100%" fill="#142030"/>',
         '<g font-family="monospace" fill="#eef3f8">',
         f'<text x="20" y="25" font-size="15">{escape(title)}</text>',
-        '<text x="20" y="48" font-size="11">Actual sample index; untimed '
-        "geometry, no velocity/effort/human-validity inference</text>",
+        f'<text x="20" y="48" font-size="11">X: {escape(x_axis)}; '
+        "no velocity/effort/human-validity inference</text>",
     ]
     for row, panel in enumerate(panels):
         top = 100 + row * 235

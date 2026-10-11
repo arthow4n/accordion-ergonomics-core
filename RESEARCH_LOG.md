@@ -1,5 +1,21 @@
 # Research log
 
+## 2026-10-11 — Pinned muscles, inherited routing anomalies and static gates (046)
+
+[046](experiments/046-muscle-validation/notes.md) verifies all 63 retained muscle
+actuators against pinned native arm/full-body models. Force parameters and right
+coordinate lengths/transmissions agree; engine pulling signs, passive forces and
+inverse/equality conventions are tested. Ten actual path samples expose inherited
+length/transmission discrepancies; PQ and DELT3 route jumps survive bisection.
+No geometry or muscle tuning is justified.
+
+All 220 static screens across 54 exact/synthetic poses, two recruitment objectives
+and zero/1/3 N explicitly hypothetical contact reactions fail conditional balance.
+Bounded residual fits are diagnostics, not activations or human impossibility.
+Muscle effort ranking remains gated; whole-hand and technique comparisons are next.
+Four-view/overlay comparisons and actual-sample tendon traces preserve exact state
+and native-model identities. See the milestone notes for assumptions and replay.
+
 ## 2026-10-11 — Recorded whole-hand strategy audit and persistent visual scope (045)
 
 [045](experiments/045-strategy-audit/notes.md) audits all 3,511 samples in eight

@@ -1,3 +1,11 @@
+## 046 update — Screening gates before ranking
+
+Pinned native/reduced muscle parity passes, but inherited routing derivative
+failures and uniformly unsuccessful conditional static balance prevent a supported
+muscle effort prior. Next: matched-budget whole-hand/technique selection, numerical
+reference regularization ablations, then versioned library assessments (047–048).
+Keep external reactions hypothetical and historical strategy evidence unchanged.
+
 # Exercise target research program
 
 The current priority is a reusable, provisional exercise library while improving

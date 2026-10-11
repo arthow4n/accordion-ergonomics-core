@@ -210,6 +210,8 @@ def main() -> None:
             "library-validation",
             "strategy-audit",
             "strategy-audit-media",
+            "muscle-validation",
+            "muscle-media",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -293,6 +295,12 @@ def main() -> None:
     strategy_media = sub.add_parser("strategy-audit-media")
     strategy_media.add_argument("definition", type=Path)
     strategy_media.add_argument("--output", type=Path, required=True)
+    muscle_validation = sub.add_parser("muscle-validation")
+    muscle_validation.add_argument("definition", type=Path)
+    muscle_validation.add_argument("--output", type=Path, required=True)
+    muscle_media = sub.add_parser("muscle-media")
+    muscle_media.add_argument("definition", type=Path)
+    muscle_media.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "targets":
@@ -365,6 +373,15 @@ def main() -> None:
         from .strategy_audit_media import run_strategy_audit_media
 
         run_strategy_audit_media(args.definition, args.output)
+    elif args.command == "muscle-validation":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .muscle_validation import run_muscle_validation
+
+        run_muscle_validation(args.definition, args.output)
+    elif args.command == "muscle-media":
+        from .muscle_validation_media import run_muscle_validation_media
+
+        run_muscle_validation_media(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],
