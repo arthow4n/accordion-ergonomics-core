@@ -183,3 +183,14 @@ upper region and all button targets. Rigid-root and support-radius tests in
 serialization omits new optional fields and keeps its exact compiled identity.
 V3 keeps the existing internal root body name for hierarchy compatibility; the
 geometry selector and specification explicitly identify the revised world.
+
+## Named five-digit markers (041)
+
+All digits bind by imported body/geometry names, with four scalar coordinates
+per digit. Long-finger site +z follows the compiled distal capsule +z; thumb
+site +z follows its negative axis. Compare compiled capsule/ellipsoid support
+planes before using a marker. No digit length is added. Site composition changes
+compiled model identity; catalog variants are registered explicitly.
+`tests/test_five_fingers.py` checks all site body bindings, support positions,
+quaternions and thumb-axis reversal against compiled geometry. Frozen experiments
+retain their original marker composition and source archives.

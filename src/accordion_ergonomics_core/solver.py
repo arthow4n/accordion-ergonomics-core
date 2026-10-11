@@ -7,7 +7,7 @@ import mink
 import numpy as np
 from numpy.typing import NDArray
 
-from .anatomy import digit_dofs
+from .anatomy import DIGITS, digit_dofs
 from .distance_limits import DisplacementDistanceLimit, collision_pairs
 from .experiment import SolverSettings
 from .integration import collision_checked_step
@@ -39,6 +39,12 @@ def solve_contact(
     frozen_joints = tuple(sorted(set(frozen_joints) | set(scene.passive_joints)))
     configuration = mink.Configuration(model, q=q0)
     requirements = ((target, finger, button_id),) + additional_contacts
+    if any(r[1] not in DIGITS for r in requirements):
+        raise ValueError("Unknown contact digit")
+    if len({r[1] for r in requirements}) != len(requirements):
+        raise ValueError("A finger cannot have simultaneous multiple targets")
+    if len({r[2] for r in requirements}) != len(requirements):
+        raise ValueError("Multiple fingers on one button are unsupported")
     required = [contact_required] + [additional_contact_required] * len(
         additional_contacts
     )
@@ -82,7 +88,7 @@ def solve_contact(
     posture = mink.PostureTask(model, cost=settings.posture_cost)
     posture.set_target(q0)
     coupled = mink.EqualityConstraintTask(model, cost=1.0)
-    # Only requested digits articulate; other digits remain present and frozen.
+    # Unassigned digits articulate under posture regularization in free policy.
     active_digits = {r[1] for r in requirements}
     digits = digit_dofs(model)
     inactive = [

@@ -84,6 +84,11 @@ def descriptors(
             for digit, indices in digit_dofs(model).items()
             if digit != "index"
         },
+        active_digits,
+        {
+            digit: tuple(float(data.qpos[i]) for i in indices)
+            for digit, indices in digits.items()
+        },
     )
 
 
@@ -132,8 +137,6 @@ def discover_candidates(
     profile_hash: str,
     settings: CandidateSettings,
 ) -> dict[str, Any]:
-    if experiment.contacts[0].finger != "index":
-        raise ValueError("Candidate discovery requires an index primary contact")
     active_digits = tuple(c.finger for c in experiment.contacts)
     started = perf_counter()
     names = [scene.model.joint(i).name for i in range(scene.model.njnt)]
@@ -170,6 +173,7 @@ def discover_candidates(
             replace(experiment.solver, max_iterations=settings.max_iterations),
             button.id,
             experiment.frozen_joints,
+            finger=contact.finger,
             additional_contacts=tuple(
                 (
                     experiment.geometry.surface_world_m(button_at(c.row, c.column)),

@@ -8,7 +8,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from ._engine import Data, Model, Spec, mujoco
-from .anatomy import transform_anatomy
+from .anatomy import DIGITS, DISTAL_BINDINGS, distal_support, transform_anatomy
 from .instrument import BoardGeometry, buttons
 from .profiles import ContactProfile, PlayerProfile, SetupProfile
 
@@ -96,27 +96,14 @@ def build_scene(
         rgba=[0.1, 1.0, 0.2, 1.0],
         group=0,
     )
-    for digit in set(fingers) - {"index"}:
-        if digit != "middle":
-            raise ValueError("Unsupported fingertip marker")
-        capsule = probe.geom("distph3_coll_r")
-        ellipsoid = probe.geom("distph3_coll_2_r")
-        rotation_values = np.zeros(9)
-        mujoco.mju_quat2Mat(rotation_values, capsule.quat)
-        distal = rotation_values.reshape(3, 3)[:, 2].copy()
-        support = capsule.pos + capsule.size[1] * distal + capsule.size[0] * distal
-        mujoco.mju_quat2Mat(rotation_values, ellipsoid.quat)
-        r = rotation_values.reshape(3, 3)
-        shape = r @ np.diag(ellipsoid.size**2) @ r.T
-        ellipsoid_support = ellipsoid.pos + shape @ distal / np.sqrt(
-            distal @ shape @ distal
-        )
-        if distal @ ellipsoid_support > distal @ support:
-            support = ellipsoid_support
-        spec.body("distph3_r").add_site(
-            name="middle_pad",
+    if not fingers or set(fingers) - set(DIGITS) or len(set(fingers)) != len(fingers):
+        raise ValueError("Contact fingers must be a distinct named digit subset")
+    for digit in sorted(set(fingers) - {"index"}):
+        support, quat = distal_support(probe, digit)
+        spec.body(DISTAL_BINDINGS[digit][0]).add_site(
+            name=f"{digit}_pad",
             pos=support.tolist(),
-            quat=capsule.quat.tolist(),
+            quat=quat.tolist(),
             size=[0.0015, 0, 0],
             rgba=[0.1, 1, 0.2, 1],
             group=0,
@@ -349,7 +336,6 @@ def diagnostics(
     mujoco.mj_forward(model, data)
     equality_mask = data.efc_type == mujoco.mjtConstraint.mjCNSTR_EQUALITY
     equalities = data.efc_pos[equality_mask]
-    digit = {"index": 2, "middle": 3}[finger]
     site_name = f"{finger}_pad"
     normal = data.site(site_name).xmat.reshape(3, 3)[:, 2]
     margins = np.minimum(
@@ -368,7 +354,7 @@ def diagnostics(
     target_geom = model.geom(button_id).id
     contact_distance = min(
         mujoco.mj_geomDistance(model, data, model.geom(name).id, target_geom, 1.0, None)
-        for name in (f"distph{digit}_coll_r", f"distph{digit}_coll_2_r")
+        for name in DISTAL_BINDINGS[finger][1:3]
     )
     shell_distances = {}
     if any(model.geom(i).name == "instrument_envelope" for i in range(model.ngeom)):

@@ -5,6 +5,7 @@ from importlib.metadata import version
 from math import isfinite
 from typing import Any
 
+from .digits import DIGITS
 from .instrument import BoardGeometry, Evidence, EvidenceKind, button_at
 from .profiles import ContactProfile, PlayerProfile, SetupProfile
 
@@ -19,8 +20,10 @@ class ContactRequest:
         if type(self.row) is not int or type(self.column) is not int:
             raise ValueError("Physical button indices must be integers")
         button_at(self.row, self.column)
-        if self.finger not in ("index", "middle"):
-            raise ValueError("Supported contact fingers: index and middle")
+        if self.finger not in DIGITS:
+            raise ValueError(
+                "Supported contact fingers: thumb, index, middle, ring, little"
+            )
 
 
 @dataclass(frozen=True)
@@ -87,6 +90,12 @@ class Experiment:
     physical_contact: ContactProfile = field(default_factory=ContactProfile)
 
     def __post_init__(self) -> None:
+        if not 1 <= len(self.contacts) <= 5 or len(
+            {c.finger for c in self.contacts}
+        ) != len(self.contacts):
+            raise ValueError("One to five contacts with distinct fingers are supported")
+        if len({(c.row, c.column) for c in self.contacts}) != len(self.contacts):
+            raise ValueError("Two fingers on one button are outside this experiment")
         if self.setup.seated is not None:
             from .seated_setup import derive_setup
 
@@ -235,10 +244,10 @@ class Experiment:
         if len(geometry["origin_m"]) != 3:
             raise ValueError("World origin must have three coordinates")
         contacts = tuple(ContactRequest(**c) for c in source["contacts"])
-        if not 1 <= len(contacts) <= 2 or len({c.finger for c in contacts}) != len(
+        if not 1 <= len(contacts) <= 5 or len({c.finger for c in contacts}) != len(
             contacts
         ):
-            raise ValueError("One or two contacts with distinct fingers are supported")
+            raise ValueError("One to five contacts with distinct fingers are supported")
         if len({(c.row, c.column) for c in contacts}) != len(contacts):
             raise ValueError("Two fingers on one button are outside this experiment")
         initial = source["initial_joints_rad"]

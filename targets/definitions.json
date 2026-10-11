@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release": "0.4-first-library",
+  "release": "0.5-five-finger-controls",
   "reference_result": "experiments/037-upper-anchor-regression/central/result.json",
   "targets": [
     {
@@ -1186,11 +1186,380 @@
           "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
         }
       ]
+    },
+    {
+      "id": "five-finger-thumb",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "thumb",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "thumb"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "thumb-candidate-0",
+              "thumb-frozen"
+            ]
+          },
+          "additional_evidence": [
+            {
+              "path": "experiments/041-five-finger-contacts/comparison/result.json",
+              "role": "matched_policy_comparison"
+            },
+            {
+              "path": "experiments/041-five-finger-contacts/comparison/thumb-policy-hand.png",
+              "role": "matched_policy_comparison"
+            },
+            {
+              "path": "experiments/041-five-finger-contacts/comparison/thumb-policy-contact_collision.png",
+              "role": "matched_policy_comparison"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "five-finger-index",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "index"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "index-candidate-0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "five-finger-middle",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "middle"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "middle-candidate-0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "five-finger-ring",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "ring",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "ring"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "ring-candidate-0"
+            ]
+          },
+          "additional_evidence": [
+            {
+              "path": "experiments/041-five-finger-contacts/ring-detail/result.json",
+              "role": "supplemental_contact_detail"
+            },
+            {
+              "path": "experiments/041-five-finger-contacts/ring-detail/renders/ring-candidate-0/contact.png",
+              "role": "supplemental_contact_detail"
+            },
+            {
+              "path": "experiments/041-five-finger-contacts/ring-detail/renders/ring-candidate-0/contact_collision.png",
+              "role": "supplemental_contact_detail"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "five-finger-little",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "little",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "little"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "little-candidate-0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "five-finger-index-ring",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r2c6",
+                  "finger": "ring",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "index-ring"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "index-ring-candidate-0"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "five-finger-index-little",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r2c6",
+                  "finger": "little",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "index-little"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "index-little-failed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "five-finger-three-long",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r2c5",
+                  "finger": "middle",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r3c5",
+                  "finger": "ring",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "three-long"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "three-long-failed"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "five-finger-thumb-index",
+      "family": "five-finger-control",
+      "explanation": "Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "thumb",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r2c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/041-five-finger-contacts/free/result.json",
+              "target_id": "thumb-index"
+            }
+          ],
+          "endpoint_coverage": "experiments/041-five-finger-contacts/coverage/result.json",
+          "contact_report": {
+            "path": "experiments/041-five-finger-contacts/diagnostics/result.json",
+            "record_ids": [
+              "thumb-index-failed"
+            ]
+          }
+        }
+      ]
     }
   ],
   "model_references": {
     "index": "experiments/037-upper-anchor-regression/central/result.json",
-    "index+middle": "experiments/037-upper-anchor-regression/explore/c4-csharp4/candidate-0/result.json"
+    "index+middle": "experiments/037-upper-anchor-regression/explore/c4-csharp4/candidate-0/result.json",
+    "041-thumb": "experiments/041-five-finger-contacts/free/thumb/reference/result.json",
+    "041-index": "experiments/041-five-finger-contacts/free/index/reference/result.json",
+    "041-middle": "experiments/041-five-finger-contacts/free/middle/reference/result.json",
+    "041-ring": "experiments/041-five-finger-contacts/free/ring/reference/result.json",
+    "041-little": "experiments/041-five-finger-contacts/free/little/reference/result.json",
+    "041-index-ring": "experiments/041-five-finger-contacts/free/index-ring/reference/result.json",
+    "041-index-little": "experiments/041-five-finger-contacts/free/index-little/reference/result.json",
+    "041-three-long": "experiments/041-five-finger-contacts/free/three-long/reference/result.json",
+    "041-thumb-index": "experiments/041-five-finger-contacts/free/thumb-index/reference/result.json"
   },
   "independent_audits": [
     "experiments/038-hand-collision-audit/result.json",
@@ -1202,5 +1571,8 @@
   ],
   "independent_instrument_audits": [
     "experiments/040-exercise-library/endpoint-coverage/result.json"
-  ]
+  ],
+  "contact_policy_references": {
+    "free-digits-041": "experiments/041-five-finger-contacts/free/thumb/candidate-0/result.json"
+  }
 }

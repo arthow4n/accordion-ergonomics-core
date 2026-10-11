@@ -90,7 +90,10 @@ def evidence_ref(root: Path, relative: str, role: str) -> dict[str, Any]:
             "aec",
             "frozen",
             metadata["workflow"],
-            str(parent.relative_to(root) / "experiment.json"),
+            str(
+                parent.relative_to(root)
+                / metadata.get("definition_reference", "experiment.json")
+            ),
             "--source-snapshot",
             str(parent.relative_to(root) / metadata["source_snapshot"]),
             "--output",
@@ -104,8 +107,8 @@ def events_with_notes(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for event in events:
         contacts = []
         for c in event["contacts"]:
-            if c["finger"] not in ("index", "middle"):
-                raise ValueError("Only index and middle contacts are supported")
+            if c["finger"] not in ("thumb", "index", "middle", "ring", "little"):
+                raise ValueError("Unknown anatomical contact digit")
             button = BUTTONS[c["button_id"]]
             if c.get("midi", button.midi) != button.midi:
                 raise ValueError("Contact MIDI differs from physical button")
@@ -135,6 +138,11 @@ def contact_signature(contacts: list[dict[str, Any]]) -> set[tuple[str, str]]:
 def check_world(saved: dict[str, Any], world: dict[str, Any]) -> None:
     actual = reference_world(saved)
     for key in actual:
+        if (
+            key == "contact_policy_sha256"
+            and actual[key] in world.get("contact_policy_variants", {}).values()
+        ):
+            continue
         if (
             key not in ("audit_policy", "id", "compiled_model_sha256")
             and actual[key] != world[key]
@@ -635,6 +643,38 @@ def build_realization(
         realization["validity"]["independent_audit"] = (
             "endpoints_only_anatomy_unresolved"
         )
+    for ref in spec.get("additional_evidence", []):
+        realization["evidence"].append(evidence_ref(root, ref["path"], ref["role"]))
+    if spec.get("contact_report"):
+        path = spec["contact_report"]["path"]
+        report = read(root, path)
+        realization["diagnostic_records"] = []
+        realization["evidence"].append(
+            evidence_ref(root, path, "independent_contact_report")
+        )
+        for record in report["poses"]:
+            if record["id"] not in spec["contact_report"]["record_ids"]:
+                continue
+            views = {}
+            for view in record["cameras"]:
+                image = str(
+                    Path(path).parent / "renders" / record["id"] / (view + ".png")
+                )
+                ref = evidence_ref(root, image, "diagnostic_render")
+                realization["evidence"].append(ref)
+                views[view] = ref
+            realization["diagnostic_records"].append(
+                {
+                    "id": record["id"],
+                    "solver_status": record["solver_status"],
+                    "source": record["source"],
+                    "roles": record["roles"],
+                    "inactive_digits_policy": record["inactive_digits_policy"],
+                    "worst_cross_digit": record["worst_cross_digit"],
+                    "views": views,
+                    "anatomical_validation": "unresolved",
+                }
+            )
     if realization["branches"]:
         palms = np.asarray(
             [b["descriptors"]["palm_position_world_m"] for b in realization["branches"]]
@@ -675,6 +715,10 @@ def build_catalog(root: Path = ROOT) -> dict[str, Any]:
     world["compiled_model_variants"] = {
         name: read(root, path)["provenance"]["compiled_model_sha256"]
         for name, path in definition["model_references"].items()
+    }
+    world["contact_policy_variants"] = {
+        name: reference_world(read(root, path))["contact_policy_sha256"]
+        for name, path in definition.get("contact_policy_references", {}).items()
     }
     independent = audit_index(
         root,
@@ -795,7 +839,7 @@ def markdown(catalog: dict[str, Any]) -> str:
         ),
         "",
         (
-            "Index/middle contacts only. Torso, legs, left "
+            "Named five-finger contacts. Torso, legs, left "
             "arm, treble/bass cases and closed bellows remain "
             "fixed. No tempo, force or button depression is "
             "inferred."

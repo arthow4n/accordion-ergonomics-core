@@ -53,8 +53,14 @@ def test_schema_does_not_promote_missing_evidence():
 
 
 def test_contact_mapping_and_scope():
-    with pytest.raises(ValueError, match="Only index"):
-        events_with_notes([{"contacts": [{"button_id": "r1c5", "finger": "thumb"}]}])
+    assert (
+        events_with_notes([{"contacts": [{"button_id": "r1c5", "finger": "thumb"}]}])[
+            0
+        ]["contacts"][0]["midi"]
+        == 60
+    )
+    with pytest.raises(ValueError, match="Unknown"):
+        events_with_notes([{"contacts": [{"button_id": "r1c5", "finger": "unknown"}]}])
     with pytest.raises(KeyError):
         events_with_notes([{"contacts": [{"button_id": "r1c999", "finger": "index"}]}])
 

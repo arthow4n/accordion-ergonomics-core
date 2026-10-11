@@ -3,6 +3,8 @@
 import numpy as np
 
 from ._engine import Model, Spec, mujoco
+from .digits import DIGITS as DIGITS
+from .digits import DISTAL_BINDINGS as DISTAL_BINDINGS
 from .profiles import PlayerProfile
 
 
@@ -90,3 +92,29 @@ def digit_dofs(model: Model) -> dict[str, tuple[int, ...]]:
         if len(result[digit]) != 4:
             raise ValueError("Pinned digit anatomy has unexpected coordinates")
     return result
+
+
+def distal_support(model: Model, digit: str) -> tuple[np.ndarray, np.ndarray]:
+    """Support of the compiled capsule/ellipsoid union along its distal axis.
+
+    Thumb's imported capsule is oriented proximally (+z); reverse that axis.
+    This is a rigid proxy hypothesis, not a calibrated fleshy contact patch.
+    """
+    _, capsule_name, ellipse_name, direction = DISTAL_BINDINGS[digit]
+    capsule, ellipse = model.geom(capsule_name), model.geom(ellipse_name)
+    matrix = np.zeros(9)
+    mujoco.mju_quat2Mat(matrix, capsule.quat)
+    normal = direction * matrix.reshape(3, 3)[:, 2]
+    point = capsule.pos + (capsule.size[1] + capsule.size[0]) * normal
+    mujoco.mju_quat2Mat(matrix, ellipse.quat)
+    rotation = matrix.reshape(3, 3)
+    shape = rotation @ np.diag(ellipse.size**2) @ rotation.T
+    alternative = ellipse.pos + shape @ normal / np.sqrt(normal @ shape @ normal)
+    if normal @ alternative > normal @ point:
+        point = alternative
+    quat = capsule.quat.copy()
+    if direction == -1:
+        reversed_quat = np.zeros(4)
+        mujoco.mju_mulQuat(reversed_quat, quat, np.array([0.0, 1.0, 0.0, 0.0]))
+        quat = reversed_quat
+    return point, quat

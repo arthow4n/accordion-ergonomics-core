@@ -30,6 +30,7 @@ def frozen_run(
         "hand-audit",
         "search-reliability",
         "sequence",
+        "contact-report",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

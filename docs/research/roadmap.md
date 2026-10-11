@@ -15,11 +15,21 @@ No unresolved calibration question blocks clearly classified hypotheses.
   sequence and alternative-button families; actual contact/path evidence,
   all-sample proxy audits, reproducible queries and explicit unresolved cases.
 
-Next: measure/observe hand envelopes and inactive-digit coordination before
-promoting any anatomical nonpenetration or human feasibility label. Search can
-reuse archived branches, but expanded finger support requires its own validation.
-No additional instrument profiles or whole-body dynamics are needed for this
-first library.
+The active autonomous program continues without a calibration gate:
+
+- 041: five named distal-envelope contacts, free-digit static controls and an
+  index/ring dyad; preserve failed coordinated requests and matched frozen/free
+  thumb views. Complete anatomical validity remains unresolved.
+- 042: musical events, bounded connected fingering search, changing assignments,
+  held requirements and recorded branch diagrams; animate actual audited samples.
+- 043: deterministic diverse musical hypothesis generation and observed-result
+  exploration allocation, with selected discoveries and negative controls.
+- 044: reusable internal Python API, evidence/media queries and tested consumer
+  examples; retain uncertainty and reproducible archived-source execution.
+
+Observation of hand envelopes and natural coordination remains necessary before
+promoting any human-feasibility claim. It does not block provisional discovery.
+No instrument resizing, whole-body motion or deployment is introduced.
 
 See [the catalog](../../targets/CATALOG.md). Successful model realization is not
 human feasibility; discovered movement is not a necessary minimum. Observed

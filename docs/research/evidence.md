@@ -182,3 +182,47 @@ See [038](../../experiments/038-hand-collision-audit/notes.md) and the
 [provisional catalog](../../targets/CATALOG.md). Independent distance queries
 and render replay improve audit coverage; they cannot supply missing tissue
 calibration or turn a found solver branch into a human movement minimum.
+
+## Five-finger C-system program (041 onward; accessed 2026-10-11)
+
+Pedagogical sources are distinct from geometry, anatomical constraints and
+numerical outcomes. No school-specific fingering prior is enabled by default.
+
+- [Elsbeth Moser, Schott publisher description](https://www.schott-music.com/en/the-chromatic-button-accordion-no570193.html):
+  primary publisher evidence for a systematic C-keyboard method. The full method
+  was not inspected; its existence does not justify extracting specific rules.
+- [Accordionwise, practitioner tutorial](https://www.accordionwise.com/playing_chromatic_accordion.html):
+  discusses both thumb avoidance and thumb use, inner-row obstruction, preparation
+  and outside-row arpeggios. Practitioner observations, not measured ergonomic
+  laws or an exhaustive history of national traditions.
+- [Nydana, practitioner resources](https://nydana.se/accordion.html):
+  discusses duplicate-row legato finger switches and a C-Eb-F# to C-E-G example
+  holding thumb while exchanging ring/little for index/middle. Useful hypotheses
+  for substitutions, simultaneous contacts and repositioning; not evidence that
+  this imported hand can realize them. Little finger is explicitly eligible.
+- [Luca Piovesan, accordion4composers](https://www.lucapiovesan.it/accordion4composers/):
+  performer-authored technical resource. The indexed 2025 V2 PDF distinguishes
+  strapped left-hand thumb access; it cannot be transferred to this right hand.
+  Earlier PDF retrieval failed. No force or anatomical metric is taken from it.
+
+Repeated notes, reversals, scales, intervals and arpeggio-like hypotheses will
+be algorithmic musical patterns, not copied exercise sequences. A geometric
+contact does not establish button operation or articulation of a repeated note.
+Free imported joint coordinates plus posture regularization do not model neural,
+tendon or muscle coordination of unused fingers. Calibration of natural
+nonplaying finger motion remains absent. Thumb distal support uses the compiled
+capsule's negative z axis (the long digits use positive z) and the outer support
+of its capsule/ellipsoid union. Contact patch choice remains a rigid hypothesis.
+
+Additional primary coordination evidence:
+[Häger-Ross and Schieber (2000)](https://pmc.ncbi.nlm.nih.gov/articles/PMC6773164/)
+measured motion of instructed and uninstructed digits;
+individuation varied by digit and movement frequency. Ring/middle movements
+produced more uninstructed motion in that task, and little-finger individuation
+was relatively high. This does not calibrate accordion playing or imported joint
+limits, and it provides no basis for banning the little finger.
+[Lang and Schieber (2004)](https://journals.physiology.org/doi/full/10.1152/jn.00480.2004)
+compared passive mechanical coupling and active control; free kinematic coordinates
+plus a posture cost do not reproduce either mechanism. Numerical differences in
+041's frozen/free control are consequences of the model policy, not validation
+against natural nonplaying-digit behavior.

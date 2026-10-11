@@ -1,5 +1,45 @@
 # Research log
 
+## 2026-10-11 — Generalize five-digit contact and expose free-hand controls (041)
+
+[041](experiments/041-five-finger-contacts/notes.md) keeps the fixed native seated
+compact CBA v3 and all imported geometry, limits and couplings. Named thumb, index,
+middle, ring and little contact requests now solve and discover static branches.
+Compiled outer capsule/ellipsoid supports bind each marker; thumb reverses the
+imported proximal-pointing capsule axis, without an invented fingertip length.
+Released transition APIs admit different source/destination fingers; the paired
+held workflow uses named digits and explicitly rejects unsupported substitutions.
+
+Nine five-start/220-iteration requests (plus nine template solves) produce 18
+accepted starts and 16 distinct candidates. Every digit has C4 candidates and
+index/ring has coordinated C4+E4 candidates. Index/little, three-long-digit and
+thumb/index searches find none; failed states and all attempts remain preserved.
+These finite outcomes do not establish impossibility. Unassigned digits articulate
+under posture regularization in the new controls. Matched thumb freeze/free solves
+share exact initial qpos and solver settings; unused middle/ring coordinates
+change by 0.178/0.130 rad in free mode. Neither posture is called more natural.
+
+Canonical coverage and 276-pair hand reports cover 16 candidates, three failed
+templates and the frozen comparison. Accepted saved states have positive minimum
+instrument clearances, but unresolved cross-digit proxy distance reaches −8.729 mm.
+The failed three-contact template retains 2.309 mm marker residual and 0.068 mm
+instrument penetration. Geometry and masks were not weakened for acceptance.
+Four standard views, contact/proxy close-ups and matched policy images use saved
+qpos, exact state-source hashes and recorded cameras. Occluded camera attempts
+remain scratch; ring receives a supplementary front view. A premature MuJoCo
+import caused one EGL render failure; engine-free topology constants fix it.
+
+The catalog now has 40 targets, with nine named controls, three unsuccessful
+searches, registered compiled/contact-policy variants and exact diagnostic links.
+Musical events and deterministic finite fingering enumeration form a tested
+sequence-search foundation, not yet a connected five-finger passage engine.
+The canonical check passes all 132 tests, Ruff and ty. New frozen definitions
+retain their executed bytes through explicit relative lineage pointers. Integrity
+checks pass for six new roots and all 40 targets (31 roots/242 evidence files);
+these concern hashes/links, not anatomical or human validity. The autonomous
+program continues with connected passage search and actual sampled animations
+in 042, generation in 043 and reusable consumer APIs in 044.
+
 ## 2026-10-11 — Deliver the first substantial right-hand target library (040)
 
 [040](experiments/040-exercise-library/notes.md) expands the unchanged fixed

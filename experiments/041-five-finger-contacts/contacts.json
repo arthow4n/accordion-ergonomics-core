@@ -1,0 +1,155 @@
+{
+  "id": "041-five-finger-free",
+  "baseline_result": "../037-upper-anchor-regression/central/result.json",
+  "baseline_sha256": "6bf28437371d8bf3f509efd395da4cd88121aa73967aa52ce98cb047c92ee7b8",
+  "candidate_search": {
+    "offsets_rad": [
+      {
+        "elbow_flexion_r": -0.3,
+        "pro_sup_r": -0.3
+      },
+      {
+        "elbow_flexion_r": 0.3,
+        "pro_sup_r": 0.3
+      },
+      {
+        "shoulder_rot_r": -0.2
+      },
+      {
+        "shoulder_rot_r": 0.2
+      }
+    ],
+    "max_iterations": 220,
+    "palm_dedup_m": 0.005,
+    "elbow_dedup_m": 0.01,
+    "joint_dedup_rad": 0.1
+  },
+  "targets": [
+    {
+      "id": "thumb",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "thumb"
+        }
+      ]
+    },
+    {
+      "id": "index",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "middle",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "middle"
+        }
+      ]
+    },
+    {
+      "id": "ring",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "ring"
+        }
+      ]
+    },
+    {
+      "id": "little",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "little"
+        }
+      ]
+    },
+    {
+      "id": "index-ring",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 6,
+          "finger": "ring"
+        }
+      ]
+    },
+    {
+      "id": "index-little",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 6,
+          "finger": "little"
+        }
+      ]
+    },
+    {
+      "id": "three-long",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 5,
+          "finger": "middle"
+        },
+        {
+          "row": 3,
+          "column": 5,
+          "finger": "ring"
+        }
+      ]
+    },
+    {
+      "id": "thumb-index",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "thumb"
+        },
+        {
+          "row": 2,
+          "column": 5,
+          "finger": "index"
+        }
+      ]
+    }
+  ],
+  "render": false,
+  "parameter_patch": {
+    "physical_contact": {
+      "inactive_digits_policy": "allow_articulation",
+      "inactive_digits_evidence": {
+        "kind": "hypothesis",
+        "source": "041 whole-hand articulation",
+        "note": "Unassigned coordinates regularized toward the start, not biologically coordinated."
+      }
+    }
+  }
+}

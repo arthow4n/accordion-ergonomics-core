@@ -1,10 +1,10 @@
 # Right-hand exercise target catalog
 
-Release 0.4-first-library. 31 musical targets in the fixed compact-upper native v3 world.
+Release 0.5-five-finger-controls. 40 musical targets in the fixed compact-upper native v3 world.
 
 **Provisional model challenges. Human feasibility is unknown for every entry.**
 
-Index/middle contacts only. Torso, legs, left arm, treble/bass cases and closed bellows remain fixed. No tempo, force or button depression is inferred.
+Named five-finger contacts. Torso, legs, left arm, treble/bass cases and closed bellows remain fixed. No tempo, force or button depression is inferred.
 
 Use `uv run aec targets list --family held`, `uv run aec targets show TARGET_ID`, and `uv run aec targets verify TARGET_ID`. Verification checks commitments, not scientific validity.
 
@@ -41,6 +41,15 @@ Use `uv run aec targets list --family held`, `uv run aec targets show TARGET_ID`
 | [return-c4-a3-c4](#return-c4-a3-c4) | sequence | C4 → A3 → C4 | sampled_path_found | unresolved anatomy |
 | [alternate-a3-c4-eflat4](#alternate-a3-c4-eflat4) | sequence | A3 → C4 → Eb4 → C4 → A3 | sampled_path_found | unresolved anatomy |
 | [return-c4-b3-c4](#return-c4-b3-c4) | sequence | C4 → B3 → C4 | sampled_path_found | unresolved anatomy |
+| [five-finger-thumb](#five-finger-thumb) | five-finger-control | C4 | contact_candidates_found | unresolved anatomy |
+| [five-finger-index](#five-finger-index) | five-finger-control | C4 | contact_candidates_found | unresolved anatomy |
+| [five-finger-middle](#five-finger-middle) | five-finger-control | C4 | contact_candidates_found | unresolved anatomy |
+| [five-finger-ring](#five-finger-ring) | five-finger-control | C4 | contact_candidates_found | unresolved anatomy |
+| [five-finger-little](#five-finger-little) | five-finger-control | C4 | contact_candidates_found | unresolved anatomy |
+| [five-finger-index-ring](#five-finger-index-ring) | five-finger-control | C4+E4 | contact_candidates_found | unresolved anatomy |
+| [five-finger-index-little](#five-finger-index-little) | five-finger-control | C4+E4 | not_found_with_current_search | unresolved anatomy |
+| [five-finger-three-long](#five-finger-three-long) | five-finger-control | C4+C#4+D4 | not_found_with_current_search | unresolved anatomy |
+| [five-finger-thumb-index](#five-finger-thumb-index) | five-finger-control | C4+C#4 | not_found_with_current_search | unresolved anatomy |
 
 ## central-c4
 
@@ -501,5 +510,116 @@ Three-event cross-row return; sequence provenance preserves forward/reverse trav
   Evidence: [sequence_segment](../experiments/040-exercise-library/sequences/../plan-cross/result.json) (SHA256 `673ef505bea8e8007889ce0017c6b05fede92638d61be5d7e8cb2e73296adc55`).
   Evidence: [independent_sampled_proxy_audit](../experiments/040-exercise-library/movement-audit/result.json) (SHA256 `628a36438e0858cc4aff327cb21cd8acb4d2c1418e979bceca15cb2114e9183c`).
   Evidence: [independent_endpoint_coverage](../experiments/040-exercise-library/endpoint-coverage/result.json) (SHA256 `e5d07397c88d46c9d774789549033ee8290a3c65efc939af920a1dafb93c793d`).
+
+## five-finger-thumb
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-e777c6a9e13c8a112998`: thumb r1c5 (C4; contact).
+  Status: contact_candidates_found; quality: numerically_realized; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 3/5 accepted starts, 3 distinct candidates; failures {'initial_collision_violation': 2}.
+  Descriptors: `{"candidate_palm_diameter_m": 0.021285176266812922}`.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [matched_policy_comparison](../experiments/041-five-finger-contacts/comparison/result.json) (SHA256 `0874cc33af8388e7d51edf1e5fbb3246568dbd3262977d7ac68e34c2f924597f`).
+  Evidence: [matched_policy_comparison](../experiments/041-five-finger-contacts/comparison/thumb-policy-hand.png) (SHA256 `4043851685da0adbf637f03db3701307ce9d1d2e5155eda6a7160cd16ce6b9a5`).
+  Evidence: [matched_policy_comparison](../experiments/041-five-finger-contacts/comparison/thumb-policy-contact_collision.png) (SHA256 `af8c1ca56586495ac25d2e79b791bfb36d30928eb793a782bf183ded23a420bd`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## five-finger-index
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-f0d66b018476cdf7c259`: index r1c5 (C4; contact).
+  Status: contact_candidates_found; quality: numerically_realized; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 3/5 accepted starts, 2 distinct candidates; failures {'initial_collision_violation': 2}.
+  Descriptors: `{"candidate_palm_diameter_m": 0.06956871177734379}`.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## five-finger-middle
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-1ad83ed5bd0685a13b0e`: middle r1c5 (C4; contact).
+  Status: contact_candidates_found; quality: numerically_realized; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 3/5 accepted starts, 3 distinct candidates; failures {'initial_collision_violation': 2}.
+  Descriptors: `{"candidate_palm_diameter_m": 0.06283181185577469}`.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## five-finger-ring
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-ecb05c2e778787271c01`: ring r1c5 (C4; contact).
+  Status: contact_candidates_found; quality: numerically_realized; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 3/5 accepted starts, 3 distinct candidates; failures {'initial_collision_violation': 2}.
+  Descriptors: `{"candidate_palm_diameter_m": 0.07733067819908876}`.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [supplemental_contact_detail](../experiments/041-five-finger-contacts/ring-detail/result.json) (SHA256 `7233fa95957690b64e6b7610b0b4d0ef477465c66611197af605359711bd49d9`).
+  Evidence: [supplemental_contact_detail](../experiments/041-five-finger-contacts/ring-detail/renders/ring-candidate-0/contact.png) (SHA256 `e73f2d03f1b0cc05250ce6099045c5bb1b9d7f0c3b6c5cd1b7756e95b29752b2`).
+  Evidence: [supplemental_contact_detail](../experiments/041-five-finger-contacts/ring-detail/renders/ring-candidate-0/contact_collision.png) (SHA256 `35d5e3bca284bb09695b6f137a693beaf29c16dd4e079367c5a5f1c981920c04`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## five-finger-little
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-71d56d8a44b39417bde2`: little r1c5 (C4; contact).
+  Status: contact_candidates_found; quality: numerically_realized; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 3/5 accepted starts, 3 distinct candidates; failures {'initial_collision_violation': 2}.
+  Descriptors: `{"candidate_palm_diameter_m": 0.04942791840823652}`.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## five-finger-index-ring
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-c8cdd6ce9056386841cb`: index r1c5 (C4; contact), ring r2c6 (E4; contact).
+  Status: contact_candidates_found; quality: numerically_realized; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 3/5 accepted starts, 2 distinct candidates; failures {'initial_collision_violation': 2}.
+  Descriptors: `{"candidate_palm_diameter_m": 0.0008252000800606455}`.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## five-finger-index-little
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-a01a17264888fa55453b`: index r1c5 (C4; contact), little r2c6 (E4; contact).
+  Status: not_found_with_current_search; quality: generated_hypothesis; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 0/5 accepted starts, 0 distinct candidates; failures {'iteration_budget_exhausted': 3, 'initial_collision_violation': 2}.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## five-finger-three-long
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-575edba33db8b9c45026`: index r1c5 (C4; contact), middle r2c5 (C#4; contact), ring r3c5 (D4; contact).
+  Status: not_found_with_current_search; quality: generated_hypothesis; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 0/5 accepted starts, 0 distinct candidates; failures {'iteration_budget_exhausted': 3, 'initial_collision_violation': 2}.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## five-finger-thumb-index
+
+Named digit contact control with unassigned digits permitted to articulate; finite local search and unresolved anatomy.
+
+- `realization-4891bcf6c36d6245770d`: thumb r1c5 (C4; contact), index r2c5 (C#4; contact).
+  Status: not_found_with_current_search; quality: generated_hypothesis; audit: endpoints_only_anatomy_unresolved; anatomy unresolved.
+  Search: 0/5 accepted starts, 0 distinct candidates; failures {'no_sampled_clear_step': 2, 'iteration_budget_exhausted': 1, 'initial_collision_violation': 2}.
+  Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
+  Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
+  Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
 
 Solver history is not a playing trajectory. A found path establishes one sampled model realization; a finite failure is not impossibility. Rigid proxy overlap does not measure tissue penetration. No result establishes a human movement minimum or universal difficulty.

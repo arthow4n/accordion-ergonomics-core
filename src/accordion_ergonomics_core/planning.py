@@ -128,9 +128,12 @@ def plan_transition(
     end_q: list[float],
     button_id: str,
     settings: PlanningSettings,
+    end_finger: str | None = None,
 ) -> dict[str, Any]:
-    if len(experiment.contacts) != 1 or experiment.contacts[0].finger != "index":
-        raise ValueError("Transition search currently supports one index contact")
+    if len(experiment.contacts) != 1:
+        raise ValueError("Released transition requires one source contact")
+    start_finger = experiment.contacts[0].finger
+    end_finger = end_finger or start_finger
     began = perf_counter()
     direct = audit_path(scene, [start_q, end_q], experiment, settings)
     attempts: list[dict[str, Any]] = []
@@ -145,14 +148,16 @@ def plan_transition(
     normal = scene.data.body("keyboard").xmat.reshape(3, 3)[:, 2].copy()
     names = [scene.model.joint(i).name for i in range(scene.model.njnt)]
     targets = []
-    for q in (start_q, end_q):
+    for q, digit in zip((start_q, end_q), (start_finger, end_finger), strict=True):
         scene.data.qpos[:] = q
         mujoco.mj_forward(scene.model, scene.data)
-        targets.append(scene.data.site("index_pad").xpos.copy())
+        targets.append(scene.data.site(f"{digit}_pad").xpos.copy())
     for depth in settings.withdrawal_depths_m:
         withdraw = []
         chains = []
-        for q, target in zip((start_q, end_q), targets, strict=True):
+        for q, target, digit in zip(
+            (start_q, end_q), targets, (start_finger, end_finger), strict=True
+        ):
             chain = [q]
             result = None
             for distance in np.linspace(
@@ -168,6 +173,7 @@ def plan_transition(
                     button_id,
                     experiment.frozen_joints,
                     contact_required=False,
+                    finger=digit,
                 )
                 if result["status"] != "success":
                     break
@@ -184,7 +190,12 @@ def plan_transition(
             middle_audit = audit_path(scene, middle, experiment, settings)
             if not middle_audit["sampled_constraints_satisfied"]:
                 middle, search = rrt_connect(
-                    scene, middle[0], middle[1], experiment, settings
+                    scene,
+                    middle[0],
+                    middle[1],
+                    experiment,
+                    settings,
+                    active_digits=(start_finger, end_finger),
                 )
                 attempt["rrt_search"] = search
             if middle:
@@ -227,6 +238,7 @@ def rrt_connect(
     end: list[float],
     experiment: Experiment,
     settings: PlanningSettings,
+    active_digits: tuple[str, ...] | None = None,
 ) -> tuple[list[list[float]], dict[str, Any]]:
     """Seeded bidirectional RRT on independent coordinates, with exact coupling lift."""
     from .scene import coupled_initial_pose
@@ -237,8 +249,14 @@ def rrt_connect(
         raise ValueError("RRT edge interpolation requires affine joint couplings")
     dependent = set(int(model.eq_obj1id[i]) for i in range(model.neq))
     digits = digit_dofs(model)
+    active_digits = active_digits or tuple(c.finger for c in experiment.contacts)
     frozen = (
-        set(i for digit, indices in digits.items() if digit != "index" for i in indices)
+        set(
+            i
+            for digit, indices in digits.items()
+            if digit not in active_digits
+            for i in indices
+        )
         if scene.contact_profile.inactive_digits_policy == "freeze"
         else set()
     )

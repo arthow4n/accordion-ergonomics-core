@@ -202,6 +202,7 @@ def main() -> None:
             "hand-audit",
             "search-reliability",
             "sequence",
+            "contact-report",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -261,6 +262,9 @@ def main() -> None:
         action = target_sub.add_parser(name)
         action.add_argument("target_id", nargs="?")
     target_sub.add_parser("build")
+    contact_report = sub.add_parser("contact-report")
+    contact_report.add_argument("definition", type=Path)
+    contact_report.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "targets":
@@ -284,6 +288,11 @@ def main() -> None:
 
         result = run_sequences(args.definition, args.output)
         print(json.dumps({"id": result["id"]}))
+    elif args.command == "contact-report":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .contact_report import run_contact_report
+
+        run_contact_report(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],

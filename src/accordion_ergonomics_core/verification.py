@@ -111,7 +111,9 @@ def verify_record(
             )
             return finish()
         result = json.loads(result_path.read_text())
-        definition = input_path or directory / "experiment.json"
+        definition = input_path or directory / metadata.get(
+            "definition_reference", "experiment.json"
+        )
         input_hash = result.get("definition_sha256", result.get("input_sha256"))
         if input_hash and definition.is_file():
             file_hash(definition, input_hash, "recorded definition/input")
@@ -128,9 +130,18 @@ def verify_record(
             records.extend(
                 (t.get("target_id", t["button_id"]), t) for t in result["targets"]
             )
-        elif workflow in ("limit-probe", "collision-coverage"):
-            key = "poses" if workflow == "collision-coverage" else "cases"
+        elif workflow in ("limit-probe", "collision-coverage", "contact-report"):
+            key = (
+                "poses"
+                if workflow in ("collision-coverage", "contact-report")
+                else "cases"
+            )
             records.extend((f"{key}/{i}", r) for i, r in enumerate(result[key]))
+            if workflow == "contact-report":
+                if "artifact_sha256" not in result:
+                    limitations.append("Contact report lacks render artifact hashes")
+                for relative, expected in result.get("artifact_sha256", {}).items():
+                    file_hash(directory / relative, expected, relative)
         elif workflow == "cba-geometry":
             records.append(("geometry", result))
             if "artifact_sha256" not in result:

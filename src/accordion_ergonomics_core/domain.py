@@ -1,6 +1,6 @@
 """Research-owned physical states and descriptors, without MuJoCo objects."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from math import isfinite
 
 
@@ -51,6 +51,8 @@ class PhysicalDescriptors:
     shoulder_rad: tuple[float, ...]
     finger_rad: tuple[float, ...]
     other_digits_rad: dict[str, tuple[float, ...]]
+    played_digits: tuple[str, ...] = ()
+    digit_angles_rad: dict[str, tuple[float, ...]] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)

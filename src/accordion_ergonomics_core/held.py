@@ -1,4 +1,4 @@
-"""Small held-index / moving-middle kinematic experiment with independent audits."""
+"""Named held-finger / moving-finger kinematic experiment with independent audits."""
 
 import hashlib
 import json
@@ -27,6 +27,7 @@ def held_audit(
     target: np.ndarray,
     button_id: str,
     max_step_rad: float,
+    held_finger: str = "index",
 ) -> dict[str, Any]:
     audit = audit_path(
         scene, points, e, replace(PlanningSettings(), max_joint_step_rad=max_step_rad)
@@ -41,7 +42,7 @@ def held_audit(
     )
     for index, sample in enumerate(audit["samples"]):
         scene.data.qpos[:] = sample["qpos_rad"]
-        check = diagnostics(scene, target, button_id, "index")
+        check = diagnostics(scene, target, button_id, held_finger)
         pair_valid = True
         for pair in pair_minima:
             distance = float(
@@ -91,10 +92,14 @@ def run_held(definition: Path, output: Path) -> dict[str, Any]:
     if any(r["status"] != "success" for r in (start, end)):
         raise ValueError("Held experiment requires accepted gesture endpoints")
     e = Experiment.from_dict(start["input"])
-    if [c.finger for c in e.contacts] != ["index", "middle"]:
-        raise ValueError("This small experiment holds index while middle moves")
+    if len(e.contacts) != 2:
+        raise ValueError("Held experiment requires held and moving contacts")
+    held_finger, moving_finger = (c.finger for c in e.contacts)
+    other = Experiment.from_dict(end["input"])
+    if tuple(c.finger for c in other.contacts) != (held_finger, moving_finger):
+        raise ValueError("Held workflow requires unchanged named digit bindings")
     scene = build_scene(
-        e.geometry, e.player, e.setup, e.physical_contact, ("index", "middle")
+        e.geometry, e.player, e.setup, e.physical_contact, (held_finger, moving_finger)
     )
     actual_model = compiled_model_digest(scene.model)
     if any(
@@ -104,11 +109,17 @@ def run_held(definition: Path, output: Path) -> dict[str, Any]:
     held_target = np.asarray(start["targets"][0]["surface_world_m"])
     held_id = start["targets"][0]["button_id"]
     if end["targets"][0] != start["targets"][0]:
-        raise ValueError("Index held requirements differ")
+        raise ValueError("Held requirements differ")
     q0 = start["qpos_rad"]
     q1 = end["qpos_rad"]
     direct = held_audit(
-        scene, [q0, q1], e, held_target, held_id, source["max_joint_step_rad"]
+        scene,
+        [q0, q1],
+        e,
+        held_target,
+        held_id,
+        source["max_joint_step_rad"],
+        held_finger,
     )
     normal = e.geometry.rotation[:, 2]
     departure = np.asarray(start["targets"][1]["surface_world_m"])
@@ -137,7 +148,8 @@ def run_held(definition: Path, output: Path) -> dict[str, Any]:
                 dict(zip(names, waypoints[-1], strict=True)),
                 replace(e.solver, max_iterations=source["waypoint_iterations"]),
                 held_id,
-                additional_contacts=((a + t * (b - a), "middle", moving_id),),
+                finger=held_finger,
+                additional_contacts=((a + t * (b - a), moving_finger, moving_id),),
                 additional_contact_required=final,
             )
             solves.append({"leg": leg, "leg_progress": float(t), "result": solve})
@@ -148,7 +160,13 @@ def run_held(definition: Path, output: Path) -> dict[str, Any]:
         if failure:
             break
     searched = held_audit(
-        scene, waypoints, e, held_target, held_id, source["max_joint_step_rad"]
+        scene,
+        waypoints,
+        e,
+        held_target,
+        held_id,
+        source["max_joint_step_rad"],
+        held_finger,
     )
     found = (
         failure is None
@@ -163,7 +181,9 @@ def run_held(definition: Path, output: Path) -> dict[str, Any]:
         "physical_feasibility": None,
         "continuous_validity": None,
         "button_depression": None,
-        "contact_policy": "Index geometry held; middle may release; force unmodeled",
+        "contact_policy": (
+            f"{held_finger} geometry held; {moving_finger} may release; force unmodeled"
+        ),
         "direct_audit": direct,
         "searched_audit": searched,
         "waypoint_solves": solves,
@@ -183,9 +203,9 @@ def run_held(definition: Path, output: Path) -> dict[str, Any]:
     profile_hash = hashlib.sha256(
         json.dumps(e.resolved_profiles(), sort_keys=True, allow_nan=False).encode()
     ).hexdigest()
-    contact_requirements = (ContactRequirement(held_id, "index"),)
+    contact_requirements = (ContactRequirement(held_id, held_finger),)
     if found:
-        contact_requirements += (ContactRequirement(moving_id, "middle"),)
+        contact_requirements += (ContactRequirement(moving_id, moving_finger),)
     result["resulting_state"] = asdict(
         PlayingState(
             tuple(names), tuple(waypoints[-1]), profile_hash, contact_requirements
@@ -226,7 +246,7 @@ def run_held(definition: Path, output: Path) -> dict[str, Any]:
     frame_count = source.get("animation_frames", 0)
     if type(frame_count) is not int or frame_count < 0 or frame_count == 1:
         raise ValueError("Animation needs zero or at least two frames")
-    if frame_count:
+    if frame_count and found:
         indices = (
             np.linspace(0, len(searched["samples"]) - 1, frame_count)
             .astype(int)

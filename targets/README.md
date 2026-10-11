@@ -1,6 +1,6 @@
 # Inspect and reproduce the first right-hand target library
 
-This release contains 31 musical/physical target hypotheses. It covers central
+This release contains 40 musical/physical target hypotheses. It covers central
 and directional controls, row changes, simultaneous index/middle dyads, held-index
 coordination, return/alternating sequences and equivalent-pitch physical buttons.
 All entries have unknown human feasibility and unresolved anatomical validation.
@@ -45,11 +45,14 @@ entries, with actual failure reasons, duplicate successes and budget prefixes.
 
 The physical reference is the 036/037 compact upper `generic_cba_v3` model.
 Instrument, native anatomy, fixed posture/wearing setup and contact policy have
-separate hashes. Index-only and index/middle contact-site worlds have separately
+separate hashes. Named contact-site worlds have separately
 registered compiled identities; no poses transfer between them. Torso, pelvis,
-legs, left arm, both cases and closed stationary bellows remain fixed. Only
-index/middle contacts are supported. Coordinates of other fingers remain native,
-but their existence is not contact-solver support.
+legs, left arm, both cases and closed stationary bellows remain fixed. All five named digits now support contact requests. Nine 041 controls add five
+single-digit tasks, an index/ring dyad and three unsuccessful coordinated
+searches. New controls permit unassigned digits to articulate with posture
+regularization; older experiments preserve their frozen-digit policies.
+Compiled marker variants and contact-policy variants are explicitly registered.
+Connected five-finger passages remain the next active milestone.
 
 Every realized entry links actual frozen results and candidate files, with
 SHA256, source archive, input, dependency provenance, configurations and seeds.
@@ -106,3 +109,18 @@ current budgets are not matched total research costs. Failed initialization is
 not task impossibility. The next validity bottleneck is calibrated hand envelopes
 and observed poses, especially inactive middle/ring interactions; unsupported
 fingers, active bellows and whole-body strategies remain outside this release.
+
+## Five-finger controls and views (041)
+
+Use `aec targets show five-finger-thumb` or query the
+`five-finger-control` family. `diagnostic_records` identifies exact saved states,
+solver status, free/frozen policy, unresolved proxy concerns and camera views.
+The thumb target also links the matched comparison report and images. The
+canonical coverage report covers all endpoints; these controls do not yet have
+connected five-finger movements or human-validation labels.
+
+`accordion_ergonomics_core.passages` supplies `NoteEvent`, `Passage` and
+`fingering_hypotheses`. It separates musical events from duplicate-button/digit
+assignments, preserves exact held bindings and uses deterministic ordering.
+Returned assignments have `generated_hypothesis` status; enumeration does not
+run IK or establish contact.
