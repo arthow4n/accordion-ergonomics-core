@@ -71,3 +71,29 @@ def test_empty_path_is_not_audit_success(tmp_path: Path) -> None:
     )
     with pytest.raises(ValueError, match="Empty paths"):
         run_hand_audit(definition, tmp_path / "output")
+
+
+def test_published_hand_audit_covers_all_recorded_path_samples() -> None:
+    import hashlib
+
+    root = Path("experiments/038-hand-collision-audit")
+    result = json.loads((root / "result.json").read_text())
+    records = {record["id"]: record for record in result["records"]}
+    assert result["policy_id"] == HAND_POLICY_ID
+    assert sum(r["sample_count"] for r in records.values()) == 1260
+    assert records["nearby"]["sample_count"] == 261
+    assert records["larger"]["sample_count"] == 578
+    assert records["held"]["sample_count"] == 400
+    assert all(
+        r["instrument_policy_status"] == "sampled_pairs_satisfied"
+        for r in records.values()
+    )
+    assert all(r["anatomical_validation"] == "unresolved" for r in records.values())
+    assert records["held"]["worst_cross_digit_phalangeal_distance_m"] < -0.007
+    replay = json.loads((root / "render-replay.json").read_text())
+    assert (
+        replay["result_sha256"]
+        == hashlib.sha256((root / "result.json").read_bytes()).hexdigest()
+    )
+    for relative, expected in replay["artifact_sha256"].items():
+        assert hashlib.sha256((root / relative).read_bytes()).hexdigest() == expected

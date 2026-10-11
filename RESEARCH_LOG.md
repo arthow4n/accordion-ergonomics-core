@@ -1,5 +1,33 @@
 # Research log
 
+## 2026-10-11 — Audit every saved hand/instrument sample without changing anatomy (038)
+
+[038](experiments/038-hand-collision-audit/notes.md) introduces the versioned
+`native-hand-proxy-report-v1` reporting policy. Classify five same-segment distal
+capsule/ellipsoid composites separately from articulating same-digit geometry,
+palm composition, configured separation hypotheses and unresolved cross-digit
+phalanges. All 276 pairs among 24 hand proxies are queried independently of
+engine masks and explicit pairs. No geometry is shrunk or repositioned.
+
+Audit native neutral, 20 contact endpoints, 261 nearby, 578 larger and 400 held
+path samples: 1,260 states and 8,255,520 instrument/proxy distances. Every configured
+index/middle hypothesis and instrument constraint passes at saved samples.
+Unresolved cross-digit phalangeal proxy overlap reaches 1.470 mm at neutral,
+8.652 mm at central and 7.418 mm inside the held path, versus 2.973/1.651 mm at
+its endpoints. Omitted middle/ring pairs remain concerns, not measured tissue
+intersections. A complete anatomical collision policy is not justified.
+
+Release 0.2 keeps all ten targets, attaches exact source-hash matched independent
+reports, coverage counts, clearances and diagnostic render links. Eight realized
+entries pass the specified provisional checks; hypotheses stay hypotheses and
+all human feasibility remains null. The independently audited quality label
+states its limited scope explicitly and does not certify anatomical nonpenetration.
+All four views plus overlays for five selected states were inspected; 25 images
+reproduce byte-for-byte. Six library frozen roots and the038 record verify fully;
+eight focused catalog/audit tests pass. Concurrent full-suite/render workloads
+exhausted memory: redundant checks were stopped and the040 contact batch resumes
+with bounded no-render execution. A single full check follows the workloads.
+
 ## 2026-10-11 — Ship the early provisional exercise catalog (038a)
 
 [038a](experiments/038-provisional-targets/notes.md) publishes ten musical targets

@@ -171,8 +171,129 @@ def path_descriptors(
     }
 
 
+def audit_index(root: Path, paths: list[str]) -> dict[str, dict[str, Any]]:
+    """Join independent reports by exact source bytes, never target captions."""
+    index = {}
+    for path in paths:
+        report = read(root, path)
+        ref = evidence_ref(root, path, "independent_sampled_proxy_audit")
+        for record in report["records"]:
+            if record["source"].get("kind") == "neutral":
+                continue
+            components = record.get("instrument_component_minima", {})
+            groups = {
+                "case_rim": [
+                    v
+                    for n, v in components.items()
+                    if n.startswith("cba_") and "panel" not in n
+                ],
+                "panels": [v for n, v in components.items() if "panel" in n],
+                "caps": [
+                    v
+                    for n, v in components.items()
+                    if n.startswith("r") or n.startswith("bass_r")
+                ],
+            }
+            views = {}
+            for view in ("overview", "keyboard", "side", "hand", "collision"):
+                image = Path(path).parent / "renders" / record["id"] / (view + ".png")
+                if (root / image).is_file():
+                    views[view] = evidence_ref(root, str(image), "diagnostic_render")
+            index[record["source"]["sha256"]] = {
+                "policy_id": report["policy_id"],
+                "evidence": ref,
+                "record_id": record["id"],
+                "sample_count": record["sample_count"],
+                "compiled_model_sha256": record["provenance"]["compiled_model_sha256"],
+                "configured_policy_status": record["configured_policy_status"],
+                "instrument_policy_status": record.get(
+                    "instrument_policy_status", "not_audited"
+                ),
+                "anatomical_validation": record["anatomical_validation"],
+                "worst_cross_digit_phalangeal_distance_m": record[
+                    "worst_cross_digit_phalangeal_distance_m"
+                ],
+                "unresolved_phalangeal_overlap_count_max": max(
+                    s["cross_digit_phalangeal_overlap_count"] for s in record["samples"]
+                ),
+                "clearance_minima_m": {
+                    g: min(v["minimum_signed_proxy_distance_m"] for v in values)
+                    if values
+                    else None
+                    for g, values in groups.items()
+                },
+                "diagnostic_views": views,
+            }
+    return index
+
+
+def attach_audits(
+    realization: dict[str, Any], index: dict[str, dict[str, Any]]
+) -> None:
+    candidates = realization["branches"] + realization["movement_attempts"]
+    audited = []
+    for candidate in candidates:
+        audit = index.get(candidate["evidence"]["sha256"])
+        candidate["independent_audit"] = audit
+        if audit is None:
+            continue
+        if audit["compiled_model_sha256"] != candidate["compiled_model_sha256"]:
+            raise ValueError("Independent audit uses another compiled world")
+        expected = candidate.get("descriptors", {}).get("sample_count", 1)
+        if audit["sample_count"] != expected:
+            raise ValueError("Independent audit sample coverage differs")
+        realization["evidence"].append(audit["evidence"])
+        realization["evidence"].extend(audit["diagnostic_views"].values())
+        audited.append(audit)
+    if not audited:
+        return
+    validity = realization["validity"]
+    validity["audit_policy_ids"] = sorted({a["policy_id"] for a in audited})
+    validity["audited_candidates"] = len(audited)
+    validity["total_candidates"] = len(candidates)
+    validity["independent_audit"] = (
+        "all_saved_candidates_audited_anatomy_unresolved"
+        if len(audited) == len(candidates)
+        else "partial_candidates_audited_anatomy_unresolved"
+    )
+    accepted = [
+        c
+        for c in candidates
+        if c.get("independent_audit")
+        and c["status"] in ("success", "sampled_path_found", "sampled_held_path_found")
+        and c["independent_audit"]["configured_policy_status"]
+        == "sampled_pairs_satisfied"
+        and c["independent_audit"]["instrument_policy_status"]
+        == "sampled_pairs_satisfied"
+    ]
+    rejected = [
+        c
+        for c in candidates
+        if c.get("independent_audit")
+        and (
+            c["independent_audit"]["configured_policy_status"] == "rejected"
+            or c["independent_audit"]["instrument_policy_status"] == "rejected"
+        )
+    ]
+    if accepted:
+        validity["quality"] = "independently_audited"
+        validity["audit_scope"] = (
+            "Configured hand pairs and all instrument solids at saved samples; "
+            "other hand proxy pairs reported unresolved"
+        )
+    elif rejected and len(rejected) == len(candidates):
+        realization["status"] = "collision_policy_rejected"
+    validity["coverage_limitations"].append(
+        "Other cross-digit phalangeal intersections remain unexplained; "
+        "no complete anatomical nonpenetration certificate"
+    )
+
+
 def build_realization(
-    root: Path, spec: dict[str, Any], world: dict[str, Any]
+    root: Path,
+    spec: dict[str, Any],
+    world: dict[str, Any],
+    independent: dict[str, dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     events = events_with_notes(spec["events"])
     realization = {
@@ -180,6 +301,7 @@ def build_realization(
         "events": events,
         "status": "hypothesis",
         "branches": [],
+        "movement_attempts": [],
         "searches": [],
         "evidence": [],
         "descriptors": {},
@@ -252,6 +374,9 @@ def build_realization(
                 branch_ref = evidence_ref(root, path, "candidate_pose")
                 realization["evidence"].append(branch_ref)
                 branch = pose_branch(saved, candidate["descriptors"], branch_ref)
+                branch["compiled_model_sha256"] = saved["provenance"][
+                    "compiled_model_sha256"
+                ]
                 if branch["id"] not in {b["id"] for b in realization["branches"]}:
                     realization["branches"].append(branch)
             realization["status"] = (
@@ -290,9 +415,10 @@ def build_realization(
                 raise ValueError("Successful path lacks sampled constraint acceptance")
             if kind == "held" and found and not audit.get("held_geometry_satisfied"):
                 raise ValueError("Held path lacks held geometry acceptance")
-            realization["status"] = (
-                "sampled_path_found" if found else "not_found_with_current_search"
-            )
+            if found or realization["status"] != "sampled_path_found":
+                realization["status"] = (
+                    "sampled_path_found" if found else "not_found_with_current_search"
+                )
             realization["searches"].append(
                 {
                     "evidence": ref,
@@ -304,6 +430,23 @@ def build_realization(
             )
             realization["descriptors"] = path_descriptors(
                 audit, samples, endpoints[0]["joint_names"]
+            )
+            realization["movement_attempts"].append(
+                {
+                    "id": "movement-"
+                    + digest(
+                        {
+                            "world": record["provenance"]["compiled_model_sha256"],
+                            "samples": [s["qpos_rad"] for s in samples],
+                        }
+                    )[:20],
+                    "evidence": ref,
+                    "status": record["status"],
+                    "compiled_model_sha256": record["provenance"][
+                        "compiled_model_sha256"
+                    ],
+                    "descriptors": realization["descriptors"],
+                }
             )
         else:
             raise ValueError("Unknown evidence kind")
@@ -325,6 +468,10 @@ def build_realization(
         realization["descriptors"]["candidate_palm_diameter_m"] = float(
             np.max(np.linalg.norm(palms[:, None] - palms[None, :], axis=2))
         )
+    attach_audits(realization, independent or {})
+    realization["evidence"] = list(
+        {(r["path"], r["sha256"]): r for r in realization["evidence"]}.values()
+    )
     return realization
 
 
@@ -335,9 +482,12 @@ def build_catalog(root: Path = ROOT) -> dict[str, Any]:
         name: read(root, path)["provenance"]["compiled_model_sha256"]
         for name, path in definition["model_references"].items()
     }
+    independent = audit_index(root, definition.get("independent_audits", []))
     targets = []
     for spec in definition["targets"]:
-        realizations = [build_realization(root, r, world) for r in spec["realizations"]]
+        realizations = [
+            build_realization(root, r, world, independent) for r in spec["realizations"]
+        ]
         musical = [
             [c["midi"] for c in e["contacts"]] for e in realizations[0]["events"]
         ]

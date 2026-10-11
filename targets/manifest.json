@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release": "0.1-provisional",
+  "release": "0.2-proxy-audited",
   "reference_world": {
     "id": "compact-upper-native-v3",
     "geometry_model": "generic_cba_v3",
@@ -126,6 +126,30 @@
                     0.047256329898859445
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "single-c4-candidate-0",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008651982063369682,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.009108688054291814,
+                  "panels": 0.004098780585617723,
+                  "caps": 9.878198277499249e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -204,6 +228,30 @@
                     0.06413617296015056
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "single-c4-candidate-1",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008716032269765351,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.008430862451652525,
+                  "panels": 0.0040488046476927,
+                  "caps": 4.880498715260438e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -282,9 +330,34 @@
                     0.049884612387295586
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "single-c4-candidate-2",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008663021740953196,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.002436785733144424,
+                  "panels": 0.004040390872732784,
+                  "caps": 4.039119532622714e-05
+                },
+                "diagnostic_views": {}
               }
             }
           ],
+          "movement_attempts": [],
           "searches": [
             {
               "evidence": {
@@ -370,20 +443,33 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
             "candidate_palm_diameter_m": 0.1158457404182911
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 3,
+            "total_candidates": 3,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         }
       ],
@@ -496,6 +582,30 @@
                     0.06517639503161997
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "nearby-d4-candidate-0",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008683267517976228,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.010842234869531425,
+                  "panels": 0.00408389585936209,
+                  "caps": 8.389752801210412e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -574,6 +684,30 @@
                     0.05697216296308926
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "nearby-d4-candidate-1",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.0033228189544865813,
+                "unresolved_phalangeal_overlap_count_max": 7,
+                "clearance_minima_m": {
+                  "case_rim": 0.0050003021100349055,
+                  "panels": 0.0040307464301603925,
+                  "caps": 3.074675913762752e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -652,6 +786,30 @@
                     0.05204354994169075
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "nearby-d4-candidate-2",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008677844222312246,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.010842234869531425,
+                  "panels": 0.004027397662516563,
+                  "caps": 2.7397991884317792e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -730,9 +888,34 @@
                     0.060711850778525006
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "nearby-d4-candidate-3",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.00869520842483927,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.010842234869531425,
+                  "panels": 0.004034127577661849,
+                  "caps": 3.412790357623634e-05
+                },
+                "diagnostic_views": {}
               }
             }
           ],
+          "movement_attempts": [],
           "searches": [
             {
               "evidence": {
@@ -824,20 +1007,33 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
             "candidate_palm_diameter_m": 0.0874677334483807
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 4,
+            "total_candidates": 4,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         }
       ],
@@ -950,6 +1146,30 @@
                     0.07534382497457501
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "large-g6-candidate-0",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008723251099351017,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.010842234869531425,
+                  "panels": 0.004051681100739507,
+                  "caps": 5.168144311988953e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -1028,6 +1248,30 @@
                     0.07154075456298958
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "large-g6-candidate-1",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008830691685771028,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.010842234869531425,
+                  "panels": 0.004037002073631864,
+                  "caps": 3.70023962815033e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -1106,6 +1350,30 @@
                     0.08752147073117106
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "large-g6-candidate-2",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008787015099423022,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.010842234869531425,
+                  "panels": 0.004074074124735396,
+                  "caps": 7.407616551047409e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -1184,9 +1452,34 @@
                     0.06257257942669497
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "large-g6-candidate-3",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008709645989460005,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.010842234869531425,
+                  "panels": 0.004029338709037133,
+                  "caps": 2.9339035862877153e-05
+                },
+                "diagnostic_views": {}
               }
             }
           ],
+          "movement_attempts": [],
           "searches": [
             {
               "evidence": {
@@ -1278,20 +1571,33 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
             "candidate_palm_diameter_m": 0.09167141841146714
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 4,
+            "total_candidates": 4,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         }
       ],
@@ -1412,6 +1718,30 @@
                     0.05513416504295955
                   ]
                 }
+              },
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "c4-csharp4-candidate-0",
+                "sample_count": 1,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.0029731008160977703,
+                "unresolved_phalangeal_overlap_count_max": 2,
+                "clearance_minima_m": {
+                  "case_rim": 0.00964196720251136,
+                  "panels": 0.004040348643411072,
+                  "caps": 4.034896503742843e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -1490,6 +1820,30 @@
                     0.06034620952648241
                   ]
                 }
+              },
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "c4-csharp4-candidate-1",
+                "sample_count": 1,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.002982711862122237,
+                "unresolved_phalangeal_overlap_count_max": 2,
+                "clearance_minima_m": {
+                  "case_rim": 0.009388944150601264,
+                  "panels": 0.004049114982549285,
+                  "caps": 4.911531634373566e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -1568,6 +1922,30 @@
                     0.05277773512732866
                   ]
                 }
+              },
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "c4-csharp4-candidate-2",
+                "sample_count": 1,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.0028216409605017288,
+                "unresolved_phalangeal_overlap_count_max": 2,
+                "clearance_minima_m": {
+                  "case_rim": 0.0027161834339231097,
+                  "panels": 0.004023403041264947,
+                  "caps": 2.3403064989770634e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -1646,9 +2024,34 @@
                     0.06740990817422735
                   ]
                 }
+              },
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "c4-csharp4-candidate-3",
+                "sample_count": 1,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.003103855571799286,
+                "unresolved_phalangeal_overlap_count_max": 2,
+                "clearance_minima_m": {
+                  "case_rim": 0.009273962982307437,
+                  "panels": 0.0040868123278638814,
+                  "caps": 8.681384226873152e-05
+                },
+                "diagnostic_views": {}
               }
             }
           ],
+          "movement_attempts": [],
           "searches": [
             {
               "evidence": {
@@ -1740,20 +2143,33 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
             "candidate_palm_diameter_m": 0.030059176401632037
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 4,
+            "total_candidates": 4,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         }
       ],
@@ -1874,6 +2290,30 @@
                     0.052349895740357116
                   ]
                 }
+              },
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "c4-e4-candidate-0",
+                "sample_count": 1,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.0016509788947476536,
+                "unresolved_phalangeal_overlap_count_max": 2,
+                "clearance_minima_m": {
+                  "case_rim": 0.005518540169658116,
+                  "panels": 0.004034448039711008,
+                  "caps": 3.44483631173367e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -1952,6 +2392,30 @@
                     0.06451044485185549
                   ]
                 }
+              },
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "c4-e4-candidate-1",
+                "sample_count": 1,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.0017803485565403548,
+                "unresolved_phalangeal_overlap_count_max": 2,
+                "clearance_minima_m": {
+                  "case_rim": 0.009563675767048207,
+                  "panels": 0.0040369129166416195,
+                  "caps": 3.691293985808427e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -2030,6 +2494,30 @@
                     0.06105272763396081
                   ]
                 }
+              },
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "c4-e4-candidate-2",
+                "sample_count": 1,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.0054150935697638795,
+                "unresolved_phalangeal_overlap_count_max": 4,
+                "clearance_minima_m": {
+                  "case_rim": 0.00851847154591824,
+                  "panels": 0.004055227924337772,
+                  "caps": 5.522827102169643e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -2108,9 +2596,34 @@
                     0.05684739267911378
                   ]
                 }
+              },
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "c4-e4-candidate-3",
+                "sample_count": 1,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.002065670435513471,
+                "unresolved_phalangeal_overlap_count_max": 3,
+                "clearance_minima_m": {
+                  "case_rim": 0.009431619222927904,
+                  "panels": 0.004038194728164289,
+                  "caps": 3.8195051107334486e-05
+                },
+                "diagnostic_views": {}
               }
             }
           ],
+          "movement_attempts": [],
           "searches": [
             {
               "evidence": {
@@ -2202,20 +2715,33 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
             "candidate_palm_diameter_m": 0.10499134969328215
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 4,
+            "total_candidates": 4,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         }
       ],
@@ -2266,6 +2792,108 @@
           ],
           "status": "sampled_path_found",
           "branches": [],
+          "movement_attempts": [
+            {
+              "id": "movement-5175e9548b8739b550b2",
+              "evidence": {
+                "path": "experiments/037-upper-anchor-regression/nearby/result.json",
+                "sha256": "8d40e88a4ecd5bc2fdf3cfa82a36a8d9d8bf083fbde924f3207f19a9ada67623",
+                "role": "path",
+                "frozen_root": "experiments/037-upper-anchor-regression/nearby"
+              },
+              "status": "sampled_path_found",
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "descriptors": {
+                "palm_path_length_m": 0.06366852477103843,
+                "palm_max_excursion_m": 0.049497760650161246,
+                "minimum_joint_margin_rad": 0.015877412427995702,
+                "maximum_registered_penetration_m": 0.0,
+                "sample_count": 261,
+                "joint_excursion_rad": {
+                  "wrist": {
+                    "deviation_r": 0.4446306927653995,
+                    "flexion_r": 0.28022946398322285
+                  },
+                  "forearm": {
+                    "pro_sup_r": 0.30952379525317597
+                  },
+                  "shoulder": {
+                    "elv_angle_r": 0.43302143017745354,
+                    "shoulder_elv_r": 0.3552552076517862,
+                    "shoulder_rot_r": 0.19769206263636932
+                  },
+                  "index": {
+                    "mcp2_flexion_r": 0.011054171875030994,
+                    "mcp2_abduction_r": 0.008673302570774144,
+                    "pm2_flexion_r": 0.3597863659263338,
+                    "md2_flexion_r": 0.33691979806286554
+                  },
+                  "middle": {
+                    "mcp3_flexion_r": 0.0021742008436966276,
+                    "mcp3_abduction_r": 0.005337882485280804,
+                    "pm3_flexion_r": 0.00031353842816461697,
+                    "md3_flexion": 0.020683722600833912
+                  }
+                },
+                "maximum_held_position_error_m": null,
+                "continuous_validity": null
+              },
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "nearby",
+                "sample_count": 261,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008702045491308676,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.009108688054291814,
+                  "panels": 0.00408389585936209,
+                  "caps": 8.389752801210412e-05
+                },
+                "diagnostic_views": {
+                  "overview": {
+                    "path": "experiments/038-hand-collision-audit/renders/nearby/overview.png",
+                    "sha256": "3105ffba015f5979fb31c5a96d16604374a8e74fc7703802d3b50a823741050d",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "keyboard": {
+                    "path": "experiments/038-hand-collision-audit/renders/nearby/keyboard.png",
+                    "sha256": "c27b78d9b39447c2ff506b6d1d424ab96e724833c977f11f29812560a9f58d66",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "side": {
+                    "path": "experiments/038-hand-collision-audit/renders/nearby/side.png",
+                    "sha256": "d0b5e26a3fb23d6de2f64d968922ef1d777704712d569c2d2f9b1885ed1d2fe3",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "hand": {
+                    "path": "experiments/038-hand-collision-audit/renders/nearby/hand.png",
+                    "sha256": "ad49b06db1866938274e4140f7e9c8b46d5eac30a95824afda17ac1e5b506714",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "collision": {
+                    "path": "experiments/038-hand-collision-audit/renders/nearby/collision.png",
+                    "sha256": "855d31940f8168b6e7148771289b7b00dc6956648eb6c9f9bafa648dd0343f5f",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  }
+                }
+              }
+            }
+          ],
           "searches": [
             {
               "evidence": {
@@ -2306,6 +2934,42 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/nearby/overview.png",
+              "sha256": "3105ffba015f5979fb31c5a96d16604374a8e74fc7703802d3b50a823741050d",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/nearby/keyboard.png",
+              "sha256": "c27b78d9b39447c2ff506b6d1d424ab96e724833c977f11f29812560a9f58d66",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/nearby/side.png",
+              "sha256": "d0b5e26a3fb23d6de2f64d968922ef1d777704712d569c2d2f9b1885ed1d2fe3",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/nearby/hand.png",
+              "sha256": "ad49b06db1866938274e4140f7e9c8b46d5eac30a95824afda17ac1e5b506714",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/nearby/collision.png",
+              "sha256": "855d31940f8168b6e7148771289b7b00dc6956648eb6c9f9bafa648dd0343f5f",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
@@ -2344,14 +3008,21 @@
             "continuous_validity": null
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 1,
+            "total_candidates": 1,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         }
       ],
@@ -2402,6 +3073,108 @@
           ],
           "status": "sampled_path_found",
           "branches": [],
+          "movement_attempts": [
+            {
+              "id": "movement-f7ef6e301b14cfe16044",
+              "evidence": {
+                "path": "experiments/037-upper-anchor-regression/larger/result.json",
+                "sha256": "9314d7dc50f43f1d1c5209a7c2f96abe9a8e55c021b706a2f1cae318b075d73a",
+                "role": "path",
+                "frozen_root": "experiments/037-upper-anchor-regression/larger"
+              },
+              "status": "sampled_path_found",
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "descriptors": {
+                "palm_path_length_m": 0.16251821055686164,
+                "palm_max_excursion_m": 0.15768396769851392,
+                "minimum_joint_margin_rad": 0.015860816702487568,
+                "maximum_registered_penetration_m": 0.0,
+                "sample_count": 578,
+                "joint_excursion_rad": {
+                  "wrist": {
+                    "deviation_r": 0.13315763348056436,
+                    "flexion_r": 1.153229905955397
+                  },
+                  "forearm": {
+                    "pro_sup_r": 0.5762076940243945
+                  },
+                  "shoulder": {
+                    "elv_angle_r": 0.01683826497691243,
+                    "shoulder_elv_r": 0.17449063013500377,
+                    "shoulder_rot_r": 0.38903259571198706
+                  },
+                  "index": {
+                    "mcp2_flexion_r": 0.3929644463963009,
+                    "mcp2_abduction_r": 0.00021724765566558113,
+                    "pm2_flexion_r": 0.32731992249447195,
+                    "md2_flexion_r": 0.7491432105210231
+                  },
+                  "middle": {
+                    "mcp3_flexion_r": 0.003159430576247735,
+                    "mcp3_abduction_r": 0.008746547336655669,
+                    "pm3_flexion_r": 0.0005225752283695706,
+                    "md3_flexion": 0.027081932522317928
+                  }
+                },
+                "maximum_held_position_error_m": null,
+                "continuous_validity": null
+              },
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "larger",
+                "sample_count": 578,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008723251099350994,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.009108688054291814,
+                  "panels": 0.004051681100739507,
+                  "caps": 5.168144311988953e-05
+                },
+                "diagnostic_views": {
+                  "overview": {
+                    "path": "experiments/038-hand-collision-audit/renders/larger/overview.png",
+                    "sha256": "b6a6f8680585627060f6f14c5bae9202596f00862bf4b7e6a2eea0cc6babe509",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "keyboard": {
+                    "path": "experiments/038-hand-collision-audit/renders/larger/keyboard.png",
+                    "sha256": "82e1e283390cf2bf89a33cf10c33434d093e02e7cf79f786a052f870c3218844",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "side": {
+                    "path": "experiments/038-hand-collision-audit/renders/larger/side.png",
+                    "sha256": "f63e578c9b35e1d1d13dccced543cb07a845cf6e83ad1bb24140a1d1b0440ae5",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "hand": {
+                    "path": "experiments/038-hand-collision-audit/renders/larger/hand.png",
+                    "sha256": "8afc2aae0b640122b87d749750eb9c54a25cf76b0eb6916b3de292e96b79dc70",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "collision": {
+                    "path": "experiments/038-hand-collision-audit/renders/larger/collision.png",
+                    "sha256": "165a6615772137f3ea6cdfc1ac669d41f729f343ae5d9b18a50fe59be43887aa",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  }
+                }
+              }
+            }
+          ],
           "searches": [
             {
               "evidence": {
@@ -2442,6 +3215,42 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/larger/overview.png",
+              "sha256": "b6a6f8680585627060f6f14c5bae9202596f00862bf4b7e6a2eea0cc6babe509",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/larger/keyboard.png",
+              "sha256": "82e1e283390cf2bf89a33cf10c33434d093e02e7cf79f786a052f870c3218844",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/larger/side.png",
+              "sha256": "f63e578c9b35e1d1d13dccced543cb07a845cf6e83ad1bb24140a1d1b0440ae5",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/larger/hand.png",
+              "sha256": "8afc2aae0b640122b87d749750eb9c54a25cf76b0eb6916b3de292e96b79dc70",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/larger/collision.png",
+              "sha256": "165a6615772137f3ea6cdfc1ac669d41f729f343ae5d9b18a50fe59be43887aa",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
@@ -2480,14 +3289,21 @@
             "continuous_validity": null
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 1,
+            "total_candidates": 1,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         }
       ],
@@ -2554,6 +3370,108 @@
           ],
           "status": "sampled_path_found",
           "branches": [],
+          "movement_attempts": [
+            {
+              "id": "movement-c3da667f1906c13f44f4",
+              "evidence": {
+                "path": "experiments/037-upper-anchor-regression/held/result.json",
+                "sha256": "5a5bec86896d5e8840487b83137100f826e3765f1a86af28fa11aaea135fb03d",
+                "role": "held",
+                "frozen_root": "experiments/037-upper-anchor-regression/held"
+              },
+              "status": "sampled_held_path_found",
+              "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+              "descriptors": {
+                "palm_path_length_m": 0.07128178533842722,
+                "palm_max_excursion_m": 0.05249159122654738,
+                "minimum_joint_margin_rad": 0.0003022934815981593,
+                "maximum_registered_penetration_m": 0.0,
+                "sample_count": 400,
+                "joint_excursion_rad": {
+                  "wrist": {
+                    "deviation_r": 0.2533981290671846,
+                    "flexion_r": 0.22118154064907158
+                  },
+                  "forearm": {
+                    "pro_sup_r": 0.2686595678995972
+                  },
+                  "shoulder": {
+                    "elv_angle_r": 0.05623536577992194,
+                    "shoulder_elv_r": 0.17992890931867916,
+                    "shoulder_rot_r": 0.10124545260098458
+                  },
+                  "index": {
+                    "mcp2_flexion_r": 0.3814456452023858,
+                    "mcp2_abduction_r": 0.08857839237160152,
+                    "pm2_flexion_r": 0.35033904705551344,
+                    "md2_flexion_r": 0.22450543605994455
+                  },
+                  "middle": {
+                    "mcp3_flexion_r": 0.4584901357697314,
+                    "mcp3_abduction_r": 0.2010664108026709,
+                    "pm3_flexion_r": 0.4918973999295805,
+                    "md3_flexion": 0.0988925511362957
+                  }
+                },
+                "maximum_held_position_error_m": null,
+                "continuous_validity": null
+              },
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "held",
+                "sample_count": 400,
+                "compiled_model_sha256": "de73c1112cb131711f016fef003f1f8c5caadacf7b7f377079d4a8f04ff49bfc",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.007418168432744189,
+                "unresolved_phalangeal_overlap_count_max": 5,
+                "clearance_minima_m": {
+                  "case_rim": 0.008923944613506901,
+                  "panels": 0.0040137437105384095,
+                  "caps": 1.3744067514047076e-05
+                },
+                "diagnostic_views": {
+                  "overview": {
+                    "path": "experiments/038-hand-collision-audit/renders/held/overview.png",
+                    "sha256": "4aacc527dd0380faa81cd86e5d2fe546cd5775b5246a072d07abbf2996b9f0bb",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "keyboard": {
+                    "path": "experiments/038-hand-collision-audit/renders/held/keyboard.png",
+                    "sha256": "1f5ae107741e725c88adb50d41e67d9d97b99ac54c92ff0c25ee1930a78702fe",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "side": {
+                    "path": "experiments/038-hand-collision-audit/renders/held/side.png",
+                    "sha256": "a9a7cab2b08e91cb2ef9ef54748e352ff71b53595c4e61bbe846e59da8332346",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "hand": {
+                    "path": "experiments/038-hand-collision-audit/renders/held/hand.png",
+                    "sha256": "fc96c4fed46103db1ef7b9c4f1122e11045d5ea424838f7058298ac55da42d95",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  },
+                  "collision": {
+                    "path": "experiments/038-hand-collision-audit/renders/held/collision.png",
+                    "sha256": "9be6c017760efd1480fef48b246338a063fe1835389e78ae4030ef9a23a82a4f",
+                    "role": "diagnostic_render",
+                    "frozen_root": "experiments/038-hand-collision-audit"
+                  }
+                }
+              }
+            }
+          ],
           "searches": [
             {
               "evidence": {
@@ -2592,6 +3510,42 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/held/overview.png",
+              "sha256": "4aacc527dd0380faa81cd86e5d2fe546cd5775b5246a072d07abbf2996b9f0bb",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/held/keyboard.png",
+              "sha256": "1f5ae107741e725c88adb50d41e67d9d97b99ac54c92ff0c25ee1930a78702fe",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/held/side.png",
+              "sha256": "a9a7cab2b08e91cb2ef9ef54748e352ff71b53595c4e61bbe846e59da8332346",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/held/hand.png",
+              "sha256": "fc96c4fed46103db1ef7b9c4f1122e11045d5ea424838f7058298ac55da42d95",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/renders/held/collision.png",
+              "sha256": "9be6c017760efd1480fef48b246338a063fe1835389e78ae4030ef9a23a82a4f",
+              "role": "diagnostic_render",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
@@ -2630,14 +3584,21 @@
             "continuous_validity": null
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 1,
+            "total_candidates": 1,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         }
       ],
@@ -2702,6 +3663,7 @@
           ],
           "status": "hypothesis",
           "branches": [],
+          "movement_attempts": [],
           "searches": [],
           "evidence": [],
           "descriptors": {},
@@ -2826,6 +3788,30 @@
                     0.047256329898859445
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "single-c4-candidate-0",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008651982063369682,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.009108688054291814,
+                  "panels": 0.004098780585617723,
+                  "caps": 9.878198277499249e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -2904,6 +3890,30 @@
                     0.06413617296015056
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "single-c4-candidate-1",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008716032269765351,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.008430862451652525,
+                  "panels": 0.0040488046476927,
+                  "caps": 4.880498715260438e-05
+                },
+                "diagnostic_views": {}
               }
             },
             {
@@ -2982,9 +3992,34 @@
                     0.049884612387295586
                   ]
                 }
+              },
+              "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+              "independent_audit": {
+                "policy_id": "native-hand-proxy-report-v1",
+                "evidence": {
+                  "path": "experiments/038-hand-collision-audit/result.json",
+                  "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+                  "role": "independent_sampled_proxy_audit",
+                  "frozen_root": "experiments/038-hand-collision-audit"
+                },
+                "record_id": "single-c4-candidate-2",
+                "sample_count": 1,
+                "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+                "configured_policy_status": "sampled_pairs_satisfied",
+                "instrument_policy_status": "sampled_pairs_satisfied",
+                "anatomical_validation": "unresolved",
+                "worst_cross_digit_phalangeal_distance_m": -0.008663021740953196,
+                "unresolved_phalangeal_overlap_count_max": 10,
+                "clearance_minima_m": {
+                  "case_rim": 0.002436785733144424,
+                  "panels": 0.004040390872732784,
+                  "caps": 4.039119532622714e-05
+                },
+                "diagnostic_views": {}
               }
             }
           ],
+          "movement_attempts": [],
           "searches": [
             {
               "evidence": {
@@ -3070,20 +4105,33 @@
               "sha256": "4ddb687022e883406061f697ba70a2200d134c208640041cf0352339f26754f5",
               "role": "independent_endpoint_coverage",
               "frozen_root": "experiments/037-upper-anchor-regression/coverage"
+            },
+            {
+              "path": "experiments/038-hand-collision-audit/result.json",
+              "sha256": "b0319eee2564852817775028e4d88876af96227ff50ff8a290a4295068946de3",
+              "role": "independent_sampled_proxy_audit",
+              "frozen_root": "experiments/038-hand-collision-audit"
             }
           ],
           "descriptors": {
             "candidate_palm_diameter_m": 0.1158457404182911
           },
           "validity": {
-            "quality": "numerically_realized",
+            "quality": "independently_audited",
             "human_feasibility": null,
             "anatomical_validation": "unresolved",
-            "independent_audit": "endpoints_only_anatomy_unresolved",
+            "independent_audit": "all_saved_candidates_audited_anatomy_unresolved",
             "coverage_limitations": [
               "Rigid proxies lack measured tissue calibration",
-              "No human observation, forces, depression, fatigue or tempo"
-            ]
+              "No human observation, forces, depression, fatigue or tempo",
+              "Other cross-digit phalangeal intersections remain unexplained; no complete anatomical nonpenetration certificate"
+            ],
+            "audit_policy_ids": [
+              "native-hand-proxy-report-v1"
+            ],
+            "audited_candidates": 3,
+            "total_candidates": 3,
+            "audit_scope": "Configured hand pairs and all instrument solids at saved samples; other hand proxy pairs reported unresolved"
           }
         },
         {
@@ -3103,6 +4151,7 @@
           ],
           "status": "hypothesis",
           "branches": [],
+          "movement_attempts": [],
           "searches": [],
           "evidence": [],
           "descriptors": {},

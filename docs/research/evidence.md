@@ -168,3 +168,17 @@ not a commercial reconstruction. −40 mm upper-case/neutral-shoulder offset and
 not imposed for new reference studies. Strap-supported geometry is not load
 equilibrium. Bone convex queries, passive native proxies and approximate thigh
 capsules are separately reported. Historical v2 evidence remains untouched.
+
+## Exercise-library proxy audit (038)
+
+The locked native MyoSim right-hand XML assigns bone meshes and 24 collision
+proxies to skeletal bodies. Capsule/ellipsoid shapes on the same distal segment
+compose an envelope; intersections among articulated or cross-digit segments
+remain uncalibrated proxy findings. This is imported-model structure and
+implementation evidence, not measured skin, personalized anatomy or observed
+human playability. `native-hand-proxy-report-v1` classifies those distinctions
+and preserves all 16 previously configured index/middle hypotheses unchanged.
+See [038](../../experiments/038-hand-collision-audit/notes.md) and the
+[provisional catalog](../../targets/CATALOG.md). Independent distance queries
+and render replay improve audit coverage; they cannot supply missing tissue
+calibration or turn a found solver branch into a human movement minimum.

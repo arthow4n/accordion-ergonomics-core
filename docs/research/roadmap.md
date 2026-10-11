@@ -5,8 +5,9 @@ physical interpretation. The compact upper `generic_cba_v3` reference is fixed.
 No unresolved calibration question blocks clearly classified hypotheses.
 
 - 038a: publish initial exact-world targets and query/integrity interface (done).
-- 038: independently classify unchanged hand proxies; audit neutral, endpoints
-  and every saved ordinary/held path sample. Report unresolved tissue validity.
+- 038: completed all 276 hand pairs and all instrument solids at 1,260 saved
+  states; configured pairs pass, unresolved middle/ring overlaps persist.
+  Complete anatomical policy remains unjustified without calibrated tissue.
 - 039: compare explicit matched multistart budgets and endpoint branches; make
   failure reasons, alternative branches and budget sensitivity visible.
 - 040: publish varied baselines, relocation, simultaneous, held, short-sequence
