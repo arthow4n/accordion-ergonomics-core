@@ -93,8 +93,24 @@ def events_with_notes(events: list[dict[str, Any]]) -> list[dict[str, Any]]:
             if c["finger"] not in ("index", "middle"):
                 raise ValueError("Only index and middle contacts are supported")
             button = BUTTONS[c["button_id"]]
+            if c.get("midi", button.midi) != button.midi:
+                raise ValueError("Contact MIDI differs from physical button")
+            if c.get("behavior", "contact") not in (
+                "contact",
+                "hold",
+                "release_after_event",
+            ):
+                raise ValueError("Unsupported contact behavior")
             contacts.append({**c, "midi": button.midi, "note": note_name(button.midi)})
         result.append({**event, "contacts": contacts})
+        if len({c["finger"] for c in contacts}) != len(contacts):
+            raise ValueError("A finger cannot contact two buttons simultaneously")
+    for previous, following in zip(result, result[1:], strict=False):
+        held = contact_signature(
+            [c for c in previous["contacts"] if c.get("behavior") == "hold"]
+        )
+        if not held <= contact_signature(following["contacts"]):
+            raise ValueError("Required held contact disappears")
     return result
 
 
@@ -166,7 +182,9 @@ def path_descriptors(
         }
         if len(samples)
         else {},
-        "maximum_held_position_error_m": record.get("maximum_held_position_error_m"),
+        "maximum_held_position_error_m": record.get("held_position_error_max_m"),
+        "maximum_held_normal_error_rad": record.get("held_normal_error_max_rad"),
+        "maximum_held_envelope_distance_m": record.get("held_contact_distance_max_m"),
         "continuous_validity": None,
     }
 
@@ -233,7 +251,9 @@ def attach_audits(
     candidates = realization["branches"] + realization["movement_attempts"]
     audited = []
     for candidate in candidates:
-        audit = index.get(candidate["evidence"]["sha256"])
+        audit = candidate.get("independent_audit") or index.get(
+            candidate["evidence"]["sha256"]
+        )
         candidate["independent_audit"] = audit
         if audit is None:
             continue
@@ -371,6 +391,11 @@ def build_realization(
                 )
                 saved = read(root, path)
                 check_world(saved, world)
+                if (
+                    saved["joint_names"] != candidate["state"]["joint_names"]
+                    or saved["qpos_rad"] != candidate["state"]["joint_angles_rad"]
+                ):
+                    raise ValueError("Candidate pose file differs from discovery state")
                 branch_ref = evidence_ref(root, path, "candidate_pose")
                 realization["evidence"].append(branch_ref)
                 branch = pose_branch(saved, candidate["descriptors"], branch_ref)
@@ -426,6 +451,19 @@ def build_realization(
                     "settings": record.get("settings", record["input"]),
                     "failure": record.get("failure"),
                     "method": record.get("method", "held-waypoint-continuation"),
+                    "direct_attempt": {
+                        k: v
+                        for k, v in record.get("direct_audit", {}).items()
+                        if k
+                        in (
+                            "status",
+                            "sampled_constraints_satisfied",
+                            "held_geometry_satisfied",
+                            "maximum_penetration_m",
+                            "held_position_error_max_m",
+                            "palm_path_length_m",
+                        )
+                    },
                 }
             )
             realization["descriptors"] = path_descriptors(
@@ -446,6 +484,83 @@ def build_realization(
                         "compiled_model_sha256"
                     ],
                     "descriptors": realization["descriptors"],
+                }
+            )
+        elif kind == "sequence":
+            sequence = next(
+                s for s in record["sequences"] if s["id"] == source["sequence_id"]
+            )
+            check_world(sequence, world)
+            if (
+                sequence["status"] != "sampled_path_composed"
+                or not sequence["exact_joint_endpoint_continuity"]
+            ):
+                raise ValueError("Sequence lacks exact sampled composition")
+            if [contact_signature(e["contacts"]) for e in sequence["events"]] != [
+                contact_signature(e["contacts"]) for e in events
+            ]:
+                raise ValueError("Sequence contacts differ from realization")
+            segments = []
+            for segment in sequence["segments"]:
+                relative = str(Path(source["path"]).parent / segment["result"])
+                segment_ref = evidence_ref(root, relative, "sequence_segment")
+                if segment_ref["sha256"] != segment["sha256"]:
+                    raise ValueError("Sequence segment changed")
+                realization["evidence"].append(segment_ref)
+                audit = (independent or {}).get(segment["sha256"])
+                if audit:
+                    segments.append(audit)
+                    realization["evidence"].append(audit["evidence"])
+            movement = {
+                "id": "movement-" + sequence["sample_states_sha256"][:20],
+                "evidence": ref,
+                "selector": sequence["id"],
+                "status": "sampled_path_found",
+                "compiled_model_sha256": sequence["compiled_model_sha256"],
+                "descriptors": sequence["descriptors"],
+                "segment_traversals": sequence["segments"],
+            }
+            if len(segments) == len(sequence["segments"]):
+                policies = {a["policy_id"] for a in segments}
+                if len(policies) != 1:
+                    raise ValueError("Sequence segment audit policies differ")
+                movement["independent_audit"] = {
+                    **segments[0],
+                    "record_id": sequence["id"],
+                    "sample_count": sequence["sample_count"],
+                    "configured_policy_status": "sampled_pairs_satisfied"
+                    if all(
+                        a["configured_policy_status"] == "sampled_pairs_satisfied"
+                        for a in segments
+                    )
+                    else "rejected",
+                    "instrument_policy_status": "sampled_pairs_satisfied"
+                    if all(
+                        a["instrument_policy_status"] == "sampled_pairs_satisfied"
+                        for a in segments
+                    )
+                    else "rejected",
+                    "worst_cross_digit_phalangeal_distance_m": min(
+                        a["worst_cross_digit_phalangeal_distance_m"] for a in segments
+                    ),
+                    "clearance_minima_m": {
+                        g: min(a["clearance_minima_m"][g] for a in segments)
+                        for g in segments[0]["clearance_minima_m"]
+                    },
+                    "coverage_semantics": (
+                        "Inherited from exact source samples in forward/reverse order; "
+                        "no dynamics"
+                    ),
+                }
+            realization["movement_attempts"].append(movement)
+            realization["descriptors"] = sequence["descriptors"]
+            realization["status"] = "sampled_path_found"
+            realization["searches"].append(
+                {
+                    "evidence": ref,
+                    "selector": sequence["id"],
+                    "method": "Exact sampled segment composition; no new solve",
+                    "settings": {"segments": sequence["segments"]},
                 }
             )
         else:
@@ -469,6 +584,26 @@ def build_realization(
             np.max(np.linalg.norm(palms[:, None] - palms[None, :], axis=2))
         )
     attach_audits(realization, independent or {})
+    if spec.get("search_summary"):
+        summary = spec["search_summary"]
+        report = read(root, summary["path"])
+        realization["evidence"].append(
+            evidence_ref(root, summary["path"], "search_budget_sensitivity")
+        )
+        realization["search_sensitivity"] = [
+            {
+                "panel_id": p["id"],
+                **next(
+                    t for t in p["targets"] if t["target_id"] == summary["target_id"]
+                ),
+            }
+            for p in report["panels"]
+        ]
+        realization["search_cost_caveat"] = (
+            "Current budgets matched; archived warm-state discovery was paid for "
+            "previously. Each panel also performs one reference/template solve "
+            "per target."
+        )
     realization["evidence"] = list(
         {(r["path"], r["sha256"]): r for r in realization["evidence"]}.values()
     )
@@ -564,6 +699,19 @@ def validate_catalog(catalog: dict[str, Any]) -> None:
                 raise ValueError("Realized entry lacks actual evidence")
             if r["validity"]["human_feasibility"] is not None:
                 raise ValueError("No human feasibility evidence")
+            if r["validity"]["quality"] == "independently_audited":
+                candidates = r["branches"] + r["movement_attempts"]
+                if not any(
+                    c.get("independent_audit")
+                    and c["independent_audit"]["configured_policy_status"]
+                    == "sampled_pairs_satisfied"
+                    and c["independent_audit"]["instrument_policy_status"]
+                    == "sampled_pairs_satisfied"
+                    for c in candidates
+                ):
+                    raise ValueError(
+                        "Independent quality lacks specified audit evidence"
+                    )
 
 
 def markdown(catalog: dict[str, Any]) -> str:

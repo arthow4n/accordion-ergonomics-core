@@ -8,8 +8,9 @@ No unresolved calibration question blocks clearly classified hypotheses.
 - 038: completed all 276 hand pairs and all instrument solids at 1,260 saved
   states; configured pairs pass, unresolved middle/ring overlaps persist.
   Complete anatomical policy remains unjustified without calibrated tissue.
-- 039: compare explicit matched multistart budgets and endpoint branches; make
-  failure reasons, alternative branches and budget sensitivity visible.
+- 039: completed matched current search budgets with recorded warm branches,
+  explicit prepaid provenance and prefix sensitivity. Nearby alternate branch
+  reduces found palm path63.669→34.684 mm without any minimum-movement claim.
 - 040: publish varied baselines, relocation, simultaneous, held, short-sequence
   and alternative-button targets with actual evidence and sample audits.
 

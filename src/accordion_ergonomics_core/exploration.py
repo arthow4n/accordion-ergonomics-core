@@ -26,6 +26,7 @@ def run_exploration(
 ) -> dict[str, Any]:
     raw_definition = definition.read_bytes()
     source = json.loads(raw_definition)
+    render = render and source.get("render", True)
     baseline = read_hashed(
         definition.parent / source["baseline_result"], source["baseline_sha256"]
     )

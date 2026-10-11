@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release": "0.2-proxy-audited",
+  "release": "0.3-recorded-branch-search",
   "reference_result": "experiments/037-upper-anchor-regression/central/result.json",
   "targets": [
     {
@@ -25,9 +25,18 @@
               "kind": "discovery",
               "path": "experiments/037-upper-anchor-regression/explore/result.json",
               "target_id": "single-c4"
+            },
+            {
+              "kind": "discovery",
+              "path": "experiments/039-search-reliability/warm-diverse/result.json",
+              "target_id": "single-c4"
             }
           ],
-          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json",
+          "search_summary": {
+            "path": "experiments/039-search-reliability/result.json",
+            "target_id": "single-c4"
+          }
         }
       ]
     },
@@ -53,9 +62,18 @@
               "kind": "discovery",
               "path": "experiments/037-upper-anchor-regression/explore/result.json",
               "target_id": "nearby-d4"
+            },
+            {
+              "kind": "discovery",
+              "path": "experiments/039-search-reliability/warm-diverse/result.json",
+              "target_id": "nearby-d4"
             }
           ],
-          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json",
+          "search_summary": {
+            "path": "experiments/039-search-reliability/result.json",
+            "target_id": "nearby-d4"
+          }
         }
       ]
     },
@@ -81,9 +99,18 @@
               "kind": "discovery",
               "path": "experiments/037-upper-anchor-regression/explore/result.json",
               "target_id": "large-g6"
+            },
+            {
+              "kind": "discovery",
+              "path": "experiments/039-search-reliability/warm-diverse/result.json",
+              "target_id": "large-g6"
             }
           ],
-          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json",
+          "search_summary": {
+            "path": "experiments/039-search-reliability/result.json",
+            "target_id": "large-g6"
+          }
         }
       ]
     },
@@ -114,9 +141,18 @@
               "kind": "discovery",
               "path": "experiments/037-upper-anchor-regression/explore/result.json",
               "target_id": "c4-csharp4"
+            },
+            {
+              "kind": "discovery",
+              "path": "experiments/039-search-reliability/warm-diverse/result.json",
+              "target_id": "c4-csharp4"
             }
           ],
-          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json",
+          "search_summary": {
+            "path": "experiments/039-search-reliability/result.json",
+            "target_id": "c4-csharp4"
+          }
         }
       ]
     },
@@ -147,9 +183,18 @@
               "kind": "discovery",
               "path": "experiments/037-upper-anchor-regression/explore/result.json",
               "target_id": "c4-e4"
+            },
+            {
+              "kind": "discovery",
+              "path": "experiments/039-search-reliability/warm-diverse/result.json",
+              "target_id": "c4-e4"
             }
           ],
-          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json",
+          "search_summary": {
+            "path": "experiments/039-search-reliability/result.json",
+            "target_id": "c4-e4"
+          }
         }
       ]
     },
@@ -183,6 +228,10 @@
             {
               "kind": "path",
               "path": "experiments/037-upper-anchor-regression/nearby/result.json"
+            },
+            {
+              "kind": "path",
+              "path": "experiments/039-search-reliability/nearby-alternate/result.json"
             }
           ],
           "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
@@ -332,9 +381,18 @@
               "kind": "discovery",
               "path": "experiments/037-upper-anchor-regression/explore/result.json",
               "target_id": "single-c4"
+            },
+            {
+              "kind": "discovery",
+              "path": "experiments/039-search-reliability/warm-diverse/result.json",
+              "target_id": "single-c4"
             }
           ],
-          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json",
+          "search_summary": {
+            "path": "experiments/039-search-reliability/result.json",
+            "target_id": "single-c4"
+          }
         },
         {
           "events": [
@@ -358,6 +416,8 @@
     "index+middle": "experiments/037-upper-anchor-regression/explore/c4-csharp4/candidate-0/result.json"
   },
   "independent_audits": [
-    "experiments/038-hand-collision-audit/result.json"
+    "experiments/038-hand-collision-audit/result.json",
+    "experiments/039-search-reliability/warm-coverage/result.json",
+    "experiments/039-search-reliability/nearby-alternate/hand-audit/result.json"
   ]
 }

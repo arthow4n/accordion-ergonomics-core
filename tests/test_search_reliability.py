@@ -81,3 +81,32 @@ def test_state_identity_depends_on_world_and_pose() -> None:
     assert first == state_id(["x"], [0.0], "world-a")
     assert first != state_id(["x"], [0.0], "world-b")
     assert first != state_id(["x"], [0.1], "world-a")
+
+
+def test_recorded_warm_branch_replays_contact_in_current_reference() -> None:
+    from accordion_ergonomics_core.candidates import (
+        CandidateSettings,
+        discover_candidates,
+    )
+    from accordion_ergonomics_core.experiment import Experiment
+    from accordion_ergonomics_core.scene import build_scene
+
+    warm = json.loads((ROOT / "explore/single-c4/candidate-2/result.json").read_text())
+    experiment = Experiment.from_dict(warm["input"])
+    scene = build_scene(
+        experiment.geometry,
+        experiment.player,
+        experiment.setup,
+        experiment.physical_contact,
+    )
+    result = discover_candidates(
+        scene,
+        experiment,
+        warm["qpos_rad"],
+        warm["profiles_sha256"],
+        CandidateSettings((), max_iterations=5),
+    )
+    assert result["status"] == "candidates_found"
+    assert result["attempts"][0]["status"] == "success"
+    assert result["attempts"][0]["diagnostics"]["max_penetration_m"] <= 0.0001
+    assert result["physical_feasibility"] is None

@@ -1,5 +1,31 @@
 # Research log
 
+## 2026-10-11 — Reuse recorded branches and expose bounded search sensitivity (039)
+
+[039](experiments/039-search-reliability/notes.md) keeps the exact fixed world and
+compares two explicit eight-start/220-iteration panels on five contact targets.
+Warm states reuse hashed 037 C4 branches; their earlier discovery cost is disclosed,
+so this is amortized reuse rather than equal-total-cost algorithm superiority.
+Distinct counts change 3/4/4/4/4→3/6/5/5/6; accepted attempts change 5→6/8 each.
+Two initial-collision failures remain. Ordered 1/4/8-start summaries expose budget
+and start-order sensitivity, while duplicates and invalid starts remain distinct.
+
+Switching nearby D4 endpoint branches under identical planning budgets finds a
+34.684 mm palm path versus the earlier 63.669 mm realization. Neither is a proven
+necessary movement or human minimum. All 187 alternate-path samples and 25 warm
+endpoints pass configured hand/instrument checks, but omitted phalangeal proxy
+depth reaches 8.758/10.316 mm respectively. Anatomy stays unresolved.
+
+Catalog release 0.3 re-evaluates the early realized targets with recorded warm
+branches and retains both nearby trajectories, failed starts and prefix summaries.
+Current exact source-hash joins attach independent audits to every evaluated
+branch; ten frozen roots/85 evidence files verify. Five search and five catalog
+tests pass, plus static checks. Selected four-view diagnostics and saved-state
+replay remain curated. The final no-render repeat reproduces all 80 attempt
+statuses/qpos and candidate arrays exactly; original redundant renders stay in
+scratch. A reusable exact sampled-segment composer supports the forthcoming
+sequence catalog without pretending that arbitrary endpoints form a trajectory.
+
 ## 2026-10-11 — Audit every saved hand/instrument sample without changing anatomy (038)
 
 [038](experiments/038-hand-collision-audit/notes.md) introduces the versioned

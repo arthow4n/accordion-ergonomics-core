@@ -1,0 +1,6423 @@
+{
+  "id": "039-nearby-alternate-hand-audit",
+  "input": {
+    "id": "039-nearby-alternate-hand-audit",
+    "records": [
+      {
+        "id": "nearby-alternate",
+        "result": "../result.json",
+        "sha256": "cb41d8fca4075be276ec8faa5a262d256b558cfaf57302d34fb24923b4224c84",
+        "kind": "path",
+        "model_result": "../../../037-upper-anchor-regression/explore/single-c4/candidate-0/result.json",
+        "model_sha256": "237138306528926aad5da9733fc74bb8ddd20091e03aa98024b5e049449de4ee",
+        "render": true
+      }
+    ]
+  },
+  "definition_sha256": "927a279154a293f159744895f51314792ed9fd555f5f0a0a855dc443d900726b",
+  "policy_id": "native-hand-proxy-report-v1",
+  "status": "hand_proxy_audited",
+  "records": [
+    {
+      "id": "nearby-alternate",
+      "source": {
+        "id": "nearby-alternate",
+        "result": "../result.json",
+        "sha256": "cb41d8fca4075be276ec8faa5a262d256b558cfaf57302d34fb24923b4224c84",
+        "kind": "path",
+        "model_result": "../../../037-upper-anchor-regression/explore/single-c4/candidate-0/result.json",
+        "model_sha256": "237138306528926aad5da9733fc74bb8ddd20091e03aa98024b5e049449de4ee",
+        "render": true
+      },
+      "provenance": {
+        "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+        "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+        "project_source_sha256": "4f534765ad2087f6ce72faf21af027c711230f527c9f9aadf8bb0630beaea927",
+        "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+        "render_backend": "egl"
+      },
+      "runtime": {
+        "python": "3.14.7",
+        "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+        "packages": {
+          "mujoco": "3.15.0",
+          "myo-sim": "0.2.3",
+          "mink": "1.3.0",
+          "numpy": "2.5.3",
+          "scipy": "1.18.1",
+          "clarabel": "0.11.1",
+          "pillow": "12.3.0"
+        }
+      },
+      "sample_count": 187,
+      "instrument_component_minima": {
+        "cba_treble_rear": {
+          "minimum_signed_proxy_distance_m": 0.010842234869531425,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_treble_grille": {
+          "minimum_signed_proxy_distance_m": 0.05142789433561205,
+          "minimum_sample_index": 169,
+          "anatomy_geom": "distph3_coll_2_r"
+        },
+        "cba_treble_inner": {
+          "minimum_signed_proxy_distance_m": 0.04161596866373206,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_treble_top": {
+          "minimum_signed_proxy_distance_m": 0.033414942485561774,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_treble_bottom": {
+          "minimum_signed_proxy_distance_m": 0.026184832994447238,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "cba_treble_shoulder": {
+          "minimum_signed_proxy_distance_m": 0.015654034435025287,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph3_coll_2_r"
+        },
+        "cba_treble_rear_return": {
+          "minimum_signed_proxy_distance_m": 0.01084223486953148,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_treble_wing_top": {
+          "minimum_signed_proxy_distance_m": 0.028173242841632848,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_treble_wing_bottom": {
+          "minimum_signed_proxy_distance_m": 0.020548202823034142,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "keyboard_panel": {
+          "minimum_signed_proxy_distance_m": 0.004034127577661849,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "cba_treble_mount": {
+          "minimum_signed_proxy_distance_m": 0.016034127577608207,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "cba_outer_rim": {
+          "minimum_signed_proxy_distance_m": 0.009108688054291814,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "cba_inner_rim": {
+          "minimum_signed_proxy_distance_m": 0.04179303403168175,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r1c4": {
+          "minimum_signed_proxy_distance_m": 0.009444412481655324,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r1c5": {
+          "minimum_signed_proxy_distance_m": 9.878198277499249e-05,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r1c6": {
+          "minimum_signed_proxy_distance_m": 0.007655046542222053,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r1c7": {
+          "minimum_signed_proxy_distance_m": 0.023548582851350103,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r1c8": {
+          "minimum_signed_proxy_distance_m": 0.03556653173743946,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r1c9": {
+          "minimum_signed_proxy_distance_m": 0.051050600889134774,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r1c10": {
+          "minimum_signed_proxy_distance_m": 0.05971504067168284,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5mcskin_r"
+        },
+        "r1c11": {
+          "minimum_signed_proxy_distance_m": 0.06569203678439699,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5mcskin_r"
+        },
+        "r1c12": {
+          "minimum_signed_proxy_distance_m": 0.0736985620524773,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "radius_coll_r"
+        },
+        "r1c13": {
+          "minimum_signed_proxy_distance_m": 0.08214448494119145,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "radius_coll_r"
+        },
+        "r1c14": {
+          "minimum_signed_proxy_distance_m": 0.07881073891987132,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r1c15": {
+          "minimum_signed_proxy_distance_m": 0.07195771094068908,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r2c3": {
+          "minimum_signed_proxy_distance_m": 0.023374773377100685,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r2c4": {
+          "minimum_signed_proxy_distance_m": 0.010253643853292693,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r2c5": {
+          "minimum_signed_proxy_distance_m": 0.008049478851374296,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r2c6": {
+          "minimum_signed_proxy_distance_m": 0.007180770521705438,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r2c7": {
+          "minimum_signed_proxy_distance_m": 0.019336010795401738,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r2c8": {
+          "minimum_signed_proxy_distance_m": 0.03619795027153212,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r2c9": {
+          "minimum_signed_proxy_distance_m": 0.0542477424389722,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r2c10": {
+          "minimum_signed_proxy_distance_m": 0.06386908833239266,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5proxph_coll_r"
+        },
+        "r2c11": {
+          "minimum_signed_proxy_distance_m": 0.07204197624282307,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5proxph_coll_r"
+        },
+        "r2c12": {
+          "minimum_signed_proxy_distance_m": 0.08347102202074319,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5proxph_coll_r"
+        },
+        "r2c13": {
+          "minimum_signed_proxy_distance_m": 0.08304705075092118,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r2c14": {
+          "minimum_signed_proxy_distance_m": 0.0752202721840129,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r2c15": {
+          "minimum_signed_proxy_distance_m": 0.06940754031416092,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r3c3": {
+          "minimum_signed_proxy_distance_m": 0.023310504652923274,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distal_thumb_coll_2_r"
+        },
+        "r3c4": {
+          "minimum_signed_proxy_distance_m": 0.008976371674135685,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r3c5": {
+          "minimum_signed_proxy_distance_m": 3.412790357623634e-05,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r3c6": {
+          "minimum_signed_proxy_distance_m": 0.008492415118072687,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r3c7": {
+          "minimum_signed_proxy_distance_m": 0.02518551620515616,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r3c8": {
+          "minimum_signed_proxy_distance_m": 0.043527188720049285,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r3c9": {
+          "minimum_signed_proxy_distance_m": 0.05873869234273953,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5midph_coll_r"
+        },
+        "r3c10": {
+          "minimum_signed_proxy_distance_m": 0.06632204751235873,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5midph_coll_r"
+        },
+        "r3c11": {
+          "minimum_signed_proxy_distance_m": 0.0774764332739379,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5midph_coll_r"
+        },
+        "r3c12": {
+          "minimum_signed_proxy_distance_m": 0.08921113471621496,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r3c13": {
+          "minimum_signed_proxy_distance_m": 0.08053321827681105,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r3c14": {
+          "minimum_signed_proxy_distance_m": 0.07370145816585703,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r4c3": {
+          "minimum_signed_proxy_distance_m": 0.0319607249937232,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distal_thumb_coll_2_r"
+        },
+        "r4c4": {
+          "minimum_signed_proxy_distance_m": 0.02248297749129319,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r4c5": {
+          "minimum_signed_proxy_distance_m": 0.010268043288196664,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r4c6": {
+          "minimum_signed_proxy_distance_m": 0.009313095207427386,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r4c7": {
+          "minimum_signed_proxy_distance_m": 0.021745802067319263,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r4c8": {
+          "minimum_signed_proxy_distance_m": 0.037839928460801794,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r4c9": {
+          "minimum_signed_proxy_distance_m": 0.053547989680527465,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5distph_coll_r"
+        },
+        "r4c10": {
+          "minimum_signed_proxy_distance_m": 0.06024715756321911,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5distph_coll_r"
+        },
+        "r4c11": {
+          "minimum_signed_proxy_distance_m": 0.07104447281832567,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5distph_coll_r"
+        },
+        "r4c12": {
+          "minimum_signed_proxy_distance_m": 0.08371958822103315,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5midph_coll_r"
+        },
+        "r4c13": {
+          "minimum_signed_proxy_distance_m": 0.0877615096410007,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r4c14": {
+          "minimum_signed_proxy_distance_m": 0.08006510261972778,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r4c15": {
+          "minimum_signed_proxy_distance_m": 0.07427106864530562,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r5c3": {
+          "minimum_signed_proxy_distance_m": 0.03964584200091666,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r5c4": {
+          "minimum_signed_proxy_distance_m": 0.0282561109769428,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r5c5": {
+          "minimum_signed_proxy_distance_m": 0.023292617628139396,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r5c6": {
+          "minimum_signed_proxy_distance_m": 0.02719621220734377,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_2_r"
+        },
+        "r5c7": {
+          "minimum_signed_proxy_distance_m": 0.03883872355894442,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph2_coll_r"
+        },
+        "r5c8": {
+          "minimum_signed_proxy_distance_m": 0.051932328672520026,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5distph_coll_r"
+        },
+        "r5c9": {
+          "minimum_signed_proxy_distance_m": 0.055978378963778185,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5distph_coll_r"
+        },
+        "r5c10": {
+          "minimum_signed_proxy_distance_m": 0.0649535188695522,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5distph_coll_r"
+        },
+        "r5c11": {
+          "minimum_signed_proxy_distance_m": 0.07734968096108519,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "5distph_coll_r"
+        },
+        "r5c12": {
+          "minimum_signed_proxy_distance_m": 0.09162969948083861,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll1"
+        },
+        "r5c13": {
+          "minimum_signed_proxy_distance_m": 0.08830601714814361,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "r5c14": {
+          "minimum_signed_proxy_distance_m": 0.08165301205638158,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "cba_bass_rear": {
+          "minimum_signed_proxy_distance_m": 0.08718670395245658,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_bass_grille": {
+          "minimum_signed_proxy_distance_m": 0.2530942168327623,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_bass_outer": {
+          "minimum_signed_proxy_distance_m": 0.09156757520196966,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_bass_inner": {
+          "minimum_signed_proxy_distance_m": 0.17101014693136363,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll3"
+        },
+        "cba_bass_top": {
+          "minimum_signed_proxy_distance_m": 0.10630787313756303,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_bass_bottom": {
+          "minimum_signed_proxy_distance_m": 0.10093446607876856,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "cba_bass_panel": {
+          "minimum_signed_proxy_distance_m": 0.19432111936635604,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c1": {
+          "minimum_signed_proxy_distance_m": 0.20883775197009602,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c2": {
+          "minimum_signed_proxy_distance_m": 0.20778767081287297,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c3": {
+          "minimum_signed_proxy_distance_m": 0.20773231312808632,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c4": {
+          "minimum_signed_proxy_distance_m": 0.20867216576549702,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c5": {
+          "minimum_signed_proxy_distance_m": 0.21059899977071805,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c6": {
+          "minimum_signed_proxy_distance_m": 0.21349618759324213,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c7": {
+          "minimum_signed_proxy_distance_m": 0.21733933761966112,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c8": {
+          "minimum_signed_proxy_distance_m": 0.22209720506719544,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c9": {
+          "minimum_signed_proxy_distance_m": 0.2277328150782743,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c10": {
+          "minimum_signed_proxy_distance_m": 0.234204715596475,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r1c11": {
+          "minimum_signed_proxy_distance_m": 0.23369766912320106,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r1c12": {
+          "minimum_signed_proxy_distance_m": 0.22751878537565645,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r1c13": {
+          "minimum_signed_proxy_distance_m": 0.22226886808415308,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r1c14": {
+          "minimum_signed_proxy_distance_m": 0.21799457332542643,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r1c15": {
+          "minimum_signed_proxy_distance_m": 0.21473594111053557,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r1c16": {
+          "minimum_signed_proxy_distance_m": 0.21252476502985795,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r2c1": {
+          "minimum_signed_proxy_distance_m": 0.21561069797603533,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c2": {
+          "minimum_signed_proxy_distance_m": 0.21506928604659847,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c3": {
+          "minimum_signed_proxy_distance_m": 0.21550248376885495,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c4": {
+          "minimum_signed_proxy_distance_m": 0.2169066223994321,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c5": {
+          "minimum_signed_proxy_distance_m": 0.21926992236803694,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c6": {
+          "minimum_signed_proxy_distance_m": 0.22257294047138138,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c7": {
+          "minimum_signed_proxy_distance_m": 0.2267892928401527,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c8": {
+          "minimum_signed_proxy_distance_m": 0.23188660208621015,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c9": {
+          "minimum_signed_proxy_distance_m": 0.2378275999643899,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r2c10": {
+          "minimum_signed_proxy_distance_m": 0.24376117068640146,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r2c11": {
+          "minimum_signed_proxy_distance_m": 0.2372691029390877,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r2c12": {
+          "minimum_signed_proxy_distance_m": 0.23166650776377107,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r2c13": {
+          "minimum_signed_proxy_distance_m": 0.22700000908122125,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r2c14": {
+          "minimum_signed_proxy_distance_m": 0.22331073866066897,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r2c15": {
+          "minimum_signed_proxy_distance_m": 0.2206327555549758,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r2c16": {
+          "minimum_signed_proxy_distance_m": 0.21899165824778655,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r3c1": {
+          "minimum_signed_proxy_distance_m": 0.22291562689132227,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c2": {
+          "minimum_signed_proxy_distance_m": 0.22286265208118383,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c3": {
+          "minimum_signed_proxy_distance_m": 0.22376213449497395,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c4": {
+          "minimum_signed_proxy_distance_m": 0.22560677292210518,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c5": {
+          "minimum_signed_proxy_distance_m": 0.22838180649824208,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c6": {
+          "minimum_signed_proxy_distance_m": 0.23206555809289747,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c7": {
+          "minimum_signed_proxy_distance_m": 0.2366302080576584,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c8": {
+          "minimum_signed_proxy_distance_m": 0.24204274214986998,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c9": {
+          "minimum_signed_proxy_distance_m": 0.24826600662313408,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r3c10": {
+          "minimum_signed_proxy_distance_m": 0.24741630752026816,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r3c11": {
+          "minimum_signed_proxy_distance_m": 0.24148904186754,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r3c12": {
+          "minimum_signed_proxy_distance_m": 0.23645934485814035,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r3c13": {
+          "minimum_signed_proxy_distance_m": 0.23236878052042775,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r3c14": {
+          "minimum_signed_proxy_distance_m": 0.2292529148027554,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r3c15": {
+          "minimum_signed_proxy_distance_m": 0.22713994322099923,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r3c16": {
+          "minimum_signed_proxy_distance_m": 0.22604954452488774,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r4c1": {
+          "minimum_signed_proxy_distance_m": 0.23071925035980828,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r4c2": {
+          "minimum_signed_proxy_distance_m": 0.2311335022585539,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r4c3": {
+          "minimum_signed_proxy_distance_m": 0.23247650607532472,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r4c4": {
+          "minimum_signed_proxy_distance_m": 0.23473785455018403,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r4c5": {
+          "minimum_signed_proxy_distance_m": 0.2379003495644919,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r4c6": {
+          "minimum_signed_proxy_distance_m": 0.24194060916542615,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r4c7": {
+          "minimum_signed_proxy_distance_m": 0.2468298605144461,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r4c8": {
+          "minimum_signed_proxy_distance_m": 0.2525348625729049,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r4c9": {
+          "minimum_signed_proxy_distance_m": 0.2579246815609168,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r4c10": {
+          "minimum_signed_proxy_distance_m": 0.2516988242525596,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r4c11": {
+          "minimum_signed_proxy_distance_m": 0.2463333228735533,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r4c12": {
+          "minimum_signed_proxy_distance_m": 0.24186964751359774,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r4c13": {
+          "minimum_signed_proxy_distance_m": 0.23834422945794137,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r4c14": {
+          "minimum_signed_proxy_distance_m": 0.2357871450665207,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r4c15": {
+          "minimum_signed_proxy_distance_m": 0.23422095626718037,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r4c16": {
+          "minimum_signed_proxy_distance_m": 0.23365980005436987,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r5c1": {
+          "minimum_signed_proxy_distance_m": 0.23898887761132176,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r5c2": {
+          "minimum_signed_proxy_distance_m": 0.23984861922621703,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r5c3": {
+          "minimum_signed_proxy_distance_m": 0.24161230546302276,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r5c4": {
+          "minimum_signed_proxy_distance_m": 0.24426693074464095,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r5c5": {
+          "minimum_signed_proxy_distance_m": 0.24779336154706205,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r5c6": {
+          "minimum_signed_proxy_distance_m": 0.25216697854814063,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r5c7": {
+          "minimum_signed_proxy_distance_m": 0.2573584641182743,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r5c8": {
+          "minimum_signed_proxy_distance_m": 0.2633346820043828,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r5c9": {
+          "minimum_signed_proxy_distance_m": 0.2622612747913282,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r5c10": {
+          "minimum_signed_proxy_distance_m": 0.256585610357412,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r5c11": {
+          "minimum_signed_proxy_distance_m": 0.251775579496287,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r5c12": {
+          "minimum_signed_proxy_distance_m": 0.2478679515432724,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r5c13": {
+          "minimum_signed_proxy_distance_m": 0.24489406290451893,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r5c14": {
+          "minimum_signed_proxy_distance_m": 0.24287868267255164,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r5c15": {
+          "minimum_signed_proxy_distance_m": 0.24183906420594525,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r5c16": {
+          "minimum_signed_proxy_distance_m": 0.24178425844847679,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c1": {
+          "minimum_signed_proxy_distance_m": 0.2476928122249426,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r6c2": {
+          "minimum_signed_proxy_distance_m": 0.24897616599819966,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r6c3": {
+          "minimum_signed_proxy_distance_m": 0.2511379584519177,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r6c4": {
+          "minimum_signed_proxy_distance_m": 0.25416305957176977,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r6c5": {
+          "minimum_signed_proxy_distance_m": 0.2580308506959438,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r6c6": {
+          "minimum_signed_proxy_distance_m": 0.2627158784622432,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r6c7": {
+          "minimum_signed_proxy_distance_m": 0.26818861876499156,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "bass_r6c8": {
+          "minimum_signed_proxy_distance_m": 0.273144805805755,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c9": {
+          "minimum_signed_proxy_distance_m": 0.2671828127412045,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c10": {
+          "minimum_signed_proxy_distance_m": 0.26205159762060803,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c11": {
+          "minimum_signed_proxy_distance_m": 0.2577878453802218,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c12": {
+          "minimum_signed_proxy_distance_m": 0.25442362927884055,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c13": {
+          "minimum_signed_proxy_distance_m": 0.2519853278380335,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c14": {
+          "minimum_signed_proxy_distance_m": 0.2504926743067987,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c15": {
+          "minimum_signed_proxy_distance_m": 0.24995801099952963,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "bass_r6c16": {
+          "minimum_signed_proxy_distance_m": 0.25038580816200096,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        },
+        "cba_bellows_front": {
+          "minimum_signed_proxy_distance_m": 0.1742278392364882,
+          "minimum_sample_index": 186,
+          "anatomy_geom": "distph3_coll_2_r"
+        },
+        "cba_bellows_rear": {
+          "minimum_signed_proxy_distance_m": 0.03710241128307247,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_bellows_top": {
+          "minimum_signed_proxy_distance_m": 0.06007616446614543,
+          "minimum_sample_index": 0,
+          "anatomy_geom": "thorax_coll2"
+        },
+        "cba_bellows_bottom": {
+          "minimum_signed_proxy_distance_m": 0.05583541273032343,
+          "minimum_sample_index": 0,
+          "anatomy_geom": ""
+        }
+      },
+      "instrument_proxy_pairs_distance_queried": 1225224,
+      "instrument_policy_status": "sampled_pairs_satisfied",
+      "samples": [
+        {
+          "index": 0,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 1,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 2,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 3,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 4,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 5,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 6,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 7,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 8,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 9,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 10,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 11,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 12,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 13,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 14,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 15,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 16,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 17,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 18,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 19,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 20,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 21,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 22,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 23,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 24,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 25,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 26,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 27,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 28,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 29,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 30,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 31,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 32,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 33,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 34,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 35,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 36,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 37,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 38,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 39,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 40,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 41,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 42,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 43,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 44,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 45,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 46,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 47,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 48,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 49,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 50,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 51,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 52,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 53,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 54,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 55,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 56,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 57,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 58,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 59,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 60,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 61,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 62,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 63,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 64,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 65,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 66,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 67,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 68,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 69,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 70,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 71,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 72,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 73,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 74,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 75,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 76,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 77,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 78,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 79,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 80,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 81,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 82,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 83,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 84,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 85,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 86,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 87,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 88,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 89,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 90,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 91,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 92,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 93,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 94,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 95,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 96,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 97,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 98,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 99,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 100,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 101,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 102,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 103,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 104,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 105,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 106,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 107,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 108,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 109,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 110,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 111,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 112,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 113,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 114,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 115,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 116,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 117,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 118,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 119,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 120,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 121,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 122,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 123,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 124,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 125,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 126,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 127,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 128,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 129,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 130,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 131,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 132,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 133,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 134,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 135,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 136,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 137,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 138,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 139,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 140,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 141,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 142,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 143,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 144,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 145,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 146,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 147,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 148,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 149,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 150,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 151,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 152,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 153,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 154,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 155,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 156,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 157,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 158,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 159,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 160,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 161,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 162,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 163,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 164,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 165,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 166,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 167,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 168,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 169,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 170,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 171,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 172,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 173,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 174,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 175,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 176,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 177,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 178,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 179,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 180,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 181,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 182,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 183,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 184,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 185,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        },
+        {
+          "index": 186,
+          "unresolved_overlap_count": 33,
+          "cross_digit_phalangeal_overlap_count": 10
+        }
+      ],
+      "pair_minima": [
+        {
+          "geoms": [
+            "1mcskin_r",
+            "proximal_thumb_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "thumb"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.018000000000000002,
+          "minimum_sample_index": 2
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "distal_thumb_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "thumb"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.015125873481719218,
+          "minimum_sample_index": 35
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "distal_thumb_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "thumb"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03994361172828705,
+          "minimum_sample_index": 8
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "2mcskin_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.00426202161514877,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "proxph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.02506963081179823,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "midph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.030498683238772632,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "distph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0344960542493047,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "distph2_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05013987102393144,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.005225082547983182,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0403624570700889,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07017073808861793,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08878600947828434,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.1060646453841672,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.013784949416358551,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04636162551430113,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06783317693464025,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08243239243804361,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.10003441502220657,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.019736267548750873,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04857705429016046,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06597435788402736,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07634602275223953,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "1mcskin_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.09157019527160518,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "distal_thumb_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "thumb"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.015,
+          "minimum_sample_index": 15
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "distal_thumb_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "thumb"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.010712707682536904,
+          "minimum_sample_index": 7
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "2mcskin_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.020465234794902976,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "proxph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.014147784031309016,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "midph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.01133881434143437,
+          "minimum_sample_index": 20
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "distph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.013669013372520085,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "distph2_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.027509532210361898,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.031881298104330706,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0421170982468572,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06589834891089749,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07739465156484923,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.09217914606200842,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.039695375909837904,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0485972626831324,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06472792706242222,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07205138045131487,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08726121791861666,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.045583099759635565,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05265947112489863,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06589633955894034,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07109475392362635,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proximal_thumb_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08283646795120411,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "distal_thumb_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "thumb"
+          ],
+          "classification": "same_segment_composite_envelope",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.003500001021821947,
+          "minimum_sample_index": 4
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "2mcskin_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03962953978517648,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "proxph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.015745148962960448,
+          "minimum_sample_index": 20
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "midph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.011236345760162837,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "distph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.012796635141896877,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "distph2_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.022061970616703272,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05332827033262282,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.054773878736547495,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06790681799308823,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07649819020741445,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08834541203602905,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06088802292685575,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.061157688274875284,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06688606341609793,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07225238414026203,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08439929919238255,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06702275713044448,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06703311576241,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06982471200382834,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07308376433866356,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08342962465027623,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "2mcskin_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.059007114587975966,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "proxph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.027720428303244192,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "midph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.02244243476874558,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "distph2_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.02341598619073376,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "distph2_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "index"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.028577447866641324,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07380370581000838,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07318453514369647,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07780644989923,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08254481368451662,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "middle"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.09342901247020667,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0824399958572336,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0781160482027973,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07765455212700703,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07900900635220841,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08983884548411872,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08990989751966184,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08524645483122656,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08292261220613963,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08298684748824228,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distal_thumb_coll_2_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "thumb",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.09060940721640309,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "proxph2_coll_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.016306244820049554,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "midph2_coll_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.024641263513353023,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "distph2_coll_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04658232937466396,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "distph2_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06629915188740296,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.009362531798145071,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0007100155214861646,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03194664225026717,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.058999037057811336,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07735912836547801,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.00022360267121255065,
+          "minimum_sample_index": 148
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.013685586549351564,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03379119360303729,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.054203710892484526,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07152735770967064,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.009327381958808676,
+          "minimum_sample_index": 152
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.025917211677678097,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.037131909859175534,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05032269147937839,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "2mcskin_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06533153743576427,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "midph2_coll_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.016361915575574794,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "distph2_coll_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.00900428650142221,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "distph2_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.027801799504909526,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 8.320856286042622e-05,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.0011420788714620773,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.027835478170515966,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.043793681916161294,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.05943625857677872,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.01452199372961663,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.01532976816489056,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.02852229835958669,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0384944066970225,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05417341285023514,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.028510398701879644,
+          "minimum_sample_index": 180
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.029100252498057692,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0341169559764987,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03919859040772276,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "proxph2_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05036407196079479,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "distph2_coll_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.01398025690074381,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "distph2_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.005616833378300077,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03405500333427532,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.029063000554087122,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.03418032700127387,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.044475490604208884,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.06003468893701807,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0408574443129336,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03223416445896654,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03346817469830854,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03922604136651776,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.054807969318875445,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04957174906923956,
+          "minimum_sample_index": 180
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03965233377836573,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.038824475739495296,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.040371757142340724,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "midph2_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05115359316984911,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "distph2_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "index"
+          ],
+          "classification": "same_segment_composite_envelope",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0036612193425606104,
+          "minimum_sample_index": 137
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05511468633757113,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.051217903745911106,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.05281468736464558,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.05569964120276478,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.06833960192330668,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05837493107761504,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05030514097349012,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04864654080005755,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.050085000917920584,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06360202063915983,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06233020650619971,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.053760461988031735,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.049540963944473174,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.049777173490499246,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05877003861698588,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "3mcskin_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07427760225307967,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.06885827930760201,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.0668714459841982,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.0678668013368522,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "middle"
+          ],
+          "classification": "configured_separation_hypothesis",
+          "configured": true,
+          "mask_compatible": false,
+          "explicit_engine_pair": true,
+          "minimum_signed_proxy_distance_m": 0.07812295169660874,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07644472988974658,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06657501396476889,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06202225307258211,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06233704012851736,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07380902617124871,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07891273903008975,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0690774667669537,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06259122954041602,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.060789204198341586,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "distph2_coll_2_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "index",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06919108131561788,
+          "minimum_sample_index": 186
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "proxph3_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.01895661286086915,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.025466359093937525,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.054419869547220695,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07314849749020058,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.010318393721652643,
+          "minimum_sample_index": 70
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0026709212984849223,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.025334858253825837,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04932740161888984,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06689310949411842,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.00023889818011961148,
+          "minimum_sample_index": 74
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.011920905687984928,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.025242883724970223,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04220984508812058,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "3mcskin_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.058119386068989844,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "midph3_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.016555439093657188,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.013996447257964291,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03202344082964644,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.00268766812941797,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.005652382256035969,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.004373184861088977,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.011433973095792423,
+          "minimum_sample_index": 20
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.02654305717780979,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.013265022348455864,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.010823888483570923,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.01191629498984531,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.014641226287742773,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph3_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.023827297862436043,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "distph3_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.013019773613937758,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.005592750537212077,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.02893210414327959,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0028566443193252192,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0073149851544977145,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.007443028885906165,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.00045963614181957716,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.040828122692192874,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.01601699367625617,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.010071413782583988,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.006233995284779732,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph3_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.006830372398002018,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "distph3_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "middle"
+          ],
+          "classification": "same_segment_composite_envelope",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0034562952384058,
+          "minimum_sample_index": 143
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05548981404566016,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0187727456259636,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0028405776597062197,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.008005738529206594,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.008758469440074431,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06368858003716343,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03238153833577559,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.015140634749930399,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.006785434320115026,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.006520598765620558,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "4mcski_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07410524377559563,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.037281745336853564,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.015621343219122247,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0027510285077987093,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "ring"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0011234078858367547,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.08183619603435559,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.049910845721755456,
+          "minimum_sample_index": 8
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03146281609511506,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.019485777788955133,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph3_coll_2_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "middle",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.017618433080212183,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "proxph4_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.016123298961423622,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.024771094262119903,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04953438872627846,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.06741034115142051,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.007069344342212531,
+          "minimum_sample_index": 79
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.001991266618967513,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.017857554607794125,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03812264988773987,
+          "minimum_sample_index": 12
+        },
+        {
+          "geoms": [
+            "4mcski_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05507092510562978,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph4_coll_r",
+            "midph4_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.011999741855452162,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proxph4_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.013454030857592093,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proxph4_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03073137303423029,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph4_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0004460277907442616,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "proxph4_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0014234140852852385,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph4_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 3.126765709268644e-05,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph4_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.007383384673638907,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "proxph4_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.021248045608124915,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph4_coll_r",
+            "distph4_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.009524158615119715,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "midph4_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.008599566254000164,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "midph4_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.03376009484688464,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "midph4_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.005200604164374532,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph4_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0009118546774247267,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph4_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0010353327329847423,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "midph4_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.004450793753716065,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph4_coll_r",
+            "distph4_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "ring"
+          ],
+          "classification": "same_segment_composite_envelope",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0025810379579029943,
+          "minimum_sample_index": 152
+        },
+        {
+          "geoms": [
+            "distph4_coll_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05699182950994327,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distph4_coll_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.025768893929723646,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "distph4_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.00804004841909597,
+          "minimum_sample_index": 174
+        },
+        {
+          "geoms": [
+            "distph4_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0010123235415151538,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph4_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.0027557572337500247,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph4_coll_2_r",
+            "5mcskin_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_palm_composition_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.07486120787906828,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph4_coll_2_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.042981754313390005,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph4_coll_2_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.024360200460789072,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph4_coll_2_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.012655531345723612,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "distph4_coll_2_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "ring",
+            "little"
+          ],
+          "classification": "cross_digit_phalangeal_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.011204840811025603,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "5mcskin_r",
+            "5proxph_coll_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.015421945714303924,
+          "minimum_sample_index": 26
+        },
+        {
+          "geoms": [
+            "5mcskin_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.020933217796677048,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "5mcskin_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.04207717816684804,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "5mcskin_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.05945346885507561,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "5proxph_coll_r",
+            "5midph_coll_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.011458539749163953,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "5proxph_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.010277723537682375,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "5proxph_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.02725995975598032,
+          "minimum_sample_index": 0
+        },
+        {
+          "geoms": [
+            "5midph_coll_r",
+            "5distph_coll_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.010230727990970592,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "5midph_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "articulating_same_digit_unresolved",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": 0.007173292747322444,
+          "minimum_sample_index": 169
+        },
+        {
+          "geoms": [
+            "5distph_coll_r",
+            "5distph_coll_2_r"
+          ],
+          "digits": [
+            "little",
+            "little"
+          ],
+          "classification": "same_segment_composite_envelope",
+          "configured": false,
+          "mask_compatible": false,
+          "explicit_engine_pair": false,
+          "minimum_signed_proxy_distance_m": -0.0029536832543259816,
+          "minimum_sample_index": 128
+        }
+      ],
+      "configured_pair_rejections": [],
+      "configured_policy_status": "sampled_pairs_satisfied",
+      "anatomical_validation": "unresolved",
+      "worst_cross_digit_phalangeal_distance_m": -0.008758469440074431,
+      "render_sample_index": 169,
+      "render_qpos_rad": [
+        -0.14028630856091157,
+        0.05941878771691502,
+        -0.05941878771691502,
+        0.14028630856091157,
+        -0.028405079006134988,
+        0.2295594140087644,
+        0.10318579720595975,
+        -0.10318579720595975,
+        -0.2295594140087644,
+        0.02840507900613499,
+        -0.5648871770330564,
+        0.5796954899211222,
+        0.5648871770330564,
+        0.07705015997395105,
+        1.99643926653591,
+        -0.3819250204553197,
+        -0.01405866570496711,
+        0.5193231519650012,
+        0.003564247932682605,
+        -0.005371169069572431,
+        0.0012814213054103767,
+        0.00011966870510717507,
+        1.1038835905127657,
+        0.20666622623578196,
+        0.4785560744910473,
+        0.277479415192167,
+        0.19010767355777944,
+        -0.16841459462032352,
+        0.4160874621388324,
+        0.07147435024443564,
+        0.2328331722144684,
+        0.05948835719093739,
+        0.3103522595037607,
+        0.06953572907515444,
+        0.1401871059405883,
+        0.11266302273550265,
+        0.322994034953831,
+        0.07094441549212299
+      ],
+      "cameras": {
+        "overview": {
+          "lookat": [
+            0.10654139884679645,
+            0.22461164636900655,
+            0.8005999999997332
+          ],
+          "distance": 1.95,
+          "azimuth": -125.0,
+          "elevation": -12.0
+        },
+        "keyboard": {
+          "lookat": [
+            0.10654139884679645,
+            0.22461164636900655,
+            0.8005999999997332
+          ],
+          "distance": 1.95,
+          "azimuth": -90.0,
+          "elevation": 0.0
+        },
+        "side": {
+          "lookat": [
+            0.10654139884679645,
+            0.22461164636900655,
+            0.8005999999997332
+          ],
+          "distance": 1.95,
+          "azimuth": 180.0,
+          "elevation": 0.0
+        },
+        "hand": {
+          "lookat": [
+            0.20383416412000782,
+            0.06930012373779074,
+            0.9577077266960041
+          ],
+          "distance": 0.42,
+          "azimuth": -119.99999999999999,
+          "elevation": -20.0
+        },
+        "collision": {
+          "lookat": [
+            0.20383416412000782,
+            0.06930012373779074,
+            0.9577077266960041
+          ],
+          "distance": 0.42,
+          "azimuth": -119.99999999999999,
+          "elevation": -20.0
+        }
+      }
+    }
+  ],
+  "human_feasibility": null,
+  "interpretation": "All hand pair distances independently queried at recorded samples. Same-segment proxies compose envelopes; configured separation pairs remain hypotheses. Other intersections remain unresolved rigid-proxy overlaps, not proven tissue intersections. Unsampled intervals and calibrated anatomy remain unvalidated."
+}

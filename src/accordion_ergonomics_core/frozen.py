@@ -29,6 +29,7 @@ def frozen_run(
         "cba-geometry",
         "hand-audit",
         "search-reliability",
+        "sequence",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

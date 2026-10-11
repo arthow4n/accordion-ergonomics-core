@@ -201,6 +201,7 @@ def main() -> None:
             "cba-geometry",
             "hand-audit",
             "search-reliability",
+            "sequence",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -248,6 +249,9 @@ def main() -> None:
     reliability = sub.add_parser("search-reliability")
     reliability.add_argument("definition", type=Path)
     reliability.add_argument("--output", type=Path, required=True)
+    sequence = sub.add_parser("sequence")
+    sequence.add_argument("definition", type=Path)
+    sequence.add_argument("--output", type=Path, required=True)
     targets = sub.add_parser("targets")
     target_sub = targets.add_subparsers(dest="target_command", required=True)
     listing = target_sub.add_parser("list")
@@ -274,6 +278,11 @@ def main() -> None:
         from .search_reliability import run_search_reliability
 
         result = run_search_reliability(args.definition, args.output)
+        print(json.dumps({"id": result["id"]}))
+    elif args.command == "sequence":
+        from .sequences import run_sequences
+
+        result = run_sequences(args.definition, args.output)
         print(json.dumps({"id": result["id"]}))
     elif args.command == "check":
         for command in (

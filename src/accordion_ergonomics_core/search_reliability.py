@@ -171,6 +171,8 @@ def run_search_reliability(
     """Run matched ordinary exploration panels in this already frozen process."""
     from .exploration import run_exploration
 
+    source = json.loads(definition.read_text())
+    render = bool(source.get("render", render))
     paths = write_search_panels(definition, output)
     for path in paths:
         run_exploration(path, path.parent, render)
@@ -183,8 +185,9 @@ def run_search_reliability(
         definition_sha256=hashlib.sha256(definition.read_bytes()).hexdigest(),
         artifact_sha256={
             str(path.relative_to(output)): hashlib.sha256(path.read_bytes()).hexdigest()
-            for path in sorted(output.rglob("*"))
-            if path.is_file() and path != output / "result.json"
+            for panel in paths
+            for path in sorted(panel.parent.rglob("*"))
+            if path.is_file()
         },
     )
     (output / "result.json").write_text(

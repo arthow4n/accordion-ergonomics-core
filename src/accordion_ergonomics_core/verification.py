@@ -163,6 +163,17 @@ def verify_record(
                         request["model_sha256"],
                         request["id"] + " model source",
                     )
+            for relative, expected in result.get("artifact_sha256", {}).items():
+                file_hash(directory / relative, expected, relative)
+        elif workflow == "sequence":
+            records.extend((r["id"], r) for r in result["sequences"])
+            for request in result["input"]["sequences"]:
+                for segment in request["segments"]:
+                    file_hash(
+                        definition.parent / segment["result"],
+                        segment["sha256"],
+                        request["id"] + " segment",
+                    )
         elif workflow == "search-reliability":
             for relative, expected in result["artifact_sha256"].items():
                 file_hash(directory / relative, expected, relative)
