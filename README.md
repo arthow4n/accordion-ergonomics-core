@@ -37,7 +37,7 @@ See [RESEARCH_LOG.md](RESEARCH_LOG.md) for findings and failed investigations.
 
 ## Exercise target library
 
-The [40-target provisional catalog](targets/CATALOG.md) separates musical intent, physical
+The [45-target provisional catalog](targets/CATALOG.md) separates musical intent, physical
 named five-finger contacts, search branches and actual frozen evidence. All human
 feasibility values remain unknown. Use `uv run aec targets list`,
 `uv run aec targets show central-c4`, and `uv run aec targets verify central-c4`.
@@ -106,8 +106,9 @@ bytes can differ across driver versions; numerical state is the evidence.
 Finite topology, metric geometry, anatomical model constraints, numerical
 solver weights and ergonomic hypotheses have distinct provenance. Unknown
 button travel is represented by null. No grid-distance difficulty or universal
-ergonomic score is implemented. Contact requests are a collection; unsupported
-gestures beyond the implemented index/middle pair are rejected explicitly.
+ergonomic score is implemented. Contact requests name distinct fingers and
+buttons across all five digits. Support for a specification does not guarantee
+a successful solve or anatomical validity.
 The latest collision audit reveals unchecked finger-proxy overlaps even in
 accepted gestures. See [014](experiments/014-collision-coverage/notes.md) and the
 measurement protocol before treating a solver acceptance as human feasibility.
@@ -116,3 +117,12 @@ Mink-native reproduction semantics. For new studies explicitly set
 `solver.collision_limit_implementation = "displacement"`; its step-backtracking
 budget and angular sampling resolution are recorded parameters. See 016–020
 for dependency falsification, corrected solving and selective collision studies.
+
+Connected five-finger passage search now separates pitches, physical duplicate
+buttons, finger assignments and actual sampled movement. See
+[042](experiments/042-connected-fingerings/notes.md) for alternate strategies,
+recorded algorithm graphs and four actual-state animations, including collision
+limitations and held-search failures. Import `ExerciseLibrary`, `Passage`,
+`NoteEvent` and `discover_passage` from `accordion_ergonomics_core.research`; the
+[consumer example](examples/consume_passage_library.py) retrieves trajectories
+and checked media paths without manually browsing experiment directories.

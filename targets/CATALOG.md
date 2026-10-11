@@ -1,6 +1,6 @@
 # Right-hand exercise target catalog
 
-Release 0.5-five-finger-controls. 40 musical targets in the fixed compact-upper native v3 world.
+Release 0.6-connected-five-finger-passages. 45 musical targets in the fixed compact-upper native v3 world.
 
 **Provisional model challenges. Human feasibility is unknown for every entry.**
 
@@ -50,6 +50,11 @@ Use `uv run aec targets list --family held`, `uv run aec targets show TARGET_ID`
 | [five-finger-index-little](#five-finger-index-little) | five-finger-control | C4+E4 | not_found_with_current_search | unresolved anatomy |
 | [five-finger-three-long](#five-finger-three-long) | five-finger-control | C4+C#4+D4 | not_found_with_current_search | unresolved anatomy |
 | [five-finger-thumb-index](#five-finger-thumb-index) | five-finger-control | C4+C#4 | not_found_with_current_search | unresolved anatomy |
+| [passage-stepwise](#passage-stepwise) | sequence | C4 → D4 → E4 | sampled_path_found | unresolved anatomy |
+| [passage-repetition](#passage-repetition) | repetition | C4 → C4 → C4 | sampled_path_found | unresolved anatomy |
+| [passage-thumb-reversal](#passage-thumb-reversal) | reversal | C4 → Eb4 → C4 | sampled_path_found | unresolved anatomy |
+| [passage-held-ring](#passage-held-ring) | held | C4+E4 → C4+F4 | no_complete_passage_found | unresolved anatomy |
+| [passage-held-repeat](#passage-held-repeat) | held | C4+E4 → C4+E4 | no_complete_passage_found | unresolved anatomy |
 
 ## central-c4
 
@@ -621,5 +626,99 @@ Named digit contact control with unassigned digits permitted to articulate; fini
   Evidence: [discovery](../experiments/041-five-finger-contacts/free/result.json) (SHA256 `0398c02d76ef46e3b4e8b0592155891ff864a51f24c8963d1e0bcd83e2a4166e`).
   Evidence: [independent_endpoint_coverage](../experiments/041-five-finger-contacts/coverage/result.json) (SHA256 `2768824e902840110e44b5eb6d8f2ca90cb0fd440d7a7a64ecc508c3f3f5fc2f`).
   Evidence: [independent_contact_report](../experiments/041-five-finger-contacts/diagnostics/result.json) (SHA256 `3a237aece006c1e94b81546918a6d47bb05d05672ed241d410f46991ceccd7eb`).
+
+## passage-stepwise
+
+C4–D4–E4 bounded whole-hand beam search; alternate E4 button/finger strategies, with preparation failures preserved.
+
+[connected_passage_search](../experiments/042-connected-fingerings/stepwise/result.json).
+[passage_media_audit](../experiments/042-connected-fingerings/stepwise-media/result.json).
+[search_diagram](../experiments/042-connected-fingerings/stepwise-media/search.svg).
+[animation](../experiments/042-connected-fingerings/stepwise-media/strategy-0/trajectory.gif).
+[animation](../experiments/042-connected-fingerings/stepwise-media/strategy-1/trajectory.gif).
+- `realization-3b107e386c31f199e507`: middle r4c5 (C4; release_after_event) → little r3c5 (D4; release_after_event) → index r5c6 (E4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-0`: 522 samples, palm path 75.193 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.4713435438802869}, "index": {"mcp2_abduction_r": 0.4216475194776008, "mcp2_flexion_r": 0.06780384214668611, "md2_flexion_r": 0.8081334720335681, "pm2_flexion_r": 0.5036834045728422}, "middle": {"mcp3_abduction_r": 0.09983365340566458, "mcp3_flexion_r": 0.1408936802695394, "md3_flexion": 0.04304374179792683, "pm3_flexion_r": 0.0889861939487826}, "shoulder": {"elv_angle_r": 0.5614694876550368, "shoulder_elv_r": 0.16738871556053492, "shoulder_rot_r": 0.13598614061457825}, "wrist": {"deviation_r": 0.5601965767937422, "flexion_r": 0.6813612292392246}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.07519257163752344, "sample_count": 522}`.
+  Evidence: [connected_passage_search](../experiments/042-connected-fingerings/stepwise/result.json) (SHA256 `9f1a5008107bb6496846adb71aa0aa4defefc312f99c2aa045bf7a9b2fcb57f5`).
+  Evidence: [passage_media_audit](../experiments/042-connected-fingerings/stepwise-media/result.json) (SHA256 `5dc1b9addd834a2390430ec425dcbcfb577664a4c318b495712ba858c0e74385`).
+  Evidence: [search_diagram](../experiments/042-connected-fingerings/stepwise-media/search.svg) (SHA256 `e11b57ab3243ad177a90ed811cdbc97038f8530366da4fb3bcb5c07cc599fd4e`).
+  Evidence: [animation](../experiments/042-connected-fingerings/stepwise-media/strategy-0/trajectory.gif) (SHA256 `326e2ecbe97359d291c233e2ceea9ec1510a46be9c978be30a02e43bb125a68b`).
+  Evidence: [animation](../experiments/042-connected-fingerings/stepwise-media/strategy-1/trajectory.gif) (SHA256 `4d054f1dbe5fed788441a59874fe236613150e66e8241aca31eac586408f8629`).
+- `realization-21f61c0421c88004e8f9`: middle r4c5 (C4; release_after_event) → little r3c5 (D4; release_after_event) → ring r2c6 (E4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-1`: 656 samples, palm path 84.208 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.5305147037033671}, "index": {"mcp2_abduction_r": 0.1213588593855402, "mcp2_flexion_r": 0.3232202550829084, "md2_flexion_r": 0.8080211290353224, "pm2_flexion_r": 0.0785744760033702}, "middle": {"mcp3_abduction_r": 0.05890504948793718, "mcp3_flexion_r": 0.1769273652169493, "md3_flexion": 0.043483916999209477, "pm3_flexion_r": 0.09784674442540298}, "shoulder": {"elv_angle_r": 0.738812065990079, "shoulder_elv_r": 0.07858810744229433, "shoulder_rot_r": 0.054557638452118334}, "wrist": {"deviation_r": 0.21715231323261464, "flexion_r": 0.8874189946293404}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.08420789604634542, "sample_count": 656}`.
+  Evidence: [connected_passage_search](../experiments/042-connected-fingerings/stepwise/result.json) (SHA256 `9f1a5008107bb6496846adb71aa0aa4defefc312f99c2aa045bf7a9b2fcb57f5`).
+  Evidence: [passage_media_audit](../experiments/042-connected-fingerings/stepwise-media/result.json) (SHA256 `5dc1b9addd834a2390430ec425dcbcfb577664a4c318b495712ba858c0e74385`).
+  Evidence: [search_diagram](../experiments/042-connected-fingerings/stepwise-media/search.svg) (SHA256 `e11b57ab3243ad177a90ed811cdbc97038f8530366da4fb3bcb5c07cc599fd4e`).
+  Evidence: [animation](../experiments/042-connected-fingerings/stepwise-media/strategy-0/trajectory.gif) (SHA256 `326e2ecbe97359d291c233e2ceea9ec1510a46be9c978be30a02e43bb125a68b`).
+  Evidence: [animation](../experiments/042-connected-fingerings/stepwise-media/strategy-1/trajectory.gif) (SHA256 `4d054f1dbe5fed788441a59874fe236613150e66e8241aca31eac586408f8629`).
+
+## passage-repetition
+
+Repeated C4 with actual index withdrawal and return; duplicate row alternatives.
+
+[connected_passage_search](../experiments/042-connected-fingerings/repetition/result.json).
+[passage_media_audit](../experiments/042-connected-fingerings/repetition-media/result.json).
+[search_diagram](../experiments/042-connected-fingerings/repetition-media/search.svg).
+[animation](../experiments/042-connected-fingerings/repetition-media/strategy-0/trajectory.gif).
+- `realization-6ac55b2c814c1b11c5e9`: index r1c5 (C4; release_after_event) → index r1c5 (C4; release_after_event) → index r1c5 (C4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-0`: 54 samples, palm path 27.235 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.016503853853351513}, "index": {"mcp2_abduction_r": 0.021822614442722738, "mcp2_flexion_r": 0.010375523338561843, "md2_flexion_r": 0.03524717796232206, "pm2_flexion_r": 0.016354485717748002}, "middle": {"mcp3_abduction_r": 0.009988140850169774, "mcp3_flexion_r": 0.00402112082734557, "md3_flexion": 0.028932198579163862, "pm3_flexion_r": 0.000432945121735695}, "shoulder": {"elv_angle_r": 0.013618459354740597, "shoulder_elv_r": 0.04250885388939146, "shoulder_rot_r": 0.025596411778209413}, "wrist": {"deviation_r": 0.021778042316751234, "flexion_r": 0.04503716519566703}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.027235164602640624, "sample_count": 54}`.
+  Evidence: [connected_passage_search](../experiments/042-connected-fingerings/repetition/result.json) (SHA256 `eea15ef5d31b0946ec0abd7d985e1e0a6a956ff0cb947c490633c3473d62c387`).
+  Evidence: [passage_media_audit](../experiments/042-connected-fingerings/repetition-media/result.json) (SHA256 `048ee7598edc8180025ef63a2982dba3635f35cce3c3910f5acfa9f63f0087ae`).
+  Evidence: [search_diagram](../experiments/042-connected-fingerings/repetition-media/search.svg) (SHA256 `db4e7431ec8b992044da9c4a105d3efeadaaa95c7a814f9a133e3184fa2cf91a`).
+  Evidence: [animation](../experiments/042-connected-fingerings/repetition-media/strategy-0/trajectory.gif) (SHA256 `0b7fee36ab7ccccb5ee4a4e6258995e405b33d2dc515ef05a105c6f59a703ade`).
+- `realization-5c85ec07d679bc13cf3b`: index r4c5 (C4; release_after_event) → index r4c5 (C4; release_after_event) → index r4c5 (C4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: not_evaluated; anatomy unresolved.
+  Recorded movement `strategy-1`: 47 samples, palm path 27.789 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.009273696884097737}, "index": {"mcp2_abduction_r": 0.01272144256209154, "mcp2_flexion_r": 0.008331461253889172, "md2_flexion_r": 0.02845616185939398, "pm2_flexion_r": 0.021021901228695183}, "middle": {"mcp3_abduction_r": 0.005072353364914711, "mcp3_flexion_r": 0.0065619503597021955, "md3_flexion": 0.011539681591615933, "pm3_flexion_r": 0.0035546710246345814}, "shoulder": {"elv_angle_r": 0.01423410288393695, "shoulder_elv_r": 0.02748920212928474, "shoulder_rot_r": 0.023740551595182}, "wrist": {"deviation_r": 0.02121726145619604, "flexion_r": 0.01955186413743326}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.02778925871507043, "sample_count": 47}`.
+  Evidence: [connected_passage_search](../experiments/042-connected-fingerings/repetition/result.json) (SHA256 `eea15ef5d31b0946ec0abd7d985e1e0a6a956ff0cb947c490633c3473d62c387`).
+  Evidence: [passage_media_audit](../experiments/042-connected-fingerings/repetition-media/result.json) (SHA256 `048ee7598edc8180025ef63a2982dba3635f35cce3c3910f5acfa9f63f0087ae`).
+  Evidence: [search_diagram](../experiments/042-connected-fingerings/repetition-media/search.svg) (SHA256 `db4e7431ec8b992044da9c4a105d3efeadaaa95c7a814f9a133e3184fa2cf91a`).
+  Evidence: [animation](../experiments/042-connected-fingerings/repetition-media/strategy-0/trajectory.gif) (SHA256 `0b7fee36ab7ccccb5ee4a4e6258995e405b33d2dc515ef05a105c6f59a703ade`).
+
+## passage-thumb-reversal
+
+Thumb-only C4–Eb4–C4 experimental control, not a universal fingering prior.
+
+[connected_passage_search](../experiments/042-connected-fingerings/thumb-reversal/result.json).
+[passage_media_audit](../experiments/042-connected-fingerings/thumb-reversal-media/result.json).
+[search_diagram](../experiments/042-connected-fingerings/thumb-reversal-media/search.svg).
+[animation](../experiments/042-connected-fingerings/thumb-reversal-media/strategy-0/trajectory.gif).
+- `realization-670877f2da16534787a1`: thumb r4c5 (C4; release_after_event) → thumb r4c6 (Eb4; release_after_event) → thumb r1c5 (C4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-0`: 427 samples, palm path 85.274 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.5360420728509341}, "index": {"mcp2_abduction_r": 0.006811830759355542, "mcp2_flexion_r": 0.13566783996682186, "md2_flexion_r": 0.002765660021720323, "pm2_flexion_r": 0.0005428104809107603}, "middle": {"mcp3_abduction_r": 0.11512177378186145, "mcp3_flexion_r": 0.3541679098129035, "md3_flexion": 0.0001703881980210098, "pm3_flexion_r": 0.1824108827646862}, "shoulder": {"elv_angle_r": 0.304406396385973, "shoulder_elv_r": 0.19589815647221484, "shoulder_rot_r": 0.39959049545214226}, "wrist": {"deviation_r": 0.0782917000513309, "flexion_r": 0.29633591438330786}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.08527381220067393, "sample_count": 427}`.
+  Evidence: [connected_passage_search](../experiments/042-connected-fingerings/thumb-reversal/result.json) (SHA256 `c305959af1ce30a698c89e3dcb663146f642f20a710a399ebabffe0e84f31c00`).
+  Evidence: [passage_media_audit](../experiments/042-connected-fingerings/thumb-reversal-media/result.json) (SHA256 `28950d826a11dc57212451bdfc33bddfb24e30c2885b29600d8779985e45c892`).
+  Evidence: [search_diagram](../experiments/042-connected-fingerings/thumb-reversal-media/search.svg) (SHA256 `6abd7b54bc935a2bfa0e834fa497c2c28b78610b17b42e6ba7a3c83993635639`).
+  Evidence: [animation](../experiments/042-connected-fingerings/thumb-reversal-media/strategy-0/trajectory.gif) (SHA256 `6a9b34f5c6a1255197838d9ab83228b773a45a15305ca2295fc8af9b82abc77c`).
+- `realization-67fe99cb379d89d41860`: thumb r4c5 (C4; release_after_event) → thumb r4c6 (Eb4; release_after_event) → thumb r4c5 (C4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: not_evaluated; anatomy unresolved.
+  Recorded movement `strategy-1`: 610 samples, palm path 108.176 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 1.5401759028377455}, "index": {"mcp2_abduction_r": 0.007952420077890543, "mcp2_flexion_r": 0.13566783996682186, "md2_flexion_r": 0.004009069363813955, "pm2_flexion_r": 0.0006205749394165849}, "middle": {"mcp3_abduction_r": 0.14433474331365123, "mcp3_flexion_r": 0.38266210614923163, "md3_flexion": 0.0004608121782161967, "pm3_flexion_r": 0.1824108827646862}, "shoulder": {"elv_angle_r": 0.2543586605039498, "shoulder_elv_r": 0.04819300208591165, "shoulder_rot_r": 0.25093300252509476}, "wrist": {"deviation_r": 0.338424255915902, "flexion_r": 0.29633591438330786}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.10817648971308386, "sample_count": 610}`.
+  Evidence: [connected_passage_search](../experiments/042-connected-fingerings/thumb-reversal/result.json) (SHA256 `c305959af1ce30a698c89e3dcb663146f642f20a710a399ebabffe0e84f31c00`).
+  Evidence: [passage_media_audit](../experiments/042-connected-fingerings/thumb-reversal-media/result.json) (SHA256 `28950d826a11dc57212451bdfc33bddfb24e30c2885b29600d8779985e45c892`).
+  Evidence: [search_diagram](../experiments/042-connected-fingerings/thumb-reversal-media/search.svg) (SHA256 `6abd7b54bc935a2bfa0e834fa497c2c28b78610b17b42e6ba7a3c83993635639`).
+  Evidence: [animation](../experiments/042-connected-fingerings/thumb-reversal-media/strategy-0/trajectory.gif) (SHA256 `6a9b34f5c6a1255197838d9ab83228b773a45a15305ca2295fc8af9b82abc77c`).
+
+## passage-held-ring
+
+Held C4 while ring moves E4–F4: contact candidates but finite connected search failed.
+
+[connected_passage_search](../experiments/042-connected-fingerings/held-ring/result.json).
+[passage_media_audit](../experiments/042-connected-fingerings/held-ring-media/result.json).
+[search_diagram](../experiments/042-connected-fingerings/held-ring-media/search.svg).
+
+## passage-held-repeat
+
+Held C4 with repeated E4 release: finite continuation failure; no successful motion fabricated.
+
+[connected_passage_search](../experiments/042-connected-fingerings/held-repeat/result.json).
+[passage_media_audit](../experiments/042-connected-fingerings/held-repeat-media/result.json).
+[search_diagram](../experiments/042-connected-fingerings/held-repeat-media/search.svg).
 
 Solver history is not a playing trajectory. A found path establishes one sampled model realization; a finite failure is not impossibility. Rigid proxy overlap does not measure tissue penetration. No result establishes a human movement minimum or universal difficulty.

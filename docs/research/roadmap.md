@@ -20,8 +20,9 @@ The active autonomous program continues without a calibration gate:
 - 041: five named distal-envelope contacts, free-digit static controls and an
   index/ring dyad; preserve failed coordinated requests and matched frozen/free
   thumb views. Complete anatomical validity remains unresolved.
-- 042: musical events, bounded connected fingering search, changing assignments,
-  held requirements and recorded branch diagrams; animate actual audited samples.
+- 042: completed musical events, connected beam search and alternate physical
+  fingerings, repetition/reversal controls, actual sampled animations and branch
+  diagrams. Held chord continuation remains a recorded finite failure.
 - 043: deterministic diverse musical hypothesis generation and observed-result
   exploration allocation, with selected discoveries and negative controls.
 - 044: reusable internal Python API, evidence/media queries and tested consumer

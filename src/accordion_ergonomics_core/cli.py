@@ -203,6 +203,8 @@ def main() -> None:
             "search-reliability",
             "sequence",
             "contact-report",
+            "passage",
+            "passage-media",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -265,6 +267,12 @@ def main() -> None:
     contact_report = sub.add_parser("contact-report")
     contact_report.add_argument("definition", type=Path)
     contact_report.add_argument("--output", type=Path, required=True)
+    passage = sub.add_parser("passage")
+    passage.add_argument("definition", type=Path)
+    passage.add_argument("--output", type=Path, required=True)
+    passage_media = sub.add_parser("passage-media")
+    passage_media.add_argument("definition", type=Path)
+    passage_media.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "targets":
@@ -293,6 +301,25 @@ def main() -> None:
         from .contact_report import run_contact_report
 
         run_contact_report(args.definition, args.output)
+    elif args.command == "passage":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .passage_experiment import run_passage
+
+        result = run_passage(args.definition, args.output)
+        print(
+            json.dumps(
+                {
+                    "status": result["status"],
+                    "budget": result["budget"],
+                    "strategies": len(result["strategies"]),
+                }
+            )
+        )
+    elif args.command == "passage-media":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .passage_media import run_passage_media
+
+        run_passage_media(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],

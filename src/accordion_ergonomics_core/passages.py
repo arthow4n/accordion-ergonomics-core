@@ -39,7 +39,8 @@ class Passage:
     def __post_init__(self) -> None:
         object.__setattr__(self, "events", tuple(self.events))
         if (
-            not self.id
+            not isinstance(self.id, str)
+            or not self.id.strip()
             or not self.events
             or any(not isinstance(e, NoteEvent) for e in self.events)
         ):
@@ -76,6 +77,14 @@ def fingering_hypotheses(
         {h["midi"] for h in held}
     ) != len(held):
         raise ValueError("Held contacts have duplicate pitch or finger")
+    if any(
+        h["finger"] not in fingers
+        or not any(b.id == h["button_id"] for b in buttons_for_pitch(h["midi"]))
+        for h in held
+    ):
+        raise ValueError("Held binding differs from available finger/button/pitch")
+    if len({h["button_id"] for h in held}) != len(held):
+        raise ValueError("Held contacts share a physical button")
     result = []
     for physical in product(*(buttons_for_pitch(p) for p in event.pitches)):
         for assignment in permutations(fingers, len(physical)):

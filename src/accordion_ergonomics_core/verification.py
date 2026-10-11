@@ -124,8 +124,20 @@ def verify_record(
         workflow = metadata["workflow"]
         records: list[tuple[str, dict[str, Any]]] = []
         atlases: list[tuple[Path, dict[str, Any]]] = []
-        if workflow in ("experiment", "held", "exercise", "plan"):
+        if workflow in (
+            "experiment",
+            "held",
+            "exercise",
+            "plan",
+            "passage",
+            "passage-media",
+        ):
             records.append(("result", result))
+            if workflow == "passage-media":
+                if "artifact_sha256" not in result:
+                    limitations.append("Passage media lacks artifact hashes")
+                for relative, expected in result.get("artifact_sha256", {}).items():
+                    file_hash(directory / relative, expected, relative)
         elif workflow == "explore":
             records.extend(
                 (t.get("target_id", t["button_id"]), t) for t in result["targets"]
@@ -238,7 +250,7 @@ def verify_record(
                 )
         if definition.is_file():
             source = result["input"]
-            for key in ("baseline", "start", "end", "atlas", "reference"):
+            for key in ("baseline", "start", "end", "atlas", "reference", "search"):
                 if key == "reference" and "reference_input" in source:
                     file_hash(
                         definition.parent / source["reference_input"],

@@ -1,5 +1,6 @@
 from dataclasses import replace
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 import pytest
@@ -169,3 +170,38 @@ def test_named_ring_hold_uses_ring_geometry_not_index():
     audit = held_audit(scene, [q, moved], e, target, "r2c6", 0.01, "ring")
     assert not audit["held_geometry_satisfied"]
     assert audit["held_position_error_max_m"] > e.solver.position_tolerance_m
+
+
+def test_mixed_contact_flags_and_world_controls_are_explicit(reference):
+    e, scene = reference
+    surface = e.geometry.surface_world_m(button_at(1, 6))
+    preparation = surface + 0.01 * e.geometry.rotation[:, 2]
+    additional = ((e.geometry.surface_world_m(button_at(1, 5)), "index", "r1c5"),)
+    invalid_flags: tuple[Any, ...] = ((True,), (False, "held"))
+    for flags in invalid_flags:
+        with pytest.raises(ValueError, match="flags"):
+            solve_contact(
+                scene,
+                preparation,
+                e.initial_joints_rad,
+                e.solver,
+                "r1c6",
+                finger="ring",
+                additional_contacts=additional,
+                required_contacts=flags,
+            )
+    result = solve_contact(
+        scene,
+        preparation,
+        e.initial_joints_rad,
+        replace(e.solver, max_iterations=1),
+        "r1c6",
+        finger="ring",
+        additional_contacts=additional,
+        required_contacts=(False, True),
+    )
+    assert result["contact_required"] is False
+    requirements = result["contact_requirements"]
+    assert [r["surface_contact_required"] for r in requirements] == [False, True]
+    np.testing.assert_array_equal(requirements[0]["target_world_m"], preparation)
+    assert result["trajectory"] is None  # Numerical iterations never claim movement.

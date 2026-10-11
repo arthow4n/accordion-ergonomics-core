@@ -31,6 +31,8 @@ def frozen_run(
         "search-reliability",
         "sequence",
         "contact-report",
+        "passage",
+        "passage-media",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

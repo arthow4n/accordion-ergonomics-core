@@ -17,7 +17,13 @@ def current_execution_metadata(model: Any) -> dict[str, Any]:
             "compiled_model_sha256": compiled_model_digest(model),
             "anatomy_source_sha256": anatomy_digest(),
             "project_source_sha256": project_source_digest(),
-            "lock_sha256": hashlib.sha256(Path("uv.lock").read_bytes()).hexdigest(),
+            "lock_sha256": hashlib.sha256(
+                (
+                    Path("uv.lock")
+                    if Path("uv.lock").is_file()
+                    else Path(__file__).resolve().parents[2] / "uv.lock"
+                ).read_bytes()
+            ).hexdigest(),
             "render_backend": os.environ.get("MUJOCO_GL", "egl"),
         },
         "runtime": {

@@ -729,6 +729,11 @@ def build_catalog(root: Path = ROOT) -> dict[str, Any]:
         world["audit_policy"] = "native-hand-proxy-report-v1"
     targets = []
     for spec in definition["targets"]:
+        if "passage_search" in spec:
+            from .passage_catalog import build_passage_target
+
+            targets.append(build_passage_target(root, spec, world))
+            continue
         realizations = [
             build_realization(root, r, world, independent) for r in spec["realizations"]
         ]
@@ -860,14 +865,24 @@ def markdown(catalog: dict[str, Any]) -> str:
             "+".join(note_name(n) for n in event)
             for event in t["musical_intent"]["event_pitches_midi"]
         )
+        statuses = ", ".join(sorted({r["status"] for r in t["realizations"]}))
+        statuses = statuses or t.get("search_status", "hypothesis")
         lines.append(
             f"| [{t['id']}](#{t['id']}) | {t['family']} | "
             f"{notes} | "
-            f"{', '.join(sorted({r['status'] for r in t['realizations']}))} "
+            f"{statuses} "
             f"| unresolved anatomy |"
         )
     for t in catalog["targets"]:
         lines += ["", f"## {t['id']}", "", t["explanation"], ""]
+        for ref in t.get("evidence", []):
+            if ref["role"] in (
+                "connected_passage_search",
+                "passage_media_audit",
+                "search_diagram",
+                "animation",
+            ):
+                lines.append(f"[{ref['role']}]({Path('..') / ref['path']}).")
         for r in t["realizations"]:
             events = " → ".join(
                 ", ".join(
@@ -974,13 +989,15 @@ def verify_target(
     checked = set()
     roots = set()
     for target in targets:
+        references = list(target.get("evidence", []))
         for r in target["realizations"]:
-            for ref in r["evidence"]:
-                path = root / ref["path"]
-                if hashlib.sha256(path.read_bytes()).hexdigest() != ref["sha256"]:
-                    raise ValueError(f"Evidence changed: {ref['path']}")
-                checked.add(ref["path"])
-                roots.add(ref["frozen_root"])
+            references.extend(r["evidence"])
+        for ref in references:
+            path = root / ref["path"]
+            if hashlib.sha256(path.read_bytes()).hexdigest() != ref["sha256"]:
+                raise ValueError(f"Evidence changed: {ref['path']}")
+            checked.add(ref["path"])
+            roots.add(ref["frozen_root"])
     results = [verify_record(root / p) for p in sorted(roots)]
     if any(r.status != "verified" for r in results):
         raise ValueError(

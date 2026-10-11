@@ -5,9 +5,11 @@ Ty cannot resolve even MjModel/mj_forward. Keep this uncertainty at the engine
 boundary; project-owned geometry and experiment parameters remain typed.
 """
 
+import os
 from importlib import import_module
 from typing import Any
 
+os.environ.setdefault("MUJOCO_GL", "egl")
 mujoco: Any = import_module("mujoco")
 type Model = Any
 type Data = Any

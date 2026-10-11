@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release": "0.5-five-finger-controls",
+  "release": "0.6-connected-five-finger-passages",
   "reference_result": "experiments/037-upper-anchor-regression/central/result.json",
   "targets": [
     {
@@ -1546,6 +1546,41 @@
           }
         }
       ]
+    },
+    {
+      "id": "passage-stepwise",
+      "family": "sequence",
+      "explanation": "C4\u2013D4\u2013E4 bounded whole-hand beam search; alternate E4 button/finger strategies, with preparation failures preserved.",
+      "passage_search": "experiments/042-connected-fingerings/stepwise/result.json",
+      "passage_media": "experiments/042-connected-fingerings/stepwise-media/result.json"
+    },
+    {
+      "id": "passage-repetition",
+      "family": "repetition",
+      "explanation": "Repeated C4 with actual index withdrawal and return; duplicate row alternatives.",
+      "passage_search": "experiments/042-connected-fingerings/repetition/result.json",
+      "passage_media": "experiments/042-connected-fingerings/repetition-media/result.json"
+    },
+    {
+      "id": "passage-thumb-reversal",
+      "family": "reversal",
+      "explanation": "Thumb-only C4\u2013Eb4\u2013C4 experimental control, not a universal fingering prior.",
+      "passage_search": "experiments/042-connected-fingerings/thumb-reversal/result.json",
+      "passage_media": "experiments/042-connected-fingerings/thumb-reversal-media/result.json"
+    },
+    {
+      "id": "passage-held-ring",
+      "family": "held",
+      "explanation": "Held C4 while ring moves E4\u2013F4: contact candidates but finite connected search failed.",
+      "passage_search": "experiments/042-connected-fingerings/held-ring/result.json",
+      "passage_media": "experiments/042-connected-fingerings/held-ring-media/result.json"
+    },
+    {
+      "id": "passage-held-repeat",
+      "family": "held",
+      "explanation": "Held C4 with repeated E4 release: finite continuation failure; no successful motion fabricated.",
+      "passage_search": "experiments/042-connected-fingerings/held-repeat/result.json",
+      "passage_media": "experiments/042-connected-fingerings/held-repeat-media/result.json"
     }
   ],
   "model_references": {
@@ -1559,7 +1594,8 @@
     "041-index-ring": "experiments/041-five-finger-contacts/free/index-ring/reference/result.json",
     "041-index-little": "experiments/041-five-finger-contacts/free/index-little/reference/result.json",
     "041-three-long": "experiments/041-five-finger-contacts/free/three-long/reference/result.json",
-    "041-thumb-index": "experiments/041-five-finger-contacts/free/thumb-index/reference/result.json"
+    "041-thumb-index": "experiments/041-five-finger-contacts/free/thumb-index/reference/result.json",
+    "five-digit-passages": "experiments/042-connected-fingerings/stepwise/result.json"
   },
   "independent_audits": [
     "experiments/038-hand-collision-audit/result.json",
@@ -1573,6 +1609,7 @@
     "experiments/040-exercise-library/endpoint-coverage/result.json"
   ],
   "contact_policy_references": {
-    "free-digits-041": "experiments/041-five-finger-contacts/free/thumb/candidate-0/result.json"
+    "free-digits-041": "experiments/041-five-finger-contacts/free/thumb/candidate-0/result.json",
+    "whole-hand-beam-search": "experiments/042-connected-fingerings/stepwise/result.json"
   }
 }

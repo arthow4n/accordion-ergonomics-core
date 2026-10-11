@@ -1,5 +1,37 @@
 # Research log
 
+## 2026-10-11 — Connected five-finger passage alternatives and actual animations (042)
+
+[042](experiments/042-connected-fingerings/notes.md) separates musical intent,
+duplicate button/finger hypotheses, full-hand contact poses and connected paths.
+Bounded beam search propagates actual achieved movement endpoints; unused digits
+articulate. Repetition requires a computed withdrawal, and held contacts are
+checked at every sample. Failed optional preparation is recorded before retrying
+required contacts alone. No finger convention is treated as anatomical law.
+
+C4–D4–E4 has two retained middle→little→index/ring realizations, choosing different
+E4 duplicate buttons, with 522/656 samples and 75.193/84.208 mm discovered palm
+travel. Repeated C4 and a thumb-only C4–Eb4–C4 control also have connected paths.
+Four curated trajectories (1,659 samples) pass independent instrument/configured
+proxy checks; unresolved cross-digit overlaps reach −15.485 mm. Held C4 + E4→F4
+and held C4 + repeated E4 have contact candidates but failed connected searches.
+These failures are not impossibility proofs and have no fabricated animation.
+
+Four exact-sample GIFs, a matched alternate-fingering comparison, real search
+graphs and four-view collision/failure diagnostics are linked to source hashes,
+compiled geometry, qpos, frame indices and camera/role manifests. All were
+inspected. Playback is illustrative; complete anatomy and unsampled intervals
+remain unresolved. The catalog grows to 45 targets; a tested importable API
+retrieves trajectories/media from another project's working directory. Numerical
+repetition is deterministic and compiled FK confirms its release.
+
+Milestone validation: 143 canonical tests and 21 final focused tests (including
+the added mixed contact/preparation control test), Ruff, ty, 12 complete frozen
+records and catalog integrity (45 targets / 333 files / 41 roots). Generation
+and observed-result allocation remain the next autonomous milestone (043), with
+consumer API consolidation and broader examples in 044.
+
+
 ## 2026-10-11 — Generalize five-digit contact and expose free-hand controls (041)
 
 [041](experiments/041-five-finger-contacts/notes.md) keeps the fixed native seated

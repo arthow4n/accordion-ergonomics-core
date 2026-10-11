@@ -1,0 +1,46 @@
+{
+  "baseline_result": "../037-upper-anchor-regression/central/result.json",
+  "baseline_sha256": "6bf28437371d8bf3f509efd395da4cd88121aa73967aa52ce98cb047c92ee7b8",
+  "passage": {
+    "id": "042-held-ring",
+    "events": [
+      {
+        "pitches": [
+          60,
+          64
+        ],
+        "hold_to_next": [
+          60
+        ]
+      },
+      {
+        "pitches": [
+          60,
+          65
+        ]
+      }
+    ],
+    "provenance": "curated_control; restricted fingers are experimental priors, not anatomical exclusions"
+  },
+  "search": {
+    "seed": 4201,
+    "beam_width": 2,
+    "assignments_per_parent": 4,
+    "contact_iterations": 200,
+    "prepare_next": false,
+    "planning": {
+      "withdrawal_depths_m": [
+        0.01,
+        0.02
+      ],
+      "max_joint_step_rad": 0.003,
+      "waypoint_iterations": 120,
+      "rrt_iterations": 150
+    },
+    "fingers": [
+      "index",
+      "ring"
+    ],
+    "assignment_order": "marker_distance"
+  }
+}

@@ -1,8 +1,8 @@
 # Inspect and reproduce the first right-hand target library
 
-This release contains 40 musical/physical target hypotheses. It covers central
-and directional controls, row changes, simultaneous index/middle dyads, held-index
-coordination, return/alternating sequences and equivalent-pitch physical buttons.
+This internal collection contains 45 musical/physical targets. It covers central
+and directional controls, all five digits, simultaneous dyads, held coordination,
+connected passage alternatives, repetitions and equivalent-pitch physical buttons.
 All entries have unknown human feasibility and unresolved anatomical validation.
 
 ```sh
@@ -107,8 +107,8 @@ sensitivity under matched planning settings. Neither is a necessary movement
 minimum. Warm search uses previously paid-for branch evidence, so its matched
 current budgets are not matched total research costs. Failed initialization is
 not task impossibility. The next validity bottleneck is calibrated hand envelopes
-and observed poses, especially inactive middle/ring interactions; unsupported
-fingers, active bellows and whole-body strategies remain outside this release.
+and observed poses, especially inactive middle/ring interactions. Active bellows
+and whole-body strategies remain outside this collection.
 
 ## Five-finger controls and views (041)
 
@@ -124,3 +124,16 @@ connected five-finger movements or human-validation labels.
 assignments, preserves exact held bindings and uses deterministic ordering.
 Returned assignments have `generated_hypothesis` status; enumeration does not
 run IK or establish contact.
+
+## Connected five-finger passage records (042)
+
+The catalog includes `passage-stepwise`, `passage-repetition`,
+`passage-thumb-reversal`, `passage-held-ring` and `passage-held-repeat`. The last
+two have no connected realizations; their search and failure media remain linked.
+`ExerciseLibrary` in `accordion_ergonomics_core.research` retrieves exact saved
+strategies, audit records and hash-checked media paths. See the tested
+[consumer example](../examples/consume_passage_library.py). `discover_passage`
+accepts `Passage` / `NoteEvent` input and bounded `PassageSearchSettings`. Numerical
+search output needs independent physical audits; it does not promise anatomy or
+human feasibility. `reproduce_argv` uses the archived executed source and should
+be run with `cwd=library.root`. No package publication is needed.

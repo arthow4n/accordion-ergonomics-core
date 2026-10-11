@@ -232,7 +232,14 @@ def render_views(
                 )
                 draw.text(
                     (12, 10),
-                    (f"{name} | {label} | {button_id} orange"),
+                    (
+                        f"{name} | {label} | {button_id} "
+                        + (
+                            button_roles[button_id]
+                            if button_roles and button_id in button_roles
+                            else "orange"
+                        )
+                    ),
                     fill=(255, 255, 255),
                 )
                 draw.text(

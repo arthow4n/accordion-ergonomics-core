@@ -25,6 +25,7 @@ def solve_contact(
     finger: str = "index",
     additional_contacts: tuple[tuple[NDArray[np.float64], str, str], ...] = (),
     additional_contact_required: bool = True,
+    required_contacts: tuple[bool, ...] | None = None,
 ) -> dict[str, Any]:
     model = scene.model
     if (
@@ -48,6 +49,13 @@ def solve_contact(
     required = [contact_required] + [additional_contact_required] * len(
         additional_contacts
     )
+    if required_contacts is not None:
+        if len(required_contacts) != len(requirements) or any(
+            type(v) is not bool for v in required_contacts
+        ):
+            raise ValueError("Contact flags must match every named target")
+        required = list(required_contacts)
+    contact_required = required[0]
     require_any_contact = any(required)
     contact_tasks: list[mink.Task] = []
     for point, digit, _ in requirements:
@@ -231,7 +239,12 @@ def solve_contact(
         "trajectory": None,
         "contact_required": contact_required,
         "contact_requirements": [
-            {"finger": r[1], "button_id": r[2], "surface_contact_required": v}
+            {
+                "finger": r[1],
+                "button_id": r[2],
+                "surface_contact_required": v,
+                "target_world_m": r[0].tolist(),
+            }
             for r, v in zip(requirements, required, strict=True)
         ],
         "unvalidated": [

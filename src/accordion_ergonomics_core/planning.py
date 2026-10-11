@@ -10,6 +10,7 @@ from ._engine import mujoco
 from .anatomy import digit_dofs
 from .candidates import descriptors
 from .experiment import Experiment
+from .instrument import button_at
 from .scene import Scene
 from .solver import solve_contact
 
@@ -55,7 +56,11 @@ def audit_path(
         raise ValueError("A path requires at least one recorded configuration")
     if len(waypoints) == 1:
         waypoints = [waypoints[0], waypoints[0]]
-    records = []
+    from .digits import DIGITS
+
+    site_names = {model.site(i).name for i in range(model.nsite)}
+    digits_present = [d for d in DIGITS if f"{d}_pad" in site_names]
+    records: list[dict[str, Any]] = []
     for segment, (start, end) in enumerate(
         zip(waypoints[:-1], waypoints[1:], strict=True)
     ):
@@ -96,6 +101,11 @@ def audit_path(
                     "equality_residual_rad": residual,
                     "palm_world_m": data.body("capitate_r").xpos.tolist(),
                     "fingertip_world_m": data.site("index_pad").xpos.tolist(),
+                    "legacy_fingertip_digit": "index",
+                    "finger_sites_world_m": {
+                        digit: data.site(f"{digit}_pad").xpos.tolist()
+                        for digit in digits_present
+                    },
                 }
             )
     valid = all(r["sample_valid"] for r in records)
@@ -138,6 +148,11 @@ def plan_transition(
     direct = audit_path(scene, [start_q, end_q], experiment, settings)
     attempts: list[dict[str, Any]] = []
     if direct["sampled_constraints_satisfied"]:
+        for sample in direct["samples"]:
+            sample["phase"] = {
+                "phase": "audited_joint_interpolation",
+                "moving_fingers": sorted({start_finger, end_finger}),
+            }
         return {
             **direct,
             "method": "direct-joint-interpolation",
@@ -170,7 +185,11 @@ def plan_transition(
                     replace(
                         experiment.solver, max_iterations=settings.waypoint_iterations
                     ),
-                    button_id,
+                    button_at(
+                        experiment.contacts[0].row, experiment.contacts[0].column
+                    ).id
+                    if digit == start_finger and q == start_q
+                    else button_id,
                     experiment.frozen_joints,
                     contact_required=False,
                     finger=digit,
@@ -184,6 +203,10 @@ def plan_transition(
         attempt: dict[str, Any] = {
             "withdrawal_depth_m": depth,
             "waypoint_solves": withdraw,
+            "waypoint_solver_calls": (
+                sum(len(c) - 1 for c in chains)
+                + sum(r["status"] != "success" for r in withdraw)
+            ),
         }
         if all(r["status"] == "success" for r in withdraw):
             middle = [chains[0][-1], chains[1][-1]]
@@ -203,6 +226,23 @@ def plan_transition(
                 audit = audit_path(scene, waypoints, experiment, settings)
                 attempt["audit"] = {k: v for k, v in audit.items() if k != "samples"}
                 if audit["sampled_constraints_satisfied"]:
+                    withdrawal_segments = len(chains[0]) - 1
+                    middle_segments = len(middle) - 1
+                    for sample in audit["samples"]:
+                        segment = sample["segment"]
+                        if segment < withdrawal_segments:
+                            phase, moving_digits = "withdraw", [start_finger]
+                        elif segment < withdrawal_segments + middle_segments:
+                            phase, moving_digits = (
+                                "reposition",
+                                sorted({start_finger, end_finger}),
+                            )
+                        else:
+                            phase, moving_digits = "approach", [end_finger]
+                        sample["phase"] = {
+                            "phase": phase,
+                            "moving_fingers": moving_digits,
+                        }
                     attempts.append(attempt)
                     scene.data.qpos[:] = end_q
                     return {
