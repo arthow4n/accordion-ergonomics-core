@@ -88,3 +88,20 @@ def discover_passage(passage: Passage, *, settings=None, reference=None):
     from .passage_search import search_passage
 
     return search_passage(passage, reference, settings)
+
+
+def generate_challenges(settings=None):
+    """Generate deterministic musical hypotheses; these are not physical results."""
+    from .generation import generate_challenges as generate
+
+    return generate(settings)
+
+
+def discover_challenges(
+    output: Path, *, generation=None, settings=None, reference=None
+):
+    """Evaluate generated passages and retain evidence; use frozen CLI for long runs."""
+    from .discovery import discover_challenges as discover
+    from .passage_search import reference_experiment
+
+    return discover(reference or reference_experiment(), output, generation, settings)

@@ -1,5 +1,33 @@
 # Research log
 
+## 2026-10-11 — Autonomous generated challenges with observed-result follow-ups (043)
+
+[043](experiments/043-autonomous-discovery/notes.md) composes 21 unique musical
+hypotheses from finite-keyboard interval/voice rules. Seven initial trials and two
+observed-result follow-ups use 80 contact solves, 51 movement edges and 229
+waypoint solves. Per-edge call limits preserve budget failures explicitly.
+Generation/selection diagrams come from the actual grammar, trials and decisions.
+
+Stepwise, repetition, reversal, arpeggio and jump trials find sampled paths;
+changing dyads fail initial contacts and held D4 coordination remains incomplete
+in both budgets. Adaptive arpeggio exploration finds two index/little realizations
+with different final Eb4 finger/button assignments (375/495 samples; 121.677/
+140.189 mm palm travel), while preserving the original index/thumb result.
+All seven completed strategies (3,208 samples) pass independent instrument and
+configured-proxy checks. Unresolved cross-digit overlaps reach −16.500 mm; no
+anatomy, geometry, masks or required tolerances were changed to improve outcomes.
+
+Five selected generated targets extend the library to 50, with grammar provenance,
+selection reasons, trial histories and exact evidence/media links. Five actual-
+sample GIFs, matched arpeggio views, failure overlays and all four diagnostic
+views were inspected. Fourteen hypotheses remain explicitly unevaluated. Failed
+finite search is not impossibility; model paths are not anatomical/human proof.
+Frozen numerical execution retains its executed source while summary/render
+workflows record their own archives. Validation: 148 tests, Ruff, ty, seven
+complete frozen roots and catalog integrity (50 targets / 435 files / 48 roots).
+Consumer/API consolidation continues in 044.
+
+
 ## 2026-10-11 — Connected five-finger passage alternatives and actual animations (042)
 
 [042](experiments/042-connected-fingerings/notes.md) separates musical intent,

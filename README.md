@@ -37,7 +37,7 @@ See [RESEARCH_LOG.md](RESEARCH_LOG.md) for findings and failed investigations.
 
 ## Exercise target library
 
-The [45-target provisional catalog](targets/CATALOG.md) separates musical intent, physical
+The [50-target provisional catalog](targets/CATALOG.md) separates musical intent, physical
 named five-finger contacts, search branches and actual frozen evidence. All human
 feasibility values remain unknown. Use `uv run aec targets list`,
 `uv run aec targets show central-c4`, and `uv run aec targets verify central-c4`.
@@ -126,3 +126,10 @@ limitations and held-search failures. Import `ExerciseLibrary`, `Passage`,
 `NoteEvent` and `discover_passage` from `accordion_ergonomics_core.research`; the
 [consumer example](examples/consume_passage_library.py) retrieves trajectories
 and checked media paths without manually browsing experiment directories.
+
+[Autonomous discovery (043)](experiments/043-autonomous-discovery/notes.md) now
+composes and physically evaluates generated challenges, allocating follow-up
+effort from observed outcomes. The 50-target library includes selected generated
+passages, alternate fingerings, exact animations and negative evidence. Use
+`generate_challenges` for musical hypotheses or `discover_challenges` for bounded
+evaluation; generated notes alone are never treated as physically solved.

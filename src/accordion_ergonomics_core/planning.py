@@ -20,6 +20,7 @@ class PlanningSettings:
     withdrawal_depths_m: tuple[float, ...] = (0.02, 0.04, 0.08, 0.12, 0.18)
     max_joint_step_rad: float = 0.005
     waypoint_iterations: int = 160
+    waypoint_solve_limit: int | None = None
     withdrawal_step_m: float = 0.005
     rrt_iterations: int = 1500
     rrt_step_rad: float = 0.15
@@ -39,6 +40,10 @@ class PlanningSettings:
             raise ValueError("Withdrawal depths must be finite and positive")
         if type(self.waypoint_iterations) is not int or self.waypoint_iterations < 1:
             raise ValueError("Waypoint iteration budget must be positive integer")
+        if self.waypoint_solve_limit is not None and (
+            type(self.waypoint_solve_limit) is not int or self.waypoint_solve_limit < 1
+        ):
+            raise ValueError("Waypoint solve limit must be positive integer")
         if type(self.rrt_iterations) is not int or self.rrt_iterations < 0:
             raise ValueError("RRT budget must be nonnegative integer")
         if type(self.seed) is not int or self.seed < 0:
@@ -167,7 +172,14 @@ def plan_transition(
         scene.data.qpos[:] = q
         mujoco.mj_forward(scene.model, scene.data)
         targets.append(scene.data.site(f"{digit}_pad").xpos.copy())
+    waypoint_calls = 0
     for depth in settings.withdrawal_depths_m:
+        if (
+            settings.waypoint_solve_limit is not None
+            and waypoint_calls >= settings.waypoint_solve_limit
+        ):
+            break
+        calls_before_depth = waypoint_calls
         withdraw = []
         chains = []
         for q, target, digit in zip(
@@ -178,6 +190,20 @@ def plan_transition(
             for distance in np.linspace(
                 0, depth, max(1, int(np.ceil(depth / settings.withdrawal_step_m))) + 1
             )[1:]:
+                if (
+                    settings.waypoint_solve_limit is not None
+                    and waypoint_calls >= settings.waypoint_solve_limit
+                ):
+                    result = {
+                        "status": "waypoint_budget_exhausted",
+                        "qpos_rad": chain[-1],
+                        "last_attempted_solve": result,
+                        "state_semantics": (
+                            "Last saved state; no new solve was attempted"
+                        ),
+                    }
+                    break
+                waypoint_calls += 1
                 result = solve_contact(
                     scene,
                     target + normal * distance,
@@ -203,10 +229,7 @@ def plan_transition(
         attempt: dict[str, Any] = {
             "withdrawal_depth_m": depth,
             "waypoint_solves": withdraw,
-            "waypoint_solver_calls": (
-                sum(len(c) - 1 for c in chains)
-                + sum(r["status"] != "success" for r in withdraw)
-            ),
+            "waypoint_solver_calls": waypoint_calls - calls_before_depth,
         }
         if all(r["status"] == "success" for r in withdraw):
             middle = [chains[0][-1], chains[1][-1]]

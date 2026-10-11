@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release": "0.6-connected-five-finger-passages",
+  "release": "0.7-autonomous-generated-challenges",
   "reference_result": "experiments/037-upper-anchor-regression/central/result.json",
   "targets": [
     {
@@ -1581,6 +1581,51 @@
       "explanation": "Held C4 with repeated E4 release: finite continuation failure; no successful motion fabricated.",
       "passage_search": "experiments/042-connected-fingerings/held-repeat/result.json",
       "passage_media": "experiments/042-connected-fingerings/held-repeat-media/result.json"
+    },
+    {
+      "id": "generated-07ec8d2638eb010f",
+      "family": "stepwise",
+      "explanation": "Distinct generated musical family with an independently sampled model path; anatomy unresolved",
+      "passage_search": "experiments/043-autonomous-discovery/discovery/evaluation-00.json",
+      "passage_media": "experiments/043-autonomous-discovery/stepwise-media/result.json",
+      "generation_record": "experiments/043-autonomous-discovery/discovery/result.json",
+      "generation_summary": "experiments/043-autonomous-discovery/summary/result.json"
+    },
+    {
+      "id": "generated-945a2c839056ef55",
+      "family": "repetition",
+      "explanation": "Distinct generated musical family with an independently sampled model path; anatomy unresolved",
+      "passage_search": "experiments/043-autonomous-discovery/discovery/evaluation-01.json",
+      "passage_media": "experiments/043-autonomous-discovery/repetition-media/result.json",
+      "generation_record": "experiments/043-autonomous-discovery/discovery/result.json",
+      "generation_summary": "experiments/043-autonomous-discovery/summary/result.json"
+    },
+    {
+      "id": "generated-71ba0dd640884d91",
+      "family": "reversal",
+      "explanation": "Distinct generated musical family with an independently sampled model path; anatomy unresolved",
+      "passage_search": "experiments/043-autonomous-discovery/discovery/evaluation-02.json",
+      "passage_media": "experiments/043-autonomous-discovery/reversal-media/result.json",
+      "generation_record": "experiments/043-autonomous-discovery/discovery/result.json",
+      "generation_summary": "experiments/043-autonomous-discovery/summary/result.json"
+    },
+    {
+      "id": "generated-dcbc77238f1b5559",
+      "family": "arpeggio",
+      "explanation": "Distinct generated musical family with an independently sampled model path; anatomy unresolved",
+      "passage_search": "experiments/043-autonomous-discovery/discovery/evaluation-07.json",
+      "passage_media": "experiments/043-autonomous-discovery/arpeggio-media/result.json",
+      "generation_record": "experiments/043-autonomous-discovery/discovery/result.json",
+      "generation_summary": "experiments/043-autonomous-discovery/summary/result.json"
+    },
+    {
+      "id": "generated-247e3482c25d6082",
+      "family": "held",
+      "explanation": "Preserve an evaluated unsuccessful or proxy-rejected hypothesis; no impossibility claim",
+      "passage_search": "experiments/043-autonomous-discovery/discovery/evaluation-06.json",
+      "passage_media": "experiments/043-autonomous-discovery/held-media/result.json",
+      "generation_record": "experiments/043-autonomous-discovery/discovery/result.json",
+      "generation_summary": "experiments/043-autonomous-discovery/summary/result.json"
     }
   ],
   "model_references": {
@@ -1595,7 +1640,8 @@
     "041-index-little": "experiments/041-five-finger-contacts/free/index-little/reference/result.json",
     "041-three-long": "experiments/041-five-finger-contacts/free/three-long/reference/result.json",
     "041-thumb-index": "experiments/041-five-finger-contacts/free/thumb-index/reference/result.json",
-    "five-digit-passages": "experiments/042-connected-fingerings/stepwise/result.json"
+    "five-digit-passages": "experiments/042-connected-fingerings/stepwise/result.json",
+    "autonomous-five-digit": "experiments/043-autonomous-discovery/discovery/evaluation-00.json"
   },
   "independent_audits": [
     "experiments/038-hand-collision-audit/result.json",
@@ -1610,6 +1656,7 @@
   ],
   "contact_policy_references": {
     "free-digits-041": "experiments/041-five-finger-contacts/free/thumb/candidate-0/result.json",
-    "whole-hand-beam-search": "experiments/042-connected-fingerings/stepwise/result.json"
+    "whole-hand-beam-search": "experiments/042-connected-fingerings/stepwise/result.json",
+    "autonomous-whole-hand": "experiments/043-autonomous-discovery/discovery/evaluation-00.json"
   }
 }

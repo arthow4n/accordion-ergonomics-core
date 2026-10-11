@@ -118,7 +118,7 @@ def build_passage_target(root: Path, spec: dict[str, Any], world: dict[str, Any]
                 },
             }
         )
-    return {
+    target = {
         "id": spec["id"],
         "family": spec["family"],
         "explanation": spec["explanation"],
@@ -135,3 +135,54 @@ def build_passage_target(root: Path, spec: dict[str, Any], world: dict[str, Any]
         "evidence": refs,
         "human_feasibility": None,
     }
+
+    if spec.get("generation_record"):
+        generation_ref = evidence_ref(
+            root, spec["generation_record"], "autonomous_discovery"
+        )
+        discovery = read(root, spec["generation_record"])
+        candidate = next(
+            c for c in discovery["generation"]["candidates"] if c["id"] == spec["id"]
+        )
+        if candidate["passage"] != saved["passage"]:
+            raise ValueError("Generated musical intent differs from selected search")
+        selected = next(
+            s for s in discovery["selected"] if s["candidate_id"] == spec["id"]
+        )
+        target["generation"] = {
+            "evidence": generation_ref,
+            "candidate": candidate,
+            "settings": discovery["generation"]["settings"],
+            "selection": selected,
+            "proposal": next(
+                p
+                for p in discovery["generation"]["proposals"]
+                if p["proposal_index"] == candidate["proposal_index"]
+            ),
+        }
+        target["evidence"].append(generation_ref)
+        target["search_trials"] = []
+        for trial in discovery["evaluations"]:
+            if trial["candidate_id"] != spec["id"]:
+                continue
+            path = str(Path(spec["generation_record"]).parent / trial["search_result"])
+            trial_ref = evidence_ref(root, path, "generated_search_trial")
+            if trial_ref["sha256"] != trial["search_sha256"]:
+                raise ValueError("Generated search trial identity differs")
+            target["evidence"].append(trial_ref)
+            target["search_trials"].append({**trial, "evidence": trial_ref})
+        if spec.get("generation_summary"):
+            summary = read(root, spec["generation_summary"])
+            summary_ref = evidence_ref(
+                root, spec["generation_summary"], "discovery_summary"
+            )
+            if summary["input"]["discovery_sha256"] != generation_ref["sha256"]:
+                raise ValueError("Summary differs from generated search")
+            target["evidence"].append(summary_ref)
+            for name, expected in summary["artifact_sha256"].items():
+                path = str(Path(spec["generation_summary"]).parent / name)
+                ref = evidence_ref(root, path, "selection_diagram")
+                if ref["sha256"] != expected:
+                    raise ValueError("Selection diagram differs from source")
+                target["evidence"].append(ref)
+    return target

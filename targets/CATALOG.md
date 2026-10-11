@@ -1,6 +1,6 @@
 # Right-hand exercise target catalog
 
-Release 0.6-connected-five-finger-passages. 45 musical targets in the fixed compact-upper native v3 world.
+Release 0.7-autonomous-generated-challenges. 50 musical targets in the fixed compact-upper native v3 world.
 
 **Provisional model challenges. Human feasibility is unknown for every entry.**
 
@@ -55,6 +55,11 @@ Use `uv run aec targets list --family held`, `uv run aec targets show TARGET_ID`
 | [passage-thumb-reversal](#passage-thumb-reversal) | reversal | C4 → Eb4 → C4 | sampled_path_found | unresolved anatomy |
 | [passage-held-ring](#passage-held-ring) | held | C4+E4 → C4+F4 | no_complete_passage_found | unresolved anatomy |
 | [passage-held-repeat](#passage-held-repeat) | held | C4+E4 → C4+E4 | no_complete_passage_found | unresolved anatomy |
+| [generated-07ec8d2638eb010f](#generated-07ec8d2638eb010f) | stepwise | D4 → C4 → D4 → E4 | sampled_path_found | unresolved anatomy |
+| [generated-945a2c839056ef55](#generated-945a2c839056ef55) | repetition | D4 → D4 → Eb4 | sampled_path_found | unresolved anatomy |
+| [generated-71ba0dd640884d91](#generated-71ba0dd640884d91) | reversal | D4 → E4 → C#4 | sampled_path_found | unresolved anatomy |
+| [generated-dcbc77238f1b5559](#generated-dcbc77238f1b5559) | arpeggio | Eb4 → G4 → Bb4 → Eb4 | sampled_path_found | unresolved anatomy |
+| [generated-247e3482c25d6082](#generated-247e3482c25d6082) | held | D4 → D4+G4 → D4+E4 → D4+E4 | no_complete_passage_found | unresolved anatomy |
 
 ## central-c4
 
@@ -720,5 +725,119 @@ Held C4 with repeated E4 release: finite continuation failure; no successful mot
 [connected_passage_search](../experiments/042-connected-fingerings/held-repeat/result.json).
 [passage_media_audit](../experiments/042-connected-fingerings/held-repeat-media/result.json).
 [search_diagram](../experiments/042-connected-fingerings/held-repeat-media/search.svg).
+
+## generated-07ec8d2638eb010f
+
+Distinct generated musical family with an independently sampled model path; anatomy unresolved
+
+[connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-00.json).
+[passage_media_audit](../experiments/043-autonomous-discovery/stepwise-media/result.json).
+[search_diagram](../experiments/043-autonomous-discovery/stepwise-media/search.svg).
+[animation](../experiments/043-autonomous-discovery/stepwise-media/strategy-0/trajectory.gif).
+- `realization-602dc0d2bbd53ebb788c`: index r3c5 (D4; release_after_event) → index r4c5 (C4; release_after_event) → index r3c5 (D4; release_after_event) → index r2c6 (E4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-0`: 589 samples, palm path 173.180 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.808563466345413}, "index": {"mcp2_abduction_r": 0.4012153408713779, "mcp2_flexion_r": 0.6976418215544056, "md2_flexion_r": 0.3709880188607027, "pm2_flexion_r": 0.2527128331599296}, "middle": {"mcp3_abduction_r": 0.06423986731101253, "mcp3_flexion_r": 0.13605876216200424, "md3_flexion": 0.055951834913187254, "pm3_flexion_r": 0.06736174093214325}, "shoulder": {"elv_angle_r": 0.783728135955563, "shoulder_elv_r": 0.7740714025526629, "shoulder_rot_r": 0.6464506879955274}, "wrist": {"deviation_r": 0.05491684105119776, "flexion_r": 0.5659087967833465}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.1731797784242307, "sample_count": 589}`.
+  Evidence: [connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-00.json) (SHA256 `d98ff8072dc614183ca0b5fee37c4a33aebc8c6a029f10141baf4eacc5c06908`).
+  Evidence: [passage_media_audit](../experiments/043-autonomous-discovery/stepwise-media/result.json) (SHA256 `2496b4272498a299c729b23d672c70fa4f35c1e93e0e2420c800d75c0b4c801d`).
+  Evidence: [search_diagram](../experiments/043-autonomous-discovery/stepwise-media/search.svg) (SHA256 `e85fb9cf47f9907e8311765432909c8fe9869ba61d31985fe7e5b96efa53e6b4`).
+  Evidence: [animation](../experiments/043-autonomous-discovery/stepwise-media/strategy-0/trajectory.gif) (SHA256 `0be01aeef67c58d38e54685566ef2b6138e8f1a052daecc84a9d2622e7f434ae`).
+  Evidence: [autonomous_discovery](../experiments/043-autonomous-discovery/discovery/result.json) (SHA256 `153dd6d1b4f97289009543695a26f8fdc47753fcbb72cc91d8be2304fff122bb`).
+  Evidence: [generated_search_trial](../experiments/043-autonomous-discovery/discovery/evaluation-00.json) (SHA256 `d98ff8072dc614183ca0b5fee37c4a33aebc8c6a029f10141baf4eacc5c06908`).
+  Evidence: [discovery_summary](../experiments/043-autonomous-discovery/summary/result.json) (SHA256 `8e7ff0fc232ad0ef889d352cd9eb755364ec184b99203c6b292786af1125bb23`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/discovery.svg) (SHA256 `813878666a5a815e3b06f6ee32031474a5555e10ed8e89a944df2ba8324b1f99`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/selection.svg) (SHA256 `d1a115b1b421c6022eebbfbb211ad10b0ac368168538c1689c72c2d4f643a0e6`).
+
+## generated-945a2c839056ef55
+
+Distinct generated musical family with an independently sampled model path; anatomy unresolved
+
+[connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-01.json).
+[passage_media_audit](../experiments/043-autonomous-discovery/repetition-media/result.json).
+[search_diagram](../experiments/043-autonomous-discovery/repetition-media/search.svg).
+[animation](../experiments/043-autonomous-discovery/repetition-media/strategy-0/trajectory.gif).
+- `realization-662c02c1c5829521c505`: index r3c5 (D4; release_after_event) → index r3c5 (D4; release_after_event) → index r1c6 (Eb4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-0`: 284 samples, palm path 122.132 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.393748661033125}, "index": {"mcp2_abduction_r": 0.013713455761604182, "mcp2_flexion_r": 0.02882109088336704, "md2_flexion_r": 0.24782986510886243, "pm2_flexion_r": 0.41190219833301944}, "middle": {"mcp3_abduction_r": 0.0024040904112902772, "mcp3_flexion_r": 0.0007179130453394966, "md3_flexion": 0.006567112849386839, "pm3_flexion_r": 0.00014280737619504213}, "shoulder": {"elv_angle_r": 0.7246075088276078, "shoulder_elv_r": 0.4141528308940833, "shoulder_rot_r": 0.18385903598178602}, "wrist": {"deviation_r": 0.5779842803101816, "flexion_r": 0.23264154165422068}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.1221320378054508, "sample_count": 284}`.
+  Evidence: [connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-01.json) (SHA256 `b362f4fdac0da3ed7c138989a50e698acaa140ccb308a92d17a1761059711946`).
+  Evidence: [passage_media_audit](../experiments/043-autonomous-discovery/repetition-media/result.json) (SHA256 `a4fba6d92b54acb98b66e24c66e701e1a48b2e1d98e9a2df1001f639255419f8`).
+  Evidence: [search_diagram](../experiments/043-autonomous-discovery/repetition-media/search.svg) (SHA256 `9e5989489d772e01800188a1f014a7c4fba0d11d900b7faf36481420ab97fcb9`).
+  Evidence: [animation](../experiments/043-autonomous-discovery/repetition-media/strategy-0/trajectory.gif) (SHA256 `9f0ae2b601bf3f8edb30be52d43af3b84e8a956408f26a486827c4cb47aea161`).
+  Evidence: [autonomous_discovery](../experiments/043-autonomous-discovery/discovery/result.json) (SHA256 `153dd6d1b4f97289009543695a26f8fdc47753fcbb72cc91d8be2304fff122bb`).
+  Evidence: [generated_search_trial](../experiments/043-autonomous-discovery/discovery/evaluation-01.json) (SHA256 `b362f4fdac0da3ed7c138989a50e698acaa140ccb308a92d17a1761059711946`).
+  Evidence: [discovery_summary](../experiments/043-autonomous-discovery/summary/result.json) (SHA256 `8e7ff0fc232ad0ef889d352cd9eb755364ec184b99203c6b292786af1125bb23`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/discovery.svg) (SHA256 `813878666a5a815e3b06f6ee32031474a5555e10ed8e89a944df2ba8324b1f99`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/selection.svg) (SHA256 `d1a115b1b421c6022eebbfbb211ad10b0ac368168538c1689c72c2d4f643a0e6`).
+
+## generated-71ba0dd640884d91
+
+Distinct generated musical family with an independently sampled model path; anatomy unresolved
+
+[connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-02.json).
+[passage_media_audit](../experiments/043-autonomous-discovery/reversal-media/result.json).
+[search_diagram](../experiments/043-autonomous-discovery/reversal-media/search.svg).
+[animation](../experiments/043-autonomous-discovery/reversal-media/strategy-0/trajectory.gif).
+- `realization-f3a66ee108aab3fb851c`: index r3c5 (D4; release_after_event) → index r5c6 (E4; release_after_event) → index r5c5 (C#4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-0`: 403 samples, palm path 145.077 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.1227269201105275}, "index": {"mcp2_abduction_r": 0.08381183423827812, "mcp2_flexion_r": 0.34249512138142524, "md2_flexion_r": 0.7273809009214467, "pm2_flexion_r": 0.2666163828761225}, "middle": {"mcp3_abduction_r": 0.06692152554440031, "mcp3_flexion_r": 0.2553452190521265, "md3_flexion": 0.3680300574393137, "pm3_flexion_r": 0.6575391143410134}, "shoulder": {"elv_angle_r": 0.6863481335305959, "shoulder_elv_r": 0.37826378293951723, "shoulder_rot_r": 0.2734370566711858}, "wrist": {"deviation_r": 0.5686758989829698, "flexion_r": 0.18206956383786138}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.1450772200720184, "sample_count": 403}`.
+  Evidence: [connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-02.json) (SHA256 `71fc10fa8d19c510e38b7bd738245c5f49c18199de84694c32818a8137a7f85c`).
+  Evidence: [passage_media_audit](../experiments/043-autonomous-discovery/reversal-media/result.json) (SHA256 `8b259fd7fce738e9c3e8ece6a1dba2a443d5e7f139217a41ec09d330313b91be`).
+  Evidence: [search_diagram](../experiments/043-autonomous-discovery/reversal-media/search.svg) (SHA256 `d70b13bb7042787db97e07ad68296715459a4bf9de4617d962e4f7eb958ab495`).
+  Evidence: [animation](../experiments/043-autonomous-discovery/reversal-media/strategy-0/trajectory.gif) (SHA256 `8000a61c14972429ade48aae78f287b09c221f72b079872cacee5d228cc41347`).
+  Evidence: [autonomous_discovery](../experiments/043-autonomous-discovery/discovery/result.json) (SHA256 `153dd6d1b4f97289009543695a26f8fdc47753fcbb72cc91d8be2304fff122bb`).
+  Evidence: [generated_search_trial](../experiments/043-autonomous-discovery/discovery/evaluation-02.json) (SHA256 `71fc10fa8d19c510e38b7bd738245c5f49c18199de84694c32818a8137a7f85c`).
+  Evidence: [discovery_summary](../experiments/043-autonomous-discovery/summary/result.json) (SHA256 `8e7ff0fc232ad0ef889d352cd9eb755364ec184b99203c6b292786af1125bb23`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/discovery.svg) (SHA256 `813878666a5a815e3b06f6ee32031474a5555e10ed8e89a944df2ba8324b1f99`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/selection.svg) (SHA256 `d1a115b1b421c6022eebbfbb211ad10b0ac368168538c1689c72c2d4f643a0e6`).
+
+## generated-dcbc77238f1b5559
+
+Distinct generated musical family with an independently sampled model path; anatomy unresolved
+
+[connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-07.json).
+[passage_media_audit](../experiments/043-autonomous-discovery/arpeggio-media/result.json).
+[search_diagram](../experiments/043-autonomous-discovery/arpeggio-media/search.svg).
+[animation](../experiments/043-autonomous-discovery/arpeggio-media/strategy-0/trajectory.gif).
+[animation](../experiments/043-autonomous-discovery/arpeggio-media/strategy-1/trajectory.gif).
+- `realization-bd1da87f333184b91a03`: little r4c6 (Eb4; release_after_event) → index r2c7 (G4; release_after_event) → little r2c8 (Bb4; release_after_event) → little r1c6 (Eb4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-0`: 375 samples, palm path 121.677 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.2653318793847302}, "index": {"mcp2_abduction_r": 0.11099205657580996, "mcp2_flexion_r": 0.12739636945995692, "md2_flexion_r": 0.2126730939219852, "pm2_flexion_r": 0.18212647714496644}, "middle": {"mcp3_abduction_r": 0.008361376933952558, "mcp3_flexion_r": 0.0014899725353556825, "md3_flexion": 0.020233409020470626, "pm3_flexion_r": 0.000334330507630598}, "shoulder": {"elv_angle_r": 0.509221677617176, "shoulder_elv_r": 0.1357569559852937, "shoulder_rot_r": 0.13697267904961258}, "wrist": {"deviation_r": 0.11669266542786505, "flexion_r": 0.2561397390799013}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.12167693059276138, "sample_count": 375}`.
+  Evidence: [connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-07.json) (SHA256 `034a53238707f86cf74e615e4ded5469a7b194086671d096355e66ce1d49c2f3`).
+  Evidence: [passage_media_audit](../experiments/043-autonomous-discovery/arpeggio-media/result.json) (SHA256 `cf4cf70ae27953a182f3c3c7976ca1d4cb6ba6e5f91f2b4809995db96e2380d4`).
+  Evidence: [search_diagram](../experiments/043-autonomous-discovery/arpeggio-media/search.svg) (SHA256 `58ad172632d7a824f22d41e7a8292d3e75806141f659b50d0d3f3670e5861c5b`).
+  Evidence: [animation](../experiments/043-autonomous-discovery/arpeggio-media/strategy-0/trajectory.gif) (SHA256 `eb21458e39eaa39b82e8cce97dfdc9aa58ebc8dd1a37f14d571751fc0e0a43cd`).
+  Evidence: [animation](../experiments/043-autonomous-discovery/arpeggio-media/strategy-1/trajectory.gif) (SHA256 `ef8fb41b525f637e8afe21a0529a344aadc3506b2626925590508658634916e6`).
+  Evidence: [autonomous_discovery](../experiments/043-autonomous-discovery/discovery/result.json) (SHA256 `153dd6d1b4f97289009543695a26f8fdc47753fcbb72cc91d8be2304fff122bb`).
+  Evidence: [generated_search_trial](../experiments/043-autonomous-discovery/discovery/evaluation-03.json) (SHA256 `4e27f697c7abe688dbfdf8dab9bb73c5da472899740d600643220207117fcb30`).
+  Evidence: [generated_search_trial](../experiments/043-autonomous-discovery/discovery/evaluation-07.json) (SHA256 `034a53238707f86cf74e615e4ded5469a7b194086671d096355e66ce1d49c2f3`).
+  Evidence: [discovery_summary](../experiments/043-autonomous-discovery/summary/result.json) (SHA256 `8e7ff0fc232ad0ef889d352cd9eb755364ec184b99203c6b292786af1125bb23`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/discovery.svg) (SHA256 `813878666a5a815e3b06f6ee32031474a5555e10ed8e89a944df2ba8324b1f99`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/selection.svg) (SHA256 `d1a115b1b421c6022eebbfbb211ad10b0ac368168538c1689c72c2d4f643a0e6`).
+- `realization-79a63b45cc255c2f7a17`: little r4c6 (Eb4; release_after_event) → index r2c7 (G4; release_after_event) → little r2c8 (Bb4; release_after_event) → index r4c6 (Eb4; release_after_event).
+  Status: sampled_path_found; quality: numerically_realized; audit: sampled_proxy_constraints_satisfied; anatomy unresolved.
+  Recorded movement `strategy-1`: 495 samples, palm path 140.189 mm.
+  Descriptors: `{"continuous_validity": null, "joint_excursion_rad": {"forearm": {"pro_sup_r": 0.46287204813280086}, "index": {"mcp2_abduction_r": 0.11805261493075817, "mcp2_flexion_r": 0.27002356938863503, "md2_flexion_r": 0.2126730939219852, "pm2_flexion_r": 0.49535508881305507}, "middle": {"mcp3_abduction_r": 0.10276190129983691, "mcp3_flexion_r": 0.05729957309509667, "md3_flexion": 0.01711750474626466, "pm3_flexion_r": 0.010642274135540808}, "shoulder": {"elv_angle_r": 0.4466083449947672, "shoulder_elv_r": 0.1357569559852937, "shoulder_rot_r": 0.1266986100455501}, "wrist": {"deviation_r": 0.5216443483810062, "flexion_r": 0.19178000403614914}}, "maximum_held_envelope_distance_m": null, "maximum_held_normal_error_rad": null, "maximum_held_position_error_m": null, "maximum_registered_penetration_m": null, "minimum_joint_margin_rad": null, "palm_max_excursion_m": null, "palm_path_length_m": 0.14018940888650386, "sample_count": 495}`.
+  Evidence: [connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-07.json) (SHA256 `034a53238707f86cf74e615e4ded5469a7b194086671d096355e66ce1d49c2f3`).
+  Evidence: [passage_media_audit](../experiments/043-autonomous-discovery/arpeggio-media/result.json) (SHA256 `cf4cf70ae27953a182f3c3c7976ca1d4cb6ba6e5f91f2b4809995db96e2380d4`).
+  Evidence: [search_diagram](../experiments/043-autonomous-discovery/arpeggio-media/search.svg) (SHA256 `58ad172632d7a824f22d41e7a8292d3e75806141f659b50d0d3f3670e5861c5b`).
+  Evidence: [animation](../experiments/043-autonomous-discovery/arpeggio-media/strategy-0/trajectory.gif) (SHA256 `eb21458e39eaa39b82e8cce97dfdc9aa58ebc8dd1a37f14d571751fc0e0a43cd`).
+  Evidence: [animation](../experiments/043-autonomous-discovery/arpeggio-media/strategy-1/trajectory.gif) (SHA256 `ef8fb41b525f637e8afe21a0529a344aadc3506b2626925590508658634916e6`).
+  Evidence: [autonomous_discovery](../experiments/043-autonomous-discovery/discovery/result.json) (SHA256 `153dd6d1b4f97289009543695a26f8fdc47753fcbb72cc91d8be2304fff122bb`).
+  Evidence: [generated_search_trial](../experiments/043-autonomous-discovery/discovery/evaluation-03.json) (SHA256 `4e27f697c7abe688dbfdf8dab9bb73c5da472899740d600643220207117fcb30`).
+  Evidence: [generated_search_trial](../experiments/043-autonomous-discovery/discovery/evaluation-07.json) (SHA256 `034a53238707f86cf74e615e4ded5469a7b194086671d096355e66ce1d49c2f3`).
+  Evidence: [discovery_summary](../experiments/043-autonomous-discovery/summary/result.json) (SHA256 `8e7ff0fc232ad0ef889d352cd9eb755364ec184b99203c6b292786af1125bb23`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/discovery.svg) (SHA256 `813878666a5a815e3b06f6ee32031474a5555e10ed8e89a944df2ba8324b1f99`).
+  Evidence: [selection_diagram](../experiments/043-autonomous-discovery/summary/selection.svg) (SHA256 `d1a115b1b421c6022eebbfbb211ad10b0ac368168538c1689c72c2d4f643a0e6`).
+
+## generated-247e3482c25d6082
+
+Preserve an evaluated unsuccessful or proxy-rejected hypothesis; no impossibility claim
+
+[connected_passage_search](../experiments/043-autonomous-discovery/discovery/evaluation-06.json).
+[passage_media_audit](../experiments/043-autonomous-discovery/held-media/result.json).
+[search_diagram](../experiments/043-autonomous-discovery/held-media/search.svg).
 
 Solver history is not a playing trajectory. A found path establishes one sampled model realization; a finite failure is not impossibility. Rigid proxy overlap does not measure tissue penetration. No result establishes a human movement minimum or universal difficulty.

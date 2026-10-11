@@ -23,8 +23,9 @@ The active autonomous program continues without a calibration gate:
 - 042: completed musical events, connected beam search and alternate physical
   fingerings, repetition/reversal controls, actual sampled animations and branch
   diagrams. Held chord continuation remains a recorded finite failure.
-- 043: deterministic diverse musical hypothesis generation and observed-result
-  exploration allocation, with selected discoveries and negative controls.
+- 043: completed compositional generation (21 hypotheses), observed-result
+  allocation (nine trials), five selected generated targets, actual animations
+  and negative held/dyad evidence; 14 hypotheses remain unevaluated.
 - 044: reusable internal Python API, evidence/media queries and tested consumer
   examples; retain uncertainty and reproducible archived-source execution.
 

@@ -131,13 +131,23 @@ def verify_record(
             "plan",
             "passage",
             "passage-media",
+            "discovery-summary",
         ):
             records.append(("result", result))
-            if workflow == "passage-media":
+            if workflow in ("passage-media", "discovery-summary"):
                 if "artifact_sha256" not in result:
                     limitations.append("Passage media lacks artifact hashes")
                 for relative, expected in result.get("artifact_sha256", {}).items():
                     file_hash(directory / relative, expected, relative)
+        elif workflow == "discovery":
+            records.append(("result", result))
+            for relative, expected in result["artifact_sha256"].items():
+                file_hash(directory / relative, expected, relative)
+            for evaluation in result["evaluations"]:
+                path = directory / evaluation["search_result"]
+                file_hash(path, evaluation["search_sha256"], evaluation["id"])
+                if path.is_file():
+                    records.append((evaluation["id"], json.loads(path.read_text())))
         elif workflow == "explore":
             records.extend(
                 (t.get("target_id", t["button_id"]), t) for t in result["targets"]
@@ -250,7 +260,15 @@ def verify_record(
                 )
         if definition.is_file():
             source = result["input"]
-            for key in ("baseline", "start", "end", "atlas", "reference", "search"):
+            for key in (
+                "baseline",
+                "start",
+                "end",
+                "atlas",
+                "reference",
+                "search",
+                "discovery",
+            ):
                 if key == "reference" and "reference_input" in source:
                     file_hash(
                         definition.parent / source["reference_input"],

@@ -1,6 +1,6 @@
 # Inspect and reproduce the first right-hand target library
 
-This internal collection contains 45 musical/physical targets. It covers central
+This internal collection contains 50 musical/physical targets. It covers central
 and directional controls, all five digits, simultaneous dyads, held coordination,
 connected passage alternatives, repetitions and equivalent-pitch physical buttons.
 All entries have unknown human feasibility and unresolved anatomical validation.
@@ -137,3 +137,13 @@ accepts `Passage` / `NoteEvent` input and bounded `PassageSearchSettings`. Numer
 search output needs independent physical audits; it does not promise anatomy or
 human feasibility. `reproduce_argv` uses the archived executed source and should
 be run with `cwd=library.root`. No package publication is needed.
+
+## Generated records and allocation (043)
+
+Five `generated-*` entries preserve exact musical hashes, grammar actions,
+selection rationale and all numerical trial references. Their `generation` and
+`search_trials` fields distinguish generated hypotheses, evaluated alternatives
+and retained strategies. A held generated target retains failures without a
+complete trajectory. `autonomous_discovery` / `discovery_summary` evidence links
+explain actual generation, allocation and selection. Fourteen hypotheses in that
+run were never numerically evaluated. See [043](../experiments/043-autonomous-discovery/notes.md).

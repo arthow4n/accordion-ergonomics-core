@@ -378,8 +378,19 @@ def run_passage_media(definition: Path, output: Path) -> dict[str, Any]:
         )
         scene.data.qpos[:] = failure_solve["qpos_rad"]
         requirements = failure_solve["contact_requirements"]
+        parent = next((n for n in saved["nodes"] if n["id"] == failed["parent"]), None)
+        temporal_contacts = failed["contacts"] + (parent["contacts"] if parent else [])
+        held_bindings = {
+            (c["finger"], c["button_id"])
+            for c in temporal_contacts
+            if c["behavior"] == "hold"
+        }
         failure_roles = {
-            c["finger"]: "required" if c["surface_contact_required"] else "preparing"
+            c["finger"]: (
+                "held" if (c["finger"], c["button_id"]) in held_bindings else "required"
+            )
+            if c["surface_contact_required"]
+            else "preparing"
             for c in requirements
         }
         failed_state = {

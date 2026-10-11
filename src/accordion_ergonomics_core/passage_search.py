@@ -241,7 +241,13 @@ def plan_contact_change(
         c for c in destination if (c["finger"], c["button_id"]) not in held_binding
     ]
     attempts = []
+    waypoint_calls = 0
     for depth in settings.withdrawal_depths_m:
+        if (
+            settings.waypoint_solve_limit is not None
+            and waypoint_calls >= settings.waypoint_solve_limit
+        ):
+            break
         q = start_q
         waypoints = [q]
         phases = []
@@ -283,6 +289,13 @@ def plan_contact_change(
                 required = [c in held for c in contacts]
                 if phase == "approach" and fraction == 1:
                     required = [True] * len(contacts)
+                if (
+                    settings.waypoint_solve_limit is not None
+                    and waypoint_calls >= settings.waypoint_solve_limit
+                ):
+                    failure = "waypoint_budget_exhausted"
+                    break
+                waypoint_calls += 1
                 solve = solve_targets(
                     scene,
                     e,
@@ -324,6 +337,7 @@ def plan_contact_change(
             "depth_m": depth,
             "failure": failure,
             "waypoint_solves": solves,
+            "waypoint_solver_calls": len(solves),
             "waypoints_qpos_rad": waypoints,
             "phases": phases,
             "audit": {k: v for k, v in audit.items() if k != "samples"},
@@ -735,6 +749,21 @@ def search_passage(
             "contact_solves": solve_count,
             "attempted_movement_edges": len(edges),
             "generated_assignments": sum(b["generated"] for b in batches),
+            "movement_waypoint_solves": sum(
+                a.get("waypoint_solver_calls", 0)
+                for edge in edges
+                for a in edge["path"].get("attempts", [])
+            ),
+            "movement_rrt_iterations": sum(
+                a.get("rrt_search", {}).get("iterations", 0)
+                for edge in edges
+                for a in edge["path"].get("attempts", [])
+            ),
+            "movement_rrt_collision_evaluations": sum(
+                a.get("rrt_search", {}).get("collision_evaluations", 0)
+                for edge in edges
+                for a in edge["path"].get("attempts", [])
+            ),
         },
         "cost_claim": (
             "Bounded beam ranking by discovered palm path; "

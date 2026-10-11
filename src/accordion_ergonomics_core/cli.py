@@ -205,6 +205,8 @@ def main() -> None:
             "contact-report",
             "passage",
             "passage-media",
+            "discovery",
+            "discovery-summary",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -273,6 +275,12 @@ def main() -> None:
     passage_media = sub.add_parser("passage-media")
     passage_media.add_argument("definition", type=Path)
     passage_media.add_argument("--output", type=Path, required=True)
+    discovery = sub.add_parser("discovery")
+    discovery.add_argument("definition", type=Path)
+    discovery.add_argument("--output", type=Path, required=True)
+    summary = sub.add_parser("discovery-summary")
+    summary.add_argument("definition", type=Path)
+    summary.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "targets":
@@ -320,6 +328,16 @@ def main() -> None:
         from .passage_media import run_passage_media
 
         run_passage_media(args.definition, args.output)
+    elif args.command == "discovery":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .discovery import run_discovery
+
+        run_discovery(args.definition, args.output)
+    elif args.command == "discovery-summary":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .discovery_summary import run_discovery_summary
+
+        run_discovery_summary(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],
