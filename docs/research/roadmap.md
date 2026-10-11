@@ -1,4 +1,24 @@
-# Next falsifiable questions after the parameterized action laboratory
+# Exercise target research program
+
+The current priority is a reusable, provisional exercise library while improving
+physical interpretation. The compact upper `generic_cba_v3` reference is fixed.
+No unresolved calibration question blocks clearly classified hypotheses.
+
+- 038a: publish initial exact-world targets and query/integrity interface (done).
+- 038: independently classify unchanged hand proxies; audit neutral, endpoints
+  and every saved ordinary/held path sample. Report unresolved tissue validity.
+- 039: compare explicit matched multistart budgets and endpoint branches; make
+  failure reasons, alternative branches and budget sensitivity visible.
+- 040: publish varied baselines, relocation, simultaneous, held, short-sequence
+  and alternative-button targets with actual evidence and sample audits.
+
+See [the catalog](../../targets/CATALOG.md). Successful model realization is not
+human feasibility; discovered movement is not a necessary minimum. Observed
+human poses and measured skin remain the next validity bottleneck, not a reason
+to withhold provisional targets. The historical questions below retain useful
+provenance; their former sequential gates are superseded by this program.
+
+## Historical next falsifiable questions
 
 Experiments 004–014 establish parameter-bound recalculation, multi-start poses,
 withdrawal/seeded path search, a full index atlas, geometry/hand hypotheses,

@@ -27,6 +27,8 @@ def frozen_run(
         "limit-probe",
         "architecture",
         "cba-geometry",
+        "hand-audit",
+        "search-reliability",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

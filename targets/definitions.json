@@ -1,0 +1,360 @@
+{
+  "schema_version": 1,
+  "release": "0.1-provisional",
+  "reference_result": "experiments/037-upper-anchor-regression/central/result.json",
+  "targets": [
+    {
+      "id": "central-c4",
+      "family": "baseline",
+      "explanation": "Central index contact control, preserving all discovered pose branches.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/037-upper-anchor-regression/explore/result.json",
+              "target_id": "single-c4"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "nearby-d4",
+      "family": "baseline",
+      "explanation": "Nearby cross-row contact control; not a movement by itself.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r3c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/037-upper-anchor-regression/explore/result.json",
+              "target_id": "nearby-d4"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "upper-g6",
+      "family": "baseline",
+      "explanation": "Distant upper-register index endpoint, with search branch spread visible.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r2c15",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/037-upper-anchor-regression/explore/result.json",
+              "target_id": "large-g6"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "dyad-c4-csharp4",
+      "family": "simultaneous",
+      "explanation": "Semitone dyad with named index/middle contacts; proxy anatomy remains unresolved.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r2c5",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/037-upper-anchor-regression/explore/result.json",
+              "target_id": "c4-csharp4"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "dyad-c4-e4",
+      "family": "simultaneous",
+      "explanation": "Major-third dyad in a different middle-finger row/column configuration.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r2c6",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/037-upper-anchor-regression/explore/result.json",
+              "target_id": "c4-e4"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "move-c4-d4",
+      "family": "relocation",
+      "explanation": "Release C4 and establish D4. Found withdrawal/RRT/approach is one sampled strategy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r3c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "path",
+              "path": "experiments/037-upper-anchor-regression/nearby/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "move-c4-g6",
+      "family": "relocation",
+      "explanation": "Long register relocation with a sampled joint path. This is not a necessary minimum movement.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r2c15",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "path",
+              "path": "experiments/037-upper-anchor-regression/larger/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "held-c4-csharp4-e4",
+      "family": "held",
+      "explanation": "Sustain geometric index C4 contact while middle releases C#4 and establishes E4. No holding force or button depression.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "hold"
+                },
+                {
+                  "button_id": "r2c5",
+                  "finger": "middle",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "hold"
+                },
+                {
+                  "button_id": "r2c6",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "held",
+              "path": "experiments/037-upper-anchor-regression/held/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "return-c4-d4-c4",
+      "family": "sequence",
+      "explanation": "Return-motion hypothesis. Existing outward path alone does not establish the specified return sequence.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r3c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": []
+        }
+      ]
+    },
+    {
+      "id": "equivalent-c4",
+      "family": "alternative",
+      "explanation": "One musical C4 target with distinct physical buttons. Second realization remains a hypothesis until exact-world search.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/037-upper-anchor-regression/explore/result.json",
+              "target_id": "single-c4"
+            }
+          ],
+          "endpoint_coverage": "experiments/037-upper-anchor-regression/coverage/result.json"
+        },
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r4c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": []
+        }
+      ]
+    }
+  ],
+  "model_references": {
+    "index": "experiments/037-upper-anchor-regression/central/result.json",
+    "index+middle": "experiments/037-upper-anchor-regression/explore/c4-csharp4/candidate-0/result.json"
+  }
+}

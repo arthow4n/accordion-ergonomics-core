@@ -199,6 +199,8 @@ def main() -> None:
             "limit-probe",
             "architecture",
             "cba-geometry",
+            "hand-audit",
+            "search-reliability",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -240,9 +242,40 @@ def main() -> None:
     body_render = sub.add_parser("body-render")
     body_render.add_argument("result", type=Path)
     body_render.add_argument("--output", type=Path, required=True)
+    hand = sub.add_parser("hand-audit")
+    hand.add_argument("definition", type=Path)
+    hand.add_argument("--output", type=Path, required=True)
+    reliability = sub.add_parser("search-reliability")
+    reliability.add_argument("definition", type=Path)
+    reliability.add_argument("--output", type=Path, required=True)
+    targets = sub.add_parser("targets")
+    target_sub = targets.add_subparsers(dest="target_command", required=True)
+    listing = target_sub.add_parser("list")
+    listing.add_argument("--family")
+    listing.add_argument("--status")
+    for name in ("show", "verify"):
+        action = target_sub.add_parser(name)
+        action.add_argument("target_id", nargs="?")
+    target_sub.add_parser("build")
     sub.add_parser("check")
     args = parser.parse_args()
-    if args.command == "check":
+    if args.command == "targets":
+        from .targets import targets_command
+
+        targets_command(args)
+    elif args.command == "hand-audit":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .hand_audit import run_hand_audit
+
+        result = run_hand_audit(args.definition, args.output)
+        print(json.dumps({"id": result["id"]}))
+    elif args.command == "search-reliability":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .search_reliability import run_search_reliability
+
+        result = run_search_reliability(args.definition, args.output)
+        print(json.dumps({"id": result["id"]}))
+    elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],
             ["ruff", "check", "."],

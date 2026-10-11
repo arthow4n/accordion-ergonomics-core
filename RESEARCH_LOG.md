@@ -1,5 +1,23 @@
 # Research log
 
+## 2026-10-11 — Ship the early provisional exercise catalog (038a)
+
+[038a](experiments/038-provisional-targets/notes.md) publishes ten musical targets
+from exact 037 evidence before further anatomical research. Separate targets,
+finite index/middle contact realizations and saved-state branches; retain C4
+alternative-button and return-sequence hypotheses. A machine-readable manifest,
+derived Markdown and `aec targets list/show/verify/build` make evidence searchable.
+World component hashes and explicit index versus index/middle compiled variants
+guard against silent state transfer. Actual candidate/discovery/path files link
+with SHA256 and frozen roots; failed starts stay in discovery evidence.
+
+All entries have null human feasibility and unresolved anatomical validity.
+Existing endpoint coverage is not a sampled-path anatomical certificate. Integrity
+verification checks 24 evidence files across five complete frozen roots; focused
+catalog tests and local static checks validate the interface. Collision and
+matched-budget search studies continue under the fixed reference, with no geometry
+or instrument motion changes.
+
 ## 2026-10-09 — Remove automatic CI and make historical identity testing portable
 
 The first 036 commit's hosted run failed at the historical compiled-model byte

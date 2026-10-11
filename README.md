@@ -35,6 +35,15 @@ incomplete anatomical self-collision coverage. Real playing feasibility,
 button operation and continuous validity are not established.**
 See [RESEARCH_LOG.md](RESEARCH_LOG.md) for findings and failed investigations.
 
+## Exercise target library
+
+The [provisional catalog](targets/CATALOG.md) separates musical intent, physical
+index/middle contacts, search branches and actual frozen evidence. All human
+feasibility values remain unknown. Use `uv run aec targets list`,
+`uv run aec targets show central-c4`, and `uv run aec targets verify central-c4`.
+The [manifest](targets/manifest.json) is machine readable; verification concerns
+integrity, not physical truth.
+
 ## Reproduce
 
 Use conventional CPython 3.14 managed by [uv](https://docs.astral.sh/uv/).

@@ -149,6 +149,38 @@ def verify_record(
                     state_path = directory / name / suffix
                     state = json.loads(state_path.read_text())
                     records.append((name + "/" + suffix, state))
+        elif workflow == "hand-audit":
+            records.extend((r["id"], r) for r in result["records"])
+            for request in result["input"]["records"]:
+                file_hash(
+                    definition.parent / request["result"],
+                    request["sha256"],
+                    request["id"] + " source",
+                )
+                if "model_result" in request:
+                    file_hash(
+                        definition.parent / request["model_result"],
+                        request["model_sha256"],
+                        request["id"] + " model source",
+                    )
+        elif workflow == "search-reliability":
+            for relative, expected in result["artifact_sha256"].items():
+                file_hash(directory / relative, expected, relative)
+            for panel in result["panels"]:
+                path = directory / panel["result"]
+                file_hash(path, panel["sha256"], panel["id"] + " panel")
+                saved_panel = json.loads(path.read_text())
+                records.extend(
+                    (panel["id"] + "/" + t["target_id"], t)
+                    for t in saved_panel["targets"]
+                )
+            for panel in result["input"]["panels"]:
+                for state in panel.get("warm_states", []):
+                    file_hash(
+                        definition.parent / state["result"],
+                        state["sha256"],
+                        panel["id"] + " warm source",
+                    )
         elif workflow == "atlas":
             records.append(("anchor", result["anchor"]))
             atlases.append((directory, result))
