@@ -1,0 +1,179 @@
+{
+  "id": "040-varied-contact-discovery",
+  "baseline_result": "../../037-upper-anchor-regression/central/result.json",
+  "baseline_sha256": "6bf28437371d8bf3f509efd395da4cd88121aa73967aa52ce98cb047c92ee7b8",
+  "candidate_search": {
+    "offsets_rad": [
+      {
+        "elbow_flexion_r": -0.3,
+        "pro_sup_r": -0.3
+      },
+      {
+        "elbow_flexion_r": 0.3,
+        "pro_sup_r": 0.3
+      },
+      {
+        "shoulder_rot_r": -0.2
+      },
+      {
+        "shoulder_rot_r": 0.2
+      },
+      {
+        "flexion_r": -0.15
+      },
+      {
+        "mcp3_abduction_r": -0.1
+      },
+      {
+        "mcp3_abduction_r": 0.1
+      }
+    ],
+    "max_iterations": 220,
+    "palm_dedup_m": 0.005,
+    "elbow_dedup_m": 0.01,
+    "joint_dedup_rad": 0.1
+  },
+  "targets": [
+    {
+      "id": "same-row-lower",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 4,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "same-row-upper",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 6,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "same-row-distant",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 8,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "cross-lower",
+      "contacts": [
+        {
+          "row": 3,
+          "column": 4,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "cross-upper",
+      "contacts": [
+        {
+          "row": 3,
+          "column": 7,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "equivalent-c4",
+      "contacts": [
+        {
+          "row": 4,
+          "column": 5,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "equivalent-csharp4",
+      "contacts": [
+        {
+          "row": 5,
+          "column": 5,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "cross-distant",
+      "contacts": [
+        {
+          "row": 2,
+          "column": 8,
+          "finger": "index"
+        }
+      ]
+    },
+    {
+      "id": "c4-d4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 3,
+          "column": 5,
+          "finger": "middle"
+        }
+      ]
+    },
+    {
+      "id": "c4-eflat4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 1,
+          "column": 6,
+          "finger": "middle"
+        }
+      ]
+    },
+    {
+      "id": "c4-f4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 3,
+          "column": 6,
+          "finger": "middle"
+        }
+      ]
+    },
+    {
+      "id": "c4-g4",
+      "contacts": [
+        {
+          "row": 1,
+          "column": 5,
+          "finger": "index"
+        },
+        {
+          "row": 2,
+          "column": 7,
+          "finger": "middle"
+        }
+      ]
+    }
+  ],
+  "render": false
+}

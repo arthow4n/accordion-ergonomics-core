@@ -1,0 +1,2264 @@
+{
+  "status": "success",
+  "feasible": null,
+  "collision_limit_implementation": "displacement",
+  "solver_settings": {
+    "backend": "mink-clarabel",
+    "max_iterations": 200,
+    "integration_dt_s": 0.02,
+    "position_cost": 1.0,
+    "normal_cost": 0.05,
+    "posture_cost": 0.0001,
+    "damping": 1e-06,
+    "position_tolerance_m": 0.0001,
+    "normal_tolerance_rad": 0.05,
+    "joint_tolerance_rad": 1e-06,
+    "equality_tolerance_rad": 1e-06,
+    "penetration_tolerance_m": 0.0001,
+    "collision_avoidance": true,
+    "collision_limit_implementation": "displacement",
+    "collision_backtrack_steps": 12,
+    "collision_edge_step_rad": 0.01
+  },
+  "claim": "Static kinematic candidate only; playing feasibility is unestablished",
+  "failure": null,
+  "termination_reason": "accepted_endpoint",
+  "diagnostic_reasons": [],
+  "state_semantics": "Kinematic configuration; dynamic state unestablished",
+  "qvel_rad_s": null,
+  "diagnostics": {
+    "approximate_support_envelope_distances_m": {
+      "approximate_thigh_support_r": 0.05334218827772526,
+      "approximate_thigh_support_l": 0.05277767121721656
+    },
+    "instrument_envelope_distances_m": {},
+    "instrument_component_distances_m": {
+      "unnamed_geom_23": {
+        "cba_treble_rear": 0.015650095766660085,
+        "cba_treble_grille": 0.20811580571036187,
+        "cba_treble_inner": 0.046564279869460504,
+        "cba_treble_top": 0.2719704799514816,
+        "cba_treble_bottom": 0.026184832994447238,
+        "cba_treble_shoulder": 0.07018955272247097,
+        "cba_treble_rear_return": 0.015650095766660127,
+        "cba_treble_wing_top": 0.27031120486901694,
+        "cba_treble_wing_bottom": 0.020548202823034142,
+        "cba_treble_mount": 0.04650657047569727,
+        "cba_outer_rim": 0.055699544704142415,
+        "cba_inner_rim": 0.07179229804877828,
+        "cba_bass_rear": 0.08977374651997007,
+        "cba_bass_grille": 0.2562050115624611,
+        "cba_bass_outer": 0.09406774306648745,
+        "cba_bass_inner": 0.17707536712714544,
+        "cba_bass_top": 0.30124176189712837,
+        "cba_bass_bottom": 0.10093446607876856,
+        "cba_bass_panel": 0.1980354477485376,
+        "cba_bellows_front": 0.2268411799835583,
+        "cba_bellows_rear": 0.04169732241742294,
+        "cba_bellows_top": 0.27691351802763164,
+        "cba_bellows_bottom": 0.05583541273032343
+      },
+      "thorax_coll1": {
+        "cba_treble_rear": 0.024938481287724117,
+        "cba_treble_grille": 0.21893848128769186,
+        "cba_treble_inner": 0.056326915288605985,
+        "cba_treble_top": 0.06800342588448847,
+        "cba_treble_bottom": 0.049669152892779886,
+        "cba_treble_shoulder": 0.08190544022002913,
+        "cba_treble_rear_return": 0.02778652986846566,
+        "cba_treble_wing_top": 0.06458203945956306,
+        "cba_treble_wing_bottom": 0.04919115688963449,
+        "cba_treble_mount": 0.07098055435334528,
+        "cba_outer_rim": 0.08049770502916836,
+        "cba_inner_rim": 0.08265940134079303,
+        "cba_bass_rear": 0.11593007722094131,
+        "cba_bass_grille": 0.27198878033608026,
+        "cba_bass_outer": 0.11999294269901892,
+        "cba_bass_inner": 0.203871664844782,
+        "cba_bass_top": 0.1547458890521712,
+        "cba_bass_bottom": 0.14646043977563267,
+        "cba_bass_panel": 0.22497720296478688,
+        "cba_bellows_front": 0.2290640487793774,
+        "cba_bellows_rear": 0.05375193033566908,
+        "cba_bellows_top": 0.0975928993993417,
+        "cba_bellows_bottom": 0.08137239333957372
+      },
+      "thorax_coll2": {
+        "cba_treble_rear": 0.010842234869531425,
+        "cba_treble_grille": 0.20432283679087493,
+        "cba_treble_inner": 0.04161596866373206,
+        "cba_treble_top": 0.033414942485561774,
+        "cba_treble_bottom": 0.2166188079839082,
+        "cba_treble_shoulder": 0.06593102067136485,
+        "cba_treble_rear_return": 0.01084223486953148,
+        "cba_treble_wing_top": 0.028173242841632848,
+        "cba_treble_wing_bottom": 0.21435143408895985,
+        "cba_treble_mount": 0.04415720557144272,
+        "cba_outer_rim": 0.05107701137183311,
+        "cba_inner_rim": 0.0659310206713649,
+        "cba_bass_rear": 0.08718670395245658,
+        "cba_bass_grille": 0.2530942168327623,
+        "cba_bass_outer": 0.09156757520196966,
+        "cba_bass_inner": 0.17245124049215083,
+        "cba_bass_top": 0.10630787313756303,
+        "cba_bass_bottom": 0.2545560258478636,
+        "cba_bass_panel": 0.19432111936635604,
+        "cba_bellows_front": 0.22184117998488023,
+        "cba_bellows_rear": 0.03710241128307247,
+        "cba_bellows_top": 0.06007616446614543,
+        "cba_bellows_bottom": 0.22500731592039142
+      },
+      "thorax_coll3": {
+        "cba_treble_rear": 0.06616107622032287,
+        "cba_treble_grille": 0.2569197906574347,
+        "cba_treble_inner": 0.09698343562024571,
+        "cba_treble_top": 0.07204939158033945,
+        "cba_treble_bottom": 0.33788681689390165,
+        "cba_treble_shoulder": 0.12047422587566682,
+        "cba_treble_rear_return": 0.06616107622032298,
+        "cba_treble_wing_top": 0.0661610734727502,
+        "cba_treble_wing_bottom": 0.33582655537806133,
+        "cba_treble_mount": 0.07089685656704263,
+        "cba_outer_rim": 0.09027517571797915,
+        "cba_inner_rim": 0.13262266972031428,
+        "cba_bass_rear": 0.11177969330994471,
+        "cba_bass_grille": 0.30030673640654443,
+        "cba_bass_outer": 0.11744895713257968,
+        "cba_bass_inner": 0.17101014693136363,
+        "cba_bass_top": 0.1194311441868021,
+        "cba_bass_bottom": 0.3570364218794746,
+        "cba_bass_panel": 0.20144881658036645,
+        "cba_bellows_front": 0.2770457582949494,
+        "cba_bellows_rear": 0.09212868485612503,
+        "cba_bellows_top": 0.10391788827008118,
+        "cba_bellows_bottom": 0.34484236416022324
+      },
+      "hat_cervical_coll": {
+        "cba_treble_rear": 0.141112302533913,
+        "cba_treble_grille": 0.326682247534514,
+        "cba_treble_inner": 0.17144209918121522,
+        "cba_treble_top": 0.14660783855873277,
+        "cba_treble_bottom": 0.43654194009545244,
+        "cba_treble_shoulder": 0.19550155889590048,
+        "cba_treble_rear_return": 0.14569620209061984,
+        "cba_treble_wing_top": 0.1456961992765063,
+        "cba_treble_wing_bottom": 0.4361742808230435,
+        "cba_treble_mount": 0.1877872905217287,
+        "cba_outer_rim": 0.223105361013816,
+        "cba_inner_rim": 0.22096132094395593,
+        "cba_bass_rear": 0.23238795650971678,
+        "cba_bass_grille": 0.3802309531039082,
+        "cba_bass_outer": 0.23613578592104933,
+        "cba_bass_inner": 0.31868849323484133,
+        "cba_bass_top": 0.24052433786502908,
+        "cba_bass_bottom": 0.4814817101095988,
+        "cba_bass_panel": 0.3457132887497076,
+        "cba_bellows_front": 0.33619094968555835,
+        "cba_bellows_rear": 0.16946429366554666,
+        "cba_bellows_top": 0.1791244993447078,
+        "cba_bellows_bottom": 0.4451574348601354
+      },
+      "hat_jaw_coll2": {
+        "cba_treble_rear": 0.12694319773487947,
+        "cba_treble_grille": 0.26543002911767083,
+        "cba_treble_inner": 0.14941050506905143,
+        "cba_treble_top": 0.12961982223004753,
+        "cba_treble_bottom": 0.49007483709009797,
+        "cba_treble_shoulder": 0.16496423160821677,
+        "cba_treble_rear_return": 0.13766770294837521,
+        "cba_treble_wing_top": 0.1376677014470285,
+        "cba_treble_wing_bottom": 0.49256455061536386,
+        "cba_treble_mount": 0.16265720265482456,
+        "cba_outer_rim": 0.2328387480490257,
+        "cba_inner_rim": 0.21271638846978247,
+        "cba_bass_rear": 0.21287104430634735,
+        "cba_bass_grille": 0.31962185385265046,
+        "cba_bass_outer": 0.21468658181894906,
+        "cba_bass_inner": 0.29829210696848774,
+        "cba_bass_top": 0.21914878237842594,
+        "cba_bass_bottom": 0.5252577567988236,
+        "cba_bass_panel": 0.324288077553757,
+        "cba_bellows_front": 0.2733221118807348,
+        "cba_bellows_rear": 0.14981616223456276,
+        "cba_bellows_top": 0.1546755343582641,
+        "cba_bellows_bottom": 0.4927911299909665
+      },
+      "hat_skull_coll": {
+        "cba_treble_rear": 0.18334987544745687,
+        "cba_treble_grille": 0.3186207880789514,
+        "cba_treble_inner": 0.203648546733548,
+        "cba_treble_top": 0.18652206280459105,
+        "cba_treble_bottom": 0.5347655243224751,
+        "cba_treble_shoulder": 0.21967561831266316,
+        "cba_treble_rear_return": 0.1886557713941237,
+        "cba_treble_wing_top": 0.1886557697029796,
+        "cba_treble_wing_bottom": 0.5353488148446943,
+        "cba_treble_mount": 0.21657639551370989,
+        "cba_outer_rim": 0.2754798843005891,
+        "cba_inner_rim": 0.26710442549977864,
+        "cba_bass_rear": 0.2546878331563667,
+        "cba_bass_grille": 0.3670709299928567,
+        "cba_bass_outer": 0.25709221351639133,
+        "cba_bass_inner": 0.33045126197471014,
+        "cba_bass_top": 0.26088398801923085,
+        "cba_bass_bottom": 0.5699451834650187,
+        "cba_bass_panel": 0.3609290583641511,
+        "cba_bellows_front": 0.32619666093226635,
+        "cba_bellows_rear": 0.2029463478171146,
+        "cba_bellows_top": 0.2088289445305069,
+        "cba_bellows_bottom": 0.5390671818134635
+      },
+      "humerus_coll_r": {
+        "cba_treble_rear": 0.13078890406764715,
+        "cba_treble_grille": 0.29328464372101587,
+        "cba_treble_inner": 0.2500653084960016,
+        "cba_treble_top": 0.13486548798864742,
+        "cba_treble_bottom": 0.309171461103344,
+        "cba_treble_shoulder": 0.1715792193897737,
+        "cba_treble_rear_return": 0.10710159560166366,
+        "cba_treble_wing_top": 0.10710159367974104,
+        "cba_treble_wing_bottom": 0.2656219806191584,
+        "cba_treble_mount": 0.1071015956016636,
+        "cba_outer_rim": 0.1292541382687082,
+        "cba_inner_rim": 0.19337476969038064,
+        "cba_bass_rear": 0.34548163638809987,
+        "cba_bass_grille": 0.44039175519926704,
+        "cba_bass_outer": 0.34731659868359493,
+        "cba_bass_inner": 0.4462851579650045,
+        "cba_bass_top": 0.35295604606920733,
+        "cba_bass_bottom": 0.5090643470447511,
+        "cba_bass_panel": 0.4631933131250148,
+        "cba_bellows_front": 0.3653156082744994,
+        "cba_bellows_rear": 0.2530044292385442,
+        "cba_bellows_top": 0.2579173289683122,
+        "cba_bellows_bottom": 0.4221907424487257
+      },
+      "ulna_coll_r": {
+        "cba_treble_rear": 0.17767115452012744,
+        "cba_treble_grille": 0.2419441494861686,
+        "cba_treble_inner": 0.32090696006177666,
+        "cba_treble_top": 0.23240945945810554,
+        "cba_treble_bottom": 0.26977775953397726,
+        "cba_treble_shoulder": 0.17900781240251212,
+        "cba_treble_rear_return": 0.09386659752372914,
+        "cba_treble_wing_top": 0.17535518049556187,
+        "cba_treble_wing_bottom": 0.21943052398350166,
+        "cba_treble_mount": 0.09174509753160673,
+        "cba_outer_rim": 0.08407966046247267,
+        "cba_inner_rim": 0.1769680115315183,
+        "cba_bass_rear": 0.4272393625798219,
+        "cba_bass_grille": 0.4587866355080722,
+        "cba_bass_outer": 0.4269069600617767,
+        "cba_bass_inner": 0.5309069600617766,
+        "cba_bass_top": 0.45934565896715207,
+        "cba_bass_bottom": 0.48048018166490636,
+        "cba_bass_panel": 0.5351355286744032,
+        "cba_bellows_front": 0.3645762156390766,
+        "cba_bellows_rear": 0.32708850067997414,
+        "cba_bellows_top": 0.35842431054522106,
+        "cba_bellows_bottom": 0.3840916534222476
+      },
+      "radius_coll_r": {
+        "cba_treble_rear": 0.16007035005429818,
+        "cba_treble_grille": 0.1908459502197504,
+        "cba_treble_inner": 0.2942302731308277,
+        "cba_treble_top": 0.19540878362546957,
+        "cba_treble_bottom": 0.26393625516526065,
+        "cba_treble_shoulder": 0.14967447833093725,
+        "cba_treble_rear_return": 0.07651085833942624,
+        "cba_treble_wing_top": 0.14321103544215663,
+        "cba_treble_wing_bottom": 0.21549982780865354,
+        "cba_treble_mount": 0.07336083147396542,
+        "cba_outer_rim": 0.06154352531575237,
+        "cba_inner_rim": 0.14485596186117247,
+        "cba_bass_rear": 0.4044448841349121,
+        "cba_bass_grille": 0.41876282187128466,
+        "cba_bass_outer": 0.4002302731308277,
+        "cba_bass_inner": 0.5042302731308279,
+        "cba_bass_top": 0.42675268973318325,
+        "cba_bass_bottom": 0.46438003976517195,
+        "cba_bass_panel": 0.5082302731308274,
+        "cba_bellows_front": 0.3219182136298565,
+        "cba_bellows_rear": 0.3046757973145281,
+        "cba_bellows_top": 0.3246684529597553,
+        "cba_bellows_bottom": 0.37051378998028717
+      },
+      "radius_coll_2_r": {
+        "cba_treble_rear": 0.16638034373088847,
+        "cba_treble_grille": 0.19727558114093216,
+        "cba_treble_inner": 0.30019977470379583,
+        "cba_treble_top": 0.19597514672131872,
+        "cba_treble_bottom": 0.2799240095199317,
+        "cba_treble_shoulder": 0.15564609294912807,
+        "cba_treble_rear_return": 0.08276949400269847,
+        "cba_treble_wing_top": 0.1429600554738807,
+        "cba_treble_wing_bottom": 0.2340168836966481,
+        "cba_treble_mount": 0.07961091251974271,
+        "cba_outer_rim": 0.06785190369973383,
+        "cba_inner_rim": 0.15082009982670921,
+        "cba_bass_rear": 0.41052441333990297,
+        "cba_bass_grille": 0.42475674869756347,
+        "cba_bass_outer": 0.4061997747037958,
+        "cba_bass_inner": 0.5101997747037958,
+        "cba_bass_top": 0.42988392797435937,
+        "cba_bass_bottom": 0.4758794300624878,
+        "cba_bass_panel": 0.5141997747037955,
+        "cba_bellows_front": 0.3279641322401186,
+        "cba_bellows_rear": 0.3107822377132095,
+        "cba_bellows_top": 0.32719223720140145,
+        "cba_bellows_bottom": 0.383267657718063
+      },
+      "radius_coll_3_r": {
+        "cba_treble_rear": 0.16642030840538444,
+        "cba_treble_grille": 0.19579709426821482,
+        "cba_treble_inner": 0.299773211723777,
+        "cba_treble_top": 0.20144791447808016,
+        "cba_treble_bottom": 0.26829354149189977,
+        "cba_treble_shoulder": 0.1552275906038038,
+        "cba_treble_rear_return": 0.0826808741446804,
+        "cba_treble_wing_top": 0.15091118143941964,
+        "cba_treble_wing_bottom": 0.21976481990049734,
+        "cba_treble_mount": 0.07949796649786776,
+        "cba_outer_rim": 0.06791372222870351,
+        "cba_inner_rim": 0.15038538597318044,
+        "cba_bass_rear": 0.4103813549012017,
+        "cba_bass_grille": 0.4237961150759359,
+        "cba_bass_outer": 0.405773211723777,
+        "cba_bass_inner": 0.5097732117237771,
+        "cba_bass_top": 0.4322953274457575,
+        "cba_bass_bottom": 0.47077383690819613,
+        "cba_bass_panel": 0.5137732117237767,
+        "cba_bellows_front": 0.32689203975971554,
+        "cba_bellows_rear": 0.3106897798011311,
+        "cba_bellows_top": 0.33027245512349757,
+        "cba_bellows_bottom": 0.37723467576954256
+      },
+      "1mcskin_r": {
+        "cba_treble_rear": 0.12463164966542116,
+        "cba_treble_grille": 0.1573933287003107,
+        "cba_treble_inner": 0.2502513874272021,
+        "cba_treble_top": 0.13651064636118648,
+        "cba_treble_bottom": 0.29195904308333287,
+        "cba_treble_shoulder": 0.10572685255154732,
+        "cba_treble_rear_return": 0.050072886516535464,
+        "cba_treble_wing_top": 0.0999872321509736,
+        "cba_treble_wing_bottom": 0.2656898232111505,
+        "cba_treble_mount": 0.04838760792435065,
+        "cba_outer_rim": 0.03387612859851073,
+        "cba_inner_rim": 0.10098647245397227,
+        "cba_bass_rear": 0.36247714063577674,
+        "cba_bass_grille": 0.37550529461069887,
+        "cba_bass_outer": 0.3562513874272022,
+        "cba_bass_inner": 0.4602513874272022,
+        "cba_bass_top": 0.37275622194221897,
+        "cba_bass_bottom": 0.4553020607125012,
+        "cba_bass_panel": 0.4642513874272019,
+        "cba_bellows_front": 0.27976121765625345,
+        "cba_bellows_rear": 0.26333596358064704,
+        "cba_bellows_top": 0.2689107462144855,
+        "cba_bellows_bottom": 0.37149034499483885
+      },
+      "proximal_thumb_coll_r": {
+        "cba_treble_rear": 0.10454786043144948,
+        "cba_treble_grille": 0.1380247041391471,
+        "cba_treble_inner": 0.2235598864778794,
+        "cba_treble_top": 0.10725562087572035,
+        "cba_treble_bottom": 0.29356000278067285,
+        "cba_treble_shoulder": 0.07904852230318926,
+        "cba_treble_rear_return": 0.04393537271555396,
+        "cba_treble_wing_top": 0.08459547085346764,
+        "cba_treble_wing_bottom": 0.27769678130000275,
+        "cba_treble_mount": 0.04160516941202354,
+        "cba_outer_rim": 0.03015574449209535,
+        "cba_inner_rim": 0.0745906977834116,
+        "cba_bass_rear": 0.3369124519861266,
+        "cba_bass_grille": 0.3492700828213622,
+        "cba_bass_outer": 0.3295598864778795,
+        "cba_bass_inner": 0.4335598864778795,
+        "cba_bass_top": 0.3436676101531738,
+        "cba_bass_bottom": 0.4433283526413444,
+        "cba_bass_panel": 0.43755988647787925,
+        "cba_bellows_front": 0.2542130087514289,
+        "cba_bellows_rear": 0.23824503964759333,
+        "cba_bellows_top": 0.23939462577749748,
+        "cba_bellows_bottom": 0.3642811000246694
+      },
+      "distal_thumb_coll_r": {
+        "cba_treble_rear": 0.0938698249182648,
+        "cba_treble_grille": 0.1274731717513469,
+        "cba_treble_inner": 0.2063246416320978,
+        "cba_treble_top": 0.08831607902029498,
+        "cba_treble_bottom": 0.299320532950155,
+        "cba_treble_shoulder": 0.0618224324810828,
+        "cba_treble_rear_return": 0.04593379215173399,
+        "cba_treble_wing_top": 0.0751870200060697,
+        "cba_treble_wing_bottom": 0.2914825646778303,
+        "cba_treble_mount": 0.03906306493376216,
+        "cba_outer_rim": 0.03266017405350163,
+        "cba_inner_rim": 0.057799677520337454,
+        "cba_bass_rear": 0.3205877903104486,
+        "cba_bass_grille": 0.3324116869704626,
+        "cba_bass_outer": 0.31232464163209783,
+        "cba_bass_inner": 0.41632464163209787,
+        "cba_bass_top": 0.32480696545110077,
+        "cba_bass_bottom": 0.43755921990582214,
+        "cba_bass_panel": 0.42032464163209754,
+        "cba_bellows_front": 0.23794402782417295,
+        "cba_bellows_rear": 0.2223685534178793,
+        "cba_bellows_top": 0.22019556080448577,
+        "cba_bellows_bottom": 0.3622334685098635
+      },
+      "distal_thumb_coll_2_r": {
+        "cba_treble_rear": 0.09440097844812127,
+        "cba_treble_grille": 0.1277171567726328,
+        "cba_treble_inner": 0.20595587470323337,
+        "cba_treble_top": 0.08621808814392541,
+        "cba_treble_bottom": 0.3129011578141527,
+        "cba_treble_shoulder": 0.06145642610287367,
+        "cba_treble_rear_return": 0.04945014565663448,
+        "cba_treble_wing_top": 0.07405128838587312,
+        "cba_treble_wing_bottom": 0.30935725620945326,
+        "cba_treble_mount": 0.039766433114011575,
+        "cba_outer_rim": 0.03975827131042849,
+        "cba_inner_rim": 0.05757421468608325,
+        "cba_bass_rear": 0.3204193004960765,
+        "cba_bass_grille": 0.33195878091843284,
+        "cba_bass_outer": 0.31195587470323344,
+        "cba_bass_inner": 0.4159558747032334,
+        "cba_bass_top": 0.323602164860167,
+        "cba_bass_bottom": 0.4423065099174954,
+        "cba_bass_panel": 0.4199558747032335,
+        "cba_bellows_front": 0.23753252186346965,
+        "cba_bellows_rear": 0.22228189475069962,
+        "cba_bellows_top": 0.21876773941371624,
+        "cba_bellows_bottom": 0.3684237267131562
+      },
+      "2mcskin_coll_r": {
+        "cba_treble_rear": 0.14715110932246625,
+        "cba_treble_grille": 0.12427543479000223,
+        "cba_treble_inner": 0.2445116263541398,
+        "cba_treble_top": 0.1434910759445882,
+        "cba_treble_bottom": 0.27387350534803506,
+        "cba_treble_shoulder": 0.10016945901369234,
+        "cba_treble_rear_return": 0.08124937845057138,
+        "cba_treble_wing_top": 0.13657991507971476,
+        "cba_treble_wing_bottom": 0.2596006803445333,
+        "cba_treble_mount": 0.07935950478294078,
+        "cba_outer_rim": 0.06480397420572881,
+        "cba_inner_rim": 0.10605596724036348,
+        "cba_bass_rear": 0.3674285155342024,
+        "cba_bass_grille": 0.35849112006276906,
+        "cba_bass_outer": 0.3505116263541398,
+        "cba_bass_inner": 0.45451162635413983,
+        "cba_bass_top": 0.3716771712952543,
+        "cba_bass_bottom": 0.4402245214689005,
+        "cba_bass_panel": 0.4585116263541395,
+        "cba_bellows_front": 0.2598224294728358,
+        "cba_bellows_rear": 0.2711497748801985,
+        "cba_bellows_top": 0.2692324267298759,
+        "cba_bellows_bottom": 0.3548779317912179
+      },
+      "proxph2_coll_r": {
+        "cba_treble_rear": 0.11021486035765239,
+        "cba_treble_grille": 0.11037366403054116,
+        "cba_treble_inner": 0.2084514611353235,
+        "cba_treble_top": 0.11215316415490957,
+        "cba_treble_bottom": 0.272398151000876,
+        "cba_treble_shoulder": 0.06403565768354838,
+        "cba_treble_rear_return": 0.06652957737224367,
+        "cba_treble_wing_top": 0.11016567029689645,
+        "cba_treble_wing_bottom": 0.2711607490063104,
+        "cba_treble_mount": 0.05773117447174144,
+        "cba_outer_rim": 0.05528021351374885,
+        "cba_inner_rim": 0.06593310901171476,
+        "cba_bass_rear": 0.3278054534857718,
+        "cba_bass_grille": 0.3278616959996169,
+        "cba_bass_outer": 0.3144514611353235,
+        "cba_bass_inner": 0.4184514611353235,
+        "cba_bass_top": 0.33425098293527455,
+        "cba_bass_bottom": 0.418004655526771,
+        "cba_bass_panel": 0.4224514611353233,
+        "cba_bellows_front": 0.23119221633882983,
+        "cba_bellows_rear": 0.23111836765563334,
+        "cba_bellows_top": 0.2320256196955378,
+        "cba_bellows_bottom": 0.33813317942336385
+      },
+      "midph2_coll_r": {
+        "cba_treble_rear": 0.08723930210740063,
+        "cba_treble_grille": 0.11083001752458635,
+        "cba_treble_inner": 0.19613363386061397,
+        "cba_treble_top": 0.10455928454815752,
+        "cba_treble_bottom": 0.27139779921358165,
+        "cba_treble_shoulder": 0.051634808216796675,
+        "cba_treble_rear_return": 0.05046280167769542,
+        "cba_treble_wing_top": 0.09786478636393042,
+        "cba_treble_wing_bottom": 0.2687686718089211,
+        "cba_treble_mount": 0.03534021795105117,
+        "cba_outer_rim": 0.04357805717734729,
+        "cba_inner_rim": 0.04789914729207342,
+        "cba_bass_rear": 0.3108061191323212,
+        "cba_bass_grille": 0.3224725274639754,
+        "cba_bass_outer": 0.302133633860614,
+        "cba_bass_inner": 0.406133633860614,
+        "cba_bass_top": 0.32214241332283783,
+        "cba_bass_bottom": 0.409597354807268,
+        "cba_bass_panel": 0.4101336338606137,
+        "cba_bellows_front": 0.22832946769684212,
+        "cba_bellows_rear": 0.21281748607961593,
+        "cba_bellows_top": 0.22026274702606408,
+        "cba_bellows_bottom": 0.3316542674247882
+      },
+      "distph2_coll_r": {
+        "cba_treble_rear": 0.07235006105364415,
+        "cba_treble_grille": 0.12276124096327806,
+        "cba_treble_inner": 0.19134874753051204,
+        "cba_treble_top": 0.10251047440954394,
+        "cba_treble_bottom": 0.27128631212966264,
+        "cba_treble_shoulder": 0.04678345024452407,
+        "cba_treble_rear_return": 0.03711443794669673,
+        "cba_treble_wing_top": 0.09251446981898527,
+        "cba_treble_wing_bottom": 0.2675065832621597,
+        "cba_treble_mount": 0.019290156924022556,
+        "cba_outer_rim": 0.03711680780691566,
+        "cba_inner_rim": 0.04218977051387311,
+        "cba_bass_rear": 0.30279155242593864,
+        "cba_bass_grille": 0.3235278470937803,
+        "cba_bass_outer": 0.29734874753051205,
+        "cba_bass_inner": 0.40134874753051203,
+        "cba_bass_top": 0.3175845078573923,
+        "cba_bass_bottom": 0.40628661997982723,
+        "cba_bass_panel": 0.4053487475305118,
+        "cba_bellows_front": 0.2295134111402731,
+        "cba_bellows_rear": 0.20381572288892905,
+        "cba_bellows_top": 0.21591769712475653,
+        "cba_bellows_bottom": 0.3291677622126101
+      },
+      "distph2_coll_2_r": {
+        "cba_treble_rear": 0.06887674074293901,
+        "cba_treble_grille": 0.13261409631483304,
+        "cba_treble_inner": 0.19082072688811647,
+        "cba_treble_top": 0.10182963058224437,
+        "cba_treble_bottom": 0.2737476932368981,
+        "cba_treble_shoulder": 0.04624512048098082,
+        "cba_treble_rear_return": 0.036777237451371556,
+        "cba_treble_wing_top": 0.09236671371997934,
+        "cba_treble_wing_bottom": 0.2706901252947338,
+        "cba_treble_mount": 0.01604518017968534,
+        "cba_outer_rim": 0.04402392035803105,
+        "cba_inner_rim": 0.041808405241842025,
+        "cba_bass_rear": 0.301593199343627,
+        "cba_bass_grille": 0.3231662377130362,
+        "cba_bass_outer": 0.2968207268881146,
+        "cba_bass_inner": 0.4008207268884241,
+        "cba_bass_top": 0.31715246651385764,
+        "cba_bass_bottom": 0.4060538346203635,
+        "cba_bass_panel": 0.40482072688814613,
+        "cba_bellows_front": 0.23091504399684837,
+        "cba_bellows_rear": 0.2023528596195023,
+        "cba_bellows_top": 0.2154253970061097,
+        "cba_bellows_bottom": 0.3295006503779848
+      },
+      "3mcskin_coll_r": {
+        "cba_treble_rear": 0.15002763708484548,
+        "cba_treble_grille": 0.12178147121728684,
+        "cba_treble_inner": 0.24432247146230568,
+        "cba_treble_top": 0.1562768729683795,
+        "cba_treble_bottom": 0.2574114671750184,
+        "cba_treble_shoulder": 0.099997689112126,
+        "cba_treble_rear_return": 0.08414282779281691,
+        "cba_treble_wing_top": 0.14944139708859996,
+        "cba_treble_wing_bottom": 0.25102027979490343,
+        "cba_treble_mount": 0.08222835061866124,
+        "cba_outer_rim": 0.06767661095220709,
+        "cba_inner_rim": 0.10772432099191495,
+        "cba_bass_rear": 0.3685103437980419,
+        "cba_bass_grille": 0.3574610073019251,
+        "cba_bass_outer": 0.3503224714623056,
+        "cba_bass_inner": 0.4543224714623057,
+        "cba_bass_top": 0.37687091370745757,
+        "cba_bass_bottom": 0.42992044526868317,
+        "cba_bass_panel": 0.45832247146230537,
+        "cba_bellows_front": 0.2585780254184917,
+        "cba_bellows_rear": 0.2725783571451271,
+        "cba_bellows_top": 0.2759857744702407,
+        "cba_bellows_bottom": 0.34244646535165973
+      },
+      "proxph3_coll_r": {
+        "cba_treble_rear": 0.1400295062500995,
+        "cba_treble_grille": 0.08106931869159245,
+        "cba_treble_inner": 0.20513860675475834,
+        "cba_treble_top": 0.13679036878680856,
+        "cba_treble_bottom": 0.24122117992606396,
+        "cba_treble_shoulder": 0.06087875273742257,
+        "cba_treble_rear_return": 0.09197173610872161,
+        "cba_treble_wing_top": 0.15385328060101164,
+        "cba_treble_wing_bottom": 0.25241412894935633,
+        "cba_treble_mount": 0.09085518052225536,
+        "cba_outer_rim": 0.07731243939476926,
+        "cba_inner_rim": 0.08557693392530795,
+        "cba_bass_rear": 0.3370911687843648,
+        "cba_bass_grille": 0.31608735064124976,
+        "cba_bass_outer": 0.3111386067547583,
+        "cba_bass_inner": 0.41513860675475833,
+        "cba_bass_top": 0.3412881646436687,
+        "cba_bass_bottom": 0.3960402517553385,
+        "cba_bass_panel": 0.4191878369288064,
+        "cba_bellows_front": 0.21685831486760196,
+        "cba_bellows_rear": 0.2443958593993561,
+        "cba_bellows_top": 0.24259231531089354,
+        "cba_bellows_bottom": 0.3124124164433357
+      },
+      "midph3_coll_r": {
+        "cba_treble_rear": 0.1280353982207195,
+        "cba_treble_grille": 0.06434947777308256,
+        "cba_treble_inner": 0.17828772776033958,
+        "cba_treble_top": 0.12881336078232328,
+        "cba_treble_bottom": 0.23361543366264564,
+        "cba_treble_shoulder": 0.03401900052249416,
+        "cba_treble_rear_return": 0.1057055232185369,
+        "cba_treble_wing_top": 0.15016473133346006,
+        "cba_treble_wing_bottom": 0.2463151793978654,
+        "cba_treble_mount": 0.08133434820077554,
+        "cba_outer_rim": 0.09411237944859663,
+        "cba_inner_rim": 0.0682603988442253,
+        "cba_bass_rear": 0.3116083438354505,
+        "cba_bass_grille": 0.29012465650161773,
+        "cba_bass_outer": 0.2842877277603395,
+        "cba_bass_inner": 0.38828772776033954,
+        "cba_bass_top": 0.3174308103143401,
+        "cba_bass_bottom": 0.3735302535806069,
+        "cba_bass_panel": 0.39231077679862214,
+        "cba_bellows_front": 0.19137982256012961,
+        "cba_bellows_rear": 0.2204215390789637,
+        "cba_bellows_top": 0.22086425330777432,
+        "cba_bellows_bottom": 0.2932402756714667
+      },
+      "distph3_coll_r": {
+        "cba_treble_rear": 0.12108320374461931,
+        "cba_treble_grille": 0.06005273475713096,
+        "cba_treble_inner": 0.16172806598146677,
+        "cba_treble_top": 0.12697873472750285,
+        "cba_treble_bottom": 0.23061324105230596,
+        "cba_treble_shoulder": 0.01744446659167612,
+        "cba_treble_rear_return": 0.10954203847533373,
+        "cba_treble_wing_top": 0.14707288960706477,
+        "cba_treble_wing_bottom": 0.24249591654962027,
+        "cba_treble_mount": 0.07299769868298199,
+        "cba_outer_rim": 0.10207731609408839,
+        "cba_inner_rim": 0.05892484156954476,
+        "cba_bass_rear": 0.2951081595591537,
+        "cba_bass_grille": 0.2747092512310229,
+        "cba_bass_outer": 0.2677280659814668,
+        "cba_bass_inner": 0.37172806598146685,
+        "cba_bass_top": 0.30307591190173677,
+        "cba_bass_bottom": 0.35995615828855126,
+        "cba_bass_panel": 0.37572865858041854,
+        "cba_bellows_front": 0.17658260018768598,
+        "cba_bellows_rear": 0.2047820691586145,
+        "cba_bellows_top": 0.20823149752775252,
+        "cba_bellows_bottom": 0.28209962944183287
+      },
+      "distph3_coll_2_r": {
+        "cba_treble_rear": 0.12797104352959518,
+        "cba_treble_grille": 0.05951839325330772,
+        "cba_treble_inner": 0.15837056295289312,
+        "cba_treble_top": 0.12794901826962093,
+        "cba_treble_bottom": 0.23170934312723437,
+        "cba_treble_shoulder": 0.014095671616882785,
+        "cba_treble_rear_return": 0.11987654545703057,
+        "cba_treble_wing_top": 0.15097234996636424,
+        "cba_treble_wing_bottom": 0.24509008310300728,
+        "cba_treble_mount": 0.07903139270197178,
+        "cba_outer_rim": 0.11737137036043133,
+        "cba_inner_rim": 0.06458849846674673,
+        "cba_bass_rear": 0.2935649063079982,
+        "cba_bass_grille": 0.27113151417469356,
+        "cba_bass_outer": 0.2643705629528825,
+        "cba_bass_inner": 0.36837056295288145,
+        "cba_bass_top": 0.30052755244694984,
+        "cba_bass_bottom": 0.3577361177488885,
+        "cba_bass_panel": 0.37238072180033666,
+        "cba_bellows_front": 0.173054780554193,
+        "cba_bellows_rear": 0.2044456502987404,
+        "cba_bellows_top": 0.20631561704808685,
+        "cba_bellows_bottom": 0.2807680860613733
+      },
+      "4mcski_r": {
+        "cba_treble_rear": 0.14472095344120445,
+        "cba_treble_grille": 0.12513297461522987,
+        "cba_treble_inner": 0.24355331967526095,
+        "cba_treble_top": 0.16700449213340882,
+        "cba_treble_bottom": 0.24433509102649575,
+        "cba_treble_shoulder": 0.09920004027605298,
+        "cba_treble_rear_return": 0.0819571951029066,
+        "cba_treble_wing_top": 0.1575379141677705,
+        "cba_treble_wing_bottom": 0.23992751578571925,
+        "cba_treble_mount": 0.0804040669273796,
+        "cba_outer_rim": 0.06590258623735552,
+        "cba_inner_rim": 0.10411301183711512,
+        "cba_bass_rear": 0.365747601348689,
+        "cba_bass_grille": 0.35813119792990317,
+        "cba_bass_outer": 0.34955331967526093,
+        "cba_bass_inner": 0.4535533196752609,
+        "cba_bass_top": 0.38104466507303136,
+        "cba_bass_bottom": 0.4215493627302598,
+        "cba_bass_panel": 0.45755331967526064,
+        "cba_bellows_front": 0.25962935604827386,
+        "cba_bellows_rear": 0.26929655997206503,
+        "cba_bellows_top": 0.28160206894321776,
+        "cba_bellows_bottom": 0.33245564981710235
+      },
+      "proxph4_coll_r": {
+        "cba_treble_rear": 0.13307115631328645,
+        "cba_treble_grille": 0.09069697489799866,
+        "cba_treble_inner": 0.20877323289557517,
+        "cba_treble_top": 0.14594493027534902,
+        "cba_treble_bottom": 0.23483717756456085,
+        "cba_treble_shoulder": 0.06447038785068679,
+        "cba_treble_rear_return": 0.08587347037937165,
+        "cba_treble_wing_top": 0.15734129202201913,
+        "cba_treble_wing_bottom": 0.24089136852669407,
+        "cba_treble_mount": 0.08376244846022887,
+        "cba_outer_rim": 0.07132090413880379,
+        "cba_inner_rim": 0.08116416732390982,
+        "cba_bass_rear": 0.33672312892920225,
+        "cba_bass_grille": 0.32161612544179313,
+        "cba_bass_outer": 0.314773232895575,
+        "cba_bass_inner": 0.4187732328955752,
+        "cba_bass_top": 0.3477374653658595,
+        "cba_bass_bottom": 0.3943211479399028,
+        "cba_bass_panel": 0.4227732328955749,
+        "cba_bellows_front": 0.22292086485738705,
+        "cba_bellows_rear": 0.24271057934489798,
+        "cba_bellows_top": 0.24984032582247073,
+        "cba_bellows_bottom": 0.30922068592417595
+      },
+      "midph4_coll_r": {
+        "cba_treble_rear": 0.12403617469805336,
+        "cba_treble_grille": 0.0752013280613345,
+        "cba_treble_inner": 0.18610240524262922,
+        "cba_treble_top": 0.13363654914204848,
+        "cba_treble_bottom": 0.23352623358717756,
+        "cba_treble_shoulder": 0.0418026307016237,
+        "cba_treble_rear_return": 0.09592057110529514,
+        "cba_treble_wing_top": 0.15017885594807465,
+        "cba_treble_wing_bottom": 0.24319180603336893,
+        "cba_treble_mount": 0.07731609392377747,
+        "cba_outer_rim": 0.08456606021780613,
+        "cba_inner_rim": 0.06644342934373543,
+        "cba_bass_rear": 0.31592382082263426,
+        "cba_bass_grille": 0.29932358495464956,
+        "cba_bass_outer": 0.29210240524262915,
+        "cba_bass_inner": 0.39610240524262924,
+        "cba_bass_top": 0.3254443752159691,
+        "cba_bass_bottom": 0.37853895756963035,
+        "cba_bass_panel": 0.400102405242629,
+        "cba_bellows_front": 0.20097573722157913,
+        "cba_bellows_rear": 0.2232738829521268,
+        "cba_bellows_top": 0.22861575805789933,
+        "cba_bellows_bottom": 0.2969338396487285
+      },
+      "distph4_coll_r": {
+        "cba_treble_rear": 0.11761635222016015,
+        "cba_treble_grille": 0.06626511544789558,
+        "cba_treble_inner": 0.1662785255730057,
+        "cba_treble_top": 0.1253495557158141,
+        "cba_treble_bottom": 0.23375780453986783,
+        "cba_treble_shoulder": 0.02197538298126585,
+        "cba_treble_rear_return": 0.10179530143760314,
+        "cba_treble_wing_top": 0.14337038734770655,
+        "cba_treble_wing_bottom": 0.2440866849993568,
+        "cba_treble_mount": 0.0701934313838773,
+        "cba_outer_rim": 0.09388902330250803,
+        "cba_inner_rim": 0.05623479442213512,
+        "cba_bass_rear": 0.29736885357688064,
+        "cba_bass_grille": 0.2802152851015381,
+        "cba_bass_outer": 0.2722785255730058,
+        "cba_bass_inner": 0.37627852557300584,
+        "cba_bass_top": 0.3060701170921666,
+        "cba_bass_bottom": 0.3652665315566865,
+        "cba_bass_panel": 0.38027852557300557,
+        "cba_bellows_front": 0.18239227012179451,
+        "cba_bellows_rear": 0.20600822367838764,
+        "cba_bellows_top": 0.21040068018248662,
+        "cba_bellows_bottom": 0.2871384013006799
+      },
+      "distph4_coll_2_r": {
+        "cba_treble_rear": 0.12536799967657317,
+        "cba_treble_grille": 0.06460596016156728,
+        "cba_treble_inner": 0.16361094512054228,
+        "cba_treble_top": 0.1281882705336146,
+        "cba_treble_bottom": 0.23378872669623235,
+        "cba_treble_shoulder": 0.0193233100591429,
+        "cba_treble_rear_return": 0.11474659343166672,
+        "cba_treble_wing_top": 0.14933438655096778,
+        "cba_treble_wing_bottom": 0.24572361125744682,
+        "cba_treble_mount": 0.0769478527278901,
+        "cba_outer_rim": 0.11040994829456968,
+        "cba_inner_rim": 0.06272234170097903,
+        "cba_bass_rear": 0.29697874475430086,
+        "cba_bass_grille": 0.27692112102570293,
+        "cba_bass_outer": 0.2696109451205421,
+        "cba_bass_inner": 0.37361094512054216,
+        "cba_bass_top": 0.30426176360211843,
+        "cba_bass_bottom": 0.3635104641559965,
+        "cba_bass_panel": 0.3776109451205649,
+        "cba_bellows_front": 0.17898376066524754,
+        "cba_bellows_rear": 0.20687886631750274,
+        "cba_bellows_top": 0.2092814304027475,
+        "cba_bellows_bottom": 0.28598856318561205
+      },
+      "5mcskin_r": {
+        "cba_treble_rear": 0.13826708892418618,
+        "cba_treble_grille": 0.13415463233409472,
+        "cba_treble_inner": 0.24580913491691175,
+        "cba_treble_top": 0.1776241181702875,
+        "cba_treble_bottom": 0.2349001872862113,
+        "cba_treble_shoulder": 0.10140664361283973,
+        "cba_treble_rear_return": 0.07352137326452618,
+        "cba_treble_wing_top": 0.1622028631502333,
+        "cba_treble_wing_bottom": 0.22536084193568415,
+        "cba_treble_mount": 0.07211035924453188,
+        "cba_outer_rim": 0.05768537196191504,
+        "cba_inner_rim": 0.10193855028724975,
+        "cba_bass_rear": 0.36465194778002197,
+        "cba_bass_grille": 0.3630469377803285,
+        "cba_bass_outer": 0.3518091349169118,
+        "cba_bass_inner": 0.45580913491691166,
+        "cba_bass_top": 0.387415246215696,
+        "cba_bass_bottom": 0.41741653589781924,
+        "cba_bass_panel": 0.4598091349169115,
+        "cba_bellows_front": 0.2652283068110936,
+        "cba_bellows_rear": 0.2672627221051075,
+        "cba_bellows_top": 0.28906181034572376,
+        "cba_bellows_bottom": 0.3267279189772528
+      },
+      "5proxph_coll_r": {
+        "cba_treble_rear": 0.12686655508568828,
+        "cba_treble_grille": 0.10410563403643752,
+        "cba_treble_inner": 0.2154909983996861,
+        "cba_treble_top": 0.1603878906323647,
+        "cba_treble_bottom": 0.22550287838427252,
+        "cba_treble_shoulder": 0.07113756788900599,
+        "cba_treble_rear_return": 0.07590993193956153,
+        "cba_treble_wing_top": 0.16372375864129543,
+        "cba_treble_wing_bottom": 0.22643659477747238,
+        "cba_treble_mount": 0.07494019956558437,
+        "cba_outer_rim": 0.06107855275715587,
+        "cba_inner_rim": 0.07942765448036912,
+        "cba_bass_rear": 0.33903672266854434,
+        "cba_bass_grille": 0.3308409248933115,
+        "cba_bass_outer": 0.3214909983996861,
+        "cba_bass_inner": 0.4254909983996861,
+        "cba_bass_top": 0.3588649245870428,
+        "cba_bass_bottom": 0.39294760928876943,
+        "cba_bass_panel": 0.42949099839968585,
+        "cba_bellows_front": 0.23283682516759777,
+        "cba_bellows_rear": 0.2435251151404097,
+        "cba_bellows_top": 0.26210451966610576,
+        "cba_bellows_bottom": 0.305484008238238
+      },
+      "5midph_coll_r": {
+        "cba_treble_rear": 0.11800740611502397,
+        "cba_treble_grille": 0.09001591878031016,
+        "cba_treble_inner": 0.19539755635447045,
+        "cba_treble_top": 0.1488664421826685,
+        "cba_treble_bottom": 0.2239905011579218,
+        "cba_treble_shoulder": 0.05105085341435945,
+        "cba_treble_rear_return": 0.08372652338071608,
+        "cba_treble_wing_top": 0.1578218040157092,
+        "cba_treble_wing_bottom": 0.22880596792139862,
+        "cba_treble_mount": 0.07020895382319067,
+        "cba_outer_rim": 0.07184496950616726,
+        "cba_inner_rim": 0.0644933031218798,
+        "cba_bass_rear": 0.320605906175151,
+        "cba_bass_grille": 0.3109793494458768,
+        "cba_bass_outer": 0.3013975563544705,
+        "cba_bass_inner": 0.4053975563544704,
+        "cba_bass_top": 0.3390200812845579,
+        "cba_bass_bottom": 0.3787358687997226,
+        "cba_bass_panel": 0.4093975563544702,
+        "cba_bellows_front": 0.21331272978631918,
+        "cba_bellows_rear": 0.226143249928401,
+        "cba_bellows_top": 0.2432308053838798,
+        "cba_bellows_bottom": 0.29421427136423706
+      },
+      "5distph_coll_r": {
+        "cba_treble_rear": 0.11288342220375965,
+        "cba_treble_grille": 0.08162566208475376,
+        "cba_treble_inner": 0.18013118132686057,
+        "cba_treble_top": 0.1405928890360113,
+        "cba_treble_bottom": 0.22496936063962833,
+        "cba_treble_shoulder": 0.035787268398640236,
+        "cba_treble_rear_return": 0.08934927990178997,
+        "cba_treble_wing_top": 0.15237902832520178,
+        "cba_treble_wing_bottom": 0.231437401239399,
+        "cba_treble_mount": 0.06624595033301679,
+        "cba_outer_rim": 0.08002112074705045,
+        "cba_inner_rim": 0.054934828129053696,
+        "cba_bass_rear": 0.3065681665466074,
+        "cba_bass_grille": 0.296065965178505,
+        "cba_bass_outer": 0.28613118132686055,
+        "cba_bass_inner": 0.39013118132686053,
+        "cba_bass_top": 0.3235400430225088,
+        "cba_bass_bottom": 0.3690736828011245,
+        "cba_bass_panel": 0.39413118132686037,
+        "cba_bellows_front": 0.19877212226420474,
+        "cba_bellows_rear": 0.21303107421139764,
+        "cba_bellows_top": 0.2284779992610894,
+        "cba_bellows_bottom": 0.28728715359729484
+      },
+      "5distph_coll_2_r": {
+        "cba_treble_rear": 0.11728488650690072,
+        "cba_treble_grille": 0.07996984771577188,
+        "cba_treble_inner": 0.17749053547650062,
+        "cba_treble_top": 0.14372130957316956,
+        "cba_treble_bottom": 0.224333854133136,
+        "cba_treble_shoulder": 0.03315739036207893,
+        "cba_treble_rear_return": 0.09990594075920844,
+        "cba_treble_wing_top": 0.15784553518850317,
+        "cba_treble_wing_bottom": 0.2327540008010502,
+        "cba_treble_mount": 0.07054730433728751,
+        "cba_outer_rim": 0.0937480136847496,
+        "cba_inner_rim": 0.05755938327888598,
+        "cba_bass_rear": 0.30535230188459317,
+        "cba_bass_grille": 0.29300012745719073,
+        "cba_bass_outer": 0.2834905354765006,
+        "cba_bass_inner": 0.3874905354765007,
+        "cba_bass_top": 0.322142292489936,
+        "cba_bass_bottom": 0.3665903189042207,
+        "cba_bass_panel": 0.3914905354765233,
+        "cba_bellows_front": 0.19566844644587084,
+        "cba_bellows_rear": 0.2125816032083247,
+        "cba_bellows_top": 0.22784617005181623,
+        "cba_bellows_bottom": 0.2851916299573823
+      }
+    },
+    "landmarks_world_m": {
+      "humerus_r": [
+        0.16965708430496348,
+        -0.10905997807665227,
+        1.1310975544533004
+      ],
+      "ulna_r": [
+        0.27887217374192513,
+        -0.1799564216326279,
+        0.8711621422248186
+      ],
+      "lunate_r": [
+        0.25637617714451455,
+        0.06619122788584203,
+        0.9468326146460041
+      ],
+      "torso": [
+        5.092508192889849e-13,
+        -0.1040000000005445,
+        0.7611999999994907
+      ]
+    },
+    "target_contact_distance_m": 4.51805109998403e-05,
+    "position_error_m": 4.52082786909401e-05,
+    "normal_error_rad": 1.916477033282253e-05,
+    "equality_max_residual_rad": 2.7755575615628914e-17,
+    "joint_max_violation_rad": 0.0,
+    "joint_margins_rad": {
+      "sternoclavicular_r2_r": 0.12372605612626707,
+      "sternoclavicular_r3_r": 0.052404631210505676,
+      "unrotscap_r3_r": 0.05240463121050568,
+      "unrotscap_r2_r": 0.12372605612626707,
+      "acromioclavicular_r2_r": 0.0250519700420954,
+      "acromioclavicular_r3_r": 0.20246081911570976,
+      "acromioclavicular_r1_r": 0.09100511566312205,
+      "unrothum_r1_r": 0.09100511566312205,
+      "unrothum_r3_r": 0.20246081911570976,
+      "unrothum_r2_r": 0.025051970042095403,
+      "elv_angle_r": 1.0279126724093186,
+      "shoulder_elv_r": 0.5112646947366408,
+      "shoulder1_r2_r": 1.0279126724093186,
+      "shoulder_rot_r": 1.5616729752492187,
+      "elbow_flexion_r": 0.1898637952838591,
+      "pro_sup_r": 1.2014538127980448,
+      "deviation_r": 0.03012771665658892,
+      "flexion_r": 0.15795981281915505,
+      "cmc_flexion": 0.6960257809129017,
+      "cmc_abduction": 0.4953363390589755,
+      "mp_flexion_r": 0.6964804580374608,
+      "ip_flexion_r": 0.4359572830432686,
+      "mcp2_flexion_r": 0.48229858255341185,
+      "mcp2_abduction_r": 0.08129107632924149,
+      "pm2_flexion_r": 0.5076507742220894,
+      "md2_flexion_r": 0.21615785341947172,
+      "mcp3_flexion_r": 0.18545309643890165,
+      "mcp3_abduction_r": 0.0933773401006602,
+      "pm3_flexion_r": 0.41697698489786117,
+      "md3_flexion": 0.059541177648361074,
+      "mcp4_flexion_r": 0.23208009000310925,
+      "mcp4_abduction_r": 0.20192377263393677,
+      "pm4_flexion": 0.31000172547721316,
+      "md4_flexion_r": 0.05628808490428052,
+      "mcp5_flexion_r": 0.13753483725093885,
+      "mcp5_abduction_r": 0.14774721264636675,
+      "pm5_flexion_r": 0.3226786798695448,
+      "md5_flexion_r": 0.05789573132125393
+    },
+    "contacts": [
+      {
+        "geom1": "distph2_coll_2_r",
+        "geom2": "r3c4",
+        "distance_m": 4.518680022381214e-05,
+        "position_world_m": [
+          0.1290830849027026,
+          0.07343652098473821,
+          0.9841998111972499
+        ]
+      }
+    ],
+    "max_penetration_m": 0.0,
+    "pad_world_m": [
+      0.1290949902140655,
+      0.07345572983568058,
+      0.9841984431562628
+    ],
+    "pad_normal_world": [
+      -0.5000164893521934,
+      -0.8660158834404568,
+      2.180144461207817e-06
+    ],
+    "palm_world_m": [
+      0.2460888601805626,
+      0.07728137633581111,
+      0.9512091002270194
+    ]
+  },
+  "initial_qpos_rad": [
+    -0.10107820639785577,
+    0.04281205023049676,
+    -0.04281205023049676,
+    0.10107820639785577,
+    -0.020466248402871624,
+    0.16540070137830945,
+    0.07434677991247242,
+    -0.07434677991247242,
+    -0.16540070137830945,
+    0.020466248402871624,
+    -0.815846712822425,
+    0.41767853883411477,
+    0.815846712822425,
+    -0.029532809740026846,
+    1.9257087269602224,
+    -0.6070327974333719,
+    0.28731354981694807,
+    0.7671669702938089,
+    0.002683954572214931,
+    -0.001878735598994123,
+    0.0013096838358848235,
+    0.00027491237045061933,
+    1.1255863611469021,
+    0.24378146895226055,
+    0.6104390143731814,
+    0.0480038487266158,
+    0.18849189376366549,
+    -0.17465554032412844,
+    0.4157625597840185,
+    0.0493307896585692,
+    0.23168785491696015,
+    0.06004012057822078,
+    0.3097733424371364,
+    0.044819500865117205,
+    0.13632182537428367,
+    0.11478914500045861,
+    0.32247029562356067,
+    0.047256329898859445
+  ],
+  "frozen_dof_indices": [],
+  "qpos_rad": [
+    -0.12372605612626707,
+    0.052404631210505676,
+    -0.05240463121050568,
+    0.12372605612626707,
+    -0.0250519700420954,
+    0.20246081911570976,
+    0.09100511566312205,
+    -0.09100511566312205,
+    -0.20246081911570976,
+    0.025051970042095403,
+    -0.6300873275906814,
+    0.5112646947366408,
+    0.6300873275906814,
+    -0.009327024750781236,
+    2.079136204716141,
+    -0.36934618720195517,
+    -0.14440528334341107,
+    0.627438187180845,
+    0.003974219087098289,
+    -0.004663660941024477,
+    0.0016515419625391717,
+    0.0003747169567314357,
+    1.0885014174465881,
+    0.18050792367075852,
+    0.5076507742220894,
+    0.21615785341947172,
+    0.18545309643890165,
+    -0.1684216598993398,
+    0.41697698489786117,
+    0.059541177648361074,
+    0.23208009000310925,
+    0.05987522736606323,
+    0.31000172547721316,
+    0.05628808490428052,
+    0.13753483725093885,
+    0.11405178735363324,
+    0.3226786798695448,
+    0.05789573132125393
+  ],
+  "joint_names": [
+    "sternoclavicular_r2_r",
+    "sternoclavicular_r3_r",
+    "unrotscap_r3_r",
+    "unrotscap_r2_r",
+    "acromioclavicular_r2_r",
+    "acromioclavicular_r3_r",
+    "acromioclavicular_r1_r",
+    "unrothum_r1_r",
+    "unrothum_r3_r",
+    "unrothum_r2_r",
+    "elv_angle_r",
+    "shoulder_elv_r",
+    "shoulder1_r2_r",
+    "shoulder_rot_r",
+    "elbow_flexion_r",
+    "pro_sup_r",
+    "deviation_r",
+    "flexion_r",
+    "cmc_flexion",
+    "cmc_abduction",
+    "mp_flexion_r",
+    "ip_flexion_r",
+    "mcp2_flexion_r",
+    "mcp2_abduction_r",
+    "pm2_flexion_r",
+    "md2_flexion_r",
+    "mcp3_flexion_r",
+    "mcp3_abduction_r",
+    "pm3_flexion_r",
+    "md3_flexion",
+    "mcp4_flexion_r",
+    "mcp4_abduction_r",
+    "pm4_flexion",
+    "md4_flexion_r",
+    "mcp5_flexion_r",
+    "mcp5_abduction_r",
+    "pm5_flexion_r",
+    "md5_flexion_r"
+  ],
+  "solver_history": [
+    {
+      "iteration": 0,
+      "position_error_m": 0.03290257633789559,
+      "normal_error_rad": 0.00010342774477852374,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 0.0,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 27,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 1,
+      "position_error_m": 0.02097606449339693,
+      "normal_error_rad": 0.013769543419918229,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.3877787807814457e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 22,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 2,
+      "position_error_m": 0.008318534571073094,
+      "normal_error_rad": 0.0035155072851942174,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 1.3877787807814457e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 40,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 3,
+      "position_error_m": 0.00994233346345611,
+      "normal_error_rad": 0.07781979937912738,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 4.163336342344337e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 3,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 4,
+      "position_error_m": 0.0013416416564146244,
+      "normal_error_rad": 0.00018995388739165658,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 6.938893903907228e-18,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 2,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 5,
+      "position_error_m": 0.00019633989672252928,
+      "normal_error_rad": 7.864212303319748e-05,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0,
+      "integration_step": {
+        "fraction": 1.0,
+        "edge_steps": 1,
+        "attempts": [
+          {
+            "fraction": 1.0,
+            "sampled_edge_valid": true,
+            "maximum_sampled_penetration_m": 0.0
+          }
+        ],
+        "continuous_validity": null
+      }
+    },
+    {
+      "iteration": 6,
+      "position_error_m": 4.52082786909401e-05,
+      "normal_error_rad": 1.916477033282253e-05,
+      "max_penetration_m": 0.0,
+      "equality_max_residual_rad": 2.7755575615628914e-17,
+      "joint_max_violation_rad": 0.0
+    }
+  ],
+  "trajectory": null,
+  "contact_required": true,
+  "contact_requirements": [
+    {
+      "finger": "index",
+      "button_id": "r3c4",
+      "surface_contact_required": true
+    }
+  ],
+  "unvalidated": [
+    "measured keyboard geometry and body placement",
+    "button depression/force",
+    "continuous approach, hold and release",
+    "muscle actuation/equilibrium",
+    "complete self-collision coverage",
+    "player-specific anatomy",
+    "pad deformation and anatomical validity of generic contact proxy"
+  ],
+  "resolved_profiles": {
+    "instrument": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "origin_m": [
+        0.15557269515503988,
+        0.053497848029032735,
+        0.9841999999986042
+      ],
+      "evidence": {
+        "kind": "assumption",
+        "source": "docs/research/instrument-size-fit.md",
+        "note": "Retain compact metrics; independently fixed upper height. No support equilibrium."
+      },
+      "geometry_model": "generic_cba_v3",
+      "case_height_m": 0.38,
+      "button_travel_m": null,
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.012,
+      "rotation_wxyz": [
+        0.6830127018922194,
+        -0.6830127018922192,
+        0.18301270189221927,
+        -0.18301270189221924
+      ],
+      "physical_model": {
+        "version": "generic_cba_v3",
+        "height_m": 0.38,
+        "depth_m": 0.2,
+        "treble_width_m": 0.15,
+        "closed_bellows_width_m": 0.1,
+        "bass_width_m": 0.11,
+        "case_wall_m": 0.006,
+        "treble_board_origin_h_m": [
+          0.078,
+          0.1,
+          -0.16
+        ],
+        "treble_board_angle_rad": 0.3490658503988659,
+        "treble_board_thickness_m": 0.012,
+        "bass_button_radius_m": 0.0045,
+        "bass_button_height_m": 0.003,
+        "bass_column_spacing_m": 0.018,
+        "bass_row_spacing_m": 0.012,
+        "bass_shear_m": 0.009,
+        "bass_button_count": 96,
+        "bass_layout": "6 x 16 slanted columns; IDs only, no pitch mapping",
+        "bellows": {
+          "opening_m": 0.0,
+          "bass_relative": {
+            "translation_m": [
+              -0.25,
+              0,
+              0
+            ],
+            "rotation_wxyz": [
+              1,
+              0,
+              0,
+              0
+            ]
+          }
+        },
+        "metric_evidence": "assumption: docs/research/generic-cba.md"
+      }
+    },
+    "player": {
+      "model": "myofullbody_reduced",
+      "full_body_posture": {
+        "hip_flexion_rad": 1.5707963267948966,
+        "hip_abduction_rad": 0.08726646259971647,
+        "knee_flexion_rad": 1.5707963267948966,
+        "left_elbow_flexion_rad": 0.35,
+        "left_shoulder_elevation_rad": 0.1,
+        "torso_flexion_rad": 0.0,
+        "evidence": "docs/research/full-body-architecture.md"
+      },
+      "model_mode": "imported_musculoskeletal",
+      "geometric_hand_scale": 1.0,
+      "geometry_evidence": {
+        "kind": "hypothesis",
+        "source": "Wrist-origin geometric perturbation",
+        "note": "Uniform hand scaling is not physiological personalization.",
+        "uncertainty": null
+      },
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      },
+      "joint_range_evidence": {},
+      "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+    },
+    "setup": {
+      "seated": {
+        "lower_body": {
+          "model": "myolegs",
+          "hip_flexion_rad": 1.5707963267948966,
+          "hip_abduction_rad": 0.08726646259971647,
+          "knee_flexion_rad": 1.5707963267948966,
+          "thigh_envelope_radius_m": 0.075,
+          "support_fraction": 0.45,
+          "evidence": "docs/research/seated-lower-body.md"
+        },
+        "upper_case_to_shoulder_m": -0.04,
+        "name": "generic-cba-v1-closed",
+        "instrument_width_m": 0.365,
+        "instrument_depth_m": 0.195,
+        "instrument_height_m": 0.38,
+        "torso_gap_m": 0.01,
+        "treble_edge_to_shoulder_m": 0.0,
+        "support_height_above_root_m": 0.1,
+        "support_clearance_m": 0.01,
+        "c4_top_inset_m": 0.06,
+        "outer_edge_inset_m": 0.015,
+        "yaw_rad": -0.5235987755982988,
+        "long_axis_tilt_rad": 0.0,
+        "fore_aft_tilt_rad": 0.0,
+        "evidence": "docs/research/seated-setup.md",
+        "parameter_evidence": {
+          "torso_gap_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.0,
+              0.04
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "treble_edge_to_shoulder_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.03,
+              0.03
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "support_height_above_root_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.07,
+              0.13
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "support_clearance_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.0,
+              0.04
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "c4_top_inset_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.045,
+              0.095
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "outer_edge_inset_m": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              0.01,
+              0.025
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "yaw_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.7853981633974483,
+              0.0
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "long_axis_tilt_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.17453292519943295,
+              0.17453292519943295
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "fore_aft_tilt_rad": {
+            "kind": "assumption",
+            "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+            "range": [
+              -0.17453292519943295,
+              0.17453292519943295
+            ],
+            "range_source": "Generic setup hypothesis, 023",
+            "uncertainty": "Not a measured interval or population coverage estimate",
+            "rationale": "docs/research/seated-setup.md#parameter-family"
+          },
+          "instrument_width_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          },
+          "instrument_depth_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          },
+          "instrument_height_m": {
+            "kind": "manufacturer",
+            "source": "https://www.roland.com/uk/products/fr-1xb/",
+            "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+            "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+          }
+        }
+      },
+      "torso_origin_m": [
+        0,
+        0,
+        0.65
+      ],
+      "torso_rotation_wxyz": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "provenance": {
+        "kind": "assumption",
+        "source": "docs/research/seated-setup.md",
+        "note": "Reference seated scaffold height; no personalized anatomy."
+      },
+      "derived_anchors": {
+        "treble_frame_world": {
+          "translation_m": [
+            0.1065413988467965,
+            0.22461164636900657,
+            1.0841999999986043
+          ],
+          "rotation_wxyz": [
+            -0.7044160264027588,
+            0.7044160264027586,
+            -0.061628416716219346,
+            0.061628416716219346
+          ]
+        },
+        "shell_center_world_m": [
+          -0.08808881446209399,
+          0.15738754304783328,
+          0.8941999999986042
+        ],
+        "shoulder_world_m": [
+          0.16996500000045317,
+          -0.09954500000145543,
+          1.1241999999986043
+        ],
+        "right_thigh_reference_world_m": [
+          0.05496260185982495,
+          0.12634501462842093,
+          0.6392774203257946
+        ],
+        "treble_support_corner_world_m": [
+          0.08917658108010348,
+          0.12613087106778587,
+          0.7041999999986042
+        ],
+        "lower_body_landmarks_world_m": {
+          "pelvis": [
+            0.0,
+            0.0,
+            0.65
+          ],
+          "femur_r": [
+            0.07730478958528678,
+            -0.05615193644766017,
+            0.5714652598122814
+          ],
+          "femur_l": [
+            -0.07721516142134033,
+            -0.05627498481198796,
+            0.5714651618255511
+          ],
+          "tibia_r": [
+            0.11063455390072795,
+            0.3447420978100237,
+            0.577692396625059
+          ],
+          "tibia_l": [
+            -0.11118337621368235,
+            0.34456545826735396,
+            0.5776922559622285
+          ],
+          "calcn_r": [
+            0.10266040854808049,
+            0.2846488683633908,
+            0.13592134893115546
+          ],
+          "calcn_l": [
+            -0.10311297306175451,
+            0.2844850055232569,
+            0.1359212184427577
+          ]
+        },
+        "support_height_above_root_m": 0.0026923966250589765,
+        "anchor_policy": "Explicit upper H corner relative to neutral torso-attached shoulder; rear thorax plane; lateral board rim. Thighs are observations, no support constraint or forces.",
+        "bottom_above_support_plane_m": 0.05150760337354511
+      },
+      "board": {
+        "origin_m": [
+          0.15557269515503988,
+          0.053497848029032735,
+          0.9841999999986042
+        ],
+        "rotation_wxyz": [
+          0.6830127018922194,
+          -0.6830127018922192,
+          0.18301270189221927,
+          -0.18301270189221924
+        ],
+        "provenance": {
+          "kind": "derived",
+          "source": "docs/research/seated-setup.md",
+          "note": "Recalculated from torso, instrument scale and support anchors"
+        }
+      }
+    },
+    "contact": {
+      "additional_collision_pairs": [
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "midph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "proxph2_coll_r",
+          "proxph3_coll_r"
+        ]
+      ],
+      "additional_collision_evidence": {
+        "kind": "hypothesis",
+        "source": "019 index-middle phalangeal pair constraint",
+        "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+      },
+      "inactive_digits_policy": "allow_articulation",
+      "inactive_digits_evidence": {
+        "kind": "assumption",
+        "source": "023 setup study",
+        "note": "Unused digits may articulate; not a posture observation."
+      },
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 200,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true,
+      "collision_limit_implementation": "displacement",
+      "collision_backtrack_steps": 12,
+      "collision_edge_step_rad": 0.01
+    }
+  },
+  "profiles_sha256": "27640a842b305f36cf35b6815ccaac36b1fa0bbc8f9f391f2a45d3914b61ebd6",
+  "schema_version": 1,
+  "experiment_id": "040-varied-contact-discovery-cross-lower",
+  "input_sha256": "64de0b11d14f18fa5dd5ab69c2e831b0222cfcc14d735f4e33add4017530752a",
+  "input": {
+    "schema_version": 2,
+    "id": "040-varied-contact-discovery-cross-lower",
+    "question": "Independent component geometry and mounted reference, before right-hand solving",
+    "geometry": {
+      "column_spacing_m": 0.019,
+      "row_spacing_m": 0.016454482671904334,
+      "button_radius_m": 0.0065,
+      "button_height_m": 0.004,
+      "geometry_model": "generic_cba_v3",
+      "case_height_m": 0.38,
+      "button_travel_m": null,
+      "stagger_columns": [
+        0,
+        0.5,
+        1,
+        0.5,
+        1
+      ],
+      "panel_margin_m": 0.012,
+      "panel_thickness_m": 0.012,
+      "provenance": {
+        "kind": "assumption",
+        "source": "docs/research/instrument-size-fit.md",
+        "note": "Retain compact metrics; independently fixed upper height. No support equilibrium."
+      }
+    },
+    "contacts": [
+      {
+        "row": 3,
+        "column": 4,
+        "finger": "index"
+      }
+    ],
+    "initial_joints_rad": {
+      "sternoclavicular_r2_r": -0.10107820639785578,
+      "sternoclavicular_r3_r": 0.04281205023049676,
+      "unrotscap_r3_r": -0.04281205023049676,
+      "unrotscap_r2_r": 0.10107820639785578,
+      "acromioclavicular_r2_r": -0.020466248402871624,
+      "acromioclavicular_r3_r": 0.16540070137830945,
+      "acromioclavicular_r1_r": 0.07434677991247243,
+      "unrothum_r1_r": -0.07434677991247243,
+      "unrothum_r3_r": -0.16540070137830948,
+      "unrothum_r2_r": 0.020466248402871628,
+      "elv_angle_r": -0.815846712822425,
+      "shoulder_elv_r": 0.41767853883411477,
+      "shoulder1_r2_r": 0.815846712822425,
+      "shoulder_rot_r": -0.029532809740026846,
+      "elbow_flexion_r": 1.9257087269602224,
+      "pro_sup_r": -0.6070327974333719,
+      "deviation_r": 0.28731354981694807,
+      "flexion_r": 0.7671669702938089,
+      "cmc_flexion": 0.002683954572214931,
+      "cmc_abduction": -0.001878735598994123,
+      "mp_flexion_r": 0.0013096838358848235,
+      "ip_flexion_r": 0.00027491237045061933,
+      "mcp2_flexion_r": 1.1255863611469021,
+      "mcp2_abduction_r": 0.24378146895226055,
+      "pm2_flexion_r": 0.6104390143731814,
+      "md2_flexion_r": 0.0480038487266158,
+      "mcp3_flexion_r": 0.18849189376366549,
+      "mcp3_abduction_r": -0.17465554032412844,
+      "pm3_flexion_r": 0.4157625597840185,
+      "md3_flexion": 0.0493307896585692,
+      "mcp4_flexion_r": 0.23168785491696015,
+      "mcp4_abduction_r": 0.06004012057822078,
+      "pm4_flexion": 0.3097733424371364,
+      "md4_flexion_r": 0.044819500865117205,
+      "mcp5_flexion_r": 0.13632182537428367,
+      "mcp5_abduction_r": 0.11478914500045861,
+      "pm5_flexion_r": 0.32247029562356067,
+      "md5_flexion_r": 0.047256329898859445
+    },
+    "solver": {
+      "backend": "mink-clarabel",
+      "max_iterations": 200,
+      "integration_dt_s": 0.02,
+      "position_cost": 1.0,
+      "normal_cost": 0.05,
+      "posture_cost": 0.0001,
+      "damping": 1e-06,
+      "position_tolerance_m": 0.0001,
+      "normal_tolerance_rad": 0.05,
+      "joint_tolerance_rad": 1e-06,
+      "equality_tolerance_rad": 1e-06,
+      "penetration_tolerance_m": 0.0001,
+      "collision_avoidance": true,
+      "collision_limit_implementation": "displacement",
+      "collision_backtrack_steps": 12,
+      "collision_edge_step_rad": 0.01
+    },
+    "randomness": {
+      "used": false,
+      "seed": null
+    },
+    "anatomy": {
+      "package": "myo-sim",
+      "version": "0.2.3",
+      "model": "myofullbody_reduced",
+      "world_transform": "rotate native scaffold 180 degrees about world z; fixed torso"
+    },
+    "render": {
+      "width": 960,
+      "height": 720,
+      "backend": "egl"
+    },
+    "setup": {
+      "torso": {
+        "seated": {
+          "lower_body": {
+            "model": "myolegs",
+            "hip_flexion_rad": 1.5707963267948966,
+            "hip_abduction_rad": 0.08726646259971647,
+            "knee_flexion_rad": 1.5707963267948966,
+            "thigh_envelope_radius_m": 0.075,
+            "support_fraction": 0.45,
+            "evidence": "docs/research/seated-lower-body.md"
+          },
+          "upper_case_to_shoulder_m": -0.04,
+          "name": "generic-cba-v1-closed",
+          "instrument_width_m": 0.365,
+          "instrument_depth_m": 0.195,
+          "instrument_height_m": 0.38,
+          "torso_gap_m": 0.01,
+          "treble_edge_to_shoulder_m": 0.0,
+          "support_height_above_root_m": 0.1,
+          "support_clearance_m": 0.01,
+          "c4_top_inset_m": 0.06,
+          "outer_edge_inset_m": 0.015,
+          "yaw_rad": -0.5235987755982988,
+          "long_axis_tilt_rad": 0.0,
+          "fore_aft_tilt_rad": 0.0,
+          "evidence": "docs/research/seated-setup.md",
+          "parameter_evidence": {
+            "torso_gap_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.0,
+                0.04
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "treble_edge_to_shoulder_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.03,
+                0.03
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "support_height_above_root_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.07,
+                0.13
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "support_clearance_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.0,
+                0.04
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "c4_top_inset_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.045,
+                0.095
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "outer_edge_inset_m": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                0.01,
+                0.025
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "yaw_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.7853981633974483,
+                0.0
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "long_axis_tilt_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.17453292519943295,
+                0.17453292519943295
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "fore_aft_tilt_rad": {
+              "kind": "assumption",
+              "qualitative_source": "https://www.gorkahermosa.com/web/img/publicaciones/3568a.pdf#page=4",
+              "range": [
+                -0.17453292519943295,
+                0.17453292519943295
+              ],
+              "range_source": "Generic setup hypothesis, 023",
+              "uncertainty": "Not a measured interval or population coverage estimate",
+              "rationale": "docs/research/seated-setup.md#parameter-family"
+            },
+            "instrument_width_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            },
+            "instrument_depth_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            },
+            "instrument_height_m": {
+              "kind": "manufacturer",
+              "source": "https://www.roland.com/uk/products/fr-1xb/",
+              "uncertainty": "Catalogue size; tolerance and reference surfaces unknown",
+              "rationale": "Overall size sets scale; box shape is a separate hypothesis"
+            }
+          }
+        },
+        "torso_origin_m": [
+          0,
+          0,
+          0.65
+        ],
+        "torso_rotation_wxyz": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "docs/research/seated-setup.md",
+          "note": "Reference seated scaffold height; no personalized anatomy."
+        }
+      },
+      "board": {
+        "origin_m": [
+          0.15557269515503988,
+          0.053497848029032735,
+          0.9841999999986042
+        ],
+        "rotation_wxyz": [
+          0.6830127018922194,
+          -0.6830127018922192,
+          0.18301270189221927,
+          -0.18301270189221924
+        ],
+        "provenance": {
+          "kind": "assumption",
+          "source": "docs/research/instrument-size-fit.md",
+          "note": "Retain compact metrics; independently fixed upper height. No support equilibrium."
+        }
+      }
+    },
+    "player": {
+      "model": "myofullbody_reduced",
+      "full_body_posture": {
+        "hip_flexion_rad": 1.5707963267948966,
+        "hip_abduction_rad": 0.08726646259971647,
+        "knee_flexion_rad": 1.5707963267948966,
+        "left_elbow_flexion_rad": 0.35,
+        "left_shoulder_elevation_rad": 0.1,
+        "torso_flexion_rad": 0.0,
+        "evidence": "docs/research/full-body-architecture.md"
+      },
+      "model_mode": "imported_musculoskeletal",
+      "geometric_hand_scale": 1.0,
+      "geometry_evidence": {
+        "kind": "hypothesis",
+        "source": "Wrist-origin geometric perturbation",
+        "note": "Uniform hand scaling is not physiological personalization.",
+        "uncertainty": null
+      },
+      "joint_ranges_rad": {},
+      "provenance": {
+        "kind": "imported_model",
+        "source": "myo-sim 0.2.3",
+        "note": "Original anatomy. Dimensions are not individualized; range overrides are experimental."
+      },
+      "joint_range_evidence": {},
+      "uncertainty": "Imported dimensions and ranges lack player-specific uncertainty estimates"
+    },
+    "physical_contact": {
+      "additional_collision_pairs": [
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_2_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_2_r"
+        ],
+        [
+          "distph2_coll_r",
+          "distph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "distph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_2_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "midph2_coll_r"
+        ],
+        [
+          "distph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "midph3_coll_r"
+        ],
+        [
+          "midph2_coll_r",
+          "proxph3_coll_r"
+        ],
+        [
+          "midph3_coll_r",
+          "proxph2_coll_r"
+        ],
+        [
+          "proxph2_coll_r",
+          "proxph3_coll_r"
+        ]
+      ],
+      "additional_collision_evidence": {
+        "kind": "hypothesis",
+        "source": "019 index-middle phalangeal pair constraint",
+        "note": "Unmodified imported proxies; excludes metacarpals and other digit pairs."
+      },
+      "inactive_digits_policy": "allow_articulation",
+      "inactive_digits_evidence": {
+        "kind": "assumption",
+        "source": "023 setup study",
+        "note": "Unused digits may articulate; not a posture observation."
+      },
+      "collision_detection_distance_m": 0.03,
+      "collision_minimum_distance_m": 0,
+      "collision_gain": 0.85,
+      "provenance": {
+        "kind": "assumption",
+        "source": "Legacy rigid distal-envelope contact",
+        "note": "Not button depression; force and travel unknown. Collision gain is numerical."
+      }
+    }
+  },
+  "provenance": {
+    "compiled_model_sha256": "19af32fd2ec491ec8f7a4ac7a284fcb7f1d0db67d2c806ebf6ac4583859b897d",
+    "anatomy_source_sha256": "3f53fa14771e7909d20e52a25f13429f015ae373919208a401127433bb355e22",
+    "project_source_sha256": "6e6a9222ca1fa3c0f17ac3e359cdf3d06e6c75885ee7cd042b1cd92953d25590",
+    "lock_sha256": "2e26d6965a802bafcd1b0faff77641ef340ffe81fc5f62f237efee282eecce84",
+    "render_backend": "egl"
+  },
+  "runtime": {
+    "python": "3.14.7",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "packages": {
+      "mujoco": "3.15.0",
+      "myo-sim": "0.2.3",
+      "mink": "1.3.0",
+      "numpy": "2.5.3",
+      "scipy": "1.18.1",
+      "clarabel": "0.11.1",
+      "pillow": "12.3.0"
+    }
+  },
+  "model": {
+    "anatomical_assembly": "myofullbody_reduced",
+    "prescribed_passive_joints_rad": {},
+    "passive_joint_names": [],
+    "nq": 38,
+    "nv": 38,
+    "neq": 11,
+    "nu": 63,
+    "index_pad_local_m": [
+      0.004100182009418455,
+      -0.02575251249753332,
+      0.003963612992642634
+    ],
+    "index_pad_quat_wxyz": [
+      0.7270496471899948,
+      0.6606737120958207,
+      0.16878297258962194,
+      -0.08013341893519518
+    ],
+    "contact_sites": {
+      "index_pad": {
+        "pos_m": [
+          0.004100182009418455,
+          -0.02575251249753332,
+          0.003963612992642634
+        ],
+        "quat_wxyz": [
+          0.7270496471899948,
+          0.6606737120958207,
+          0.16878297258962194,
+          -0.08013341893519518
+        ]
+      }
+    },
+    "index_pad_provenance": "Outer envelope of compiled distal capsule and ellipsoid; normal along distal capsule axis"
+  },
+  "targets": [
+    {
+      "button_id": "r3c4",
+      "finger": "index",
+      "midi": 59,
+      "surface_world_m": [
+        0.12907269515503988,
+        0.07341643231607481,
+        0.9841999999986042
+      ],
+      "normal_world": [
+        0.4999999999999998,
+        0.8660254037844387,
+        4.440892098500626e-16
+      ]
+    }
+  ],
+  "target": {
+    "button_id": "r3c4",
+    "midi": 59,
+    "surface_world_m": [
+      0.12907269515503988,
+      0.07341643231607481,
+      0.9841999999986042
+    ],
+    "normal_world": [
+      0.4999999999999998,
+      0.8660254037844387,
+      4.440892098500626e-16
+    ]
+  }
+}

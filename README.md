@@ -37,12 +37,13 @@ See [RESEARCH_LOG.md](RESEARCH_LOG.md) for findings and failed investigations.
 
 ## Exercise target library
 
-The [provisional catalog](targets/CATALOG.md) separates musical intent, physical
+The [31-target provisional catalog](targets/CATALOG.md) separates musical intent, physical
 index/middle contacts, search branches and actual frozen evidence. All human
 feasibility values remain unknown. Use `uv run aec targets list`,
 `uv run aec targets show central-c4`, and `uv run aec targets verify central-c4`.
 The [manifest](targets/manifest.json) is machine readable; verification concerns
-integrity, not physical truth.
+integrity, not physical truth. See [the library guide](targets/README.md) for
+classification, descriptors, archived-source reproduction and search caveats.
 
 ## Reproduce
 

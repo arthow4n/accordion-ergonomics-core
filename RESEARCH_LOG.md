@@ -1,5 +1,53 @@
 # Research log
 
+## 2026-10-11 — Deliver the first substantial right-hand target library (040)
+
+[040](experiments/040-exercise-library/notes.md) expands the unchanged fixed
+reference into [31 targets](targets/CATALOG.md): nine baseline endpoints, six
+simultaneous dyads, seven relocations, three held-index tasks, four sequences
+and two equivalent-pitch comparisons. There are 33 physical realizations: 18
+with contact candidates,13 with sampled movements and two unsearched hypotheses.
+Fourteen recorded movement strategies retain both nearby branch choices and
+three exact-composed sequences; no solver history is treated as a trajectory.
+Targets stay musical identities; physical buttons/fingers and state branches
+remain separately represented. No unsupported finger is silently substituted.
+
+The new contact panel records 96 starts/12 reference solves and 50 distinct
+candidates. Five released-contact paths, reverse E4→C#4 held middle motion and
+wider C#4→G4 held middle motion are found. Direct held interpolation rejects;
+22/32 waypoint solves find continuations. Return and five-event alternating
+sequences join actual segments at exactly identical qpos/contact endpoints,
+including reverse sampled kinematics without tempo or dynamic claims.
+
+Every canonical endpoint has independent hand and instrument reports; every
+sample of all seven new movements is independently audited. Endpoint minimum
+case/rim/panel/cap clearances are 0.244/4.010mm/9.953µm. Configured constraints
+pass, but cross-digit phalangeal overlap reaches 13.513mm at endpoints and 12.636mm
+inside the wider held path. These remain unexplained proxy concerns, not measured
+tissue penetration; all anatomical validation is unresolved and human feasibility
+is null. The library's independent quality has that precise provisional scope.
+No proxies/masks, wearing placement or instrument profiles were altered.
+
+The manifest/query interface retains actual source commitments, search settings,
+failures, budget prefixes, joint/held/clearance descriptors and selected renders.
+`reproduce_argv` reruns each evidence workflow with its archived source. The
+[library guide](targets/README.md) explains boundaries and descriptor definitions.
+Selection uses family/direction/coordination diversity and control counterexamples,
+not extreme distance or a universal ergonomic score. Two hypotheses remain
+explicitly missing results. Unresolved skin/inactive-digit validation is the next
+bottleneck, not a reason to suppress provisional target delivery.
+
+An interrupted render-heavy prefix is retained honestly, separate from the full
+bounded no-render recovery. Selected four diagnostic views, suspicious held
+states and saved-state replay were inspected; four reviewed 040 images reproduce
+byte-for-byte. Fourteen 040 frozen roots and 26 library roots/161 evidence files
+verify complete integrity, which is not scientific validity. Final `uv run aec check` passes all 120 tests, Ruff formatting/lint and ty after
+stable catalog regeneration. A prior run passed 119 tests but loaded the earlier
+catalog module before the final audit join/regeneration; its consistency assertion
+failed against new manifest bytes. Fresh focused checks and the complete final
+canonical rerun pass. Initial overlapping render/test workloads were also
+interrupted; none of these execution failures is a scientific reachability claim.
+
 ## 2026-10-11 — Reuse recorded branches and expose bounded search sensitivity (039)
 
 [039](experiments/039-search-reliability/notes.md) keeps the exact fixed world and
@@ -49,9 +97,9 @@ entries pass the specified provisional checks; hypotheses stay hypotheses and
 all human feasibility remains null. The independently audited quality label
 states its limited scope explicitly and does not certify anatomical nonpenetration.
 All four views plus overlays for five selected states were inspected; 25 images
-reproduce byte-for-byte. Six library frozen roots and the038 record verify fully;
+reproduce byte-for-byte. Six library frozen roots and the 038 record verify fully;
 eight focused catalog/audit tests pass. Concurrent full-suite/render workloads
-exhausted memory: redundant checks were stopped and the040 contact batch resumes
+exhausted memory: redundant checks were stopped and the 040 contact batch resumes
 with bounded no-render execution. A single full check follows the workloads.
 
 ## 2026-10-11 — Ship the early provisional exercise catalog (038a)

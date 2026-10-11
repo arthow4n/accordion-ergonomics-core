@@ -66,3 +66,80 @@ def test_integrity_detects_modified_evidence(tmp_path: Path):
     (tmp_path / "modified.json").write_text("{}")
     with pytest.raises(ValueError, match="Evidence changed"):
         verify_target(catalog, tmp_path, catalog["targets"][0]["id"])
+
+
+def test_held_contact_and_pitch_integrity():
+    with pytest.raises(ValueError, match="held contact disappears"):
+        events_with_notes(
+            [
+                {
+                    "contacts": [
+                        {"button_id": "r1c5", "finger": "index", "behavior": "hold"}
+                    ]
+                },
+                {"contacts": [{"button_id": "r1c6", "finger": "index"}]},
+            ]
+        )
+    with pytest.raises(ValueError, match="MIDI differs"):
+        events_with_notes(
+            [{"contacts": [{"button_id": "r1c5", "finger": "index", "midi": 61}]}]
+        )
+
+
+def test_exact_reference_world_and_collision_attribution():
+    from accordion_ergonomics_core.targets import check_world
+
+    catalog = build_catalog()
+    world = copy.deepcopy(catalog["reference_world"])
+    saved = json.loads(
+        (
+            ROOT / "experiments/037-upper-anchor-regression/central/result.json"
+        ).read_text()
+    )
+    check_world(saved, world)
+    world["wearing_setup_sha256"] = "incorrect"
+    with pytest.raises(ValueError, match="wearing_setup_sha256"):
+        check_world(saved, world)
+    world = copy.deepcopy(catalog["reference_world"])
+    world["compiled_model_variants"] = {"unknown": "different"}
+    with pytest.raises(ValueError, match="Unregistered compiled"):
+        check_world(saved, world)
+    assert catalog["reference_world"]["audit_policy"] == "native-hand-proxy-report-v1"
+
+
+def test_substantial_catalog_keeps_hypotheses_and_alternative_paths():
+    catalog = build_catalog()
+    assert len(catalog["targets"]) >= 20
+    assert {t["family"] for t in catalog["targets"]} >= {
+        "held",
+        "sequence",
+        "alternative",
+        "relocation",
+        "simultaneous",
+    }
+    nearby = next(t for t in catalog["targets"] if t["id"] == "move-c4-d4")[
+        "realizations"
+    ][0]
+    lengths = [
+        m["descriptors"]["palm_path_length_m"] for m in nearby["movement_attempts"]
+    ]
+    assert len(lengths) == 2 and max(lengths) > min(lengths) * 1.5
+    alternative = next(
+        t for t in catalog["targets"] if t["id"] == "equivalent-csharp4"
+    )["realizations"][1]
+    assert alternative["status"] == "hypothesis"
+    assert alternative["branches"] == [] and alternative["searches"] == []
+    assert alternative["validity"]["independent_audit"] == "not_evaluated"
+    for t in catalog["targets"]:
+        for r in t["realizations"]:
+            assert r["validity"]["human_feasibility"] is None
+            assert r["validity"]["anatomical_validation"] == "unresolved"
+
+
+def test_claimed_independent_quality_requires_audit():
+    catalog = copy.deepcopy(build_catalog())
+    realization = catalog["targets"][0]["realizations"][0]
+    for candidate in realization["branches"]:
+        candidate["independent_audit"] = None
+    with pytest.raises(ValueError, match="Independent quality lacks"):
+        validate_catalog(catalog)

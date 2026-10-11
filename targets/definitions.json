@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "release": "0.3-recorded-branch-search",
+  "release": "0.4-first-library",
   "reference_result": "experiments/037-upper-anchor-regression/central/result.json",
   "targets": [
     {
@@ -362,7 +362,7 @@
     {
       "id": "equivalent-c4",
       "family": "alternative",
-      "explanation": "One musical C4 target with distinct physical buttons. Second realization remains a hypothesis until exact-world search.",
+      "explanation": "One musical C4 objective admits r1c5 and r4c5 index realizations in the same exact physical reference. Pose branches remain within each realization.",
       "realizations": [
         {
           "events": [
@@ -406,7 +406,784 @@
               ]
             }
           ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "equivalent-c4"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "lower-a3",
+      "family": "baseline",
+      "explanation": "A3 endpoint control above C4 on the board; contrasts opposite-direction relocations.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c4",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "same-row-lower"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "upper-eflat4",
+      "family": "baseline",
+      "explanation": "Eb4 endpoint control below C4 on the same row.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c6",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "same-row-upper"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "same-row-a4",
+      "family": "baseline",
+      "explanation": "More distant same-row A4 endpoint; compare directional and joint descriptors, not MIDI distance alone.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c8",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "same-row-distant"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "cross-b3",
+      "family": "baseline",
+      "explanation": "Cross-row B3 endpoint near the C4 region with opposite-direction pitch movement.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r3c4",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "cross-lower"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "cross-aflat4",
+      "family": "baseline",
+      "explanation": "Cross-row Ab4 endpoint separates row change from same-row distance controls.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r3c7",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "cross-upper"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "cross-bflat4",
+      "family": "baseline",
+      "explanation": "Bb4 endpoint at another row/column diagonal; candidate diversity retained.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r2c8",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "cross-distant"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "equivalent-csharp4",
+      "family": "alternative",
+      "explanation": "Musical C#4 via row5, with row2 as an explicit unsearched single-index alternative. Existing middle C#4 in a dyad is not evidence for that index alternative.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r5c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "equivalent-csharp4"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        },
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r2c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
           "sources": []
+        }
+      ]
+    },
+    {
+      "id": "dyad-c4-d4",
+      "family": "simultaneous",
+      "explanation": "Whole-tone dyad across rows, both named contacts required simultaneously.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r3c5",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "c4-d4"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "dyad-c4-eflat4",
+      "family": "simultaneous",
+      "explanation": "Same-row minor-third dyad, contrasted with row-changing spans.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r1c6",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "c4-eflat4"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "dyad-c4-f4",
+      "family": "simultaneous",
+      "explanation": "Fourth dyad with a middle finger on row3; finite branch evidence only.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r3c6",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "c4-f4"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "dyad-c4-g4",
+      "family": "simultaneous",
+      "explanation": "Wider fifth dyad; unresolved inactive-digit proxy intersections preclude anatomical feasibility claims.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                },
+                {
+                  "button_id": "r2c7",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "discovery",
+              "path": "experiments/040-exercise-library/contact-search/result.json",
+              "target_id": "c4-g4"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "move-c4-a3",
+      "family": "relocation",
+      "explanation": "Same-row move toward lower pitch. Release source, establish destination; no tempo or necessary movement claim.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c4",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "path",
+              "path": "experiments/040-exercise-library/plan-lower/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "move-c4-eflat4",
+      "family": "relocation",
+      "explanation": "Opposite-direction same-row control; compare palm path and wrist excursion with A3 move.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c6",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "path",
+              "path": "experiments/040-exercise-library/plan-upper/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "move-c4-a4",
+      "family": "relocation",
+      "explanation": "Longer same-row displacement, preserving the exact endpoint branch selected in the recorded search.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c8",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "path",
+              "path": "experiments/040-exercise-library/plan-distant/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "move-c4-b3",
+      "family": "relocation",
+      "explanation": "Cross-row relocation toward lower pitch, with a return sequence using these exact samples.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r3c4",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "path",
+              "path": "experiments/040-exercise-library/plan-cross/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "move-c4-equivalent",
+      "family": "relocation",
+      "explanation": "Repeat musical C4 through a distinct physical row4 button. Geometric relocation and musical interval differ.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r4c5",
+                  "finger": "index",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "path",
+              "path": "experiments/040-exercise-library/plan-equivalent/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "held-c4-e4-csharp4",
+      "family": "held",
+      "explanation": "Reverse held-index coordination: sustain index C4 while middle moves E4 to C#4. Direct interpolation rejects; continuation finds a sampled strategy.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "hold"
+                },
+                {
+                  "button_id": "r2c6",
+                  "finger": "middle",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "hold"
+                },
+                {
+                  "button_id": "r2c5",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "held",
+              "path": "experiments/040-exercise-library/held-reverse/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "held-c4-csharp4-g4",
+      "family": "held",
+      "explanation": "Wider held-index coordination: sustain C4 while middle changes C#4 to G4. Configured checks pass, but the path has an unresolved 12.636 mm middle/ring proxy overlap. This remains a provisional target hypothesis about real playability.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "hold"
+                },
+                {
+                  "button_id": "r2c5",
+                  "finger": "middle",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "hold"
+                },
+                {
+                  "button_id": "r2c7",
+                  "finger": "middle",
+                  "behavior": "contact"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "held",
+              "path": "experiments/040-exercise-library/held-wide/result.json"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "return-c4-a3-c4",
+      "family": "sequence",
+      "explanation": "Three-event same-row return composed from a found path and its exact reversed sampled kinematics; no timing or dynamics.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c4",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "sequence",
+              "path": "experiments/040-exercise-library/sequences/result.json",
+              "sequence_id": "return-a3"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "alternate-a3-c4-eflat4",
+      "family": "sequence",
+      "explanation": "Five-event direction alternation through a shared exact C4 pose. Each segment has independent sampled proxy audits; all joins preserve qpos exactly.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c4",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c6",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c4",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "sequence",
+              "path": "experiments/040-exercise-library/sequences/result.json",
+              "sequence_id": "alternate-a3-c4-eflat4"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
+        }
+      ]
+    },
+    {
+      "id": "return-c4-b3-c4",
+      "family": "sequence",
+      "explanation": "Three-event cross-row return; sequence provenance preserves forward/reverse traversal of the same actually audited path samples.",
+      "realizations": [
+        {
+          "events": [
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r3c4",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            },
+            {
+              "contacts": [
+                {
+                  "button_id": "r1c5",
+                  "finger": "index",
+                  "behavior": "release_after_event"
+                }
+              ]
+            }
+          ],
+          "sources": [
+            {
+              "kind": "sequence",
+              "path": "experiments/040-exercise-library/sequences/result.json",
+              "sequence_id": "cross-row-return-b3"
+            }
+          ],
+          "endpoint_coverage": "experiments/040-exercise-library/endpoint-coverage/result.json"
         }
       ]
     }
@@ -418,6 +1195,12 @@
   "independent_audits": [
     "experiments/038-hand-collision-audit/result.json",
     "experiments/039-search-reliability/warm-coverage/result.json",
-    "experiments/039-search-reliability/nearby-alternate/hand-audit/result.json"
+    "experiments/039-search-reliability/nearby-alternate/hand-audit/result.json",
+    "experiments/040-exercise-library/endpoint-hand-audit/result.json",
+    "experiments/040-exercise-library/movement-audit/result.json",
+    "experiments/040-exercise-library/held-wide-audit/result.json"
+  ],
+  "independent_instrument_audits": [
+    "experiments/040-exercise-library/endpoint-coverage/result.json"
   ]
 }

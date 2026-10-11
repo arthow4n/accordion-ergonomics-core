@@ -70,18 +70,32 @@ def reference_world(saved: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def evidence_ref(root: Path, relative: str, role: str) -> dict[str, str]:
+def evidence_ref(root: Path, relative: str, role: str) -> dict[str, Any]:
     path = root / relative
     parent = path.parent
     while parent != root and not (parent / "execution.json").is_file():
         parent = parent.parent
     if parent == root:
         raise ValueError(f"No frozen root for {relative}")
+    metadata = json.loads((parent / "execution.json").read_text())
+    frozen_root = str(parent.relative_to(root))
     return {
         "path": relative,
         "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
         "role": role,
-        "frozen_root": str(parent.relative_to(root)),
+        "frozen_root": frozen_root,
+        "reproduce_argv": [
+            "uv",
+            "run",
+            "aec",
+            "frozen",
+            metadata["workflow"],
+            str(parent.relative_to(root) / "experiment.json"),
+            "--source-snapshot",
+            str(parent.relative_to(root) / metadata["source_snapshot"]),
+            "--output",
+            "artifacts/target-replay/" + digest(frozen_root)[:12],
+        ],
     }
 
 
@@ -131,7 +145,7 @@ def check_world(saved: dict[str, Any], world: dict[str, Any]) -> None:
 
 
 def pose_branch(
-    saved: dict[str, Any], physical: dict[str, Any], ref: dict[str, str]
+    saved: dict[str, Any], physical: dict[str, Any], ref: dict[str, Any]
 ) -> dict[str, Any]:
     return {
         "id": "branch-"
@@ -189,7 +203,11 @@ def path_descriptors(
     }
 
 
-def audit_index(root: Path, paths: list[str]) -> dict[str, dict[str, Any]]:
+def audit_index(
+    root: Path,
+    paths: list[str],
+    instrument_paths: list[str] | None = None,
+) -> dict[str, dict[str, Any]]:
     """Join independent reports by exact source bytes, never target captions."""
     index = {}
     for path in paths:
@@ -242,6 +260,45 @@ def audit_index(root: Path, paths: list[str]) -> dict[str, dict[str, Any]]:
                 },
                 "diagnostic_views": views,
             }
+    # Earlier coverage reports store the independent instrument distances in a
+    # separate record. Join only the exact pose SHA and exact compiled identity.
+    for path in instrument_paths or []:
+        report = read(root, path)
+        ref = evidence_ref(root, path, "independent_instrument_endpoint_audit")
+        for record in report["poses"]:
+            hand = index.get(record["source"]["sha256"])
+            if hand is None:
+                continue
+            if (
+                hand["compiled_model_sha256"]
+                != record["provenance"]["compiled_model_sha256"]
+            ):
+                raise ValueError("Instrument/hand audit compiled identities differ")
+            minima = record["audit"]["instrument_component_minima"]
+            tolerance = record["resolved_profiles"]["solver"]["penetration_tolerance_m"]
+            hand["instrument_policy_status"] = (
+                "rejected"
+                if any(
+                    v["signed_proxy_distance_m"] < -tolerance for v in minima.values()
+                )
+                else "sampled_pairs_satisfied"
+            )
+            hand["instrument_audit_policy"] = "all-instrument-solids-distance-v1"
+            hand["instrument_evidence"] = ref
+            hand["instrument_record_id"] = record["id"]
+            groups = {"case_rim": [], "panels": [], "caps": []}
+            for name, value in minima.items():
+                group = (
+                    "panels"
+                    if "panel" in name
+                    else "case_rim"
+                    if name.startswith("cba_")
+                    else "caps"
+                )
+                groups[group].append(value["signed_proxy_distance_m"])
+            hand["clearance_minima_m"] = {
+                g: min(values) if values else None for g, values in groups.items()
+            }
     return index
 
 
@@ -263,6 +320,8 @@ def attach_audits(
         if audit["sample_count"] != expected:
             raise ValueError("Independent audit sample coverage differs")
         realization["evidence"].append(audit["evidence"])
+        if audit.get("instrument_evidence"):
+            realization["evidence"].append(audit["instrument_evidence"])
         realization["evidence"].extend(audit["diagnostic_views"].values())
         audited.append(audit)
     if not audited:
@@ -617,7 +676,13 @@ def build_catalog(root: Path = ROOT) -> dict[str, Any]:
         name: read(root, path)["provenance"]["compiled_model_sha256"]
         for name, path in definition["model_references"].items()
     }
-    independent = audit_index(root, definition.get("independent_audits", []))
+    independent = audit_index(
+        root,
+        definition.get("independent_audits", []),
+        definition.get("independent_instrument_audits", []),
+    )
+    if independent:
+        world["audit_policy"] = "native-hand-proxy-report-v1"
     targets = []
     for spec in definition["targets"]:
         realizations = [
@@ -786,8 +851,45 @@ def markdown(catalog: dict[str, Any]) -> str:
                         f"{search['successful_attempts']}/{search['attempt_count']} "
                         f"accepted starts, {search['distinct_candidates']} "
                         f"distinct candidates; failures "
-                        f"{search['failure_counts']}."
+                        f"{search['failure_reasons']}."
                     )
+                elif search.get("direct_attempt"):
+                    direct = search["direct_attempt"]
+                    lines.append(
+                        f"  Direct attempt: {direct.get('status')}; "
+                        f"sampled constraints "
+                        f"{direct.get('sampled_constraints_satisfied')}."
+                    )
+            for movement in r["movement_attempts"]:
+                desc = movement["descriptors"]
+                length = desc.get("palm_path_length_m")
+                label = f"{length * 1000:.3f} mm" if length is not None else "unknown"
+                lines.append(
+                    f"  Recorded movement `{movement['id']}`: "
+                    f"{desc['sample_count']} samples, palm path {label}."
+                )
+            audits = [
+                c["independent_audit"]
+                for c in r["branches"] + r["movement_attempts"]
+                if c.get("independent_audit")
+            ]
+            if audits:
+                worst = min(
+                    a["worst_cross_digit_phalangeal_distance_m"] for a in audits
+                )
+                lines.append(
+                    f"  Unresolved phalangeal proxy distance: "
+                    f"{worst * 1000:.3f} mm (overlap if negative; not measured tissue)."
+                )
+                views = next(
+                    (a["diagnostic_views"] for a in audits if a["diagnostic_views"]), {}
+                )
+                for view in ("hand", "collision"):
+                    if view in views:
+                        lines.append(
+                            f"  [{view} diagnostic]"
+                            f"({Path('..') / views[view]['path']})."
+                        )
             if r["descriptors"]:
                 lines.append(
                     "  Descriptors: `"
@@ -795,7 +897,7 @@ def markdown(catalog: dict[str, Any]) -> str:
                     + "`."
                 )
             for ref in r["evidence"]:
-                if ref["role"] != "candidate_pose":
+                if ref["role"] not in ("candidate_pose", "diagnostic_render"):
                     lines.append(
                         f"  Evidence: "
                         f"[{ref['role']}]({Path('..') / ref['path']}) "
@@ -894,5 +996,6 @@ def targets_command(args: Namespace) -> None:
                 for e in target["musical_intent"]["event_pitches_midi"]
             )
             print(
-                f"{target['id']}\t{target['family']}\t{notes}\t{','.join(sorted(statuses))}"
+                f"{target['id']}\t{target['family']}\t{notes}\t"
+                f"{','.join(sorted(statuses))}\tanatomy_unresolved"
             )

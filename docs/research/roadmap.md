@@ -10,9 +10,16 @@ No unresolved calibration question blocks clearly classified hypotheses.
   Complete anatomical policy remains unjustified without calibrated tissue.
 - 039: completed matched current search budgets with recorded warm branches,
   explicit prepaid provenance and prefix sensitivity. Nearby alternate branch
-  reduces found palm path63.669→34.684 mm without any minimum-movement claim.
-- 040: publish varied baselines, relocation, simultaneous, held, short-sequence
-  and alternative-button targets with actual evidence and sample audits.
+  reduces found palm path 63.669→34.684 mm without any minimum-movement claim.
+- 040: delivered 31 targets across baseline, relocation, simultaneous, held,
+  sequence and alternative-button families; actual contact/path evidence,
+  all-sample proxy audits, reproducible queries and explicit unresolved cases.
+
+Next: measure/observe hand envelopes and inactive-digit coordination before
+promoting any anatomical nonpenetration or human feasibility label. Search can
+reuse archived branches, but expanded finger support requires its own validation.
+No additional instrument profiles or whole-body dynamics are needed for this
+first library.
 
 See [the catalog](../../targets/CATALOG.md). Successful model realization is not
 human feasibility; discovered movement is not a necessary minimum. Observed
