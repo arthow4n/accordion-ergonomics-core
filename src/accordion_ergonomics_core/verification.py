@@ -137,6 +137,7 @@ def verify_record(
             "strategy-audit-media",
             "muscle-validation",
             "muscle-media",
+            "selection-comparison",
         ):
             records.append(("result", result))
             if workflow in (
@@ -145,6 +146,7 @@ def verify_record(
                 "strategy-audit",
                 "strategy-audit-media",
                 "muscle-media",
+                "selection-comparison",
             ):
                 if "artifact_sha256" not in result:
                     limitations.append("Passage media lacks artifact hashes")

@@ -44,6 +44,7 @@ class SolverSettings:
     collision_limit_implementation: str = "displacement"
     collision_backtrack_steps: int = 12
     collision_edge_step_rad: float = 0.01
+    unassigned_posture_multiplier: float = 1.0
 
     def __post_init__(self) -> None:
         if self.backend != "mink-clarabel":
@@ -141,6 +142,12 @@ class Experiment:
                 "note": "Recalculated from torso, instrument scale and support anchors",
             }
         solver = asdict(self.solver)
+        # An unchanged default must preserve historical profile commitments.
+        if (
+            self.solver.unassigned_posture_multiplier == 1.0
+            and "unassigned_posture_multiplier" not in self.source["solver"]
+        ):
+            solver.pop("unassigned_posture_multiplier")
         contact = asdict(self.physical_contact)
         if not self.physical_contact.additional_collision_pairs:
             contact.pop("additional_collision_pairs")
@@ -168,6 +175,10 @@ class Experiment:
 
         result: dict[str, Any] = json.loads(json.dumps(self.source))
         result["schema_version"] = 2
+        result["initial_joints_rad"] = dict(self.initial_joints_rad)
+        result["contacts"] = [asdict(c) for c in self.contacts]
+        if self.frozen_joints or "frozen_joints" in result:
+            result["frozen_joints"] = list(self.frozen_joints)
         result["anatomy"]["model"] = self.player.model
         geometry = asdict(self.geometry)
         if self.geometry.case_height_m is None:
@@ -182,6 +193,11 @@ class Experiment:
             result["player"].pop("full_body_posture")
         result["physical_contact"] = asdict(self.physical_contact)
         result["solver"] = asdict(self.solver)
+        if (
+            self.solver.unassigned_posture_multiplier == 1.0
+            and "unassigned_posture_multiplier" not in self.source["solver"]
+        ):
+            result["solver"].pop("unassigned_posture_multiplier")
         torso = asdict(self.setup)
         if (
             self.setup.seated is not None

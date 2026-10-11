@@ -212,6 +212,7 @@ def main() -> None:
             "strategy-audit-media",
             "muscle-validation",
             "muscle-media",
+            "selection-comparison",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -301,6 +302,9 @@ def main() -> None:
     muscle_media = sub.add_parser("muscle-media")
     muscle_media.add_argument("definition", type=Path)
     muscle_media.add_argument("--output", type=Path, required=True)
+    comparison = sub.add_parser("selection-comparison")
+    comparison.add_argument("definition", type=Path)
+    comparison.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "targets":
@@ -382,6 +386,10 @@ def main() -> None:
         from .muscle_validation_media import run_muscle_validation_media
 
         run_muscle_validation_media(args.definition, args.output)
+    elif args.command == "selection-comparison":
+        from .selection_comparison import run_selection_comparison
+
+        run_selection_comparison(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],

@@ -242,12 +242,21 @@ def conditional_static_screen(
     residual_projected = a @ activation - b
     residual_norm = float(np.linalg.norm(residual_projected))
     bounds_ok = bool(activation.min() >= -1e-8 and activation.max() <= 1 + 1e-8)
-    feasible = bool(
+    equality_position_error = float(
+        np.max(np.abs(snapshot["equality_position_residual_rad"]), initial=0)
+    )
+    equality_position_consistent = equality_position_error <= 1e-8
+    force_balance_found = bool(
         solution_kind == "conditional_recruitment_solution"
         and bounds_ok
         and residual_norm <= scenario.residual_tolerance_nm
     )
+    feasible = force_balance_found and equality_position_consistent
     return {
+        "force_balance_found": force_balance_found,
+        "equality_position_error_rad": equality_position_error,
+        "equality_position_numerical_tolerance_rad": 1e-8,
+        "ideal_equality_position_consistent": equality_position_consistent,
         "scenario": {
             "reaction_per_contact_n": scenario.reaction_per_contact_n,
             "force_provenance": (

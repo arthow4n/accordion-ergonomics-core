@@ -128,3 +128,21 @@ def test_conditional_hypothetical_reaction_is_separate_and_sign_correct(anatomy)
         StaticScenario(-1.0)
     with pytest.raises(ValueError):
         StaticScenario(objective="human_effort")
+
+
+def test_force_balance_at_inconsistent_equalities_is_not_static_equilibrium(anatomy):
+    e, scene, q = anatomy
+    broken = np.array(q)
+    broken[0] += 0.1
+    snap = muscle_snapshot(scene, broken)
+    moment = np.array(snap["transmission_length_derivative_m_per_rad"])
+    gain = np.array(snap["active_force_per_activation_n"])
+    passive = np.array(snap["passive_muscle_force_n"])
+    # Explicit numerical fixture, not scientific modification of muscle parameters.
+    snap["gravity_bias_nm"] = (
+        moment.T @ (passive + 0.2 * gain) + np.array(snap["joint_passive_nm"])
+    ).tolist()
+    screen = conditional_static_screen(scene, e.geometry, snap, [], StaticScenario())
+    assert screen["force_balance_found"]
+    assert not screen["ideal_equality_position_consistent"]
+    assert not screen["conditional_feasible"]

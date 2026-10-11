@@ -35,6 +35,10 @@ class PassageSearchSettings:
     prepare_next: bool = True
     assignment_order: str = "seeded"
     fingers: tuple[str, ...] = DIGITS
+    selection_mode: str = "palm"
+    technique_prior: str = "none"
+    inactive_digits_policy: str = "allow_articulation"
+    unassigned_posture_multiplier: float = 1.0
     planning: PlanningSettings = field(
         default_factory=lambda: PlanningSettings(
             withdrawal_depths_m=(0.01, 0.02, 0.04),
@@ -58,6 +62,19 @@ class PassageSearchSettings:
             raise ValueError("Seed must be a nonnegative integer")
         if not np.isfinite(self.preparation_height_m) or self.preparation_height_m <= 0:
             raise ValueError("Preparation height must be positive")
+        if self.selection_mode not in ("palm", "whole_hand_pareto"):
+            raise ValueError(
+                "Unsupported selection; muscle ranking requires validation"
+            )
+        if self.technique_prior not in ("none", "234_exploration"):
+            raise ValueError("Unknown technique prior")
+        if self.inactive_digits_policy not in ("freeze", "allow_articulation"):
+            raise ValueError("Unknown inactive digit policy")
+        if (
+            not np.isfinite(self.unassigned_posture_multiplier)
+            or self.unassigned_posture_multiplier <= 0
+        ):
+            raise ValueError("Posture multiplier must be finite and positive")
         if self.assignment_order not in ("seeded", "marker_distance"):
             raise ValueError("Unknown assignment priority")
         if type(self.prepare_next) is not bool:
@@ -387,17 +404,23 @@ def search_passage(
         e,
         physical_contact=replace(
             e.physical_contact,
-            inactive_digits_policy="allow_articulation",
+            inactive_digits_policy=settings.inactive_digits_policy,
             inactive_digits_evidence={
                 "kind": "hypothesis",
-                "source": "042 whole-hand search",
+                "source": "042/047 whole-hand policy hypothesis",
                 "note": (
-                    "Unassigned digits articulate with posture regularization; "
+                    f"Unassigned policy: {settings.inactive_digits_policy}; "
+                    "local posture multiplier "
+                    f"{settings.unassigned_posture_multiplier}; "
                     "biological coordination unresolved"
                 ),
             },
         ),
-        solver=replace(e.solver, collision_limit_implementation="displacement"),
+        solver=replace(
+            e.solver,
+            collision_limit_implementation="displacement",
+            unassigned_posture_multiplier=settings.unassigned_posture_multiplier,
+        ),
     )
     scene = build_scene(e.geometry, e.player, e.setup, e.physical_contact, DIGITS)
     names = [scene.model.joint(i).name for i in range(scene.model.njnt)]
@@ -418,6 +441,9 @@ def search_passage(
             "edge_path": [],
         }
     ]
+    from .selection import branch_descriptors, pareto_order, technique_priority
+
+    selection_records = []
     solve_count = 0
     for event_index, event in enumerate(passage.events):
         next_beam = []
@@ -442,8 +468,13 @@ def search_passage(
                         )
                     )
                 hypotheses.sort(key=lambda h: h["priority_marker_distance_sum_m"])
+            if settings.technique_prior == "234_exploration":
+                for h in hypotheses:
+                    h["technique_priority_234"] = technique_priority(h)
+                hypotheses.sort(key=technique_priority)
             batch = {
                 "assignment_order": settings.assignment_order,
+                "technique_prior": settings.technique_prior,
                 "priority_claim": (
                     "Marker proximity is an exploration priority, "
                     "never a contact or feasibility certificate"
@@ -640,13 +671,40 @@ def search_passage(
                     node_path=parent["node_path"] + [node["id"]],
                     edge_path=parent["edge_path"] + ([edge["id"]] if edge else []),
                 )
+                if settings.selection_mode == "whole_hand_pareto":
+                    node["selection_descriptors"] = branch_descriptors(
+                        scene, parent, q, edge, node["cost"]
+                    )
                 next_beam.append(node)
             for hypothesis in hypotheses[settings.assignments_per_parent :]:
                 hypothesis["status"] = "unexplored_budget"
-        next_beam.sort(key=lambda n: (n["cost"], n["id"]))
+        if settings.selection_mode == "whole_hand_pareto":
+            next_beam = pareto_order(next_beam)
+        else:
+            next_beam.sort(key=lambda n: (n["cost"], n["id"]))
+        selection_records.append(
+            {
+                "event_index": event_index,
+                "mode": settings.selection_mode,
+                "ordered_candidates": [
+                    {
+                        "node_id": n["id"],
+                        "palm_cost_m": n["cost"],
+                        "descriptors": n.get("selection_descriptors"),
+                        "pareto_layer": n.get("pareto_layer"),
+                        "retained": i < settings.beam_width,
+                    }
+                    for i, n in enumerate(next_beam)
+                ],
+            }
+        )
         beam = next_beam[: settings.beam_width]
         for node in next_beam[settings.beam_width :]:
-            node["status"] = "pruned_beam_cost"
+            node["status"] = (
+                "pruned_beam_cost"
+                if settings.selection_mode == "palm"
+                else "pruned_beam_policy"
+            )
         for node in beam:
             node["status"] = "retained_beam"
         if not beam:
@@ -741,9 +799,12 @@ def search_passage(
         "settings": asdict(settings),
         "input": e.expanded_source(),
         "joint_names": names,
+        "initial_qpos_rad": initial,
+        "initial_state_semantics": "resolved numerical seed, not a planned approach",
         "nodes": nodes,
         "edges": edges,
         "hypothesis_batches": batches,
+        "selection_records": selection_records,
         "strategies": strategies,
         "status": "complete_passage_found" if complete else "no_complete_passage_found",
         "budget": {
@@ -767,12 +828,17 @@ def search_passage(
             ),
         },
         "cost_claim": (
-            "Bounded beam ranking by discovered palm path; "
+            f"Bounded beam ranking: {settings.selection_mode}; "
             "not optimal or universal difficulty"
         ),
         "trajectory_claim": (
             "Audited interpolation samples of computed waypoints; "
             "no tempo or continuous validity"
+        ),
+        "selection_policy_claim": (
+            "Whole-hand mode uses Pareto layers then wrist/proxy/digit/palm "
+            "tie order; endpoint proxies only, no universal comfort score. "
+            "234 is an optional educational exploration prior, not anatomy."
         ),
         "initial_seed_claim": (
             "Event 0 contact solved from the seed; "

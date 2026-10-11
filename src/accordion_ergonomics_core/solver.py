@@ -93,8 +93,6 @@ def solve_contact(
             ]
         return aggregate
 
-    posture = mink.PostureTask(model, cost=settings.posture_cost)
-    posture.set_target(q0)
     coupled = mink.EqualityConstraintTask(model, cost=1.0)
     # Unassigned digits articulate under posture regularization in free policy.
     active_digits = {r[1] for r in requirements}
@@ -105,6 +103,10 @@ def solve_contact(
         if digit not in active_digits
         for i in indices
     ]
+    posture_cost = np.full(model.nv, settings.posture_cost)
+    posture_cost[inactive] *= settings.unassigned_posture_multiplier
+    posture = mink.PostureTask(model, cost=posture_cost)
+    posture.set_target(q0)
     frozen = sorted(
         set(
             (

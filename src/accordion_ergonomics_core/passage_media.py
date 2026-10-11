@@ -125,6 +125,7 @@ def search_diagram(saved: dict[str, Any], path: Path) -> None:
         "failed_transition": "#b16c35",
         "preparation_transition_failed": "#b16c35",
         "pruned_beam_cost": "#727b87",
+        "pruned_beam_policy": "#727b87",
         "retained_beam": "#267866",
     }
     parts = [
@@ -148,6 +149,12 @@ def search_diagram(saved: dict[str, Any], path: Path) -> None:
     for node in nodes:
         x, y = locations[node["id"]]
         label = ", ".join(f"{c['finger']} {c['button_id']}" for c in node["contacts"])
+        displayed_status = node["status"]
+        if (
+            displayed_status == "pruned_beam_cost"
+            and saved.get("settings", {}).get("selection_mode") == "whole_hand_pareto"
+        ):
+            displayed_status = "pruned_beam_policy"
         color = colors.get(node["status"], "#466578")
         parts += [
             f'<rect x="{x}" y="{y}" width="310" height="62" rx="4" fill="{color}"/>',
@@ -155,7 +162,7 @@ def search_diagram(saved: dict[str, Any], path: Path) -> None:
             f"{escape(node['id'])}</text>",
             f'<text x="{x + 6}" y="{y + 30}" font-size="10">{escape(label)}</text>',
             f'<text x="{x + 6}" y="{y + 47}" font-size="10">'
-            f"{escape(node['status'])} "
+            f"{escape(displayed_status)} "
             + (f"cost {node['cost']:.5f} m" if "cost" in node else "unscored")
             + "</text>",
         ]
@@ -299,7 +306,7 @@ def run_passage_media(definition: Path, output: Path) -> dict[str, Any]:
     output.mkdir(parents=True, exist_ok=True)
     search_diagram(saved, output / "search.svg")
     reports: list[dict[str, Any]] = []
-    cameras = None
+    cameras = source.get("cameras")
     for strategy in saved["strategies"][: source.get("strategy_limit", 2)]:
         is_movement = strategy["status"] == "sampled_connected_path"
         if is_movement:
@@ -339,7 +346,8 @@ def run_passage_media(definition: Path, output: Path) -> dict[str, Any]:
                 audit,
                 output / strategy["id"],
                 source.get("frames", 9),
-                cameras,
+                {"hand": cameras["hand"]} if source.get("cameras") else cameras,
+                source.get("context_label"),
             )
             cameras = record["animation"]["cameras"]
         worst = audit["worst_cross_digit"]
@@ -384,7 +392,13 @@ def run_passage_media(definition: Path, output: Path) -> dict[str, Any]:
                 f"{'actual sample' if is_movement else 'static node'} {sample_index} | "
                 f"{audit['status']} | "
                 f"cross-digit {concern['signed_proxy_distance_m'] * 1000:.2f} mm"
+                + (
+                    " | " + source["context_label"]
+                    if source.get("context_label")
+                    else ""
+                )
             ),
+            camera_overrides=source.get("cameras"),
         )
         reports.append(record)
     failed = next(

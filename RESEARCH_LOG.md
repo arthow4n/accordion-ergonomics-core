@@ -1,5 +1,29 @@
 # Research log
 
+## 2026-10-11 — Controlled whole-hand search and posture counterexamples (047)
+
+[047](experiments/047-whole-hand-comparison/notes.md) preserves ten matched-budget
+searches and 20 independently sampled paths. The seeded baseline reproduces the
+old little-heavy arpeggio. Zero first-contact cost/ID ties retain first little
+hypotheses; final palm ranking favors its shorter ending. Whole-hand Pareto
+selection reduces wrist variation under both seeds, but one selected path worsens
+intermediate overlap. A retained little-finger ending has less overlap. Technique
+priority is separate and seed-sensitive. Stronger local posture regularization
+can shorten palm travel while greatly increasing wrist variation; frozen digits
+still overlap. No universal coordinated or ergonomic policy is established.
+
+All 216 endpoint muscle scenarios remain conditionally unsuccessful. Initial
+input materialization was found stale: recorded trajectories are exact, but two
+046 reference probes were uncoupled original inputs. Future records now save the
+resolved seed and screens check equality positions. 048 supplies explicit
+historical annotations and a solved-seed control without changing frozen files.
+
+Matched actual-sample GIFs, all four views/worst overlays, joint-distance traces
+and real branch diagrams were inspected. Archived B replay preserves every value
+except wall-clock `elapsed_s`; strategy objects and all 24 B media files reproduce
+exactly. Historical profile commitments remain preserved at unchanged defaults.
+
+
 ## 2026-10-11 — Pinned muscles, inherited routing anomalies and static gates (046)
 
 [046](experiments/046-muscle-validation/notes.md) verifies all 63 retained muscle

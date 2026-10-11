@@ -1,3 +1,11 @@
+## 047 update — Whole-path reassessment and provenance
+
+Whole-hand selection reduces wrist motion but endpoint-only proxy ranking misses
+intermediate concerns. Stronger local posture regularization has counterexamples.
+Next integrate full sampled-path tradeoffs into a versioned catalog sidecar,
+correct seed provenance and screen the actual solved reference (048). Keep muscle
+effort ranking withheld and ordinary-playing claims unvalidated.
+
 ## 046 update — Screening gates before ranking
 
 Pinned native/reduced muscle parity passes, but inherited routing derivative
