@@ -47,6 +47,17 @@ human poses and measured skin remain the next validity bottleneck, not a reason
 to withhold provisional targets. The historical questions below retain useful
 provenance; their former sequential gates are superseded by this program.
 
+## Biomechanically informed continuation
+
+- 045 completed: fixed recorded benchmark, all-sample whole-hand/proxy audit,
+  matched model renders, actual animations and explicit unplanned first approach.
+- 046 next: validate pinned musculotendon parity, transmissions and conditional
+  static balance before using muscle descriptors for screening.
+- 047: controlled free/frozen/coordinated and palm/whole-hand/muscle/technique
+  comparisons; preserve little candidates, equal budgets and unfavorable cases.
+- 048: versioned library assessments, API diagnostics and justified path changes;
+  preserve historical evidence and unknown anatomical/human validity.
+
 ## Historical next falsifiable questions
 
 Experiments 004–014 establish parameter-bound recalculation, multi-start poses,

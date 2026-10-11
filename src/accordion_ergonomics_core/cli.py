@@ -208,6 +208,8 @@ def main() -> None:
             "discovery",
             "discovery-summary",
             "library-validation",
+            "strategy-audit",
+            "strategy-audit-media",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -285,6 +287,12 @@ def main() -> None:
     validation = sub.add_parser("library-validation")
     validation.add_argument("definition", type=Path)
     validation.add_argument("--output", type=Path, required=True)
+    strategy_audit = sub.add_parser("strategy-audit")
+    strategy_audit.add_argument("definition", type=Path)
+    strategy_audit.add_argument("--output", type=Path, required=True)
+    strategy_media = sub.add_parser("strategy-audit-media")
+    strategy_media.add_argument("definition", type=Path)
+    strategy_media.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "targets":
@@ -347,6 +355,16 @@ def main() -> None:
         from .library_validation import run_library_validation
 
         run_library_validation(args.definition, args.output)
+    elif args.command == "strategy-audit":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .strategy_audit import run_strategy_audit
+
+        run_strategy_audit(args.definition, args.output)
+    elif args.command == "strategy-audit-media":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .strategy_audit_media import run_strategy_audit_media
+
+        run_strategy_audit_media(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],

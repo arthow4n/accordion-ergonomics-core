@@ -36,6 +36,8 @@ def frozen_run(
         "discovery",
         "discovery-summary",
         "library-validation",
+        "strategy-audit",
+        "strategy-audit-media",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

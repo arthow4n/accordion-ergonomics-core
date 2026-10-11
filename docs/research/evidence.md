@@ -226,3 +226,33 @@ compared passive mechanical coupling and active control; free kinematic coordina
 plus a posture cost do not reproduce either mechanism. Numerical differences in
 041's frozen/free control are consequences of the model policy, not validation
 against natural nonplaying-digit behavior.
+
+## Supplied biomechanical brief for experiments 045–048
+
+The owner supplied the following synthesis; it is the starting evidence, not a
+new broad literature review. Task-dependent finger nonindependence and passive/
+active contributions do not establish a universal coupling matrix or digit ban:
+[Schieber and colleagues](https://pmc.ncbi.nlm.nih.gov/articles/PMC6773164/),
+[Lang and Schieber](https://doi.org/10.1152/jn.00480.2004), and
+[neighboring interactions](https://pmc.ncbi.nlm.nih.gov/articles/PMC5167409/).
+[Wrist/MCP posture study](https://pubmed.ncbi.nlm.nih.gov/39527855/) motivates
+posture interaction diagnostics without an accordion angle threshold.
+[Force tasks](https://pubmed.ncbi.nlm.nih.gov/7319323/) and
+[multi-finger forces](https://pubmed.ncbi.nlm.nih.gov/14673652/) do not measure
+accordion cap activation force or musical usefulness. Thumb/little remain eligible.
+[Accordionwise](https://www.accordionwise.com/playing_chromatic_accordion.html)
+and the [2017 instructional approach](https://playingchromaticaccordion.blogspot.com/2017/)
+support identifiable technique priors, separate from anatomical constraints.
+
+Installed myo-sim 0.2.3's arm README and compiled model are numerical authorities;
+[upstream README](https://github.com/MyoHub/myo_sim/blob/main/myo_sim/models/arm/README.md)
+is context, not parameter parity with latest main. Narrow verification of
+[MuJoCo muscle modeling](https://mujoco.readthedocs.io/en/latest/modeling.html)
+and [actuation computation](https://mujoco.readthedocs.io/en/3.3.7/computation/index.html#actuation-model)
+supports engine sign/transmission tests: actuator length includes routed tendon,
+active/passive pulling force is transmitted through its length derivative.
+Static estimates require stated external reactions, objectives and bounds;
+[recruitment uncertainty](https://pmc.ncbi.nlm.nih.gov/articles/PMC8944069/)
+is carried forward. Neither inferred activations nor kinematic traces are measured
+effort, neural control, endurance or human feasibility. No measured button force
+or physiological threshold is added from these sources.

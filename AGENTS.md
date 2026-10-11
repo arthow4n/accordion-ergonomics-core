@@ -54,3 +54,26 @@ filter defects (016); legacy input preserves native behavior for reproduction.
 The project adapter needs independent sampled integration-edge checks because
 large steps can cross an activation band (017). Named additional self-pairs
 are hypotheses on unchanged proxies (019), not full anatomical validation.
+
+## Persistent visual and biomechanical evidence requirements
+
+For each substantive contact, planning, selection or physiology milestone,
+publish a small inspected set of actual-model whole-hand/contact views, all four
+diagnostic views, worst-state collision overlays and actual sampled-path GIFs or
+ordered frames where complete paths exist. Include matched cameras for controlled
+comparisons, numerical traces and diagrams generated from actual search records.
+Save model/source/input hashes, qpos/path references, camera settings, active
+contact requirements and exact frame sample indices. Render during the milestone,
+not only at catalog publication. Never invent intermediate states, use IK
+iteration histories as movement, or turn missing/failed paths into successful
+animations. Clearly label an unplanned reference-to-first-contact approach.
+
+For biomechanical research, inspect the pinned compiled muscle/tendon system and
+validate native/reduced lengths, moment arms and force conventions before using
+capacity estimates. Static recruitment estimates are conditional on stated
+objectives, bounds, equality constraints and external-force/reaction scenarios;
+they are not measured activations, comfort or dynamic/human feasibility. Button
+forces/travel remain unmeasured. Preserve all five candidates; technique priors
+are optional and distinct from physical constraints. Use controlled ablations
+and multidimensional assessments instead of a universal difficulty score. Keep
+historical library/frozen evidence intact and attach versioned reassessments.

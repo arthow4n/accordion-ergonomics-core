@@ -1,5 +1,30 @@
 # Research log
 
+## 2026-10-11 — Recorded whole-hand strategy audit and persistent visual scope (045)
+
+[045](experiments/045-strategy-audit/notes.md) audits all 3,511 samples in eight
+fixed paths plus four separate failed-held nodes. Compiled FK reproduces original
+palm costs, and every reference-to-first-contact approach remains explicitly
+unplanned. Per-coordinate/digit traces, board distances, palm orientation, free
+motion and independent proxy concerns replace visual plausibility judgments.
+
+Palm-only ranking does not order wrist demand: short stepwise has more deviation
+but less flexion than the ring alternative. Refined little/index arpeggio reduces
+palm travel and overlap versus original index/thumb, while its two endings trade
+flexion against deviation. All eight paths retain unresolved cross-digit overlap
+(8.697–16.500 mm), including the low-excursion control. Failed held nodes are static
+attempts, never a joined movement. No physiological limit, hovering threshold or
+little-finger penalty is introduced.
+
+Matched four-view/worst-overlay evidence, four actual-sample GIFs and recorded
+branch graphs were inspected and frozen-verified. Exact archived-source numerical
+and rendering replay reproduces all outputs, including 96 media artifacts.
+AGENTS.md now requires persistent
+visual provenance, initial-approach disclosure and conditional biomechanical
+interpretation. Baseline 153 tests and focused audit/API/verifier/render checks,
+Ruff and ty pass. 046 next validates the pinned 63 retained muscles before any
+capacity/ranking use; the supplied research synthesis is preserved in evidence.md.
+
 ## 2026-10-11 — Importable discovery library and archived visual replay (044)
 
 [044](experiments/044-internal-library/notes.md) consolidates passage submission,

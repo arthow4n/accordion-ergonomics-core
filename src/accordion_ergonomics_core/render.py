@@ -149,6 +149,7 @@ def render_views(
     mujoco.mj_forward(scene.model, scene.data)
     colors = {
         "required": [1.0, 0.5, 0.05, 1.0],
+        "attempted": [1.0, 0.2, 0.15, 1.0],
         "held": [0.1, 0.9, 1.0, 1.0],
         "moving": [0.95, 0.85, 0.1, 1.0],
         "preparing": [0.7, 0.5, 1.0, 1.0],

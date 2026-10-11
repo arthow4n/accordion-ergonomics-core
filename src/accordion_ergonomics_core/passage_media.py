@@ -187,6 +187,7 @@ def render_strategy(
     output: Path,
     frame_count: int,
     cameras: dict[str, Any] | None = None,
+    context_label: str | None = None,
 ) -> dict[str, Any]:
     validate_strategy(saved, strategy)
     if audit["status"] != "sampled_proxy_constraints_satisfied" or audit[
@@ -224,6 +225,8 @@ def render_strategy(
             f"sample {sample_index} | {phase} | {labels} | proxy concern "
             f"{observed['worst_cross_digit_phalangeal_distance_m'] * 1000:.2f} mm"
         )
+        if context_label is not None:
+            label = context_label + " | " + label
         actual = render_views(
             scene,
             directory,
@@ -263,6 +266,7 @@ def render_strategy(
         loop=0,
     )
     return {
+        **({"context_label": context_label} if context_label is not None else {}),
         "strategy_id": strategy["id"],
         "sample_indices": indices,
         "frames": manifest,
