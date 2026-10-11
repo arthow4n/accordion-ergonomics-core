@@ -41,6 +41,8 @@ def frozen_run(
         "muscle-validation",
         "muscle-media",
         "selection-comparison",
+        "seed-capacity",
+        "quality-assessment",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

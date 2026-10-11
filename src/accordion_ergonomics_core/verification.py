@@ -138,6 +138,8 @@ def verify_record(
             "muscle-validation",
             "muscle-media",
             "selection-comparison",
+            "seed-capacity",
+            "quality-assessment",
         ):
             records.append(("result", result))
             if workflow in (
@@ -147,6 +149,8 @@ def verify_record(
                 "strategy-audit-media",
                 "muscle-media",
                 "selection-comparison",
+                "seed-capacity",
+                "quality-assessment",
             ):
                 if "artifact_sha256" not in result:
                     limitations.append("Passage media lacks artifact hashes")
@@ -273,6 +277,11 @@ def verify_record(
                 )
         if definition.is_file():
             source = result["input"]
+            reference_parent = (
+                definition.resolve().parents[2]
+                if workflow == "quality-assessment"
+                else definition.parent
+            )
             for key in (
                 "baseline",
                 "start",
@@ -284,6 +293,9 @@ def verify_record(
                 "catalog",
                 "audit",
                 "muscle",
+                "comparison",
+                "audit_media",
+                "seed",
             ):
                 if key == "reference" and "reference_input" in source:
                     file_hash(
@@ -293,7 +305,7 @@ def verify_record(
                     )
                 if key + "_result" in source and key + "_sha256" in source:
                     file_hash(
-                        definition.parent / source[key + "_result"],
+                        reference_parent / source[key + "_result"],
                         source[key + "_sha256"],
                         key + " referenced input",
                     )
@@ -302,6 +314,18 @@ def verify_record(
                     definition.parent / source["benchmark_definition"],
                     source["benchmark_definition_sha256"],
                     "benchmark definition",
+                )
+            if "comparison_definition" in source:
+                file_hash(
+                    reference_parent / source["comparison_definition"],
+                    source["comparison_definition_sha256"],
+                    "comparison definition",
+                )
+            for ref in source.get("comparison_media", []):
+                file_hash(
+                    reference_parent / ref["path"],
+                    ref["sha256"],
+                    ref["trial_id"] + " media",
                 )
             for case in source.get("cases", []):
                 if "search_result" in case:

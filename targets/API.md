@@ -98,3 +98,50 @@ working directory. The [visual index](VISUALS.md) and
 [044 replay report](../experiments/044-internal-library/validation/result.json)
 link media to exact computational evidence. Proxy overlap, finite failures,
 unsampled intervals, forces, timing and human feasibility remain unresolved.
+
+## Versioned biomechanical evidence (045–048)
+
+The historical manifest is unchanged. `targets/assessments-v1.json` links a
+hash-bound `biomechanics-v1` sidecar for all 50 targets. Deep evidence covers the
+fixed nine-case benchmark; other targets explicitly retain unassessed fields.
+Static muscle results are conditional, and current screening does not support a
+muscle effort ranking. There is no ordinary-playing or human-feasibility pass.
+
+```python
+from accordion_ergonomics_core.research import ExerciseLibrary
+
+library = ExerciseLibrary()
+quality = library.assessment("generated-dcbc77238f1b5559")
+alternatives = library.ranked_comparisons(
+    "generated-dcbc77238f1b5559", policy="proxy_first"
+)
+trajectory = library.comparison_trajectory("arpeggio-B-4309", "strategy-1")
+frames = library.comparison_frame_sequence("arpeggio-B-4309", "strategy-1")
+conditional_screens = library.muscle_screens("generated-dcbc77238f1b5559")
+media_paths = library.quality_media("generated-dcbc77238f1b5559")
+```
+
+`proxy_first` and `wrist_first` use complete independently audited sample paths
+and preserve Pareto tradeoffs. They are research preferences on uncalibrated
+proxies, not universal comfort scores. The little-finger alternative remains
+available. `quality_evidence("comparison")` or `quality_evidence("muscle")`
+returns exact committed records including selection reasoning and assumptions.
+`reproduce_quality_argv("arpeggio-B-4309", output)` retrieves the actual archived
+media replay command; roles `assessment`, `seed`, `audit`, `muscle` and
+`comparison` replay their matching workflows. Execute from the library root.
+
+For new searches, `PassageSearchSettings` optionally supports
+`selection_mode="whole_hand_pareto"`, `technique_prior="234_exploration"`,
+`inactive_digits_policy="freeze"` and `unassigned_posture_multiplier`.
+The defaults preserve historical selection. The technique prior only orders
+exploration and retains all five fingers. Local posture multipliers are numerical
+sensitivity parameters relative to the input q, not biological coupling laws.
+Online proxy descriptors cover event endpoints; inspect the independent full
+path before using them as movement diagnostics. A muscle selection mode is
+explicitly unsupported while its validation/capacity gates remain unresolved.
+New `discover_passage` results also include full sampled whole-hand audits and
+resolved initial q. No initial approach is claimed unless separately recorded.
+
+The [portable example](../examples/quality_consumer.py) is tested from a directory
+outside this checkout. The [048 visual index](../experiments/048-library-reassessment/notes.md)
+links exact static comparisons, actual-sample animations and algorithm plots.

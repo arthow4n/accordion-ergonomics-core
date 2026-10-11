@@ -23,6 +23,205 @@ class ExerciseLibrary:
         self.root = root.resolve()
         self.catalog = json.loads((self.root / "targets/manifest.json").read_text())
 
+    def quality_record(self, version: str = "biomechanics-v1"):
+        """Load a hash-bound sidecar without changing historical target identities."""
+        index = json.loads((self.root / "targets/assessments-v1.json").read_text())
+        if index["version"] != version:
+            raise KeyError("Unknown assessment version")
+        record = json.loads(self.evidence_path(index["evidence"]).read_text())
+        self.evidence_path(
+            {
+                "path": "targets/manifest.json",
+                "sha256": record["input"]["catalog_sha256"],
+            }
+        )
+        return record
+
+    def assessment(self, target_id: str, version: str = "biomechanics-v1"):
+        self.target(target_id)
+        record = self.quality_record(version)
+        target = next(t for t in record["targets"] if t["target_id"] == target_id)
+        return {"assessment_version": record["assessment_version"], **target}
+
+    def quality_evidence(self, role: str):
+        if role == "assessment":
+            index = json.loads((self.root / "targets/assessments-v1.json").read_text())
+            return self.evidence_path(index["evidence"])
+        record = self.quality_record()
+        ref = next((r for r in record["evidence"] if r["role"] == role), None)
+        if ref is None:
+            raise KeyError(role)
+        return self.evidence_path(ref)
+
+    def comparison_trials(self, target_id: str):
+        self.target(target_id)
+        return [
+            t
+            for t in self.quality_record()["comparison_trials"]
+            if t["target_id"] == target_id
+        ]
+
+    def comparison_trajectory(self, trial_id: str, strategy_id: str = "strategy-0"):
+        trial = next(
+            (
+                t
+                for t in self.quality_record()["comparison_trials"]
+                if t["id"] == trial_id
+            ),
+            None,
+        )
+        if trial is None:
+            raise KeyError(trial_id)
+        saved = json.loads(self.evidence_path(trial["search_evidence"]).read_text())
+        strategy = next(
+            (s for s in saved["strategies"] if s["id"] == strategy_id), None
+        )
+        if strategy is None:
+            raise KeyError("No complete movement: " + strategy_id)
+        validate_strategy(saved, strategy)
+        return {
+            "joint_names": saved["joint_names"],
+            "first_note_approach": "not_planned",
+            **strategy,
+        }
+
+    def ranked_comparisons(self, target_id: str, *, policy: str = "proxy_first"):
+        """Whole-path ranking; preserve wrist/proxy tradeoffs and source trial IDs."""
+        from .selection import audited_strategy_order
+
+        trials = {t["id"] for t in self.comparison_trials(target_id)}
+        comparison = json.loads(self.quality_evidence("comparison").read_text())
+        return [
+            {
+                "trial_id": t["source"]["id"],
+                "ranking": audited_strategy_order(t["strategies"], policy),
+            }
+            for t in comparison["trials"]
+            if t["source"]["id"] in trials
+        ]
+
+    def muscle_screens(self, target_id: str):
+        """Exact conditional estimates; empty means unassessed, not a capacity pass."""
+        cases = {b["case_id"] for b in self.assessment(target_id)["benchmarks"]}
+        record = json.loads(self.quality_evidence("muscle").read_text())
+        return [
+            {
+                "case_id": p["pose"]["case_id"],
+                "pose": p["pose"],
+                "length_derivative_check": p["length_derivative_check"],
+                "native_parity": p["native_parity"],
+                "static_screens": p["static_screens"],
+            }
+            for p in record["poses"]
+            if p["pose"].get("case_id") in cases
+        ]
+
+    def quality_media(self, target_id: str):
+        self.target(target_id)
+        record = self.quality_record()
+        files = [
+            self.evidence_path(ref)
+            for example in record["visual_examples"]
+            if example["target_id"] == target_id
+            for ref in example["files"]
+        ]
+        directory = self.quality_evidence("assessment").parent.relative_to(self.root)
+        for gallery in record["comparison_frame_sources"]:
+            if gallery["target_id"] == target_id:
+                name = gallery["id"] + ".png"
+                files.append(
+                    self.evidence_path(
+                        {
+                            "path": str(directory / name),
+                            "sha256": record["artifact_sha256"][name],
+                        }
+                    )
+                )
+        return files
+
+    def comparison_frame_sequence(self, trial_id: str, strategy_id: str = "strategy-0"):
+        record = self.quality_record()
+        reference = next(
+            (r for r in record["comparison_media"] if r["trial_id"] == trial_id), None
+        )
+        if reference is None:
+            raise KeyError("No saved comparison media: " + trial_id)
+        media = json.loads(self.evidence_path(reference).read_text())
+        strategy = self.comparison_trajectory(trial_id, strategy_id)
+        report = next(
+            (r for r in media["strategy_reports"] if r["strategy_id"] == strategy_id),
+            None,
+        )
+        if report is None:
+            raise KeyError("No saved frames for strategy: " + strategy_id)
+        animation = report["animation"]
+        if not animation or animation["state_sequence_sha256"] != state_digest(
+            strategy["samples"]
+        ):
+            raise ValueError("Missing or different movement evidence")
+        frames = []
+        for frame in animation["frames"]:
+            sample = strategy["samples"][frame["sample_index"]]
+            if any(
+                frame[k] != sample[k] for k in ("qpos_rad", "active_contacts", "roles")
+            ):
+                raise ValueError("Frame differs from its actual sample")
+            path = Path(reference["path"]).parent / strategy_id / frame["frame"]
+            frames.append(
+                {
+                    **frame,
+                    "path": self.evidence_path(
+                        {"path": str(path), "sha256": frame["frame_sha256"]}
+                    ),
+                }
+            )
+        return frames
+
+    def reproduce_quality_argv(self, role: str, output: Path):
+        """Archived-code replay arguments for a quality experiment or media trial."""
+        record = self.quality_record()
+        refs = (
+            record["evidence"]
+            + record["comparison_media"]
+            + [
+                {
+                    "role": "assessment",
+                    "path": str(
+                        self.quality_evidence("assessment").relative_to(self.root)
+                    ),
+                    "sha256": hashlib.sha256(
+                        self.quality_evidence("assessment").read_bytes()
+                    ).hexdigest(),
+                }
+            ]
+        )
+        reference = next(
+            (r for r in refs if r.get("role") == role or r.get("trial_id") == role),
+            None,
+        )
+        if reference is None:
+            raise KeyError(role)
+        result = self.evidence_path(reference)
+        from .verification import verify_record
+
+        verified = verify_record(result.parent)
+        if verified.status != "verified":
+            raise ValueError("Incomplete replay provenance")
+        execution = json.loads((result.parent / "execution.json").read_text())
+        definition = (result.parent / execution["definition_reference"]).resolve()
+        return [
+            "uv",
+            "run",
+            "aec",
+            "frozen",
+            execution["workflow"],
+            str(definition),
+            "--source-snapshot",
+            str(result.parent / "source-snapshot.zip"),
+            "--output",
+            str(output.resolve()),
+        ]
+
     def query(
         self,
         *,
@@ -257,7 +456,10 @@ def discover_passage(
         != saved["provenance"]["compiled_model_sha256"]
     ):
         raise ValueError("Independent audit model differs from numerical search")
+    from .strategy_audit import audit_states
+
     audits = []
+    whole_hand_audits = []
     for strategy in saved["strategies"]:
         if strategy["status"] == "sampled_connected_path":
             validate_strategy(saved, strategy)
@@ -275,6 +477,10 @@ def discover_passage(
         report = independent_samples(scene, states, e.solver.penetration_tolerance_m)
         report["state_kind"] = strategy["status"]
         audits.append(report)
+        whole_hand_audits.append(
+            audit_states(scene, e.geometry, states, saved["joint_names"])
+        )
+    saved["whole_hand_strategy_audits"] = whole_hand_audits
     saved["independent_strategy_audits"] = audits
     saved["execution_mode"] = (
         "direct_internal_API; use frozen CLI for changing-source long runs"

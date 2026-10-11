@@ -1,3 +1,34 @@
+## 048 — Versioned library reassessment and exact consumer evidence
+
+Completed 045–048 without altering the historical 50-target/53-realization catalog,
+reference geometry or collision masks. The hash-bound assessment sidecar exposes
+separate contact, sampled movement, geometric, anatomical-proxy, whole-hand,
+conditional static and unvalidated dynamic/human levels. Deep benchmarks remain
+anatomically unresolved; unexamined historical entries remain explicitly unassessed.
+Ordinary playing quality is not established. Incomplete held movement stays incomplete.
+
+Full-path Pareto comparison supplements endpoint-only beam descriptors. For seed
+4309, proxy-first selects B alternative 3–2–3–5 (3.234 mm worst overlap), while
+wrist-first retains 3–2–3–4 (13.599 mm). All five fingers remain eligible; this is
+policy-dependent model comparison, not a comfort score or human impossibility test.
+Matched galleries and actual GIFs link exact states, roles, samples and recorded
+branches. The Python API retrieves diagnostics, alternatives, frames and archived
+replay commands; a consumer runs from outside the repository working directory.
+
+Corrected the earlier seed-description ambiguity: the replaced 037 solved seed is
+now explicitly recorded. Two historical 046 synthetic/input probes were off the
+ideal equality manifold (0.3 rad) and are ineligible for static interpretation;
+actual recorded paths and native-default comparisons are unaffected. Re-screening
+the coupled solved seed and constructed extreme gives no conditional equilibria
+under 0/1/3 N hypothetical reactions, without changing muscle parameters.
+
+Validation: 173 tests, Ruff and ty pass; all 26 frozen 045–048 records pass integrity
+checking. Archived 048 seed results plus 15 images and assessment results plus four
+visuals replay byte-identically. Earlier selected numerical/media replays are
+recorded at each milestone. Physical evidence remains sampled and first-note
+approaches unplanned. See [048 findings and visual guide](experiments/048-library-reassessment/notes.md)
+and [consumer API](targets/API.md).
+
 # Research log
 
 ## 2026-10-11 — Controlled whole-hand search and posture counterexamples (047)

@@ -1,20 +1,18 @@
-## 047 update — Whole-path reassessment and provenance
-
-Whole-hand selection reduces wrist motion but endpoint-only proxy ranking misses
-intermediate concerns. Stronger local posture regularization has counterexamples.
-Next integrate full sampled-path tradeoffs into a versioned catalog sidecar,
-correct seed provenance and screen the actual solved reference (048). Keep muscle
-effort ranking withheld and ordinary-playing claims unvalidated.
-
-## 046 update — Screening gates before ranking
-
-Pinned native/reduced muscle parity passes, but inherited routing derivative
-failures and uniformly unsuccessful conditional static balance prevent a supported
-muscle effort prior. Next: matched-budget whole-hand/technique selection, numerical
-reference regularization ablations, then versioned library assessments (047–048).
-Keep external reactions hypothetical and historical strategy evidence unchanged.
-
 # Exercise target research program
+
+## 048 update — Delivered assessments and guarded selection
+
+The 045–048 continuation is complete. Full-path descriptors and explicit Pareto
+policies supplement palm-only and endpoint-only search. Optional technique and
+local posture preferences remain separately identified; counterexamples prevent
+universal defaults. Muscle effort ranking is withheld because inherited routing
+discontinuities and unsuccessful conditional static balance remain unresolved.
+The historical catalog is preserved with versioned API-accessible assessments,
+matched renders, exact sampled GIFs and archived replay. Next priorities are
+independently justified tendon-route repairs, measured button/support reactions,
+calibrated skin envelopes and observed hand coordination. None is replaced by a
+new force constant, rigid digit coupling or geometric relaxation.
+
 
 The current priority is a reusable, provisional exercise library while improving
 physical interpretation. The compact upper `generic_cba_v3` reference is fixed.
@@ -67,12 +65,14 @@ provenance; their former sequential gates are superseded by this program.
 
 - 045 completed: fixed recorded benchmark, all-sample whole-hand/proxy audit,
   matched model renders, actual animations and explicit unplanned first approach.
-- 046 next: validate pinned musculotendon parity, transmissions and conditional
-  static balance before using muscle descriptors for screening.
-- 047: controlled free/frozen/coordinated and palm/whole-hand/muscle/technique
-  comparisons; preserve little candidates, equal budgets and unfavorable cases.
-- 048: versioned library assessments, API diagnostics and justified path changes;
-  preserve historical evidence and unknown anatomical/human validity.
+- 046 completed: pinned musculotendon parity and force/sign checks; inherited
+  routing defects and conditional balance failures gate muscle effort ranking.
+- 047 completed: matched palm/whole-hand/technique and free/frozen/local-reference
+  ablations, full-path audits, retained little candidates and unfavorable cases.
+  Muscle selection remains unsupported rather than manufactured.
+- 048 completed: versioned assessments, full-path selection policies, seed
+  provenance correction, exact consumer media and archived replay; anatomical,
+  dynamic and human validity remain unresolved.
 
 ## Historical next falsifiable questions
 

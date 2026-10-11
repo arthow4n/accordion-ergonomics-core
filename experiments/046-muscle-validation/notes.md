@@ -92,3 +92,14 @@ uv run aec verify experiments/046-muscle-validation/static experiments/046-muscl
 Use each published `source-snapshot.zip` with `--source-snapshot` for exact
 archived-code replay. Future source changes must not reinterpret the frozen
 conditional estimates as calibrated physiology.
+
+## 048 provenance corrigendum
+
+The historical `reference-seed` and `synthetic-extreme` probes used the original
+input joint dictionary, not the replaced solved 037 playing seed. Their equality
+position residual is 0.3 rad, so ideal-equality static interpretation is unsupported.
+The native-default comparison and actual trajectory poses remain on the manifold.
+Frozen 046 results are preserved. [048](../048-library-reassessment/notes.md)
+re-screens the actual coupled seed and a coupled synthetic extreme, records the
+executed initial state explicitly, and still finds no conditional equilibria in
+the tested reaction scenarios. No muscle or anatomy parameter was changed.

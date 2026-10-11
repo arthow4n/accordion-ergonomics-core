@@ -213,6 +213,8 @@ def main() -> None:
             "muscle-validation",
             "muscle-media",
             "selection-comparison",
+            "seed-capacity",
+            "quality-assessment",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -305,6 +307,10 @@ def main() -> None:
     comparison = sub.add_parser("selection-comparison")
     comparison.add_argument("definition", type=Path)
     comparison.add_argument("--output", type=Path, required=True)
+    for workflow in ("seed-capacity", "quality-assessment"):
+        command = sub.add_parser(workflow)
+        command.add_argument("definition", type=Path)
+        command.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "targets":
@@ -390,6 +396,14 @@ def main() -> None:
         from .selection_comparison import run_selection_comparison
 
         run_selection_comparison(args.definition, args.output)
+    elif args.command == "seed-capacity":
+        from .seed_capacity import run_seed_capacity
+
+        run_seed_capacity(args.definition, args.output)
+    elif args.command == "quality-assessment":
+        from .quality_assessment import run_quality_assessment
+
+        run_quality_assessment(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],

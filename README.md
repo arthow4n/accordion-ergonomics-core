@@ -138,3 +138,17 @@ evaluation; generated notes alone are never treated as physically solved.
 queries, earlier numerical trials, independent diagnostics, exact frame sequences
 and archived-source replay into fresh directories. The [selected visual index](targets/VISUALS.md)
 links representative model animations and algorithm diagrams to their source data.
+
+[Biomechanical reassessment (045–048)](experiments/048-library-reassessment/notes.md)
+adds pinned-muscle parity/force diagnostics, matched whole-hand/technique search
+controls, posture counterexamples and versioned assessments of the existing
+50-target library. Native tendon-routing anomalies and unsuccessful conditional
+static equilibrium currently prevent a supported muscle effort ranking.
+
+Use `ExerciseLibrary.assessment`, `ranked_comparisons`, `comparison_trajectory`,
+`comparison_frame_sequence`, `muscle_screens` and `quality_media` to inspect the
+results. [The portable quality example](examples/quality_consumer.py) retrieves
+an actual retained little-finger alternative and its archived render command.
+Whole-path preferences expose wrist/proxy tradeoffs; they do not certify ordinary
+playing or human feasibility. The instrument, body reference and historical
+catalog identities remain unchanged.
