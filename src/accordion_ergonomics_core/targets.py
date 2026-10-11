@@ -749,6 +749,7 @@ def build_catalog(root: Path = ROOT) -> dict[str, Any]:
             {
                 "id": spec["id"],
                 "family": spec["family"],
+                "provenance": spec.get("provenance", "curated_experiment_catalog"),
                 "explanation": spec["explanation"],
                 "musical_intent": {"event_pitches_midi": musical, "timing": None},
                 "reference_world": world["id"],

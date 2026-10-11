@@ -207,6 +207,7 @@ def main() -> None:
             "passage-media",
             "discovery",
             "discovery-summary",
+            "library-validation",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -281,6 +282,9 @@ def main() -> None:
     summary = sub.add_parser("discovery-summary")
     summary.add_argument("definition", type=Path)
     summary.add_argument("--output", type=Path, required=True)
+    validation = sub.add_parser("library-validation")
+    validation.add_argument("definition", type=Path)
+    validation.add_argument("--output", type=Path, required=True)
     sub.add_parser("check")
     args = parser.parse_args()
     if args.command == "targets":
@@ -338,6 +342,11 @@ def main() -> None:
         from .discovery_summary import run_discovery_summary
 
         run_discovery_summary(args.definition, args.output)
+    elif args.command == "library-validation":
+        os.environ.setdefault("MUJOCO_GL", "egl")
+        from .library_validation import run_library_validation
+
+        run_library_validation(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],

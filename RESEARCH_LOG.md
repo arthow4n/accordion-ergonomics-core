@@ -1,5 +1,33 @@
 # Research log
 
+## 2026-10-11 — Importable discovery library and archived visual replay (044)
+
+[044](experiments/044-internal-library/notes.md) consolidates passage submission,
+independent all-strategy audits, generation/discovery calls, generated/curated
+queries, historical trials, diagnostics and exact ordered frame retrieval.
+Single-event results now render audited static evidence without fabricating GIFs;
+unavailable paths and tampered archive/input evidence fail explicitly. The tested
+consumer works outside the checkout and computes an actual repeated-note path.
+
+The frozen consumer wrapper retrieves five rendered strategies (2,475 samples)
+and preserves the negative held target's lack of successful movement. It actually
+replays the archived 042 stepwise renderer: all 37 PNG/GIF/SVG artifacts and all
+five compared metadata sections match exactly in this runtime. Four regenerated
+views and selected whole-hand frames were inspected. The wrapper and replay pass
+complete frozen integrity verification; this does not validate anatomy or ensure
+portable raster bytes. [API guide](targets/API.md) and [visual index](targets/VISUALS.md)
+link stable targets to their searches, trajectories, diagnostics and media.
+
+The library retains 50 targets and 435 evidence files across 48 catalog-linked
+frozen roots, plus the 044 validation root. No existing frozen identities, world
+geometry, proxy masks or collision tolerances were changed. The provisional
+041–044 program is delivered, with substantial unresolved cross-digit overlap,
+failed held/changing-dyad branches and null human-feasibility claims retained.
+Validation passed: 152 canonical tests plus focused final API checks, Ruff, ty,
+locked uv sync, complete frozen verification and catalog integrity. Next physical
+work needs calibrated envelopes and observed coordination before promoting model
+movement to anatomical or human validity.
+
 ## 2026-10-11 — Autonomous generated challenges with observed-result follow-ups (043)
 
 [043](experiments/043-autonomous-discovery/notes.md) composes 21 unique musical

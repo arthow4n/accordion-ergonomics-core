@@ -134,9 +134,9 @@ two have no connected realizations; their search and failure media remain linked
 strategies, audit records and hash-checked media paths. See the tested
 [consumer example](../examples/consume_passage_library.py). `discover_passage`
 accepts `Passage` / `NoteEvent` input and bounded `PassageSearchSettings`. Numerical
-search output needs independent physical audits; it does not promise anatomy or
-human feasibility. `reproduce_argv` uses the archived executed source and should
-be run with `cwd=library.root`. No package publication is needed.
+search output includes independent all-strategy proxy audits; it does not promise
+anatomy or human feasibility. `reproduce` runs archived source into an empty output directory;
+`reproduce_argv` exposes the exact command with `cwd=library.root`. No package publication is needed.
 
 ## Generated records and allocation (043)
 
@@ -147,3 +147,10 @@ and retained strategies. A held generated target retains failures without a
 complete trajectory. `autonomous_discovery` / `discovery_summary` evidence links
 explain actual generation, allocation and selection. Fourteen hypotheses in that
 run were never numerically evaluated. See [043](../experiments/043-autonomous-discovery/notes.md).
+
+## Consumer consolidation (044)
+
+See the [API guide](API.md) for submitting passages, bounded generation/discovery,
+trial retrieval, diagnostics, exact frame sequences and archived-source replay.
+The [visual index](VISUALS.md) selects actual computational media without
+duplicating image files. Generated/curated provenance is explicit for every entry.

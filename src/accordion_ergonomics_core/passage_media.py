@@ -297,16 +297,37 @@ def run_passage_media(definition: Path, output: Path) -> dict[str, Any]:
     reports: list[dict[str, Any]] = []
     cameras = None
     for strategy in saved["strategies"][: source.get("strategy_limit", 2)]:
-        validate_strategy(saved, strategy)
-        audit = independent_samples(
-            scene, strategy["samples"], e.solver.penetration_tolerance_m
-        )
+        is_movement = strategy["status"] == "sampled_connected_path"
+        if is_movement:
+            validate_strategy(saved, strategy)
+            states = strategy["samples"]
+        elif strategy["status"] == "static_contact_only":
+            node = next(n for n in saved["nodes"] if n["id"] == strategy["node_ids"][0])
+            if (
+                len(strategy["events"]) != 1
+                or strategy["events"][0]["qpos_rad"] != node["qpos_rad"]
+                or strategy["events"][0]["contacts"] != node["contacts"]
+            ):
+                raise ValueError("Static render differs from recorded contact node")
+            contacts = node["contacts"]
+            states = [
+                {
+                    "qpos_rad": node["qpos_rad"],
+                    "active_contacts": contacts,
+                    "roles": {c["finger"]: "required" for c in contacts},
+                    "event_interval": 0,
+                }
+            ]
+        else:
+            raise ValueError("Unsuccessful evidence cannot become accepted media")
+        audit = independent_samples(scene, states, e.solver.penetration_tolerance_m)
+        audit["state_kind"] = strategy["status"]
         record = {
             "strategy_id": strategy["id"],
             "independent_audit": audit,
             "animation": None,
         }
-        if audit["status"] == "sampled_proxy_constraints_satisfied":
+        if is_movement and audit["status"] == "sampled_proxy_constraints_satisfied":
             record["animation"] = render_strategy(
                 scene,
                 saved,
@@ -323,7 +344,7 @@ def run_passage_media(definition: Path, output: Path) -> dict[str, Any]:
             if audit["violation_sample_indices"]
             else worst["sample_index"]
         )
-        sample = strategy["samples"][sample_index]
+        sample = states[sample_index]
         scene.data.qpos[:] = sample["qpos_rad"]
         hand = audit_hand_pose(scene)
         cross = [
@@ -356,7 +377,8 @@ def run_passage_media(definition: Path, output: Path) -> dict[str, Any]:
                 for c in contacts
             },
             state_label=(
-                f"actual sample {sample_index} | {audit['status']} | "
+                f"{'actual sample' if is_movement else 'static node'} {sample_index} | "
+                f"{audit['status']} | "
                 f"cross-digit {concern['signed_proxy_distance_m'] * 1000:.2f} mm"
             ),
         )

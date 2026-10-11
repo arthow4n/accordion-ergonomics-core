@@ -70,13 +70,14 @@ class PassageSearchSettings:
             raise ValueError("Search fingers must be a distinct named subset")
 
 
-def reference_experiment() -> Experiment:
+def reference_experiment(root: Path | None = None) -> Experiment:
     """Load the internal fixed reference; consumers need not open experiment folders."""
     import json
 
     saved = json.loads(
         (
-            ROOT / "experiments/037-upper-anchor-regression/central/result.json"
+            (root or ROOT)
+            / "experiments/037-upper-anchor-regression/central/result.json"
         ).read_text()
     )
     e = Experiment.from_dict(saved["input"])

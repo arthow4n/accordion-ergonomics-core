@@ -132,6 +132,7 @@ def verify_record(
             "passage",
             "passage-media",
             "discovery-summary",
+            "library-validation",
         ):
             records.append(("result", result))
             if workflow in ("passage-media", "discovery-summary"):
@@ -268,6 +269,7 @@ def verify_record(
                 "reference",
                 "search",
                 "discovery",
+                "catalog",
             ):
                 if key == "reference" and "reference_input" in source:
                     file_hash(

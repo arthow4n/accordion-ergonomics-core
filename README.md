@@ -133,3 +133,8 @@ effort from observed outcomes. The 50-target library includes selected generated
 passages, alternate fingerings, exact animations and negative evidence. Use
 `generate_challenges` for musical hypotheses or `discover_challenges` for bounded
 evaluation; generated notes alone are never treated as physically solved.
+
+[Internal consumer API (044)](targets/API.md) supports passage submission, generated
+queries, earlier numerical trials, independent diagnostics, exact frame sequences
+and archived-source replay into fresh directories. The [selected visual index](targets/VISUALS.md)
+links representative model animations and algorithm diagrams to their source data.

@@ -26,8 +26,16 @@ The active autonomous program continues without a calibration gate:
 - 043: completed compositional generation (21 hypotheses), observed-result
   allocation (nine trials), five selected generated targets, actual animations
   and negative held/dyad evidence; 14 hypotheses remain unevaluated.
-- 044: reusable internal Python API, evidence/media queries and tested consumer
-  examples; retain uncertainty and reproducible archived-source execution.
+- 044: completed internal Python API, independently audited passage submission,
+  generated/curated queries, exact frame/trial retrieval and tested external
+  consumers. Actual archived stepwise replay reproduces all 37 selected media
+  artifacts byte-for-byte in this runtime; browsable visual evidence is linked.
+
+The provisional engine/library program is delivered. Next research priorities are
+calibrated contact envelopes and observed whole-hand poses, followed by renewed
+held, substitution and preparation exploration under a justified collision policy.
+Use broader bounded all-five searches where informative; do not interpret the
+small retained library or failed finite branches as exhaustive reachability.
 
 Observation of hand envelopes and natural coordination remains necessary before
 promoting any human-feasibility claim. It does not block provisional discovery.
