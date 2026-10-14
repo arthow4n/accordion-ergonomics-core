@@ -23,6 +23,7 @@ def render_views(
     button_roles: dict[str, str] | None = None,
     state_label: str | None = None,
     camera_overrides: dict[str, dict[str, Any]] | None = None,
+    highlighted_tendon_names: tuple[str, ...] = (),
 ) -> dict[str, Any]:
     output.mkdir(parents=True, exist_ok=True)
     views: dict[str, dict[str, Any]] = {
@@ -112,6 +113,13 @@ def render_views(
             "azimuth": views["hand"]["azimuth"] - 55,
             "elevation": -10.0,
         }
+    if highlighted_tendon_names:
+        mujoco.mj_forward(scene.model, scene.data)
+        tid = scene.model.tendon(highlighted_tendon_names[0]).id
+        adr, num = int(scene.data.ten_wrapadr[tid]), int(scene.data.ten_wrapnum[tid])
+        points = scene.data.wrap_xpos.reshape(-1, 3)[adr : adr + num]
+        views["tendon"] = dict(views["hand"])
+        views["tendon"].update(lookat=points.mean(axis=0).tolist(), distance=0.35)
     if collision_overlay:
         views["collision"] = dict(views["hand"])
         if closeup:
@@ -169,6 +177,8 @@ def render_views(
     rgba = scene.model.geom_rgba.copy()
     groups = scene.model.geom_group.copy()
     materials = scene.model.geom_matid.copy()
+    tendon_rgba = scene.model.tendon_rgba.copy()
+    tendon_width = scene.model.tendon_width.copy()
     try:
         if contact_roles is not None:
             for digit in DIGITS:
@@ -190,7 +200,14 @@ def render_views(
         option.geomgroup[3] = 0  # muscle wrapping objects are not body surfaces
         option.sitegroup[:] = 0
         option.sitegroup[0] = 1
-        option.flags[mujoco.mjtVisFlag.mjVIS_TENDON] = False
+        option.tendongroup[:] = 1
+        option.flags[mujoco.mjtVisFlag.mjVIS_TENDON] = bool(highlighted_tendon_names)
+        if highlighted_tendon_names:
+            scene.model.tendon_rgba[:, 3] = 0
+            for tendon in highlighted_tendon_names:
+                tid = scene.model.tendon(tendon).id
+                scene.model.tendon_rgba[tid] = [1, 0.85, 0.1, 1]
+                scene.model.tendon_width[tid] = 0.0015
         with mujoco.Renderer(scene.model, height=720, width=960) as renderer:
             for name, settings in views.items():
                 if name in ("collision", "contact_collision"):
@@ -207,6 +224,11 @@ def render_views(
                                 scene.model.geom_rgba[geom_id] = [1.0, 0.1, 0.1, 0.9]
                     for proxy_name in highlighted_proxy_names:
                         scene.model.geom(proxy_name).rgba[:] = [0.95, 0.1, 0.9, 1.0]
+                if name == "tendon":
+                    option.geomgroup[0] = 0
+                    option.geomgroup[4] = 0
+                    # Tendon routes remain visible without occluding bone meshes.
+                    option.geomgroup[3] = 0
                 camera = mujoco.MjvCamera()
                 camera.type = mujoco.mjtCamera.mjCAMERA_FREE
                 camera.lookat[:] = settings["lookat"]
@@ -271,6 +293,8 @@ def render_views(
                     )
                 picture.save(output / f"{name}.png")
     finally:
+        scene.model.tendon_rgba[:] = tendon_rgba
+        scene.model.tendon_width[:] = tendon_width
         scene.model.site_rgba[:] = site_rgba
         scene.model.geom_rgba[:] = rgba
         scene.model.geom_group[:] = groups

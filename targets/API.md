@@ -145,3 +145,54 @@ resolved initial q. No initial approach is claimed unless separately recorded.
 The [portable example](../examples/quality_consumer.py) is tested from a directory
 outside this checkout. The [048 visual index](../experiments/048-library-reassessment/notes.md)
 links exact static comparisons, actual-sample animations and algorithm plots.
+
+## Wrist posture and coordination v2 (049–052)
+
+The historical 50-target/53-realization catalog and `biomechanics-v1` interfaces
+remain intact. A separately hash-bound `posture-coordination-v2` assessment adds
+new complete strategies, model-reference-relative posture and explicit unknowns.
+
+```python
+from accordion_ergonomics_core.research import ExerciseLibrary
+
+library = ExerciseLibrary()
+assessment = library.posture_assessment("generated-dcbc77238f1b5559")
+case = library.posture_case("arpeggio-C-4309-strategy-0")
+path = library.posture_trajectory(case["id"])
+media = library.posture_media(case["id"])
+comparisons = library.posture_comparisons(assessment["target_id"])
+```
+
+`case["wrist"]` identifies the imported geometric reference/provenance and signed
+coordinate extrema, event/sample values, limit margins and variation separately.
+`whole_hand` and `independent_audit` expose full-path coordination, instrument and
+uncalibrated cross-digit diagnostics for new candidates. `posture_evidence` returns
+checked paths for historical wrist, coordination, muscle, selection, gallery,
+budget-audit and canonical collision-coverage records. The muscle record identifies
+the 59-actuator tested local subset and withheld effort ranking. Reference-choice
+sensitivity, Pareto alternatives and separate rejected initial approaches are in
+the selection record. Missing physical media and unassessed targets are explicit.
+
+`posture_media` checks every returned artifact and provides exact static qpos,
+cameras, active requirements and ordered frame/sample indices. A complete saved
+musical path still has an unplanned first approach. Failed held nodes have no
+trajectory; an approach diagnostic is not a successful performance. Illustrative
+GIF playback does not establish tempo. No `safe`, `comfortable` or `human_feasible`
+flag is added.
+
+For newly submitted passages, select `PassageSearchSettings(selection_mode=
+"wrist_posture_pareto")` to explore bounded reference-posture alternatives.
+`discover_passage(..., final_selection_policy="posture")` then audits every complete
+beam survivor and returns its policy preference and all alternatives. Available
+final policies are `palm`, `movement`, `posture` and `whole_hand`. None re-solves
+beam-pruned or budget-unexplored branches, and none establishes a human optimum.
+The original call signature/default behavior remains available.
+
+Run [the consumer](../examples/posture_consumer.py) from another working directory:
+
+```sh
+uv run --project /path/to/accordion-ergonomics-core python /path/to/accordion-ergonomics-core/examples/posture_consumer.py --root /path/to/accordion-ergonomics-core
+```
+
+[052 notes](../experiments/052-posture-selection/notes.md) and the matched physical
+comparison galleries document why improved reference posture alone is insufficient.

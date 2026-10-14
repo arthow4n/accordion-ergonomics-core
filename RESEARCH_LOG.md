@@ -1,3 +1,48 @@
+## 2026-10-14 — Wrist posture, coordination and native wrapping reassessment (049–052)
+
+[049–052](experiments/052-posture-selection/notes.md) distinguish signed native wrist
+configuration, imported geometric-reference departure and movement variation.
+Compiled axes/sign/default probes establish a model reference, not observed
+clinical neutrality. A frozen-finger counterexample has .0126 rad wrist variation
+while reaching .7839/.4351 rad flexion/deviation; its more mobile alternative peaks
+at .5858/.1525 rad. Full saved-sample extrema, event values, margins, simultaneous
+finger coordinates and palm/forearm orientations preserve this distinction.
+
+Controlled posture-aware searches change the arpeggio under two seeds and the
+stepwise passage. Maximum arpeggio flexion departure falls to .2174 rad, but travel
+rises and worst cross-digit proxies worsen to 16.5–17.5 mm. Whole-path policy
+comparisons retain an older little-finger ending with 3.234 mm overlap. All five
+digits remain eligible. A small four-to-five assignment-budget increase preserves
+both exact sampled arpeggio paths; reference shifts remain synthetic sensitivities.
+No posture or clearance finding becomes a human rejection or comfort score.
+
+050 compares actual rigid pairs, body/bone frames and imported-default controls.
+Large intersections involve pairs separated at qpos0; frozen/free-motion controls
+falsify simple coordination or allowed-overlap interpretations. Anatomical tissue
+validity remains unresolved. 051 localizes PQ/DELT3 jumps to native inverse-wrap
+root/fallback switches near the initial scalar-residual sign threshold. Native and
+reduced models can choose opposite branches at near-identical diagnostic states.
+Ordinary pose parity remains checked; 59 actuators pass tested local probes, four
+are excluded. Bounded force-balance certificates and hypothetical support/load
+ablations still fail, keeping muscle effort ranking withheld without geometry
+or force tuning.
+
+Three direct approaches from the resolved numerical C4 seed fail sampled checks.
+They have saved worst-state diagnostics, never successful movement GIFs; subsequent
+musical paths remain connected with unplanned initial approach. Untimed movement
+geometry exposes additional palm relocation/detours without inventing speed or
+hovering thresholds. Matched whole-hand/four-view/worst-proxy evidence, actual GIFs,
+numerical traces and policy explanations are inspected and hash-bound.
+
+The v2 Python consumer preserves the historical 50-target/53-realization catalog
+and v1 API, and retrieves new descriptors, alternatives, trajectories and media
+from outside the checkout. Three current palm replays reproduce historical
+strategy objects exactly. Archived arpeggio rendering reproduces all 37 selected
+PNG/GIF/SVG artifacts byte-for-byte in this runtime. Validation details and complete
+frozen integrity records are in 052: 185 tests, Ruff and ty pass; all 42 frozen
+045–052 roots verify completely. Clinical strain, timing, calibrated anatomy,
+button loading, comfort and human feasibility remain unknown.
+
 ## 048 — Versioned library reassessment and exact consumer evidence
 
 Completed 045–048 without altering the historical 50-target/53-realization catalog,

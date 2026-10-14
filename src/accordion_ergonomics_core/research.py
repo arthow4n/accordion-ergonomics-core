@@ -23,6 +23,124 @@ class ExerciseLibrary:
         self.root = root.resolve()
         self.catalog = json.loads((self.root / "targets/manifest.json").read_text())
 
+    def posture_record(self):
+        """Hash-bound v2 sidecar; historical catalog and v1 API remain available."""
+        index = json.loads(
+            (self.root / "targets/posture-assessments-v2.json").read_text()
+        )
+        record = json.loads(self.evidence_path(index["evidence"]).read_text())
+        self.evidence_path(
+            dict(path="targets/manifest.json", sha256=record["catalog_sha256"])
+        )
+        if index["version"] != record["assessment_version"]:
+            raise ValueError("Posture assessment version differs from its index")
+        return record
+
+    def posture_assessment(self, target_id: str):
+        self.target(target_id)
+        record = self.posture_record()
+        target = next(t for t in record["targets"] if t["target_id"] == target_id)
+        return dict(assessment_version=record["assessment_version"], **target)
+
+    def posture_evidence(self, role: str):
+        record = self.posture_record()
+        ref = next((r for r in record["evidence"] if r["role"] == role), None)
+        if ref is None:
+            raise KeyError(role)
+        return self.evidence_path(ref)
+
+    def posture_case(self, case_id: str):
+        record = self.posture_record()
+        binding = next(
+            (
+                c
+                for t in record["targets"]
+                for c in t["cases"]
+                if c["case_id"] == case_id
+            ),
+            None,
+        )
+        if binding is None:
+            raise KeyError(case_id)
+        source = json.loads(self.posture_evidence(binding["evidence_role"]).read_text())
+        case = next(c for c in source["cases"] if c["id"] == case_id)
+        if case["state_sequence_sha256"] != binding["state_sequence_sha256"]:
+            raise ValueError("Posture assessment state identity differs")
+        return case
+
+    def posture_trajectory(self, case_id: str):
+        case = self.posture_case(case_id)
+        if case["strategy_id"] is None:
+            raise KeyError("No complete movement: " + case_id)
+        reference = case["source"]
+        # Search references resolve relative to the originating definition.
+        # All definitions are direct children of experiments/<milestone>.
+        record = self.posture_record()
+        binding = next(
+            c for t in record["targets"] for c in t["cases"] if c["case_id"] == case_id
+        )
+        path = (
+            self.posture_evidence(binding["evidence_role"]).parent.parent
+            / reference["search_result"]
+        )
+        ref = dict(
+            path=str(path.resolve().relative_to(self.root)),
+            sha256=reference["search_sha256"],
+        )
+        saved = json.loads(self.evidence_path(ref).read_text())
+        strategy = next(
+            s for s in saved["strategies"] if s["id"] == case["strategy_id"]
+        )
+        validate_strategy(saved, strategy)
+        if state_digest(strategy["samples"]) != case["state_sequence_sha256"]:
+            raise ValueError("Posture trajectory differs from assessed states")
+        return dict(
+            joint_names=saved["joint_names"],
+            first_note_approach="not_planned",
+            **strategy,
+        )
+
+    def posture_media(self, case_id: str):
+        case = self.posture_case(case_id)
+        record = self.posture_record()
+        binding = next(
+            c for t in record["targets"] for c in t["cases"] if c["case_id"] == case_id
+        )
+        path = self.posture_evidence(binding["evidence_role"])
+        source = json.loads(path.read_text())
+        prefix = str(path.parent.relative_to(self.root))
+        media = []
+        for relative, sha in source["artifact_sha256"].items():
+            if relative.startswith(case_id + "/"):
+                media.append(
+                    self.evidence_path(dict(path=prefix + "/" + relative, sha256=sha))
+                )
+        return dict(
+            paths=media,
+            static_states=case["media"],
+            animation=case.get("animation"),
+            missing=[]
+            if case["media"]
+            else ["new physical rendering unavailable for this case"],
+            first_note_approach="not_planned",
+        )
+
+    def posture_comparisons(self, target_id: str):
+        cases = self.posture_assessment(target_id)["cases"]
+        references = {
+            role: json.loads(self.posture_evidence(role).read_text())
+            for role in {c["evidence_role"] for c in cases}
+        }
+        wanted = {c["case_id"] for c in cases}
+        trials = {
+            c["source"]["id"]
+            for record in references.values()
+            for c in record["cases"]
+            if c["id"] in wanted
+        }
+        selected = json.loads(self.posture_evidence("selection").read_text())
+        return [r for r in selected["rankings"] if r["trial_id"] in trials]
+
     def quality_record(self, version: str = "biomechanics-v1"):
         """Load a hash-bound sidecar without changing historical target identities."""
         index = json.loads((self.root / "targets/assessments-v1.json").read_text())
@@ -429,6 +547,7 @@ def discover_passage(
     reference=None,
     root: Path | None = None,
     output: Path | None = None,
+    final_selection_policy: str | None = None,
 ):
     """Search and independently audit a passage; optional output saves actual media.
 
@@ -447,6 +566,13 @@ def discover_passage(
         and (not output.is_dir() or any(output.iterdir()))
     ):
         raise ValueError("Discovery output must be empty")
+    if final_selection_policy is not None and final_selection_policy not in (
+        "palm",
+        "movement",
+        "posture",
+        "whole_hand",
+    ):
+        raise ValueError("Unknown full-path selection policy")
     saved = search_passage(passage, reference or reference_experiment(root), settings)
     saved["scene_input"] = saved.pop("input")
     e = Experiment.from_dict(saved["scene_input"])
@@ -478,7 +604,53 @@ def discover_passage(
         report["state_kind"] = strategy["status"]
         audits.append(report)
         whole_hand_audits.append(
-            audit_states(scene, e.geometry, states, saved["joint_names"])
+            audit_states(
+                scene,
+                e.geometry,
+                states,
+                saved["joint_names"],
+                connected=strategy["status"] == "sampled_connected_path",
+            )
+        )
+    from .selection import posture_strategy_order
+
+    complete = [
+        dict(
+            id=strategy["id"],
+            status=strategy["status"],
+            whole_hand=hand,
+            independent_audit=audit,
+            wrist=hand["wrist"],
+        )
+        for strategy, hand, audit in zip(
+            saved["strategies"], whole_hand_audits, audits, strict=True
+        )
+        if strategy["status"] == "sampled_connected_path"
+    ]
+    saved["posture_policy_rankings"] = {
+        policy: posture_strategy_order(complete, policy)
+        for policy in ("palm", "movement", "posture", "whole_hand")
+    }
+    if final_selection_policy is not None:
+        if final_selection_policy not in saved["posture_policy_rankings"]:
+            raise ValueError("Unknown full-path selection policy")
+        saved["final_selection"] = dict(
+            policy=final_selection_policy,
+            preferred_strategy_id=next(
+                (
+                    r["id"]
+                    for r in saved["posture_policy_rankings"][final_selection_policy]
+                    if r.get("status") != "rejected_configured_sample_checks"
+                ),
+                None,
+            ),
+            retained_alternatives=saved["posture_policy_rankings"][
+                final_selection_policy
+            ],
+            scope=(
+                "Second stage audits every complete beam survivor; "
+                "pruned branches not re-solved"
+            ),
         )
     saved["whole_hand_strategy_audits"] = whole_hand_audits
     saved["independent_strategy_audits"] = audits

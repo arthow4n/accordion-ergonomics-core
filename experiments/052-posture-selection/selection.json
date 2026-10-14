@@ -1,0 +1,129 @@
+{
+  "audit_result": "audit/result.json",
+  "audit_sha256": "8cef6ebde497ece23a24373f3ccb0a13c0a1e445bbd65ce4b126e26db14f9361",
+  "baseline_replays": {
+    "arpeggio-A-4309": {
+      "path": "arpeggio-A-4309-replay/result.json",
+      "sha256": "cfde2d11b43eda6ca86d6e56301e05b044e0e21382d244642ec089c55c308b03"
+    },
+    "arpeggio-A-4310": {
+      "path": "arpeggio-A-4310-replay/result.json",
+      "sha256": "2a9cd5ad806b3a4306b3416709f703b8191d0f1d6b18585c7c77b8baeab1a598"
+    },
+    "stepwise-free": {
+      "path": "stepwise-free-replay/result.json",
+      "sha256": "514b4ce3ae9d19c8fe25c46c5a2d11cc126b2a78074c99c796699e0456853e71"
+    }
+  },
+  "alternative_references": [
+    {
+      "id": "synthetic-flexion-plus-0.1",
+      "flexion_rad": 0.1,
+      "deviation_rad": 0,
+      "provenance": "Reference sensitivity only; not observed neutral"
+    },
+    {
+      "id": "synthetic-deviation-plus-0.1",
+      "flexion_rad": 0,
+      "deviation_rad": 0.1,
+      "provenance": "Reference sensitivity only; not observed neutral"
+    }
+  ],
+  "paired_trials": [
+    {
+      "baseline": "arpeggio-A-4309",
+      "changed": "arpeggio-C-4309"
+    },
+    {
+      "baseline": "arpeggio-A-4310",
+      "changed": "arpeggio-C-4310"
+    },
+    {
+      "baseline": "stepwise-free",
+      "changed": "stepwise-C-4309"
+    }
+  ],
+  "candidate_pools": [
+    {
+      "id": "arpeggio-4309",
+      "trials": [
+        "arpeggio-A-4309",
+        "arpeggio-B-4309",
+        "arpeggio-C-4309"
+      ]
+    },
+    {
+      "id": "arpeggio-4310",
+      "trials": [
+        "arpeggio-A-4310",
+        "arpeggio-B-4310",
+        "arpeggio-C-4310"
+      ]
+    },
+    {
+      "id": "stepwise-4309",
+      "trials": [
+        "stepwise-free",
+        "stepwise-C-4309"
+      ]
+    }
+  ],
+  "initial_approach_trials": [
+    "arpeggio-C-4309",
+    "arpeggio-C-4310",
+    "stepwise-C-4309"
+  ],
+  "render_approaches": true,
+  "cameras": {
+    "overview": {
+      "lookat": [
+        0.10654139884679645,
+        0.22461164636900655,
+        0.8005999999997332
+      ],
+      "distance": 1.95,
+      "azimuth": -125.0,
+      "elevation": -12.0
+    },
+    "keyboard": {
+      "lookat": [
+        0.10654139884679645,
+        0.22461164636900655,
+        0.8005999999997332
+      ],
+      "distance": 1.95,
+      "azimuth": -90.0,
+      "elevation": 0.0
+    },
+    "side": {
+      "lookat": [
+        0.10654139884679645,
+        0.22461164636900655,
+        0.8005999999997332
+      ],
+      "distance": 1.95,
+      "azimuth": 180.0,
+      "elevation": 0.0
+    },
+    "hand": {
+      "lookat": [
+        0.1595462347572544,
+        0.08278333636812407,
+        0.9315228854846127
+      ],
+      "distance": 0.42,
+      "azimuth": -119.99999999999999,
+      "elevation": -20.0
+    },
+    "collision": {
+      "lookat": [
+        0.1595462347572544,
+        0.08278333636812407,
+        0.9315228854846127
+      ],
+      "distance": 0.42,
+      "azimuth": -119.99999999999999,
+      "elevation": -20.0
+    }
+  }
+}

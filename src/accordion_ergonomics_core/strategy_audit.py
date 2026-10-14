@@ -19,6 +19,7 @@ from .movement_evidence import state_digest, validate_strategy
 from .provenance import compiled_model_digest, current_execution_metadata
 from .quality_plots import trace_svg
 from .scene import Scene, build_scene
+from .wrist import orientation_trace, wrist_descriptors
 
 
 def curve_length(points):
@@ -41,7 +42,9 @@ def coordinate_descriptors(q, names):
     return output
 
 
-def audit_states(scene: Scene, geometry, states: list[dict], names: list[str]):
+def audit_states(
+    scene: Scene, geometry, states: list[dict], names: list[str], *, connected=True
+):
     if not states or names != [
         scene.model.joint(i).name for i in range(scene.model.njnt)
     ]:
@@ -81,6 +84,7 @@ def audit_states(scene: Scene, geometry, states: list[dict], names: list[str]):
                 "qpos_rad": q[index].tolist(),
                 "active_contacts": sample.get("active_contacts", []),
                 "roles": sample.get("roles", {}),
+                "body_axes_board_xyzw": orientation_trace(scene, geometry),
                 "palm_world_m": palm.tolist(),
                 "palm_board_m": (rotation.T @ (palm - origin)).tolist(),
                 "palm_body_axes_in_board": palm_rotation.tolist(),
@@ -146,6 +150,20 @@ def audit_states(scene: Scene, geometry, states: list[dict], names: list[str]):
         "maximum_palm_rotation_step_rad": float(palm_changes.max(initial=0)),
         "maximum_joint_step_rad": float(np.abs(np.diff(q, axis=0)).max(initial=0)),
         "joint_descriptors": coordinate_descriptors(q, names),
+        "wrist": wrist_descriptors(m, states, names, connected=connected),
+        "movement_geometry": {
+            "palm_board_normal_minimum_m": min(s["palm_board_m"][2] for s in traces),
+            "palm_board_normal_maximum_m": max(s["palm_board_m"][2] for s in traces),
+            "palm_path_to_endpoint_displacement_ratio": (
+                curve_length(palm) / float(np.linalg.norm(palm[-1] - palm[0]))
+                if connected and np.linalg.norm(palm[-1] - palm[0]) > 1e-9
+                else None
+            ),
+            "interpretation": (
+                "Untimed geometric relocation/detour descriptors; "
+                "no hovering or human smoothness threshold"
+            ),
+        },
         "digits": digit_summary,
         "minimum_joint_margin_rad": min(s["minimum_joint_margin_rad"] for s in traces),
         "worst_proxy_sample_index": worst_index,
@@ -246,7 +264,13 @@ def run_strategy_audit(definition: Path, output: Path):
                 }
                 for n in saved["nodes"]
             ]
-        audit = audit_states(scene, e.geometry, states, saved["joint_names"])
+        audit = audit_states(
+            scene,
+            e.geometry,
+            states,
+            saved["joint_names"],
+            connected=strategy is not None,
+        )
         audit["state_kind"] = (
             "connected_sampled_path"
             if strategy

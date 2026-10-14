@@ -14,6 +14,11 @@ CRITERIA = (
     "endpoint_proxy_penetration_m",
 )
 
+POSTURE_CRITERIA = CRITERIA + (
+    "maximum_flexion_reference_departure_rad",
+    "maximum_deviation_reference_departure_rad",
+)
+
 
 def technique_priority(hypothesis):
     """Optional 2/3/4 exploration preference; neither 1 nor 5 is prohibited."""
@@ -34,7 +39,20 @@ def branch_descriptors(scene, parent, qpos, edge, palm_cost):
         if p["classification"] == "cross_digit_phalangeal_unresolved"
     ]
     previous = parent.get("selection_descriptors", {})
+    posture = {
+        "maximum_" + name + "_reference_departure_rad": max(
+            previous.get("maximum_" + name + "_reference_departure_rad", 0),
+            float(
+                abs(
+                    q[:, names.index(joint)] - scene.model.qpos0[names.index(joint)]
+                ).max()
+            ),
+        )
+        for name, joint in (("flexion", "flexion_r"), ("deviation", "deviation_r"))
+    }
     return {
+        **posture,
+        "wrist_reference": "myosim-imported-zero-v1; not observed neutral",
         "palm_path_m": palm_cost,
         "wrist_variation_rad": previous.get("wrist_variation_rad", 0)
         + float(delta[[names.index("flexion_r"), names.index("deviation_r")]].sum()),
@@ -56,7 +74,7 @@ def branch_descriptors(scene, parent, qpos, edge, palm_cost):
     }
 
 
-def pareto_order(nodes):
+def pareto_order(nodes, criteria=CRITERIA, preference=None):
     """Nondominated layers, then declared wrist/proxy/digit/palm tie preference."""
     pending = list(nodes)
     ordered = []
@@ -64,10 +82,10 @@ def pareto_order(nodes):
     while pending:
         frontier = []
         for node in pending:
-            a = np.array([node["selection_descriptors"][k] for k in CRITERIA])
+            a = np.array([node["selection_descriptors"][k] for k in criteria])
             dominated_by = []
             for other in pending:
-                b = np.array([other["selection_descriptors"][k] for k in CRITERIA])
+                b = np.array([other["selection_descriptors"][k] for k in criteria])
                 if np.all(b <= a) and np.any(b < a):
                     dominated_by.append(other["id"])
             node["dominated_by_this_layer"] = dominated_by
@@ -75,15 +93,23 @@ def pareto_order(nodes):
                 frontier.append(node)
         for node in frontier:
             node["pareto_layer"] = layer
-        frontier.sort(
-            key=lambda n: (
-                n["selection_descriptors"]["wrist_variation_rad"],
-                n["selection_descriptors"]["endpoint_proxy_penetration_m"],
-                n["selection_descriptors"]["digit_variation_rad"],
-                n["cost"],
-                n["id"],
+        if preference is None:
+            frontier.sort(
+                key=lambda n: (
+                    n["selection_descriptors"]["wrist_variation_rad"],
+                    n["selection_descriptors"]["endpoint_proxy_penetration_m"],
+                    n["selection_descriptors"]["digit_variation_rad"],
+                    n["cost"],
+                    n["id"],
+                )
             )
-        )
+        if preference:
+            frontier.sort(
+                key=lambda n: (
+                    *(n["selection_descriptors"][k] for k in preference),
+                    n["id"],
+                )
+            )
         ordered.extend(frontier)
         ids = {n["id"] for n in frontier}
         pending = [n for n in pending if n["id"] not in ids]
@@ -166,5 +192,99 @@ def audited_strategy_order(strategies, policy="proxy_first"):
         node["policy"] = policy
         node["claim"] = (
             "Bounded alternatives; uncalibrated proxy risk, no human optimum"
+        )
+    return ordered + rejected
+
+
+def posture_strategy_order(records, policy="posture", reference=None):
+    """Second-stage Pareto ranking of complete paths; all alternatives retained.
+
+    Coordinates use a declared imported reference. Optional shifts are sensitivity
+    hypotheses. No scalar ergonomic score or clinical rejection is computed.
+    """
+    if policy not in ("palm", "movement", "posture", "whole_hand"):
+        raise ValueError("Unknown posture comparison policy")
+    from .wrist import WristReference
+
+    ref = reference or WristReference()
+    criteria = ["palm_path_m", "wrist_variation_rad", "digit_variation_rad"]
+    preference = ["wrist_variation_rad", "palm_path_m", "digit_variation_rad"]
+    if policy in ("posture", "whole_hand"):
+        posture_axes = [
+            "maximum_flexion_reference_departure_rad",
+            "maximum_deviation_reference_departure_rad",
+        ]
+        criteria += posture_axes
+        preference = posture_axes + preference
+    if policy == "whole_hand":
+        criteria += ["sampled_proxy_penetration_m"]
+        preference = ["sampled_proxy_penetration_m"] + preference
+    nodes = []
+    rejected = []
+    for record in records:
+        hand = record["whole_hand"]
+        independent = record["independent_audit"]
+        wrist = record["wrist"]
+        if (
+            record["status"] != "sampled_connected_path"
+            or hand["sample_count"] < 2
+            or hand["state_sequence_sha256"] != independent["state_sequence_sha256"]
+            or hand["sample_count"] != independent["sample_count"]
+            or len(wrist["traces"]) != hand["sample_count"]
+        ):
+            raise ValueError("Posture ranking requires matching complete path evidence")
+        if independent["status"] != "sampled_proxy_constraints_satisfied":
+            rejected.append(
+                dict(
+                    id=record["id"],
+                    status="rejected_configured_sample_checks",
+                    policy=policy,
+                )
+            )
+            continue
+        digit_names = {n for d in hand["digits"].values() for n in d["joint_names"]}
+        descriptors = dict(
+            palm_path_m=hand["palm_path_m"],
+            wrist_variation_rad=sum(
+                hand["joint_descriptors"][n]["total_variation_rad"]
+                for n in ("flexion_r", "deviation_r")
+            ),
+            digit_variation_rad=sum(
+                hand["joint_descriptors"][n]["total_variation_rad"] for n in digit_names
+            ),
+            sampled_proxy_penetration_m=max(
+                0, -independent["worst_cross_digit"]["distance_m"]
+            ),
+        )
+        for j, (n, value) in enumerate(
+            (("flexion", ref.flexion_rad), ("deviation", ref.deviation_rad))
+        ):
+            descriptors["maximum_" + n + "_reference_departure_rad"] = max(
+                abs(t["signed_wrist_rad"][j] - value) for t in wrist["traces"]
+            )
+        nodes.append(
+            dict(
+                id=record["id"],
+                cost=hand["palm_path_m"],
+                selection_descriptors=descriptors,
+                state_sequence_sha256=hand["state_sequence_sha256"],
+            )
+        )
+    if policy == "palm":
+        ordered = sorted(nodes, key=lambda n: (n["cost"], n["id"]))
+    else:
+        ordered = pareto_order(nodes, criteria, preference)
+    for node in ordered:
+        node["descriptors"] = node.pop("selection_descriptors")
+        node["policy"] = policy
+        node["reference"] = dict(
+            id=ref.id,
+            flexion_rad=ref.flexion_rad,
+            deviation_rad=ref.deviation_rad,
+            provenance=ref.provenance,
+        )
+        node["claim"] = (
+            "Finite retained alternatives; full saved samples; "
+            "anatomy unresolved; no human optimum"
         )
     return ordered + rejected

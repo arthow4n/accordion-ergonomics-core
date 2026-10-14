@@ -110,20 +110,44 @@ def run_coverage(definition: Path, output: Path) -> dict[str, Any]:
     records = []
     for request in source["poses"]:
         saved = read_hashed(definition.parent / request["result"], request["sha256"])
-        e = Experiment.from_dict(saved["input"])
+        sampled = "strategy_id" in request
+        e = Experiment.from_dict(saved["scene_input"] if sampled else saved["input"])
+        state = None
+        if sampled:
+            from .digits import DIGITS
+            from .instrument import button_at
+            from .movement_evidence import validate_strategy
+
+            strategy = next(
+                s for s in saved["strategies"] if s["id"] == request["strategy_id"]
+            )
+            validate_strategy(saved, strategy)
+            state = strategy["samples"][request["sample_index"]]
+            qpos = state["qpos_rad"]
+            contacts = state["active_contacts"] or strategy["events"][-1]["contacts"]
+            contact = contacts[0]
+            target = dict(
+                surface_world_m=e.geometry.surface_world_m(
+                    button_at(contact["row"], contact["column"])
+                ).tolist(),
+                button_id=contact["button_id"],
+            )
+        else:
+            qpos = saved["qpos_rad"]
+            target = saved["target"]
         scene = build_scene(
             e.geometry,
             e.player,
             e.setup,
             e.physical_contact,
-            tuple(c.finger for c in e.contacts),
+            DIGITS if sampled else tuple(c.finger for c in e.contacts),
         )
         if (
             compiled_model_digest(scene.model)
             != saved["provenance"]["compiled_model_sha256"]
         ):
             raise ValueError("Collision coverage requires the recorded model")
-        scene.data.qpos[:] = saved["qpos_rad"]
+        scene.data.qpos[:] = qpos
         audit = audit_collision_coverage(scene)
         phalanges = [
             p
@@ -136,8 +160,8 @@ def run_coverage(definition: Path, output: Path) -> dict[str, Any]:
             render_views(
                 scene,
                 output / "renders" / request["id"],
-                saved["target"]["surface_world_m"],
-                saved["target"]["button_id"],
+                target["surface_world_m"],
+                target["button_id"],
                 collision_overlay=True,
                 highlighted_proxy_names=highlight,
             )
@@ -148,7 +172,9 @@ def run_coverage(definition: Path, output: Path) -> dict[str, Any]:
             {
                 "id": request["id"],
                 "source": request,
-                "qpos_rad": saved["qpos_rad"],
+                "qpos_rad": qpos,
+                "sample_index": request.get("sample_index"),
+                "active_contacts": state["active_contacts"] if state else None,
                 "joint_names": saved["joint_names"],
                 "resolved_profiles": e.resolved_profiles(),
                 **current_execution_metadata(scene.model),

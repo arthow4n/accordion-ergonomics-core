@@ -215,6 +215,12 @@ def main() -> None:
             "selection-comparison",
             "seed-capacity",
             "quality-assessment",
+            "wrist-study",
+            "coordination-study",
+            "muscle-support",
+            "posture-selection",
+            "posture-library",
+            "posture-gallery",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -307,7 +313,16 @@ def main() -> None:
     comparison = sub.add_parser("selection-comparison")
     comparison.add_argument("definition", type=Path)
     comparison.add_argument("--output", type=Path, required=True)
-    for workflow in ("seed-capacity", "quality-assessment"):
+    for workflow in (
+        "seed-capacity",
+        "quality-assessment",
+        "wrist-study",
+        "coordination-study",
+        "muscle-support",
+        "posture-selection",
+        "posture-library",
+        "posture-gallery",
+    ):
         command = sub.add_parser(workflow)
         command.add_argument("definition", type=Path)
         command.add_argument("--output", type=Path, required=True)
@@ -404,6 +419,30 @@ def main() -> None:
         from .quality_assessment import run_quality_assessment
 
         run_quality_assessment(args.definition, args.output)
+    elif args.command == "wrist-study":
+        from .wrist_study import run_wrist_study
+
+        run_wrist_study(args.definition, args.output)
+    elif args.command == "coordination-study":
+        from .coordination import run_coordination_study
+
+        run_coordination_study(args.definition, args.output)
+    elif args.command == "muscle-support":
+        from .muscle_support import run_muscle_support
+
+        run_muscle_support(args.definition, args.output)
+    elif args.command == "posture-selection":
+        from .posture_selection import run_posture_selection
+
+        run_posture_selection(args.definition, args.output)
+    elif args.command == "posture-library":
+        from .posture_library import run_posture_library
+
+        run_posture_library(args.definition, args.output)
+    elif args.command == "posture-gallery":
+        from .wrist_study import run_posture_gallery
+
+        run_posture_gallery(args.definition, args.output)
     elif args.command == "check":
         for command in (
             ["ruff", "format", "--check", "."],

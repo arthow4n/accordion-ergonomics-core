@@ -1,5 +1,31 @@
 # Exercise target research program
 
+## 052 update — Posture, coordination and conditional muscle evidence
+
+049–052 are delivered on the unchanged generic reference. Signed wrist coordinates
+and imported geometric-reference departure are separate from movement variation.
+Controlled posture-aware exploration changes three connected passage strategies;
+full-path audits retain the accompanying clearance and travel regressions. Same-seed
+policy pools, two seeds, synthetic reference shifts and a small assignment-budget
+control support qualified comparisons, not global optimality. All five digits and
+historical target/evidence identities remain available through the v2 sidecar.
+
+Native PQ/DELT3 jumps are now localized to an inverse-wrap initial-residual
+fallback switch; near-threshold native/reduced branch sensitivity is explicit.
+A tested 59-actuator local subset supports descriptive operating quantities, while
+bounded force-balance and hypothetical support failures still withhold effort
+ranking. Neither route geometry nor muscle parameters were tuned.
+
+Next bounded priorities are: upstream-consistent inverse-wrap length/transmission
+validation; calibrated cross-digit envelopes and observed wrist/finger coordination;
+measured contact/support reactions; and optional reference approaches with actual
+collision-valid connecting evidence. Direct reference approaches failed, so no
+complete resting-to-performance claim is available. More neutral model coordinates
+alone do not establish strain, comfort, ordinary playing or human feasibility.
+
+See [052](../../experiments/052-posture-selection/notes.md), its matched galleries,
+actual-sample GIFs, decision records and [consumer API](../../targets/API.md).
+
 ## 048 update — Delivered assessments and guarded selection
 
 The 045–048 continuation is complete. Full-path descriptors and explicit Pareto

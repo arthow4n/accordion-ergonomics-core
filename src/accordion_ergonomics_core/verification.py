@@ -140,6 +140,12 @@ def verify_record(
             "selection-comparison",
             "seed-capacity",
             "quality-assessment",
+            "wrist-study",
+            "coordination-study",
+            "muscle-support",
+            "posture-selection",
+            "posture-library",
+            "posture-gallery",
         ):
             records.append(("result", result))
             if workflow in (
@@ -151,6 +157,12 @@ def verify_record(
                 "selection-comparison",
                 "seed-capacity",
                 "quality-assessment",
+                "wrist-study",
+                "coordination-study",
+                "muscle-support",
+                "posture-selection",
+                "posture-library",
+                "posture-gallery",
             ):
                 if "artifact_sha256" not in result:
                     limitations.append("Passage media lacks artifact hashes")
@@ -296,6 +308,7 @@ def verify_record(
                 "comparison",
                 "audit_media",
                 "seed",
+                "wrist",
             ):
                 if key == "reference" and "reference_input" in source:
                     file_hash(
@@ -326,6 +339,18 @@ def verify_record(
                     reference_parent / ref["path"],
                     ref["sha256"],
                     ref["trial_id"] + " media",
+                )
+            for ref in source.get("baseline_replays", {}).values():
+                file_hash(
+                    definition.parent / ref["path"],
+                    ref["sha256"],
+                    "matched baseline replay",
+                )
+            for ref in source.get("evidence", []):
+                file_hash(
+                    definition.parent / ref["path"],
+                    ref["sha256"],
+                    ref["role"] + " evidence",
                 )
             for case in source.get("cases", []):
                 if "search_result" in case:

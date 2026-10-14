@@ -256,3 +256,36 @@ Static estimates require stated external reactions, objectives and bounds;
 is carried forward. Neither inferred activations nor kinematic traces are measured
 effort, neural control, endurance or human feasibility. No measured button force
 or physiological threshold is added from these sources.
+
+## Wrist/coordination continuation (049–052)
+
+The supplied research program motivates separate absolute wrist posture,
+movement, whole-hand coordination, envelope concerns and conditional muscle
+quantities. It supplies no measured neutral wrist, clinical angle limit, finger
+coupling ratio, button force or anatomical tissue calibration. None is inferred.
+
+Pinned MyoSim anatomical XML and **compiled FK** establish the native wrist axes,
+range, geometric zero and flexor/extensor/metacarpal sign references in 049.
+Imported body axes are not observed palmar planes. Instrument and body geometry
+remain the existing generic reference assumptions. 050 distinguishes composite
+same-segment envelopes, unresolved palm/phalangeal pairs, exact rigid distances
+and underlying imported bone frames. Source-default overlap is negative proxy
+calibration evidence, not an allowed tissue-intersection amount.
+
+The narrow [MuJoCo modeling reference](https://mujoco.readthedocs.io/en/stable/modeling.html)
+and [pinned 3.15.0 wrapping implementation](https://github.com/google-deepmind/mujoco/blob/3.15.0/src/engine/engine_util_misc.c)
+explain inverse wrapping with interior side sites and a near-zero initial-residual
+fallback switch. Independent native/reduced route points and scalar root probes
+in [051](../../experiments/051-muscle-support/notes.md) support that numerical
+interpretation. They do not establish anatomical routing repairs or measured
+human capacity. 59 actuators pass the tested local operating-quantity probes;
+four problematic actuators remain excluded. Bounded feasibility certificates
+and hypothetical support/load ablations remain conditional model evidence.
+
+[052](../../experiments/052-posture-selection/notes.md) changes a bounded search
+preference, not anatomy or physics. Lower model-reference departure coexists with
+longer travel and worse finger-proxy overlap. Two seeds, a small assignment-budget
+sensitivity and explicit synthetic reference shifts have limited scope. Rejected
+reference approaches remain negative evidence. All timing, strain, comfort and
+human-feasibility interpretations remain unknown. Versioned consumer assessments
+preserve the original catalog and frozen scientific distinctions.

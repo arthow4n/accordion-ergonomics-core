@@ -62,7 +62,11 @@ class PassageSearchSettings:
             raise ValueError("Seed must be a nonnegative integer")
         if not np.isfinite(self.preparation_height_m) or self.preparation_height_m <= 0:
             raise ValueError("Preparation height must be positive")
-        if self.selection_mode not in ("palm", "whole_hand_pareto"):
+        if self.selection_mode not in (
+            "palm",
+            "whole_hand_pareto",
+            "wrist_posture_pareto",
+        ):
             raise ValueError(
                 "Unsupported selection; muscle ranking requires validation"
             )
@@ -441,7 +445,12 @@ def search_passage(
             "edge_path": [],
         }
     ]
-    from .selection import branch_descriptors, pareto_order, technique_priority
+    from .selection import (
+        POSTURE_CRITERIA,
+        branch_descriptors,
+        pareto_order,
+        technique_priority,
+    )
 
     selection_records = []
     solve_count = 0
@@ -671,14 +680,28 @@ def search_passage(
                     node_path=parent["node_path"] + [node["id"]],
                     edge_path=parent["edge_path"] + ([edge["id"]] if edge else []),
                 )
-                if settings.selection_mode == "whole_hand_pareto":
+                if settings.selection_mode in (
+                    "whole_hand_pareto",
+                    "wrist_posture_pareto",
+                ):
                     node["selection_descriptors"] = branch_descriptors(
                         scene, parent, q, edge, node["cost"]
                     )
                 next_beam.append(node)
             for hypothesis in hypotheses[settings.assignments_per_parent :]:
                 hypothesis["status"] = "unexplored_budget"
-        if settings.selection_mode == "whole_hand_pareto":
+        if settings.selection_mode == "wrist_posture_pareto":
+            next_beam = pareto_order(
+                next_beam,
+                POSTURE_CRITERIA,
+                (
+                    "maximum_flexion_reference_departure_rad",
+                    "maximum_deviation_reference_departure_rad",
+                    "wrist_variation_rad",
+                    "palm_path_m",
+                ),
+            )
+        elif settings.selection_mode == "whole_hand_pareto":
             next_beam = pareto_order(next_beam)
         else:
             next_beam.sort(key=lambda n: (n["cost"], n["id"]))
@@ -838,6 +861,9 @@ def search_passage(
         "selection_policy_claim": (
             "Whole-hand mode uses Pareto layers then wrist/proxy/digit/palm "
             "tie order; endpoint proxies only, no universal comfort score. "
+            "Posture mode adds sampled maximum flexion/deviation departures "
+            "from imported zero as separate axes and first tie preferences; "
+            "zero is not calibrated neutral or a hard constraint. "
             "234 is an optional educational exploration prior, not anatomy."
         ),
         "initial_seed_claim": (

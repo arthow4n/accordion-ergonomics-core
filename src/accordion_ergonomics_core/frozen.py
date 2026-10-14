@@ -43,6 +43,12 @@ def frozen_run(
         "selection-comparison",
         "seed-capacity",
         "quality-assessment",
+        "wrist-study",
+        "coordination-study",
+        "muscle-support",
+        "posture-selection",
+        "posture-library",
+        "posture-gallery",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

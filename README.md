@@ -152,3 +152,17 @@ an actual retained little-finger alternative and its archived render command.
 Whole-path preferences expose wrist/proxy tradeoffs; they do not certify ordinary
 playing or human feasibility. The instrument, body reference and historical
 catalog identities remain unchanged.
+
+[Wrist/coordination research (049–052)](experiments/052-posture-selection/notes.md)
+now separates signed absolute wrist posture relative to the imported geometric
+reference from wrist movement. Posture-aware beam exploration and full-path
+Pareto comparisons retain different fingerings and their clearance/travel
+tradeoffs. Better reference posture can still produce worse cross-digit overlap.
+Native inverse-wrap fallback switches and unsuccessful conditional support probes
+keep muscle effort ranking withheld. No clinical neutrality, strain or human
+feasibility is claimed.
+
+`ExerciseLibrary.posture_assessment`, `posture_case`, `posture_trajectory`,
+`posture_media`, `posture_comparisons` and `posture_evidence` retrieve the v2
+assessments and exact model evidence while preserving the original catalog and
+v1 API. See [the posture consumer](examples/posture_consumer.py).

@@ -194,3 +194,22 @@ compiled model identity; catalog variants are registered explicitly.
 `tests/test_five_fingers.py` checks all site body bindings, support positions,
 quaternions and thumb-axis reversal against compiled geometry. Frozen experiments
 retain their original marker composition and source archives.
+
+## Imported wrist frames and geometric reference (049)
+
+`lunate_r`, attached to `radius_r`, has deviation about local +z followed by
+flexion about local +x. Compiled FK probes verify positive deviation toward the
+second versus fifth metacarpal radial side, and positive flexion toward the native
+FCR routing side (-z for the distal -y hand direction). The +z ECR routing side
+provides an independent native dorsal distinction. Both wrist coordinates have
+qpos0=0 and native radius/lunate/capitate axes coincide there. Metacarpal landmark
+axes remain oblique; no calibrated palmar plane or observed neutral posture is
+established. `pro_sup_r` rotates the radius/downstream hand about the imported
+axis (-.017161, .992666, -.119668), independently of wrist-relative angles.
+
+Use `myosim-imported-zero-v1` as a **model geometric reference**, with provenance,
+not a clinical neutral wrist. Signed absolute coordinates, reference departures,
+imported range position/margins, movement variation and board-relative palm/
+forearm orientation remain separate. Synthetic reference shifts are hypotheses.
+See [049](../../experiments/049-wrist-posture/notes.md). No model composition,
+joint frame, coordinate sign or imported range was changed.
