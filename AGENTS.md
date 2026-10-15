@@ -77,3 +77,40 @@ forces/travel remain unmeasured. Preserve all five candidates; technique priors
 are optional and distinct from physical constraints. Use controlled ablations
 and multidimensional assessments instead of a universal difficulty score. Keep
 historical library/frozen evidence intact and attach versioned reassessments.
+
+## Visualization-first scientific research requirements
+
+Plan visual evidence alongside numerical experiments. For movement, posture,
+contact or search milestones, completion requires numerical evidence, independent
+validation, inspected physical renders, important failures/counterexamples and an
+updated `targets/VISUALS.md`. Report exactly which visual evidence was inspected
+before declaring completion. If relevant visuals cannot be produced, document the
+specific blocker and incomplete validation.
+
+Render actual saved compiled-model configurations and recorded trajectories.
+Include complementary context, keyboard, whole-hand, side and worst-proxy views;
+show anatomical/contact uncertainty. Movement studies need board-relative wrist,
+palm, knuckle and fingertip diagrams. Search/selection studies need process
+visualizations generated from actual hypotheses, attempts, budgets and decisions.
+Use matched cameras, physical scale, musical events and diagnostic conventions
+for baseline/revised claims. Preserve awkward and failed states explicitly.
+
+For connected paths provide scientific keyframes and enough intermediate actual
+samples to inspect motion (typically 30–60 selectively chosen frames). Record the
+sampling method and exact indices. Equal display intervals are not physiological
+time. Never invent states, join disconnected endpoints, animate IK iterations as
+movement, or depict failed paths as completed. No decorative or generative
+scientific poses, fabricated activations, or unsupported biomechanical claims.
+
+Bind every visual to model/source/input hashes, trajectory/qpos references,
+contact requirements, camera settings, parameters and exact sample indices.
+Distinguish physical renders, computed traces, algorithm schematics and hypotheses.
+Inspect generated images for clipping, wrong cameras, misleading labels and hidden
+uncertainty. Link numerical and visual evidence together in the central guide at
+each visually relevant milestone; keep its root README link prominent.
+
+Keep coverage proportional: prefer one complete explanatory comparison over many
+redundant screenshots. Use `experiments/NNN-topic/evidence/CASE/` with `dense/`,
+`state-INDEX/`, `board-path.png`, `events.svg`, `keyframes.gif`, `detailed.gif` and a
+hash-bound `result.json` manifest where applicable. Compress or curate media while
+retaining complete machine-readable trajectories and historical frozen evidence.

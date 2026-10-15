@@ -221,6 +221,8 @@ def main() -> None:
             "posture-selection",
             "posture-library",
             "posture-gallery",
+            "playing-study",
+            "playing-review",
         ),
     )
     frozen.add_argument("definition", type=Path)
@@ -322,6 +324,8 @@ def main() -> None:
         "posture-selection",
         "posture-library",
         "posture-gallery",
+        "playing-study",
+        "playing-review",
     ):
         command = sub.add_parser(workflow)
         command.add_argument("definition", type=Path)
@@ -419,6 +423,14 @@ def main() -> None:
         from .quality_assessment import run_quality_assessment
 
         run_quality_assessment(args.definition, args.output)
+    elif args.command == "playing-review":
+        from .playing_review import run_playing_review
+
+        run_playing_review(args.definition, args.output)
+    elif args.command == "playing-study":
+        from .playing_study import run_playing_study
+
+        run_playing_study(args.definition, args.output)
     elif args.command == "wrist-study":
         from .wrist_study import run_wrist_study
 

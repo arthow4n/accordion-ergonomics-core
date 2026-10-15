@@ -74,7 +74,9 @@ def audit_path(
             1, int(np.ceil(np.max(np.abs(b - a)) / settings.max_joint_step_rad))
         )
         for t in np.linspace(0, 1, steps + 1):
-            data.qpos[:] = a + t * (b - a)
+            # Preserve the actual saved endpoint states, including floating-point bits.
+            # a + 1*(b-a) can differ from b and break exact graph joins.
+            data.qpos[:] = a if t == 0 else b if t == 1 else a + t * (b - a)
             mujoco.mj_forward(model, data)
             penetration = max([0.0] + [-float(c.dist) for c in data.contact])
             margins = np.minimum(

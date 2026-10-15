@@ -1,3 +1,23 @@
+## 2026-10-15 — Explicit contact lifecycle and negative held evidence (054)
+
+[054](experiments/054-contact-lifecycle/notes.md) audits repeat, thumb reversal,
+larger relocation, cross-row stepwise and substantial proxy-overlap paths.
+Repeated index actually separates approximately 10 mm and returns; actuation
+remains unknown. The held-D4 parent satisfies contact, but its attempted chord
+loses the held requirement. Dense playback, event/contact traces and separate
+failed states are inspected. Optional geometric release gating preserves historical
+defaults and budgets. [The central visual guide](targets/VISUALS.md) links both.
+
+## 2026-10-15 — Whole-hand playing-region evidence (053)
+
+[053](experiments/053-playing-region/notes.md) adds compiled board-frame checks,
+multiple anatomical landmarks, full saved-sample traces and dense actual-model
+playback synchronized with top/side diagrams. The arpeggio posture counterexample
+retains 293.29 versus 121.68 mm palm travel, greater normal excursion and worse
+unresolved overlap. Inspected four-view, worst-proxy, movement and coordinate
+plots distinguish row crossing from withdrawal. No rigid playing boundary or
+human validity is introduced. [Start with the visual guide](targets/VISUALS.md).
+
 ## 2026-10-14 — Wrist posture, coordination and native wrapping reassessment (049–052)
 
 [049–052](experiments/052-posture-selection/notes.md) distinguish signed native wrist

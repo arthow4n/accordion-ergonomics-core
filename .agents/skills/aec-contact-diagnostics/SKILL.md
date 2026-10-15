@@ -77,3 +77,16 @@ displacement implementation and sampled integration backtracking (018). A local
 distance inequality cannot prevent crossing its inactive band in one large step.
 Keep the 017 failure as evidence. Select named phalangeal pairs only with explicit
 hypothesis provenance; pair constraints and omitted coverage must both be logged.
+
+## Whole-hand movement and lifecycle studies (053 onward)
+
+Apply the visualization-first completion requirements in root `AGENTS.md`.
+`uv run aec frozen playing-study DEFINITION --output DIRECTORY` measures every
+recorded passage sample in the compiled board frame. It binds multiple anatomical
+landmarks, contact/release observations, actual-sample dense/keyframe playback,
+search graphs and independent proxy diagnostics. Its release band is the existing
+endpoint position tolerance, a diagnostic geometric convention, not measured cap
+travel. Incidental cap proximity cannot establish sounding notes. Preserve the
+unplanned first approach and optional preparation-versus-selected-next-binding
+linkage. Inspect top and side diagrams alongside physical views, and link useful
+successes and negative evidence in `targets/VISUALS.md` during each milestone.

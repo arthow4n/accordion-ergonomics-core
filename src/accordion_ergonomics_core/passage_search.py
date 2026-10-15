@@ -36,6 +36,9 @@ class PassageSearchSettings:
     assignment_order: str = "seeded"
     fingers: tuple[str, ...] = DIGITS
     selection_mode: str = "palm"
+    whole_hand_guidance_cost: float = 0.0
+    initial_selection: str = "historical"
+    release_policy: str = "historical"
     technique_prior: str = "none"
     inactive_digits_policy: str = "allow_articulation"
     unassigned_posture_multiplier: float = 1.0
@@ -66,10 +69,20 @@ class PassageSearchSettings:
             "palm",
             "whole_hand_pareto",
             "wrist_posture_pareto",
+            "playing_region",
         ):
             raise ValueError(
                 "Unsupported selection; muscle ranking requires validation"
             )
+        if (
+            not np.isfinite(self.whole_hand_guidance_cost)
+            or self.whole_hand_guidance_cost < 0
+        ):
+            raise ValueError("Hand guidance cost must be finite and nonnegative")
+        if self.initial_selection not in ("historical", "seed_distance"):
+            raise ValueError("Unknown initial selection")
+        if self.release_policy not in ("historical", "geometric"):
+            raise ValueError("Unknown release policy")
         if self.technique_prior not in ("none", "234_exploration"):
             raise ValueError("Unknown technique prior")
         if self.inactive_digits_policy not in ("freeze", "allow_articulation"):
@@ -136,8 +149,21 @@ def solve_targets(
     targets: list[np.ndarray],
     required: list[bool],
     iterations: int,
+    whole_hand_guidance_cost: float = 0.0,
 ) -> dict[str, Any]:
     names = [scene.model.joint(i).name for i in range(scene.model.njnt)]
+    guidance = ()
+    if whole_hand_guidance_cost:
+        scene.data.qpos[:] = q
+        mujoco.mj_forward(scene.model, scene.data)
+        actual = np.array(
+            [scene.data.site(f"{c['finger']}_pad").xpos for c in contacts]
+        )
+        delta = np.mean(np.asarray(targets) - actual, axis=0)
+        normal = e.geometry.rotation[:, 2]
+        delta -= normal * np.dot(delta, normal)
+        target = scene.data.body("capitate_r").xpos.copy() + delta
+        guidance = (("capitate_r", target, whole_hand_guidance_cost),)
     return solve_contact(
         scene,
         targets[0],
@@ -151,6 +177,7 @@ def solve_targets(
             for t, c in zip(targets[1:], contacts[1:], strict=True)
         ),
         required_contacts=tuple(required),
+        body_position_targets=guidance,
     )
 
 
@@ -185,7 +212,7 @@ def audit_contact_path(
     return audit
 
 
-def plan_contact_change(
+def _plan_contact_change(
     scene: Scene,
     e: Experiment,
     source: list[dict[str, Any]],
@@ -194,6 +221,8 @@ def plan_contact_change(
     end_q: list[float],
     held: list[dict[str, Any]],
     settings: PlanningSettings,
+    whole_hand_guidance_cost: float = 0.0,
+    force_release: bool = False,
 ) -> dict[str, Any]:
     """Release/reposition/approach; incremental IK states are audited as a path.
 
@@ -209,7 +238,13 @@ def plan_contact_change(
         ({c["button_id"] for c in source} & {c["button_id"] for c in destination})
         - {c["button_id"] for c in held}
     )
-    if len(source) == len(destination) == 1 and not held and not repeated_release:
+    if (
+        len(source) == len(destination) == 1
+        and not held
+        and not repeated_release
+        and not whole_hand_guidance_cost
+        and not force_release
+    ):
         single = replace(
             e,
             contacts=(
@@ -234,7 +269,11 @@ def plan_contact_change(
     if repeated_release:
         direct["status"] = "rejected_missing_release"
         direct["musical_release_satisfied"] = False
-    if not repeated_release and direct["sampled_constraints_satisfied"]:
+    if (
+        not repeated_release
+        and not force_release
+        and direct["sampled_constraints_satisfied"]
+    ):
         for sample in direct["samples"]:
             sample["phase"] = {
                 "phase": "audited_joint_interpolation",
@@ -326,6 +365,7 @@ def plan_contact_change(
                     targets,
                     required,
                     settings.waypoint_iterations,
+                    whole_hand_guidance_cost,
                 )
                 solves.append(
                     {
@@ -387,6 +427,118 @@ def plan_contact_change(
         "geometric_release_required": repeated_release,
         "claim": "Finite continuation search failed, not an impossibility proof",
     }
+
+
+def release_path_audit(scene, e, source, destination, samples):
+    from .playing_region import distal_cap_distance, lifecycle_summary
+
+    observations = []
+    for i, sample in enumerate(samples):
+        scene.data.qpos[:] = sample["qpos_rad"]
+        mujoco.mj_forward(scene.model, scene.data)
+        observations.append(
+            dict(
+                sample_index=i,
+                binding_distances_m={
+                    c["finger"] + ":" + c["button_id"]: distal_cap_distance(
+                        scene, c["finger"], c["button_id"]
+                    )
+                    for c in source
+                },
+                held_contact_satisfied=contact_check(
+                    scene, e, [c for c in source if c["behavior"] == "hold"]
+                )["satisfied"],
+                source_contact_satisfied=contact_check(scene, e, source)["satisfied"]
+                if i == 0
+                else None,
+                destination_contact_satisfied=contact_check(scene, e, destination)[
+                    "satisfied"
+                ]
+                if i == len(samples) - 1
+                else None,
+            )
+        )
+    result = lifecycle_summary(
+        source, destination, observations, e.solver.position_tolerance_m
+    )
+    result["satisfied"] = (
+        result["source_contact_established"]
+        and result["next_target_contact_established"]
+        and result["held_contact_preserved"]
+        and all(r["status"] == "released_geometrically" for r in result["releases"])
+    )
+    return result
+
+
+def plan_contact_change(
+    scene,
+    e,
+    source,
+    destination,
+    start_q,
+    end_q,
+    held,
+    settings,
+    whole_hand_guidance_cost=0.0,
+    release_policy="historical",
+):
+    """Optional geometric lifecycle gate; unchanged historical execution by default."""
+    if release_policy not in ("historical", "geometric"):
+        raise ValueError("Unknown release policy")
+    result = _plan_contact_change(
+        scene,
+        e,
+        source,
+        destination,
+        start_q,
+        end_q,
+        held,
+        settings,
+        whole_hand_guidance_cost,
+    )
+    if release_policy == "historical" or result["status"] != "sampled_path_found":
+        return result
+    audit = release_path_audit(scene, e, source, destination, result["samples"])
+    if audit["satisfied"]:
+        result["musical_lifecycle"] = audit
+        return result
+    consumed = sum(
+        a.get("waypoint_solver_calls", 0) for a in result.get("attempts", [])
+    )
+    remaining = (
+        None
+        if settings.waypoint_solve_limit is None
+        else settings.waypoint_solve_limit - consumed
+    )
+    if remaining is not None and remaining <= 0:
+        return dict(
+            status="no_path_found",
+            lifecycle_rejected_candidate=result,
+            musical_lifecycle=audit,
+            reason="release_retry_budget_exhausted",
+        )
+    retry = _plan_contact_change(
+        scene,
+        e,
+        source,
+        destination,
+        start_q,
+        end_q,
+        held,
+        replace(settings, waypoint_solve_limit=remaining),
+        whole_hand_guidance_cost,
+        force_release=True,
+    )
+    retry["lifecycle_rejected_candidate"] = dict(
+        method=result.get("method"), musical_lifecycle=audit
+    )
+    retry["attempts"] = result.get("attempts", []) + retry.get("attempts", [])
+    if retry["status"] == "sampled_path_found":
+        checked = release_path_audit(scene, e, source, destination, retry["samples"])
+        retry["musical_lifecycle"] = checked
+        if not checked["satisfied"]:
+            retry["status"] = "rejected_musical_lifecycle"
+    return retry
 
 
 def search_passage(
@@ -537,6 +689,7 @@ def search_passage(
                     targets,
                     [True] * len(contacts) + [False] * len(preparing),
                     settings.contact_iterations,
+                    settings.whole_hand_guidance_cost,
                 )
                 solve_count += 1
                 preparation_attempt = None
@@ -552,6 +705,7 @@ def search_passage(
                         targets,
                         [True] * len(contacts),
                         settings.contact_iterations,
+                        settings.whole_hand_guidance_cost,
                     )
                     solve_count += 1
                 node = {
@@ -584,6 +738,8 @@ def search_passage(
                         q,
                         held,
                         settings.planning,
+                        settings.whole_hand_guidance_cost,
+                        settings.release_policy,
                     )
                     edge = {
                         "id": f"edge-{node['id']}",
@@ -625,6 +781,7 @@ def search_passage(
                         targets,
                         [True] * len(contacts) + [False] * len(preparing),
                         settings.contact_iterations,
+                        settings.whole_hand_guidance_cost,
                     )
                     solve_count += 1
                     edge["preparation_solve"] = refinement
@@ -687,10 +844,47 @@ def search_passage(
                     node["selection_descriptors"] = branch_descriptors(
                         scene, parent, q, edge, node["cost"]
                     )
+                if settings.initial_selection == "seed_distance" and event_index == 0:
+                    node["initial_seed_joint_distance_rad"] = float(
+                        np.linalg.norm(np.asarray(q) - initial)
+                    )
+                if settings.selection_mode == "playing_region":
+                    part = edge["path"]["samples"] if edge else [{"qpos_rad": q}]
+                    region_rows = []
+                    cap_centroid = np.mean([point(e, c) for c in contacts], axis=0)
+                    for sample in part:
+                        scene.data.qpos[:] = sample["qpos_rad"]
+                        mujoco.mj_forward(scene.model, scene.data)
+                        region_rows.append(
+                            e.geometry.rotation.T
+                            @ (scene.data.body("capitate_r").xpos - cap_centroid)
+                        )
+                    offsets = np.asarray(region_rows)
+                    previous = parent.get("region_descriptors", {})
+                    node["region_descriptors"] = {
+                        "maximum_palm_normal_offset_m": max(
+                            previous.get("maximum_palm_normal_offset_m", 0.0),
+                            float(offsets[:, 2].max()),
+                        ),
+                        "maximum_task_planar_offset_m": max(
+                            previous.get("maximum_task_planar_offset_m", 0.0),
+                            float(np.linalg.norm(offsets[:, :2], axis=1).max()),
+                        ),
+                        "palm_path_m": node["cost"],
+                    }
                 next_beam.append(node)
             for hypothesis in hypotheses[settings.assignments_per_parent :]:
                 hypothesis["status"] = "unexplored_budget"
-        if settings.selection_mode == "wrist_posture_pareto":
+        if settings.selection_mode == "playing_region":
+            next_beam.sort(
+                key=lambda n: (
+                    n["region_descriptors"]["maximum_palm_normal_offset_m"],
+                    n["region_descriptors"]["maximum_task_planar_offset_m"],
+                    n["cost"],
+                    n["id"],
+                )
+            )
+        elif settings.selection_mode == "wrist_posture_pareto":
             next_beam = pareto_order(
                 next_beam,
                 POSTURE_CRITERIA,
@@ -705,6 +899,10 @@ def search_passage(
             next_beam = pareto_order(next_beam)
         else:
             next_beam.sort(key=lambda n: (n["cost"], n["id"]))
+        if event_index == 0 and settings.initial_selection == "seed_distance":
+            next_beam.sort(
+                key=lambda n: (n["initial_seed_joint_distance_rad"], n["id"])
+            )
         selection_records.append(
             {
                 "event_index": event_index,
@@ -714,6 +912,10 @@ def search_passage(
                         "node_id": n["id"],
                         "palm_cost_m": n["cost"],
                         "descriptors": n.get("selection_descriptors"),
+                        "region_descriptors": n.get("region_descriptors"),
+                        "initial_seed_joint_distance_rad": n.get(
+                            "initial_seed_joint_distance_rad"
+                        ),
                         "pareto_layer": n.get("pareto_layer"),
                         "retained": i < settings.beam_width,
                     }

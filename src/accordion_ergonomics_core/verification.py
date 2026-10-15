@@ -146,6 +146,8 @@ def verify_record(
             "posture-selection",
             "posture-library",
             "posture-gallery",
+            "playing-study",
+            "playing-review",
         ):
             records.append(("result", result))
             if workflow in (
@@ -163,6 +165,8 @@ def verify_record(
                 "posture-selection",
                 "posture-library",
                 "posture-gallery",
+                "playing-study",
+                "playing-review",
             ):
                 if "artifact_sha256" not in result:
                     limitations.append("Passage media lacks artifact hashes")
@@ -358,6 +362,13 @@ def verify_record(
                         definition.parent / case["search_result"],
                         case["search_sha256"],
                         case["id"] + " source search",
+                    )
+            for group in source.get("comparison_groups", []):
+                for ref in group["records"]:
+                    file_hash(
+                        definition.parent / ref["path"],
+                        ref["sha256"],
+                        group["id"] + " comparison source",
                     )
             for pose in source.get("poses", []):
                 file_hash(

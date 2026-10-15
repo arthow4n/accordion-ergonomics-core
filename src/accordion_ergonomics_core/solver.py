@@ -26,6 +26,7 @@ def solve_contact(
     additional_contacts: tuple[tuple[NDArray[np.float64], str, str], ...] = (),
     additional_contact_required: bool = True,
     required_contacts: tuple[bool, ...] | None = None,
+    body_position_targets: tuple[tuple[str, NDArray[np.float64], float], ...] = (),
 ) -> dict[str, Any]:
     model = scene.model
     if (
@@ -69,6 +70,13 @@ def solve_contact(
         normal = mink.AxisAlignTask(f"{digit}_pad", "site", cost=settings.normal_cost)
         normal.set_target(-scene.data.body("keyboard").xmat.reshape(3, 3)[:, 2])
         contact_tasks.extend((position, normal))
+
+    for body, point, cost in body_position_targets:
+        if not np.isfinite(cost) or cost <= 0 or not np.isfinite(point).all():
+            raise ValueError("Body guidance needs finite target and positive cost")
+        guide = mink.FrameTask(body, "body", position_cost=cost, orientation_cost=0.0)
+        guide.set_target(mink.SE3.from_translation(point))
+        contact_tasks.append(guide)
 
     def check_contacts() -> dict[str, Any]:
         checks = [
@@ -212,6 +220,27 @@ def solve_contact(
     scene.data.qpos[:] = configuration.q
     check = check_contacts()
     return {
+        **(
+            {
+                "body_position_guidance": [
+                    dict(
+                        body=body,
+                        target_world_m=point.tolist(),
+                        cost=cost,
+                        achieved_error_m=float(
+                            np.linalg.norm(scene.data.body(body).xpos - point)
+                        ),
+                        claim=(
+                            "Soft task-space hypothesis during contact IK; not "
+                            "a hard playing region"
+                        ),
+                    )
+                    for body, point, cost in body_position_targets
+                ]
+            }
+            if body_position_targets
+            else {}
+        ),
         "status": "success"
         if accepted(check, settings, require_any_contact)
         else "failed",

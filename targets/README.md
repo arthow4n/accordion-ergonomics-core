@@ -1,3 +1,6 @@
+**[Visual research guide](VISUALS.md)** — start with actual-model motion,
+board-coordinate paths and search explanations.
+
 # Inspect and reproduce the first right-hand target library
 
 This internal collection contains 50 musical/physical targets. It covers central

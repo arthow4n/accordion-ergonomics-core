@@ -1,5 +1,9 @@
 # accordion-ergonomics-core
 
+**[Start with the visual research guide](targets/VISUALS.md)**: actual hand
+movement, fingering searches, matched comparisons and unresolved failures.
+
+
 A Python research laboratory for articulated accordion ergonomics. New physical
 instrument studies use one [generic closed five-row CBA](docs/research/generic-cba.md):
 380 mm compact case with an independent upper wearing anchor (036),

@@ -195,6 +195,7 @@ def render_strategy(
     frame_count: int,
     cameras: dict[str, Any] | None = None,
     context_label: str | None = None,
+    sample_indices: list[int] | None = None,
 ) -> dict[str, Any]:
     validate_strategy(saved, strategy)
     if audit["status"] != "sampled_proxy_constraints_satisfied" or audit[
@@ -204,6 +205,25 @@ def render_strategy(
     output.mkdir(parents=True, exist_ok=True)
     e = Experiment.from_dict(saved["scene_input"])
     indices = trajectory_frame_indices(strategy, frame_count)
+    if sample_indices is not None:
+        indices = sample_indices
+        required = {
+            i
+            for i, s in enumerate(strategy["samples"])
+            if s.get("event_index") is not None
+        }
+        if (
+            not indices
+            or indices != sorted(set(indices))
+            or any(
+                type(i) is not int or i < 0 or i >= len(strategy["samples"])
+                for i in indices
+            )
+            or not required <= set(indices)
+        ):
+            raise ValueError(
+                "Explicit frames must be ordered actual samples including events"
+            )
     frames = []
     manifest = []
     for frame_index, sample_index in enumerate(indices):
