@@ -1,6 +1,7 @@
 """Frozen whole-hand/lifecycle benchmark and matched physical evidence workflow."""
 
 import json
+from typing import Any
 
 from PIL import Image, ImageDraw
 
@@ -10,7 +11,7 @@ from .exploration import read_hashed
 from .movement_evidence import validate_strategy
 from .passage_media import independent_samples, search_diagram
 from .playing_media import board_panel, render_playing_evidence
-from .playing_region import playing_region_trace
+from .playing_region import playing_region_trace, preparation_linkage
 from .provenance import compiled_model_digest
 from .scene import build_scene
 from .strategy_audit import audit_states, plots
@@ -20,7 +21,7 @@ from .wrist_study import finish_record
 def run_playing_study(definition, output):
     source = json.loads(definition.read_text())
     output.mkdir(parents=True, exist_ok=True)
-    cases = []
+    cases: list[dict[str, Any]] = []
     scene = None
     for request in source["cases"]:
         saved = read_hashed(
@@ -67,26 +68,7 @@ def run_playing_study(definition, output):
             settings=saved["settings"],
             budget=saved["budget"],
             compiled_model_sha256=compiled_model_digest(scene.model),
-            preparation_links=[
-                dict(
-                    event_index=i,
-                    controls=ev.get("preparing_controls", []),
-                    selected_next_contacts=strategy["events"][i + 1]["contacts"]
-                    if i + 1 < len(strategy["events"])
-                    else [],
-                    matched_next_bindings=[
-                        c
-                        for c in ev.get("preparing_controls", [])
-                        if i + 1 < len(strategy["events"])
-                        and any(
-                            c["finger"] == n["finger"]
-                            and c["button_id"] == n["button_id"]
-                            for n in strategy["events"][i + 1]["contacts"]
-                        )
-                    ],
-                )
-                for i, ev in enumerate(strategy["events"])
-            ],
+            preparation_links=preparation_linkage(strategy["events"]),
         )
         if request.get("render"):
             record["media"] = render_playing_evidence(

@@ -1,3 +1,44 @@
+## 2026-10-15 — Coherent movement comparisons and navigable visual evidence (055–057)
+
+[Integrated 053–057 findings](experiments/057-playing-library/notes.md) and the
+[visual research guide](targets/VISUALS.md) now connect actual motion, physical
+buttons, contact lifecycle, search decisions and unresolved anatomy. Two passages
+retain matched event panels, identical cameras/shared board scales, scientific
+keyframes and 50–52 actual-sample detailed frames; numerical-seed approaches have
+separate exact-state evidence. No new policy becomes a universal ergonomic default.
+
+Eight identical-source matched searches retain 16 complete paths. Coordinated
+stepwise reduces palm normal span 18.50→2.01 mm and worst proxy overlap
+8.723→3.576 mm, but travel/wrist movement rise. Region arpeggio reduces worst
+overlap 8.830→3.118 mm and maximum normal position 76.79→67.51 mm, while travel
+rises 121.68→136.29 mm and wrist variation 0.4877→1.7408 rad. Worse combined,
+region and coordinated alternatives remain. All sampled configured/instrument
+checks pass independently; cross-digit tissue validity remains unresolved.
+
+A matched repeated-note sensitivity reduces configured withdrawal 10→2 mm:
+observed geometric release persists and palm travel falls 27.24→5.63 mm.
+Unmeasured button travel prevents an actuation recommendation. The held-D4 attempt
+fails its marker-position requirement despite near-cap geometry, not proof a real
+note stops sounding. Future thumb preparation fails and is dropped. First-seed
+joint-distance priority worsens travel/overlap. Two revised first poses admit
+separate 163/235-sample numerical-C4-seed connections and exact passage joins;
+these are not resting-hand approaches or timed performance.
+
+The endpoint-arithmetic repair preserves exact graph joins. Historical local
+optimization can amplify rounding by up to 5.52e-7 rad; matching new-source
+baselines isolate policy effects and original archives remain intact. Two pre-fix
+programming-error inputs/source archives are preserved without invented results.
+The v3 Python sidecar exposes 29 path assessments and negative reviews while
+preserving all 50 target IDs and v1/v2 APIs. No geometry, proxies, collision masks,
+muscles, bellows or fixed-body assumptions change. Muscle rankings remain withheld.
+
+Four-view, worst-proxy, matched event, dense intermediate, approach, release and
+failed-preparation evidence was inspected. Archived replay reproduces all 80
+selected media files byte-for-byte in this runtime. All 27 completed new frozen
+roots and 42 historical 045–052 roots verify completely. Final local validation passes 197 tests, Ruff and ty; the external consumer and
+measurement smoke pass. Details are in [057](experiments/057-playing-library/validation.json).
+Permanent agent instructions require visualization-first milestones and guide updates.
+
 ## 2026-10-15 — Explicit contact lifecycle and negative held evidence (054)
 
 [054](experiments/054-contact-lifecycle/notes.md) audits repeat, thumb reversal,

@@ -148,6 +148,119 @@ def run_playing_review(definition, output):
                     "Separate attempted connection; original passage "
                     "initial approach remains unplanned"
                 )
+                if (
+                    path["status"] == "sampled_path_found"
+                    and checked["status"] == "sampled_proxy_constraints_satisfied"
+                ):
+                    from .playing_media import render_playing_evidence
+                    from .playing_region import playing_region_trace
+                    from .strategy_audit import audit_states
+
+                    part = []
+                    for i, sample in enumerate(path["samples"]):
+                        active = (
+                            contacts
+                            if i == 0
+                            else target
+                            if i == len(path["samples"]) - 1
+                            else []
+                        )
+                        part.append(
+                            dict(
+                                **{
+                                    k: v
+                                    for k, v in sample.items()
+                                    if k
+                                    not in (
+                                        "event_index",
+                                        "active_contacts",
+                                        "roles",
+                                        "event_interval",
+                                        "edge_id",
+                                    )
+                                },
+                                event_index=0
+                                if i == 0
+                                else 1
+                                if i == len(path["samples"]) - 1
+                                else None,
+                                active_contacts=active,
+                                roles={c["finger"]: "required" for c in active},
+                                event_interval=0,
+                                edge_id="actual-approach",
+                            )
+                        )
+                    graph = dict(
+                        id=request["id"],
+                        scene_input=saved["scene_input"],
+                        joint_names=saved["joint_names"],
+                        nodes=[
+                            dict(
+                                id="seed",
+                                qpos_rad=part[0]["qpos_rad"],
+                                contacts=contacts,
+                                preparing=[],
+                                event_index=0,
+                                status="recorded_seed",
+                            ),
+                            dict(
+                                id="first",
+                                qpos_rad=part[-1]["qpos_rad"],
+                                contacts=target,
+                                preparing=[],
+                                event_index=1,
+                                status="accepted_contact",
+                            ),
+                        ],
+                        edges=[
+                            dict(
+                                id="actual-approach",
+                                source="seed",
+                                destination="first",
+                                status="sampled_path_found",
+                                path=dict(samples=part),
+                            )
+                        ],
+                    )
+                    approach = dict(
+                        id="approach-strategy",
+                        status="sampled_connected_path",
+                        node_ids=["seed", "first"],
+                        edge_ids=["actual-approach"],
+                        samples=part,
+                        events=[
+                            dict(contacts=contacts, qpos_rad=part[0]["qpos_rad"]),
+                            dict(contacts=target, qpos_rad=part[-1]["qpos_rad"]),
+                        ],
+                    )
+                    region = playing_region_trace(scene, e, approach)
+                    region["label"] = request["id"]
+                    region["initial_approach"] = (
+                        "separate_resolved_numerical_seed_approach"
+                    )
+                    region["approach_label"] = (
+                        "Separate numerical C4 seed approach; no resting hand, "
+                        "actuation or performance timing"
+                    )
+                    whole = audit_states(scene, e.geometry, part, saved["joint_names"])
+                    details["approach_graph"] = graph
+                    details["approach_strategy"] = approach
+                    details["exact_original_first_pose_reached"] = (
+                        part[-1]["qpos_rad"] == end
+                    )
+                    details["media"] = render_playing_evidence(
+                        scene,
+                        graph,
+                        approach,
+                        region,
+                        checked,
+                        whole,
+                        directory / "approach-media",
+                        source.get("cameras"),
+                        36,
+                        context_label=region["approach_label"],
+                    )
+                    details["region"] = region
         else:
             raise ValueError("Unknown review kind")
         rendered = []

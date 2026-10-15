@@ -162,3 +162,16 @@ def test_new_policies_are_optional_and_keep_five_fingers():
         with pytest.raises(ValueError):
             options: dict[str, Any] = {field: value}
             PassageSearchSettings(**options)
+
+
+def test_preparation_link_requires_actual_next_finger_and_physical_cap():
+    from accordion_ergonomics_core.playing_region import preparation_linkage
+
+    # Synthetic semantic fixture: same pitch alone cannot certify preparation.
+    actual = dict(midi=60, finger="index", button_id="r1c5")
+    controls = [actual, dict(actual, button_id="r4c5"), dict(actual, finger="middle")]
+    events = [dict(contacts=[], preparing_controls=controls), dict(contacts=[actual])]
+    links = preparation_linkage(events)
+    assert links[0]["matched_next_bindings"] == [actual]
+    assert links[0]["selected_next_contacts"] == [actual]
+    assert not links[1]["selected_next_contacts"]

@@ -157,3 +157,11 @@ See the [API guide](API.md) for submitting passages, bounded generation/discover
 trial retrieval, diagnostics, exact frame sequences and archived-source replay.
 The [visual index](VISUALS.md) selects actual computational media without
 duplicating image files. Generated/curated provenance is explicit for every entry.
+
+
+The [053–057 reassessment](../experiments/057-playing-library/notes.md) provides
+versioned whole-hand board traces, contact lifecycle, matched planner comparisons,
+independent geometry and exact numerical-seed approaches. The original 50 target
+IDs remain; benchmark-only cases are separate. Use the [visual guide](VISUALS.md)
+and [v3 Python API](API.md#whole-hand-movement-and-contact-lifecycle-v3) to navigate
+actual paths, candidates, checked media and unresolved findings.

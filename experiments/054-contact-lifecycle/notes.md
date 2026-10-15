@@ -59,3 +59,20 @@ uv run aec frozen playing-study experiments/054-contact-lifecycle/study.json --s
 uv run aec frozen passage experiments/054-contact-lifecycle/geometric-repeat.json --source-snapshot experiments/054-contact-lifecycle/geometric-repeat/source-snapshot.zip --output artifacts/054-repeat-replay
 uv run aec verify experiments/054-contact-lifecycle/evidence experiments/054-contact-lifecycle/held-evidence experiments/054-contact-lifecycle/geometric-repeat --require-complete
 ```
+
+## Controlled shallow-withdrawal sensitivity
+
+Matched all-five-eligible repeat searches change only configured withdrawal depth
+10→2 mm (same source, seed, candidate ordering, contact/path caps and geometry).
+[Equivalent musical events](release-depth/release-depth-comparison-events.png),
+[common coordinate plot](release-depth/release-depth-comparison.png),
+[10 mm detailed](release-depth/repeat-depth-10mm/detailed.gif), and
+[2 mm detailed](release-depth/repeat-depth-2mm/detailed.gif) preserve actual states.
+Both find geometric release and recontact. Observed separations are approximately
+9.99 versus 2.00 mm; palm travel falls 27.24→5.63 mm. Worst unresolved overlap stays
+approximately 8.6975 mm. The shallower path is not evidence of sufficient real
+button travel: these are explicit unmeasured depth hypotheses, with the same
+0.1 mm diagnostic band. Default depths are unchanged. Full constraints, traces,
+keyframes, cameras and exact sample indices are in
+[the depth manifest](release-depth/result.json). The paired physical events and
+actual-sample playback were inspected along with numerical release observations.

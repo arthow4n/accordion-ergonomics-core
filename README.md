@@ -51,8 +51,8 @@ classification, descriptors, archived-source reproduction and search caveats.
 
 Five-digit static controls and an index/ring dyad now retain saved-state contact
 close-ups, proxy overlays and a matched frozen/free thumb comparison in
-[041](experiments/041-five-finger-contacts/notes.md). Connected five-finger passage
-search and autonomous generation remain the next active research milestones.
+[041](experiments/041-five-finger-contacts/notes.md). Connected five-finger passage search and autonomous generation are demonstrated
+in 042–044, with the limits and matched movement comparisons in the visual guide.
 
 ## Reproduce
 
@@ -170,3 +170,17 @@ feasibility is claimed.
 `posture_media`, `posture_comparisons` and `posture_evidence` retrieve the v2
 assessments and exact model evidence while preserving the original catalog and
 v1 API. See [the posture consumer](examples/posture_consumer.py).
+
+
+[Whole-hand movement and visual research (053–057)](experiments/057-playing-library/notes.md)
+adds compiled board-coordinate wrist/palm/knuckle/fingertip traces, explicit geometric
+release/held-contact observations, bounded region/coordinated planner comparisons,
+and separately audited numerical-seed approaches. Two musical passages have matched
+actual-model event panels and 50–52-frame dense playback; failed held/preparation
+states and worse policies remain visible. [Open the visual guide](targets/VISUALS.md)
+for the improvements and costs. No new policy is promoted as universally ergonomic.
+
+`ExerciseLibrary.playing_case`, `playing_search`, `playing_trajectory`,
+`playing_media`, `playing_initial_approach` and `playing_complete_trajectory` expose
+the hash-bound v3 sidecar while retaining all 50 target IDs and v1/v2 APIs.
+See the [portable whole-hand consumer](examples/playing_consumer.py).

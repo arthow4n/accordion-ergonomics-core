@@ -2,6 +2,11 @@
 
 ## Start here — Five-minute introduction
 
+The latest matched comparisons are [stepwise](../experiments/055-coordinated-planning/evidence/stepwise-before-after-events.png)
+and [arpeggio](../experiments/055-coordinated-planning/evidence/arpeggio-before-after-events.png).
+Read [the integrated findings](../experiments/057-playing-library/notes.md) with
+this guide; each comparison preserves improvements and costs.
+
 1. Watch the [arpeggio baseline](../experiments/053-playing-region/evidence/arpeggio-baseline/detailed.gif): actual saved states, with a synchronized board diagram.
 2. Compare the [wrist-aware counterexample](../experiments/053-playing-region/evidence/arpeggio-posture-counterexample/detailed.gif) and [common top/side paths](../experiments/053-playing-region/evidence/arpeggio-posture-tradeoff.png). Smaller wrist departure can accompany much more hand travel.
 3. See [how the index releases and returns](../experiments/054-contact-lifecycle/evidence/repeated-index/detailed.gif), then open its [contact-distance trace](../experiments/054-contact-lifecycle/evidence/repeated-index/contact-distances.svg).
@@ -71,6 +76,27 @@ reported separately in v3 assessments.
 
 ## What changed recently
 
+| Matched question | Open these complementary views | What changed, and what remains unresolved |
+| --- | --- | --- |
+| C4–D4–E4: can the hand move with less withdrawal and proxy overlap? | [Equivalent events](../experiments/055-coordinated-planning/evidence/stepwise-before-after-events.png); [shared top/side paths](../experiments/055-coordinated-planning/evidence/stepwise-before-after.png); [baseline dense](../experiments/055-coordinated-planning/evidence/stepwise-historical-strategy-0/detailed.gif), [coordinated dense](../experiments/055-coordinated-planning/evidence/stepwise-coordinated-strategy-0/detailed.gif); [revised keyframes](../experiments/055-coordinated-planning/evidence/stepwise-coordinated-strategy-0/keyframes.gif); [revised event/contact diagram](../experiments/055-coordinated-planning/evidence/stepwise-coordinated-strategy-0/events.svg); [actual search](../experiments/055-coordinated-planning/evidence/stepwise-coordinated-strategy-0/search.svg) | Little–little–little becomes index–index–index on other physical duplicate buttons. Normal palm span 18.50→2.01 mm; worst unresolved overlap 8.723→3.576 mm. Travel rises 52.27→57.42 mm and wrist movement rises. [Matched manifest](../experiments/055-coordinated-planning/evidence/result.json), [all eight stepwise paths](../experiments/055-coordinated-planning/stepwise-audit/result.json). |
+| Eb4–G4–Bb4–Eb4: does task-relative selection improve the full hand? | [Equivalent events](../experiments/055-coordinated-planning/evidence/arpeggio-before-after-events.png); [shared paths](../experiments/055-coordinated-planning/evidence/arpeggio-before-after.png); [baseline dense](../experiments/055-coordinated-planning/evidence/arpeggio-historical-strategy-0/detailed.gif), [region dense](../experiments/055-coordinated-planning/evidence/arpeggio-region-strategy-0/detailed.gif); [revised keyframes](../experiments/055-coordinated-planning/evidence/arpeggio-region-strategy-0/keyframes.gif); [wrist/finger/proxy traces](../experiments/055-coordinated-planning/evidence/arpeggio-region-strategy-0/joints.svg); [actual search](../experiments/055-coordinated-planning/evidence/arpeggio-region-strategy-0/search.svg) | Little–index–little–little becomes middle–little–little–index, with different duplicate buttons. Worst overlap 8.830→3.118 mm and maximum palm normal position 76.79→67.51 mm; travel and wrist movement increase. [All arpeggio paths](../experiments/055-coordinated-planning/arpeggio-audit/result.json). This is not a universal ergonomic win. |
+| Repeated C4: does 10 mm withdrawal exceed the geometric requirement? | [Equivalent events](../experiments/054-contact-lifecycle/release-depth/release-depth-comparison-events.png); [shared paths](../experiments/054-contact-lifecycle/release-depth/release-depth-comparison.png); [10 mm dense](../experiments/054-contact-lifecycle/release-depth/repeat-depth-10mm/detailed.gif), [2 mm dense](../experiments/054-contact-lifecycle/release-depth/repeat-depth-2mm/detailed.gif) | All fingers eligible; index retained in both. Geometric release remains observed, palm travel 27.24→5.63 mm, overlap approximately unchanged. [Depth manifest](../experiments/054-contact-lifecycle/release-depth/result.json). Actual button travel is unknown, so 2 mm is a sensitivity hypothesis, not a real operating recommendation. |
+
+Open the [all-policy tradeoff table](../experiments/057-playing-library/evidence/policy-tradeoffs.png)
+for historical, region, coordinated and combined strategies and both retained
+endings. It comes from [actual comparisons and consumed budgets](../experiments/057-playing-library/evidence/result.json).
+Matched movies use identical physical cameras and common coordinate bounds;
+50–52 frames expose intermediate movement without inventing physiological time.
+The [055 notes](../experiments/055-coordinated-planning/notes.md) state precisely
+which algorithm components change, which metrics worsen and why defaults stay.
+
+Separately, [stepwise first-note approach](../experiments/056-physical-integrity/approaches/stepwise-initial/approach-media/detailed.gif)
+and [arpeggio first-note approach](../experiments/056-physical-integrity/approaches/arpeggio-initial/approach-media/detailed.gif)
+connect the resolved index-C4 numerical seed to the revised first poses exactly.
+[Their manifest](../experiments/056-physical-integrity/approaches/result.json)
+preserves 163/235 sampled configurations and independent checks. These can be
+explicitly joined through the API; no resting-hand approach is implied.
+
 [053 whole-hand analysis](../experiments/053-playing-region/notes.md) replaces a
 capitate-only explanation with multiple anatomical landmarks in compiled board
 coordinates. [054 contact lifecycle](../experiments/054-contact-lifecycle/notes.md)
@@ -130,3 +156,9 @@ whole-hand, muscle and posture milestones are indexed by their inspected manifes
 All physical frames use compiled model geometry and saved qpos. Board plots are
 computed projections; search diagrams are algorithmic schematics. Neither adds
 new physical evidence. Hashes and reproduction commands reside with each milestone.
+
+- [055 coordinated planning](../experiments/055-coordinated-planning/notes.md): eight matched searches, 16 retained paths, two complete before/after media sets and preserved numerical failures.
+- [056 physical integrity](../experiments/056-physical-integrity/notes.md): all-policy worst-proxy coverage, held failure, successful separate numerical-seed approaches, negative first-event and preparation controls.
+- [057 integrated library](../experiments/057-playing-library/notes.md): v3 assessments, consumer, exact archived rendering and complete validation.
+- [Two-finger index/ring contact](../experiments/041-five-finger-contacts/diagnostics/renders/index-ring-candidate-0/hand.png): historical simultaneous C4/E4 control; [exact diagnosis](../experiments/041-five-finger-contacts/diagnostics/result.json). A static contact, not a solved held transition.
+- [Failed future thumb preparation](../experiments/056-physical-integrity/preparation-media/failed-contact/hand.png), [its real branches](../experiments/056-physical-integrity/preparation-media/search.svg): an attempted future target is dropped after solve failure; [saved control](../experiments/056-physical-integrity/preparation/result.json). No successful preparation is claimed.

@@ -224,6 +224,12 @@ def event_diagram(saved, strategy, record, path):
             "a sounding note. Actuation unknown.</text>"
         ),
     ]
+    if record.get("approach_label"):
+        lines[2] = (
+            '<text x="20" y="52" font-size="13">'
+            + escape(record["approach_label"])
+            + "</text>"
+        )
     nodes = {n["id"]: n for n in saved["nodes"]}
     for i, event in enumerate(events):
         y = 90 + i * 105
@@ -267,7 +273,17 @@ def event_diagram(saved, strategy, record, path):
 
 
 def render_playing_evidence(
-    scene, saved, strategy, region, audit, whole, output, cameras, frames, bounds=None
+    scene,
+    saved,
+    strategy,
+    region,
+    audit,
+    whole,
+    output,
+    cameras,
+    frames,
+    bounds=None,
+    context_label="actual untimed path / initial approach unplanned",
 ):
     output.mkdir(parents=True, exist_ok=True)
     rows = region["traces"]
@@ -294,7 +310,7 @@ def render_playing_evidence(
         output / "dense",
         len(indices),
         {"hand": cameras["hand"]} if cameras else None,
-        "actual untimed path / initial approach unplanned",
+        context_label,
         sample_indices=indices,
     )
     composite = []
@@ -358,7 +374,7 @@ def render_playing_evidence(
             ),
             contact_roles=sample["roles"],
             state_label=(
-                f"actual sample {index}; unresolved proxies; initial approach unplanned"
+                f"actual sample {index}; unresolved proxies; " + context_label
             ),
             camera_overrides=cameras,
         )

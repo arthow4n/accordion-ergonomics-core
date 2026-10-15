@@ -51,6 +51,7 @@ def frozen_run(
         "posture-gallery",
         "playing-study",
         "playing-review",
+        "playing-library",
     ):
         raise ValueError("Unsupported frozen workflow")
     output.mkdir(parents=True, exist_ok=True)

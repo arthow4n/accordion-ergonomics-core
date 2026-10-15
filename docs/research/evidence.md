@@ -289,3 +289,27 @@ sensitivity and explicit synthetic reference shifts have limited scope. Rejected
 reference approaches remain negative evidence. All timing, strain, comfort and
 human-feasibility interpretations remain unknown. Versioned consumer assessments
 preserve the original catalog and frozen scientific distinctions.
+
+## Whole-hand organization and visual research, 053–057
+
+The fixed `generic_cba_v3`, imported anatomy and stationary body/instrument
+assumptions are unchanged. New multi-landmark trajectories, contact lifecycle,
+matched actual-state media and branch diagrams are **computed implementation
+and model evidence**, not observations of a player. Compiled transformations and
+proxy support remain distinct from assumed instrument geometry and uncalibrated
+soft-tissue envelopes.
+
+The cap-relative selection preference and capitate task cost 0.05 are numerical
+research hypotheses. Neither defines a biological playing region. The 2 versus
+10 mm repeated-note withdrawal comparison is an explicit geometric sensitivity;
+button travel, force and operating requirements remain unknown. Release uses the
+existing 0.1 mm endpoint acceptance band as a diagnostic convention. No additional
+physical measurement is inferred from these numbers. No collision masks/envelopes
+are weakened to make a path pass. Wrist, path, proxy and joint-limit tradeoffs remain
+separate, with no universal ergonomic score or new muscle ranking.
+
+Actual source archives, saved states, exact camera/sample records and diagrams
+from executed hypotheses accompany the visual guide. First-note connections from
+the resolved numerical C4 seed are explicit sidecar evidence; a resting-hand
+approach and human performance are not demonstrated. Earlier frozen evidence and
+the 50-target library retain their original identities and qualified claims.

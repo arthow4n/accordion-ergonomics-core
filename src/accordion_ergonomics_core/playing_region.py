@@ -342,3 +342,27 @@ def playing_region_trace(scene, e, strategy, *, lifecycle=True):
             "tissue validity"
         ),
     )
+
+
+def preparation_linkage(events):
+    """Bind optional preparation to the actual next finger AND physical button."""
+    links = []
+    for i, event in enumerate(events):
+        controls = event.get("preparing_controls", [])
+        selected = events[i + 1]["contacts"] if i + 1 < len(events) else []
+        links.append(
+            dict(
+                event_index=i,
+                controls=controls,
+                selected_next_contacts=selected,
+                matched_next_bindings=[
+                    c
+                    for c in controls
+                    if any(
+                        c["finger"] == n["finger"] and c["button_id"] == n["button_id"]
+                        for n in selected
+                    )
+                ],
+            )
+        )
+    return links

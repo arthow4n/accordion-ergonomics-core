@@ -1,0 +1,91 @@
+{
+  "id": "054-release-depth-sensitivity",
+  "cases": [
+    {
+      "id": "repeat-depth-10mm",
+      "search_result": "repeat-depth-10mm/result.json",
+      "search_sha256": "77a6b07e55aa66a9b2afe5256f0c144c30038ca09eaacfefb05194f2f593a87f",
+      "render": true
+    },
+    {
+      "id": "repeat-depth-2mm",
+      "search_result": "repeat-depth-2mm/result.json",
+      "search_sha256": "ce027eff6c8bf3aa2adeb0d654e5f898f2139f5e7f79116f36cf336476f246ec",
+      "render": true
+    }
+  ],
+  "frames": 30,
+  "board_bounds_m": [
+    [
+      -0.07642830687596844,
+      -0.029604791935325267,
+      0.003999999999999982
+    ],
+    [
+      0.07921364860897526,
+      0.19949999999999998,
+      0.09693807120153186
+    ]
+  ],
+  "cameras": {
+    "overview": {
+      "lookat": [
+        0.10654139884679645,
+        0.22461164636900655,
+        0.8005999999997332
+      ],
+      "distance": 1.95,
+      "azimuth": -125.0,
+      "elevation": -12.0
+    },
+    "keyboard": {
+      "lookat": [
+        0.1595462347572544,
+        0.08278333636812407,
+        0.9315228854846127
+      ],
+      "distance": 0.6,
+      "azimuth": -119.99999999999999,
+      "elevation": 0.0
+    },
+    "side": {
+      "lookat": [
+        0.1595462347572544,
+        0.08278333636812407,
+        0.9315228854846127
+      ],
+      "distance": 0.6,
+      "azimuth": 150.0,
+      "elevation": 0.0
+    },
+    "hand": {
+      "lookat": [
+        0.1595462347572544,
+        0.08278333636812407,
+        0.9315228854846127
+      ],
+      "distance": 0.42,
+      "azimuth": -119.99999999999999,
+      "elevation": -20.0
+    },
+    "collision": {
+      "lookat": [
+        0.1595462347572544,
+        0.08278333636812407,
+        0.9315228854846127
+      ],
+      "distance": 0.42,
+      "azimuth": -119.99999999999999,
+      "elevation": -20.0
+    }
+  },
+  "comparisons": [
+    {
+      "id": "release-depth-comparison",
+      "cases": [
+        "repeat-depth-10mm",
+        "repeat-depth-2mm"
+      ]
+    }
+  ]
+}

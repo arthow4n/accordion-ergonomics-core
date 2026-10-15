@@ -23,6 +23,180 @@ class ExerciseLibrary:
         self.root = root.resolve()
         self.catalog = json.loads((self.root / "targets/manifest.json").read_text())
 
+    def playing_record(self):
+        """Versioned whole-hand/lifecycle evidence with unchanged catalog identities."""
+        index = json.loads(
+            (self.root / "targets/playing-assessments-v3.json").read_text()
+        )
+        record = json.loads(self.evidence_path(index["evidence"]).read_text())
+        if index["assessment_version"] != record["assessment_version"]:
+            raise ValueError("Playing assessment index differs from evidence")
+        if record["assessment_version"] != "playing-region-lifecycle-v3":
+            raise ValueError("Unsupported playing assessment version")
+        self.evidence_path(
+            dict(path="targets/manifest.json", sha256=record["catalog_sha256"])
+        )
+        return record
+
+    def playing_assessment(self, target_id: str):
+        self.target(target_id)
+        record = self.playing_record()
+        return dict(
+            assessment_version=record["assessment_version"],
+            **next(t for t in record["targets"] if t["target_id"] == target_id),
+        )
+
+    def playing_cases(self, target_id: str | None = None):
+        record = self.playing_record()
+        if target_id is not None:
+            self.target(target_id)
+        return (record.get("benchmarks", []) if target_id is None else []) + [
+            c
+            for t in record["targets"]
+            if target_id is None or t["target_id"] == target_id
+            for c in t["cases"]
+        ]
+
+    def playing_case(self, case_id: str):
+        binding = next(
+            (c for c in self.playing_cases() if c["case_id"] == case_id), None
+        )
+        if binding is None:
+            raise KeyError(case_id)
+        saved = json.loads(self.evidence_path(binding["evidence"]).read_text())
+        case = next(c for c in saved["cases"] if c["id"] == case_id)
+        if case["region"]["state_sequence_sha256"] != binding["state_sequence_sha256"]:
+            raise ValueError("Playing state identity differs from assessment")
+        return case
+
+    def playing_search(self, case_id: str):
+        """Retrieve actual hypotheses, solves, budgets and branch decisions."""
+        case = self.playing_case(case_id)
+        binding = next(c for c in self.playing_cases() if c["case_id"] == case_id)
+        definition = self.root / binding["definition"]
+        reference = case["source"]
+        path = (definition.parent / reference["search_result"]).resolve()
+        saved = json.loads(
+            self.evidence_path(
+                dict(
+                    path=str(path.relative_to(self.root)),
+                    sha256=reference["search_sha256"],
+                )
+            ).read_text()
+        )
+        return saved
+
+    def playing_trajectory(self, case_id: str):
+        case = self.playing_case(case_id)
+        saved = self.playing_search(case_id)
+        strategy = next(
+            s for s in saved["strategies"] if s["id"] == case["strategy_id"]
+        )
+        validate_strategy(saved, strategy)
+        if state_digest(strategy["samples"]) != case["region"]["state_sequence_sha256"]:
+            raise ValueError("Playing trajectory differs from assessment")
+        return strategy
+
+    def playing_media(self, case_id: str):
+        binding = next(
+            (c for c in self.playing_cases() if c["case_id"] == case_id), None
+        )
+        if binding is None:
+            raise KeyError(case_id)
+        result_path = self.evidence_path(binding["evidence"])
+        saved = json.loads(result_path.read_text())
+        case = self.playing_case(case_id)
+        media = []
+        for relative, digest in saved["artifact_sha256"].items():
+            if relative.startswith(case_id + "/"):
+                path = result_path.parent / relative
+                media.append(
+                    self.evidence_path(
+                        dict(path=str(path.relative_to(self.root)), sha256=digest)
+                    )
+                )
+        return dict(
+            manifest=case["media"],
+            paths=media,
+            playback_claim=(
+                "Actual recorded samples; display intervals are not physiological time"
+            ),
+        )
+
+    def playing_initial_approach(self, case_id: str):
+        """Retrieve a separately audited connection from the resolved numerical seed."""
+        case = self.playing_case(case_id)
+        for ref in self.playing_record()["reviews"]:
+            path = self.evidence_path(ref)
+            saved = json.loads(path.read_text())
+            for record in saved["records"]:
+                source = record["source"]
+                if (
+                    source.get("kind") == "initial_approach"
+                    and source["search_sha256"] == case["source"]["search_sha256"]
+                    and source.get("strategy_id", "strategy-0") == case["strategy_id"]
+                ):
+                    media = [
+                        self.evidence_path(
+                            dict(
+                                path=str(
+                                    (path.parent / relative).relative_to(self.root)
+                                ),
+                                sha256=digest,
+                            )
+                        )
+                        for relative, digest in saved["artifact_sha256"].items()
+                        if relative.startswith(record["id"] + "/")
+                    ]
+                    return dict(record=record, paths=media, evidence=ref)
+        raise KeyError("No audited initial approach for " + case_id)
+
+    def playing_complete_trajectory(self, case_id: str):
+        """Join recorded seed approach and passage; no resting-hand claim."""
+        musical = self.playing_trajectory(case_id)
+        connection = self.playing_initial_approach(case_id)
+        details = connection["record"]["details"]
+        if (
+            details["status"] != "sampled_path_found"
+            or details.get("independent_approach_audit", {}).get("status")
+            != "sampled_proxy_constraints_satisfied"
+            or not details.get("exact_original_first_pose_reached")
+        ):
+            raise ValueError("Initial approach is incomplete or independently rejected")
+        approach = details["approach_strategy"]
+        validate_strategy(details["approach_graph"], approach)
+        if approach["samples"][-1]["qpos_rad"] != musical["samples"][0]["qpos_rad"]:
+            raise ValueError("Initial approach does not join exact first musical state")
+        samples = approach["samples"][:-1] + musical["samples"]
+        return dict(
+            status="sampled_geometry_from_resolved_numerical_seed",
+            samples=samples,
+            state_sequence_sha256=state_digest(samples),
+            approach_sample_count=len(approach["samples"]),
+            musical_strategy=musical,
+            approach_evidence=connection["evidence"],
+            claim=(
+                "Actual exact-state join; no resting hand, timing, "
+                "actuation or anatomical certification"
+            ),
+        )
+
+    def playing_reviews(self):
+        """Failed held contacts / separate approach attempts never become passages."""
+        return [
+            json.loads(self.evidence_path(ref).read_text())
+            for ref in self.playing_record()["reviews"]
+        ]
+
+    def playing_comparisons(self):
+        return [
+            comparison
+            for ref in self.playing_record()["studies"]
+            for comparison in json.loads(self.evidence_path(ref).read_text())[
+                "comparisons"
+            ]
+        ]
+
     def posture_record(self):
         """Hash-bound v2 sidecar; historical catalog and v1 API remain available."""
         index = json.loads(
@@ -713,3 +887,24 @@ def discover_challenges(
         json.dumps(result, separators=(",", ":"), allow_nan=False) + "\n"
     )
     return result
+
+
+def measure_playing_strategy(
+    saved: dict[str, Any], strategy_id: str, *, lifecycle: bool = True
+):
+    """Compute landmarks/lifecycle for a consumer's actual search result."""
+    from .experiment import Experiment
+    from .playing_region import playing_region_trace
+    from .provenance import compiled_model_digest
+    from .scene import build_scene
+
+    strategy = next(s for s in saved["strategies"] if s["id"] == strategy_id)
+    validate_strategy(saved, strategy)
+    e = Experiment.from_dict(saved.get("scene_input", saved["input"]))
+    scene = build_scene(e.geometry, e.player, e.setup, e.physical_contact, DIGITS)
+    if (
+        compiled_model_digest(scene.model)
+        != saved["provenance"]["compiled_model_sha256"]
+    ):
+        raise ValueError("Consumer model differs from recorded trajectory")
+    return playing_region_trace(scene, e, strategy, lifecycle=lifecycle)

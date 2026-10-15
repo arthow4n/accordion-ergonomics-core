@@ -1,0 +1,50 @@
+{
+  "baseline_result": "../037-upper-anchor-regression/central/result.json",
+  "baseline_sha256": "6bf28437371d8bf3f509efd395da4cd88121aa73967aa52ce98cb047c92ee7b8",
+  "passage": {
+    "id": "arpeggio-region",
+    "events": [
+      {
+        "pitches": [
+          63
+        ]
+      },
+      {
+        "pitches": [
+          67
+        ]
+      },
+      {
+        "pitches": [
+          70
+        ]
+      },
+      {
+        "pitches": [
+          63
+        ]
+      }
+    ]
+  },
+  "search": {
+    "seed": 4309,
+    "beam_width": 2,
+    "assignments_per_parent": 4,
+    "contact_iterations": 240,
+    "prepare_next": false,
+    "assignment_order": "seeded",
+    "planning": {
+      "withdrawal_depths_m": [
+        0.01,
+        0.02
+      ],
+      "max_joint_step_rad": 0.003,
+      "waypoint_iterations": 200,
+      "waypoint_solve_limit": 48,
+      "rrt_iterations": 120,
+      "seed": 4309
+    },
+    "selection_mode": "playing_region",
+    "whole_hand_guidance_cost": 0.0
+  }
+}

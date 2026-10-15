@@ -196,3 +196,61 @@ uv run --project /path/to/accordion-ergonomics-core python /path/to/accordion-er
 
 [052 notes](../experiments/052-posture-selection/notes.md) and the matched physical
 comparison galleries document why improved reference posture alone is insufficient.
+
+## Whole-hand movement and contact lifecycle: v3
+
+The historical catalog, v1 quality and v2 posture methods remain available.
+`targets/playing-assessments-v3.json` hash-binds the new frozen sidecar. All 50
+historical target IDs remain; benchmark-only passages are explicitly separate.
+Each consumer validates source/model/state identities and media hashes.
+
+```python
+from accordion_ergonomics_core.research import ExerciseLibrary, measure_playing_strategy
+
+library = ExerciseLibrary()
+assessment = library.playing_assessment("passage-stepwise")
+case_id = "stepwise-coordinated-strategy-0"
+case = library.playing_case(case_id)
+trace = case["region"]["traces"]  # every actual sample, board metres and body axes
+lifecycle = case["region"]["intervals"]  # contacts, holds, geometric release
+search = library.playing_search(case_id)  # hypotheses, attempts, pruning and budgets
+musical = library.playing_trajectory(case_id)
+media = library.playing_media(case_id)  # exact keyframe/dense indices, checked paths
+comparisons = library.playing_comparisons()
+approach = library.playing_initial_approach(case_id)
+complete = library.playing_complete_trajectory(case_id)
+# This exact join starts at a resolved numerical C4 contact, not a resting hand.
+# Unavailable, rejected or nonjoining approaches raise rather than invent states.
+
+# For an actual newly computed discover_passage result:
+# measurements = measure_playing_strategy(result, "strategy-0")
+```
+
+`playing_cases(target_id=None)` lists versioned bindings, including clearly separate
+benchmark-only cases when no target filter is supplied. `playing_reviews()` exposes
+attempted held states and actual separately audited first-note connections. Held
+failures never become accepted trajectories. `playing_search()` retains failed
+optional preparation targets; `preparation_links` matches controls to the exact
+next selected finger/button, not pitch alone.
+
+Board coordinates use +u outward across rows, +v toward increasing pitch and +n
+away from the board. Lunate/capitate/metacarpal/knuckle origins and all fingertips
+are distinct. Rigid proxy and instrument reports remain independent of posture
+and path costs. Nonassigned cap proximity has unknown actuation; release is
+geometric separation beyond the existing endpoint tolerance, not measured travel.
+Dense playback includes saved intermediate states with exact indices; equal
+frame display intervals are not physiological time. Anatomical tissue validity,
+button forces, timed performance, comfort and human feasibility remain unknown.
+
+Optional search settings are `selection_mode="playing_region"`,
+`whole_hand_guidance_cost=0.05`, `release_policy="geometric"` and
+`initial_selection="seed_distance"`. They are distinct experimental hypotheses;
+the last worsens the retained stepwise control. Historical defaults remain.
+The ordinary `PlanningSettings.withdrawal_depths_m` exposes release-depth
+sensitivity without changing geometry or inventing button mechanics. No muscle
+ranking or package-publication process is added.
+
+[The portable example](../examples/playing_consumer.py) reads the new trajectories,
+board traces, lifecycle, search provenance, exact joins and checked dense GIFs from
+outside the checkout using the same internal Python package. See
+[the visual guide](VISUALS.md) for the matched physical comparisons and failures.

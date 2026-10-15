@@ -213,3 +213,26 @@ imported range position/margins, movement variation and board-relative palm/
 forearm orientation remain separate. Synthetic reference shifts are hypotheses.
 See [049](../../experiments/049-wrist-posture/notes.md). No model composition,
 joint frame, coordinate sign or imported range was changed.
+
+## Whole-hand board traces and lifecycle (053–057)
+
+`playing_region` checks compiled `keyboard` origin/axes and cap planar coordinates
+against the resolved geometry before producing traces. Row-vector conversion is
+`(p_world - origin) @ R_WB`. Increasing physical row decreases u. Every saved sample
+binds lunate, capitate, five metacarpal origins, five proximal-phalangeal joint
+origins and all five pad sites. These are imported skeletal/joint landmarks,
+not skin measurements. Lunate/capitate/radius matrices in board axes retain palm,
+wrist and forearm orientation separately; no calibrated palmar plane is implied.
+
+The relevant task region consists of actual source/upcoming physical caps. Offset,
+normal position, across-row and along-keyboard excursions are descriptive. Plot
+bounds are visual scales derived from recorded points, never admissibility bounds.
+Palm n refers to a body origin above the base plane, not tissue clearance.
+
+Geometric release requires an observed old-cap distance beyond the existing
+endpoint position tolerance (0.1 mm in these references), querying both distal
+proxies' outer union. It is a declared diagnostic convention, not measured travel
+or skin thickness. Nonassigned digit/cap proximity independently queries all digit
+proxies irrespective of collision masks; it does not infer button actuation or a
+sounding note. Held requirements use the same contact acceptance at every saved
+sample. Display intervals and sample progress contain no physiological timing.
